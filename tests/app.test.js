@@ -98,18 +98,21 @@ test('legacy writer dropping metadata cannot hide a required bank migration',asy
   assert.equal(app.saved().bank.revision,bank.revision);
   assert.equal(app.data.get(S.KEY+'-before-update'),raw);
 });
-test('course progress keeps date and repeat controls without enrollment checkboxes',async()=>{
+test('course progress only edits initial dates and hides repeat and date provenance',async()=>{
   const app=harness();await app.ready();
   await app.click('nav',{target:'courses'});
   assert.match(app.node('app').innerHTML,/data-date-module="lv"/);
   assert.match(app.node('app').innerHTML,/data-date-module="rg"/);
   assert.match(app.node('app').innerHTML,/data-date-module="skills"/);
-  assert.doesNotMatch(app.node('app').innerHTML,/type="checkbox"|手动暂停|勾选/);
+  assert.doesNotMatch(app.node('app').innerHTML,/type="checkbox"|手动暂停|勾选|记录复读|题库生成|家长已修改|来自发布/);
+  assert.match(app.node('app').innerHTML,/首次学习日期/);
   await app.click('system',{system:'raz'});
   const html=app.node('app').innerHTML;
   assert.equal((html.match(/data-book-date=/g)||[]).length,2);
-  assert.equal((html.match(/data-action="record-book-repeat"/g)||[]).length,2);
-  assert.doesNotMatch(html,/type="checkbox"|data-book-lesson=|data-module=|data-date-module=|各模块独立|听力|Skill/);
+  assert.doesNotMatch(html,/type="checkbox"|data-book-lesson=|data-module=|data-date-module=|各模块独立|记录复读|题库生成|家长已修改|来自发布/);
+  assert.match(html,/10 个学习目标/);
+  assert.match(html,/12 个学习目标/);
+  assert.doesNotMatch(html,/5 个考点/);
 });
 test('book date applies to all existing RAZ points without removing answers',async()=>{
   const lesson='raz-d-greater-than',state=E.emptyState();E.syncBatches(bank,state);

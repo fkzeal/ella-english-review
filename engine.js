@@ -58,6 +58,20 @@
       if(q.type === 'reading' && !text(q.passage)) fail(`阅读题 ${q.id} 缺少文章`);
     }
     for (const p of b.points) if (!b.questions.some(q=>q.pointId===p.id)) fail(`考点 ${p.id} 没有可用题目`);
+    for(const l of b.lessons)if(l.learningTargets!==undefined){
+      if(!Array.isArray(l.learningTargets)||!l.learningTargets.length)fail(`课程 ${l.id} 学习目标无效`);
+      const questions=availableQuestions(b).filter(q=>b.points.find(p=>p.id===q.pointId).lessonId===l.id);
+      const ids=new Set(),covered=new Set();
+      for(const t of l.learningTargets){
+        if(!t||!text(t.id)||ids.has(t.id)||!text(t.title)||!text(t.evidence)||!Array.isArray(t.questionIds)||!t.questionIds.length)fail(`课程 ${l.id} 学习目标信息不完整`);
+        ids.add(t.id);
+        for(const id of t.questionIds){
+          if(!questions.some(q=>q.id===id)||covered.has(id))fail(`课程 ${l.id} 学习目标题目重复或引用错误`);
+          covered.add(id);
+        }
+      }
+      if(covered.size!==questions.length)fail(`课程 ${l.id} 存在未归入学习目标的题目`);
+    }
     if(b.batches!==undefined){
       if(!Array.isArray(b.batches)||b.batches.length>10000)fail('学习批次无效');
       const ids=new Set();
@@ -243,28 +257,34 @@
   function plan(b,s,{today=day(),size=s.settings.size,practice=false,lessonId=null,preview=false,rng=Math.random}={}) {
     let points=preview&&practice?b.points:practice?activePoints(b,s,today):duePoints(b,s,today);
     if(lessonId) points=points.filter(p=>p.lessonId===lessonId);
-    points=shuffle(points,rng).sort((a,c)=>{
-      const pa=s.points[a.id],pc=s.points[c.id];
-      const weak=p=>p?.missDay===p?.lastDay&&p?.missDay&&p.due<=today?0:1;
-      return weak(pa)-weak(pc) || (pa?.due||today).localeCompare(pc?.due||today) || (pc?.errors||0)-(pa?.errors||0);
-    });
-    // Within each urgency tier, rotate lessons so a large older book does not
-    // fill the whole set before other books get a turn.
-    const tiers=[points.filter(p=>s.points[p.id]?.missDay&&s.points[p.id].missDay===s.points[p.id].lastDay),
-      points.filter(p=>!(s.points[p.id]?.missDay&&s.points[p.id].missDay===s.points[p.id].lastDay))];
-    points=tiers.flatMap(tier=>{
-      const groups=new Map();
-      for(const p of tier){if(!groups.has(p.lessonId))groups.set(p.lessonId,[]);groups.get(p.lessonId).push(p);}
-      const mixed=[];
-      while([...groups.values()].some(g=>g.length))for(const g of groups.values())if(g.length)mixed.push(g.shift());
-      return mixed;
-    });
+    points=shuffle(points,rng);
     const candidates=new Map(points.map(p=>[p.id,shuffle(availableQuestions(b).filter(q=>q.pointId===p.id&&(practice||!q.reviewUnit||!s.units?.[unitKey(q)]||s.units[unitKey(q)].due<=today)),rng).sort((a,c)=>{
       const ha=s.history.filter(h=>h.questionId===a.id),hc=s.history.filter(h=>h.questionId===c.id);
       const ua=s.units?.[unitKey(a)],uc=s.units?.[unitKey(c)];
       const weak=u=>u?.missDay&&u.missDay===u.lastDay?0:1;
       return weak(ua)-weak(uc)||(ua?.due||today).localeCompare(uc?.due||today)||ha.length-hc.length || (ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
     })]));
+    // Rank groups by the units actually eligible today, not historical aggregate
+    // errors. A recovered word must not hide another still-weak word in its group.
+    const record=p=>{
+      const q=candidates.get(p.id)[0];
+      return q&&(s.units?.[unitKey(q)]||s.points[p.id]);
+    };
+    const weak=u=>u?.missDay&&u.missDay===u.lastDay&&u.due<=today?0:1;
+    points=points.filter(p=>candidates.get(p.id).length).sort((a,c)=>{
+      const ua=record(a),uc=record(c);
+      return weak(ua)-weak(uc)||(ua?.due||today).localeCompare(uc?.due||today);
+    });
+    const groups=new Map();
+    for(const p of points){if(!groups.has(p.lessonId))groups.set(p.lessonId,[]);groups.get(p.lessonId).push(p);}
+    // Least recently practised lessons get the next turn when there are more
+    // lessons than slots. Within each lesson, weak and overdue units come first.
+    const pointLessons=new Map(b.points.map(p=>[p.id,p.lessonId])),lastPractised=new Map();
+    s.history.forEach((h,index)=>lastPractised.set(pointLessons.get(h.pointId),index));
+    const lastPractice=id=>lastPractised.get(id)??-1;
+    const queues=[...groups].sort(([a],[c])=>lastPractice(a)-lastPractice(c)).map(([,ps])=>ps);
+    points=[];
+    while(queues.some(g=>g.length))for(const g of queues)if(g.length)points.push(g.shift());
     const items=[];
     const usedUnits=new Set();
     for(let round=0;items.length<size&&round<2;round++) {

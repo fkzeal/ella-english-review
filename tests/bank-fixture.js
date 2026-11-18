@@ -4,6 +4,8 @@ const publishedBank = require('../question-bank.json');
 function cambridgeBank() {
   const bank = structuredClone(publishedBank);
   bank.lessons = bank.lessons.filter(l => !l.system || l.system === 'cambridge');
+  // This fixture represents the pre-audit bank, which had no target inventory.
+  for(const l of bank.lessons)delete l.learningTargets;
   const lessons = new Set(bank.lessons.map(l => l.id));
   bank.points = bank.points.filter(p => lessons.has(p.lessonId));
   const points = new Set(bank.points.map(p => p.id));

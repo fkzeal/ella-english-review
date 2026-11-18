@@ -76,7 +76,7 @@
     const nextDue=active.map(p=>state.points[p.id]?.due).filter(Boolean).sort()[0];
     return head('LET’S PRACTICE','今天，来练几道英语题吧。','选一个答案，就能马上知道对不对。')+
       `<div class="student-home"><div class="hero"><div class="hero-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" width="150" height="150" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M26 12a11 11 0 1 0 1 9"/><path d="M19 12h7V5"/></svg></div><div class="eyebrow">YOUR ENGLISH PRACTICE</div><h2>准备好了吗？</h2><p>每次 ${state.settings.size} 题以内。慢慢想，选答案，看解析。</p><div class="hero-meta"><span>词汇选择 · 选词填空 · 听力 · 阅读</span></div><button class="button start-button" data-action="start" ${!lessons.length?'disabled':''}>开始练习 <span aria-hidden="true">→</span></button></div>
-      <div class="card"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div></div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note">自动安排 · ${due.length} 个考点到期${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p>`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}<p class="note" style="margin-top:14px">看题 → 选答案 → 看对错 → 下一题</p></div></div>`;
+      <div class="card"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div></div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note">自动安排 · ${due.length} 个练习分组到期${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p>`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}<p class="note" style="margin-top:14px">看题 → 选答案 → 看对错 → 下一题</p></div></div>`;
   }
   function pointRow(p){const l=bank.lessons.find(l=>l.id===p.lessonId),sp=state.points[p.id];return `<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${esc(p.title)}</strong><small>${lessonLabel(l)}</small></div><span class="tag">${sp?.errors?'需要巩固':sp?.stage?'间隔复习':'首次回顾'}</span></div>`;}
   function sessionLanding(){const t=state.session;return head('KEEP GOING','上次的练习，等你继续。',`已经完成 ${t.index} / ${t.items.length} 题。`)+`<div class="card quiz"><h2>还有 ${t.items.length-t.index} 题</h2><p class="muted">从上次停下的地方，接着练。</p><div class="actions"><button class="button start-button" data-action="resume">开始练习 →</button><button class="button secondary" data-action="end">结束本组</button></div></div>`;}
@@ -84,8 +84,7 @@
     if(l.system==='raz')return bookControls(l,ps);
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
       const available=ps.some(p=>p.module===m),info=available?E.moduleDate(bank,state,l.id,m):null;
-      const repeats=(state.localBatches||[]).filter(b=>b.items.some(i=>i.lessonId===l.id&&i.modules.includes(m)));
-      return `<div class="module-block"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">学习日期</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}学习日期" value="${info.date}"></div><p class="note">${info.source==='manual'?'家长已修改':info.source==='batch'?'来自发布的学习批次':'默认：题库生成日期的前一天，可修改'}${info.date>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${info.date}" aria-label="${moduleNames[m]}复读日期"><button class="button secondary small" data-action="record-repeat" data-id="${l.id}" data-module="${m}">记录复读</button></div>${repeats.map(b=>`<span class="tag">${esc(b.learnedOn)}</span>`).join('')}</details>`:''}</div>`;
+      return `<div class="module-block"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">首次学习日期</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}首次学习日期" value="${info.date}"></div>${info.date>E.day()?'<p class="note">等待学习日</p>':''}`:''}</div>`;
     }).join('')}</div>`;
   }
   function lessonModules(id){return [...new Set(bank.points.filter(p=>p.lessonId===id).map(p=>p.module))];}
@@ -93,20 +92,19 @@
     const modules=[...new Set(ps.map(p=>p.module))];
     const infos=modules.map(m=>E.moduleDate(bank,state,l.id,m));
     const dates=[...new Set(infos.map(info=>info.date))].sort();
-    const repeats=[...new Set((state.localBatches||[]).filter(b=>b.items.some(i=>i.lessonId===l.id)).map(b=>b.learnedOn))].sort();
-    const note=dates.length>1?'已有记录的学习日期不同，选择日期后统一整本绘本；原答题记录保留。':infos.every(info=>info.source==='default')?'默认：题库生成日期的前一天，可修改':infos.some(info=>info.source==='manual')?'家长已修改':'来自发布的学习批次';
-    return `<div class="checks"><div class="module-block"><div class="module-date-row"><label for="date-${l.id}-book">学习日期</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本学习日期" value="${dates.length===1?dates[0]:''}"></div><p class="note">${note}${dates.length===1&&dates[0]>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${dates.at(-1)}" aria-label="绘本复读日期"><button class="button secondary small" data-action="record-book-repeat" data-id="${l.id}">记录复读</button></div>${repeats.map(date=>`<span class="tag">${esc(date)}</span>`).join('')}</details></div></div>`;
+    return `<div class="checks"><div class="module-block"><div class="module-date-row"><label for="date-${l.id}-book">首次学习日期</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本首次学习日期" value="${dates.length===1?dates[0]:''}"></div>${dates.length>1?'<p class="note">旧记录日期不同，请选择整本绘本的首次学习日期。</p>':dates[0]>E.day()?'<p class="note">等待学习日</p>':''}</div></div>`;
   }
   function courseView(){
     const bank=currentContent();
     const list=bank.lessons.filter(l=>(l.system||'cambridge')===system&&(system!=='cambridge'||l.level===level));
-    return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。',system==='raz'?'已有绘本题库按学习日期自动安排复习，可修改日期或记录复读。':'已有课程题库按各模块的学习日期自动安排复习，可修改日期或记录复读。')+
+    return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。','调整首次学习日期，复习由系统根据答题表现自动安排。')+
       '<div class="filter-row">'+[['cambridge','猿辅导剑桥'],['raz','RAZ 绘本'],['ket','KET 词汇']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
       (system==='cambridge'?'<div class="filter-row">'+[1,2,3,4].map(n=>`<button class="chip ${n===level?'active':''}" data-action="level" data-level="${n}">Level ${n}</button>`).join('')+'</div>':'')+
-      `<div class="banner">${system==='raz'?'每本绘本统一修改学习日期，选择后自动保存。未提供日期时默认使用绘本题库生成日期的前一天。':'每个模块都可修改学习日期，选择后自动保存。未提供日期时默认使用该模块题库生成日期的前一天。'}后续发布不会每天挪动。已答记录保留，未答日程随日期调整。</div>`+
       (list.length?`<div class="course-grid">${list.map(l=>{
         const ps=bank.points.filter(p=>p.lessonId===l.id),qs=bank.questions.filter(q=>ps.some(p=>p.id===q.pointId));
-        return `<article class="card course ${l.status==='pending'?'pending':''}"><span class="tag">${lessonLabel(l)}</span><h3>${esc(l.title)}</h3><span class="muted">${esc(l.subtitle)}</span><p class="description">${l.status==='ready'?`${ps.length} 个考点 · ${qs.length} 道变式题<br>${l.system==='raz'?'整本绘本统一记录学习日期。':'各模块独立记录学习日期。'}`:'待补充课程材料，暂不加入复习。'}</p>${l.status==='ready'?moduleControls(l,ps):''}<div class="bottom"><span>${l.status==='ready'?'已核对考点':'等待正文核对'}</span>${l.status==='ready'?`<button class="button secondary small" data-action="lesson-practice" data-id="${l.id}" ${!E.activePoints(bank,state).some(p=>p.lessonId===l.id)?'disabled':''}>复习本课 →</button>`:'<span>等待建库</span>'}</div></article>`;
+        const targets=l.learningTargets;
+        const coverage=targets?`${targets.length} 个学习目标`:`${new Set(qs.map(E.unitKey)).size} 个练习分项`;
+        return `<article class="card course ${l.status==='pending'?'pending':''}"><span class="tag">${lessonLabel(l)}</span><h3>${esc(l.title)}</h3><span class="muted">${esc(l.subtitle)}</span><p class="description">${l.status==='ready'?`${coverage} · ${qs.length} 道练习题`:'待补充课程材料，暂不加入复习。'}</p>${l.status==='ready'?moduleControls(l,ps):''}${targets?`<details><summary>本课学习目标</summary><ul>${targets.map(t=>`<li>${esc(t.title)}</li>`).join('')}</ul></details>`:''}<div class="bottom"><span>${l.status==='ready'?'已核对内容':'等待正文核对'}</span>${l.status==='ready'?`<button class="button secondary small" data-action="lesson-practice" data-id="${l.id}" ${!E.activePoints(bank,state).some(p=>p.lessonId===l.id)?'disabled':''}>复习本课 →</button>`:'<span>等待建库</span>'}</div></article>`;
       }).join('')}</div>`:`<div class="card empty"><h2>这个级别，还没有导入课程</h2><p>继续在对话中上传 Level ${level} 的目录和内容截图。<br>我会整理成题库更新包，接入同一个复习站。</p><button class="button secondary" data-action="nav" data-target="library">查看题库更新方式</button></div>`);
   }
   function progressView(){
@@ -114,12 +112,12 @@
     const independent=h.filter(x=>x.correct&&!x.help).length;
     return head('SMALL STEPS, REAL PROGRESS','看见每一次，重新记住。','选择题的熟练度仅反映这些练习，不代表综合英语等级。')+
       unitProgress(ps)+
-      `<div class="stats"><div class="stat"><span class="number">${h.length}</span><span class="label">累计作答</span></div><div class="stat"><span class="number">${independent}</span><span class="label">独立答对</span></div><div class="stat"><span class="number">${ps.filter(p=>state.points[p.id]?.stage>=3).length}</span><span class="label">进入较长间隔的考点</span></div></div>
-      <div class="card"><div class="card-header"><h2>考点复习安排</h2><span class="note">日期按当前设备计算</span></div>${ps.length?`<div class="table-wrap"><table><thead><tr><th>考点 / 课程</th><th>学习日期</th><th>当前表现</th><th>下次复习</th><th>累计出错</th></tr></thead><tbody>${ps.map(p=>{const sp=state.points[p.id],last=h.filter(x=>x.pointId===p.id).at(-1),l=bank.lessons.find(l=>l.id===p.lessonId);return `<tr><td><strong>${esc(p.title)}</strong><br><span class="muted">${lessonLabel(l)}</span></td><td>${state.learningDates?.[p.id]||'手动登记'}</td><td>${!last?'尚未复习':!last.correct?'<span class="weak-text">需要再练</span>':last.help?'借助提示完成':`<span class="success-text">独立完成</span>`}<br><span class="note">间隔阶段 ${sp?.stage||0} / 5</span></td><td>${sp?.due?dateLabel(sp.due):'今天'}${sp?.due<=E.day()?' · 到期':''}</td><td>${sp?.errors||0}</td></tr>`;}).join('')}</tbody></table></div>`:'<div class="empty">发布带日期的学习批次后，这里会自动出现复习安排。</div>'}</div>
+      `<div class="stats"><div class="stat"><span class="number">${h.length}</span><span class="label">累计作答</span></div><div class="stat"><span class="number">${independent}</span><span class="label">独立答对</span></div><div class="stat"><span class="number">${ps.filter(p=>state.points[p.id]?.stage>=3).length}</span><span class="label">进入较长间隔的练习分组</span></div></div>
+      <div class="card"><div class="card-header"><h2>分组复习安排</h2><span class="note">每组显示最早到期日期，组内各项分别安排</span></div>${ps.length?`<div class="table-wrap"><table><thead><tr><th>练习分组 / 课程</th><th>学习日期</th><th>最近作答</th><th>下次复习</th><th>累计出错</th></tr></thead><tbody>${ps.map(p=>{const sp=state.points[p.id],last=h.filter(x=>x.pointId===p.id).at(-1),l=bank.lessons.find(l=>l.id===p.lessonId);return `<tr><td><strong>${esc(p.title)}</strong><br><span class="muted">${lessonLabel(l)}</span></td><td>${state.learningDates?.[p.id]||'手动登记'}</td><td>${!last?'尚未复习':!last.correct?'<span class="weak-text">需要再练</span>':last.help?'借助提示完成':`<span class="success-text">独立完成</span>`}<br><span class="note">最低间隔阶段 ${sp?.stage||0} / 5</span></td><td>${sp?.due?dateLabel(sp.due):'今天'}${sp?.due<=E.day()?' · 到期':''}</td><td>${sp?.errors||0}</td></tr>`;}).join('')}</tbody></table></div>`:'<div class="empty">已有题库会按学习日期自动安排复习。</div>'}</div>
       <div class="card"><h2>最近的作答</h2>${h.length?h.slice(-12).reverse().map(x=>{const q=bank.questions.find(q=>q.id===x.questionId);return `<div class="list-row"><span class="type-icon">${x.correct?'✓':'↻'}</span><div class="grow"><strong>${esc(q.prompt)}</strong><small>${dateLabel(x.day)} · ${typeNames[q.type]} · ${x.correct?(x.help?'提示后答对':'独立答对'):'答错，需要巩固'}</small></div></div>`;}).join(''):'<div class="empty">完成第一组练习后，就能看到真实的作答记录。</div>'}</div>`;
   }
   function unitProgress(points){
-    return `<div class="card"><h2>分项复习</h2><p class="note">星期词、活动词组等分别安排；一个词答对不会推迟其他词。旧版综合熟练度保留在历史中，新分项从短间隔开始确认。</p>${points.map(p=>{
+    return `<div class="card"><h2>分项复习</h2><p class="note">学习目标可以有听、读等不同练习分项，分别记录表现；一个词答对不会推迟其他词。</p>${points.map(p=>{
       const groups=new Map();
       for(const q of E.availableQuestions(bank).filter(q=>q.pointId===p.id))if(!groups.has(E.unitKey(q)))groups.set(E.unitKey(q),q);
       return `<details><summary>${esc(p.title)} · ${groups.size} 项</summary>${[...groups].map(([key,q])=>{
@@ -130,7 +128,7 @@
   }
   function batchesView(){
     const batches=[...(bank.batches||[]),...(state.localBatches||[])].sort((a,b)=>b.learnedOn.localeCompare(a.learnedOn));
-    return `<div class="card"><div class="card-header"><h2>学习批次与复读记录</h2><span class="tag">${batches.length} 批</span></div><p class="note">内容更新 ${esc(bank.updated||'未标注')} · 学习日期可在课程进度中校正。复读题库不重复。</p>${batches.length?batches.map(x=>`<div class="list-row"><div class="grow"><strong>${esc(x.learnedOn)} · ${x.learnedOn>E.day()?'等待学习日':'学习记录'}</strong><small>${x.items.map(item=>{const l=bank.lessons.find(l=>l.id===item.lessonId);return lessonLabel(l)+(l.system==='raz'?'':' / '+item.modules.map(m=>moduleNames[m]).join('、'));}).join('<br>')}</small><small>${esc(x.note||'')}</small></div></div>`).join(''):'<div class="empty">没有发布的学习批次。<br>已建库内容按默认日期自动安排，可到课程进度修改日期或记录复读。</div>'}<p class="note">日程参考学习后 1、3、7、14、30 天；答错或提示后次日再练，逾期不会一次补齐所有节点。</p></div>`;
+    return `<div class="card"><div class="card-header"><h2>历史学习批次</h2><span class="tag">${batches.length} 批</span></div><p class="note">内容更新 ${esc(bank.updated||'未标注')} · 首次学习日期可在课程进度中校正。</p>${batches.length?batches.map(x=>`<div class="list-row"><div class="grow"><strong>${esc(x.learnedOn)} · ${x.learnedOn>E.day()?'等待学习日':'学习记录'}</strong><small>${x.items.map(item=>{const l=bank.lessons.find(l=>l.id===item.lessonId);return lessonLabel(l)+(l.system==='raz'?'':' / '+item.modules.map(m=>moduleNames[m]).join('、'));}).join('<br>')}</small><small>${esc(x.note||'')}</small></div></div>`).join(''):'<div class="empty">已有题库按首次学习日期自动安排复习。</div>'}<p class="note">日程参考学习后 1、3、7、14、30 天；答错或提示后次日再练，逾期不会一次补齐所有节点。</p></div>`;
   }
   function libraryView(){
     const bank=currentContent();
@@ -254,16 +252,6 @@
     const action=el.dataset.action;
     if(action==='nav')navigate(el.dataset.target);
     else if(action==='system'){system=el.dataset.system;render();}
-    else if(action==='record-book-repeat'){
-      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再记录复读。');return;}
-      const date=el.closest('.module-block').querySelector('[data-repeat-date]').value;
-      try{const next=clone();E.addBookRepeat(bank,next,el.dataset.id,date);await commit(next);render();toast('绘本复读已记录，原题库和答题记录保留。');}catch(err){toast(err.message);}
-    }
-    else if(action==='record-repeat'){
-      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再记录复读。');return;}
-      const date=el.closest('.module-block').querySelector('[data-repeat-date]').value;
-      try{const next=clone();E.addRepeat(bank,next,el.dataset.id,el.dataset.module,date);await commit(next);render();toast('复读已记录，原题库和答题记录保留。');}catch(err){toast(err.message);}
-    }
     else if(action==='level'){level=Number(el.dataset.level);render();}
     else if(action==='start')await start();
     else if(action==='practice')await start(true);
@@ -310,7 +298,7 @@
           const merged=E.mergeBank(bank,data),next=clone();
           E.validateState(next,merged);
           E.syncBatches(merged,next);
-          if(!await ask('合并题库更新？',`合并后共有 ${merged.points.length} 个考点、${E.availableQuestions(merged).length} 道可用题。作答历史保留，停用题不再加入新练习。`))return;
+          if(!await ask('合并题库更新？',`合并后共有 ${merged.points.length} 个练习分组、${E.availableQuestions(merged).length} 道可用题。作答历史保留，停用题不再加入新练习。`))return;
           await commit(next,merged);render();toast('题库已更新，学习记录已保留。');
         }else{
           if(data.kind!=='lesson-loop-backup'||data.version!==1)throw new Error('请选择由本应用导出的完整备份。');
