@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../engine'),bank=structuredClone(require('../question-bank.json'));
+const E=require('../engine'),{publishedBank,cambridgeBank}=require('./bank-fixture'),bank=cambridgeBank();
 // Legacy fixtures exercise compatibility with banks that predate review units.
 for(const q of bank.questions)delete q.reviewUnit;
 function enrolled(){
@@ -7,7 +7,7 @@ function enrolled(){
   for(const m of ['lv','rg','skills'])E.setLearned(bank,s,'l2-01',m,true,'2026-11-16');
   return s;
 }
-test('bank has unique IDs, valid answer indices, audio scripts and referenced points',()=>assert.equal(E.validateBank(bank),bank));
+test('bank has unique IDs, valid answer indices, audio scripts and referenced points',()=>assert.equal(E.validateBank(publishedBank),publishedBank));
 test('nothing enters review before enrollment; pending lessons cannot enroll',()=>{
   const s=E.emptyState();
   assert.deepEqual(E.plan(bank,s),[]);

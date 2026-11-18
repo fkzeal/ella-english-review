@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../engine'),bank=require('../question-bank.json'),S=require('../storage');
+const E=require('../engine'),bank=require('./bank-fixture').cambridgeBank(),S=require('../storage');
 const copy=x=>structuredClone(x);
 function learned(){
   const s=E.emptyState();E.syncBatches(bank,s,'2026-11-18');return s;

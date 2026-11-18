@@ -87,7 +87,7 @@ test('local file applies a deferred bundled update after ending an old session',
   await a.click('resume');await a.click('select',{option:String(old.questions[0].answer)});await a.click('finish');
   // Starting another set must flush the bundled update even without fetch.
   await a.click('start');
-  assert.equal(a.saved().bank.revision,4);
+  assert.equal(a.saved().bank.revision,bank.revision);
   assert.equal(a.saved().state.history.length,1);
 });
 test('legacy writer dropping metadata cannot hide a required bank migration',async()=>{
@@ -95,6 +95,6 @@ test('legacy writer dropping metadata cannot hide a required bank migration',asy
   const state=E.emptyState();E.syncBatches(old,state);
   const raw=JSON.stringify({bank:old,state,baseline:JSON.stringify(bank)});
   const app=harness(raw);await app.ready();
-  assert.equal(app.saved().bank.revision,4);
+  assert.equal(app.saved().bank.revision,bank.revision);
   assert.equal(app.data.get(S.KEY+'-before-update'),raw);
 });
