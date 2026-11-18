@@ -2,7 +2,7 @@
 
 长期项目：`ella-english-review`，固定网址 https://ella-english-review.pages.dev/ 已上线。用户上传完成后，2026-11-18 已用外部浏览器验证页面、题库和实际作答反馈正常。该站点由 Cloudflare Pages 提供，不依赖开发环境或临时隧道继续运行。后续在同一项目创建生产部署即可保持网址不变。当前实际状态与更新步骤见 HOSTING.md。
 
-0.4.1 已由用户上传 `/workspace/英语复习小站-0.4.1-含验证文件.zip` 并完成生产发布。2026-11-18 线上 `version.js` 验证应用 0.4.1、题库 r4、构建 a43501a8d867，TXT 验证文件返回 HTTP 200 且正文正确。本地 41 项测试通过。自动发布工作流已准备，尚未配置 GitHub 仓库与发布 Secret。
+0.4.1 已完成生产发布，本地 41 项测试通过。GitHub 私有仓库 `fkzeal/ella-english-review` 和 Cloudflare Secrets 已配置，2026-11-18 Actions 运行 https://github.com/fkzeal/ella-english-review/actions/runs/44315321068 成功。线上 `version.js` 验证应用 0.4.1、题库 r4、构建 a43501a8d867，TXT 验证文件正文正确。后续推送 main 自动发布，实际成功以对应 Actions 运行和线上核验为准。
 
 ## 历史临时测试入口
 

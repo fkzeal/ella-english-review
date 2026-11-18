@@ -14,13 +14,13 @@ Cloudflare 项目 `ella-english-review` 已于 2026-11-18 在用户账号中创�
 
 浏览器账号已登录，但 Wrangler 的 OAuth 回调未成功完成，因此 CLI 尚未取得发布凭据。工具浏览器与工作区文件系统分离，自动上传 ZIP 失败。用户已在自己的控制台上传 `/workspace/英语复习小站-Cloudflare上传.zip` 并完成发布。该包只含 dist 静态文件，不含账号或授权资料。
 
-后续可在同一项目上传新包，生产域名保持不变；`npm run deploy` 需要先完成 Wrangler 授权。不得声称当前 CLI 已授权或可无人值守发布。
+GitHub Actions 已通过仓库 Secrets 获得发布权限，自动发布不依赖当前云工作区的 Wrangler OAuth。当前工作区直接执行 `npm run deploy` 仍需自己的 Cloudflare 凭据；GitHub Secrets 不会返回到工作区。
 
 ## 免手动 ZIP 的自动发布
 
-目标 GitHub 私有仓库：https://github.com/fkzeal/ella-english-review 。已授权工作区以 fkzeal 推送源码，已配置仓库 Secret `CLOUDFLARE_ACCOUNT_ID`。发布 Token `CLOUDFLARE_API_TOKEN` 尚未配置。源码位于仓库根目录，发布分支 main；生成的 dist、bank.js 和 version.js 由工作流构建，不提交。须以首次 Actions 成功运行及线上版本核对为验收依据。
+目标 GitHub 私有仓库：https://github.com/fkzeal/ella-english-review 。已授权工作区以 fkzeal 推送源码，仓库 Secrets `CLOUDFLARE_ACCOUNT_ID` 与 `CLOUDFLARE_API_TOKEN` 已生效。源码位于仓库根目录，发布分支 main；生成的 dist、bank.js 和 version.js 由工作流构建，不提交。
 
-已提供 `.github/workflows/deploy.yml`。推送 main 或手动运行会触发工作流；若缺少任一 Cloudflare Secret，会在部署前明确报错，避免启动交互登录。当前还需添加发布 Token，不能声称已完成自动部署。
+已提供 `.github/workflows/deploy.yml`。推送 main 或手动运行会触发工作流；若缺少任一 Cloudflare Secret，会在部署前明确报错，避免启动交互登录。2026-11-18 手动触发运行 https://github.com/fkzeal/ella-english-review/actions/runs/44315321068 已成功完成授权检查、测试、构建和部署；线上 version.js 返回 0.4.1 / r4 / a43501a8d867，构建时间为 2026-11-18T13:36:04.458Z，TXT 验证文件内容正确。
 
 推荐在 GitHub 私有仓库根目录放本项目源码，在仓库 Settings → Secrets and variables → Actions 配置两个 Secret：
 
@@ -29,7 +29,7 @@ Cloudflare 项目 `ella-english-review` 已于 2026-11-18 在用户账号中创�
 
 Token 通过 Cloudflare 控制台创建并直接粘贴到 GitHub Secret，不发在聊天、不提交源码。工作流只读取 Secret，在推送 main 后自动测试、构建并发布当前 Direct Upload Pages 项目，生产域名保持不变。不需要把现有项目转换为 Pages 原生 Git 集成。
 
-一次配置完成后，后续题库更新提交到 main 即可发布。当前只缺发布 Token；添加后可在仓库 Actions 页面手动运行工作流，无需再次上传 ZIP。
+配置已经完成。后续题库更新提交并推送到 main 即可发布，无需再次上传 ZIP；必须检查对应 Actions 运行结果并核对线上版本。
 
 2026-11-18 已在固定网址通过浏览器验证：主页加载、题库和 app.js/engine.js 返回 200、开始练习、显示选择题、选答案后立即反馈及出现下一题按钮。上线内容为 43 道 My week 原创题，学习批次为空。命令行 urllib 的访问返回 403，浏览器访问与实际作答正常；不能据此宣称所有网络环境均已验证。
 
@@ -58,8 +58,8 @@ npm run deploy
 ## 每次题库更新
 
 1. 在 TRAE 对话中更新正文核对结果、考点、题目及实际学习批次。
-2. 执行 `npm run deploy`。
-3. 脚本自动运行测试、构建并发布到相同项目的 main 生产分支。
+2. 本地验证后提交修改，并执行 `git push origin main`。
+3. GitHub Actions 自动运行测试、构建并发布到相同项目的 main 生产分支；在 Actions 页面确认本次运行成功。
 4. 检查固定生产地址的题库版本。妈妈继续使用同一网址，本地答题记录保留。
 
 不购买服务器，不要求绑定自定义域名，也不添加收费数据库或模型 API。套餐和额度以本人 Cloudflare 控制台当前显示为准，未经用户同意不开通付费服务。
