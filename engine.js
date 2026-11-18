@@ -87,7 +87,7 @@
     return b;
   }
   function validateState(s,b) {
-    if (!s || s.version !== 1 || typeof s.learned !== 'object' || !s.learned || Array.isArray(s.learned) || typeof s.points !== 'object' || !s.points || Array.isArray(s.points) || !Array.isArray(s.history) || !s.settings || ![6,8,10].includes(s.settings.size)) throw new Error('学习记录格式不正确');
+    if (!s || s.version !== 1 || typeof s.learned !== 'object' || !s.learned || Array.isArray(s.learned) || typeof s.points !== 'object' || !s.points || Array.isArray(s.points) || !Array.isArray(s.history) || !s.settings || ![6,8,10,15,20].includes(s.settings.size)) throw new Error('学习记录格式不正确');
     for(const key of ['batchReceipts','paused','learningDates','moduleDates','defaultDates'])if(s[key]!==undefined&&(!s[key]||typeof s[key]!=='object'||Array.isArray(s[key])))throw new Error('学习批次状态不正确');
     const keys=new Set(b.points.map(p=>moduleKey(p.lessonId,p.module)));
     for(const key of ['moduleDates','defaultDates'])if(Object.entries(s[key]||{}).some(([k,d])=>!keys.has(k)||!validDay(d)))throw new Error('模块学习日期不正确');
@@ -116,6 +116,8 @@
       if(!Array.isArray(t.items)||!t.items.length||t.items.some(id=>!b.questions.some(q=>q.id===id))||new Set(t.items).size!==t.items.length||!Number.isInteger(t.index)||t.index<0||t.index>t.items.length||!validDay(t.day)||!Array.isArray(t.results)||t.results.length!==t.index) throw new Error('进行中的练习不正确');
       if(t.results.some((r,i)=>!r||r.questionId!==t.items[i]||typeof r.correct!=='boolean'||typeof r.help!=='boolean'||!Number.isInteger(r.selected)||r.selected<0||r.selected>=b.questions.find(q=>q.id===r.questionId).options.length)) throw new Error('练习结果不正确');
     }
+    // Preserve old records while moving the retired 8-question choice to 10.
+    if(s.settings.size===8)s.settings.size=10;
     return s;
   }
   function availableQuestions(b){return b.questions.filter(q=>q.active!==false);}
@@ -287,7 +289,7 @@
     while(queues.some(g=>g.length))for(const g of queues)if(g.length)points.push(g.shift());
     const items=[];
     const usedUnits=new Set();
-    for(let round=0;items.length<size&&round<2;round++) {
+    while(items.length<size) {
       let added=false;
       for(const p of points) {
         const q=candidates.get(p.id).find(q=>!items.includes(q.id)&&(!q.reviewUnit||!usedUnits.has(unitKey(q))));

@@ -97,12 +97,12 @@ test('answering Monday does not defer Tuesday or claim mastery of all weekdays',
   const plan=E.plan(bank,s,{today:'2026-11-18',size:10});
   assert(!plan.includes(q.id));assert.equal(new Set(plan.map(id=>E.unitKey(bank.questions.find(q=>q.id===id)))).size,plan.length);
 });
-test('one due point yields at most two different units, without padding a set to six',()=>{
+test('one due point can fill the requested cap with distinct available units',()=>{
   const s=learned();
   for(const p of bank.points)if(p.id!=='l2-01-days')s.paused[p.id]=true;
   const ids=E.plan(bank,s,{today:'2026-11-18',size:6});
-  assert.equal(ids.length,2);
-  assert.notEqual(E.unitKey(bank.questions.find(q=>q.id===ids[0])),E.unitKey(bank.questions.find(q=>q.id===ids[1])));
+  assert.equal(ids.length,6);
+  assert.equal(new Set(ids.map(id=>E.unitKey(bank.questions.find(q=>q.id===id)))).size,6);
 });
 test('legacy aggregate mastery migrates conservatively while history remains intact',()=>{
   const old=copy(bank);for(const q of old.questions)delete q.reviewUnit;

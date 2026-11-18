@@ -5,6 +5,28 @@ const question=id=>bank.questions.find(q=>q.id===id);
 const lesson=id=>bank.points.find(p=>p.id===question(id).pointId).lessonId;
 function state(){const s=E.emptyState();E.syncBatches(bank,s,date);return s;}
 
+test('new group sizes persist and planning reaches the cap without repeating units',()=>{
+  for(const size of [6,10,15,20]){
+    const s=state();s.settings.size=size;
+    E.validateState(s,bank);
+    const ids=E.plan(bank,s,{today:date,rng:()=>.5});
+    assert.equal(ids.length,size);
+    assert.equal(new Set(ids.map(id=>E.unitKey(question(id)))).size,size);
+  }
+  const s=state();s.settings.size=20;
+  const ids=E.plan(bank,s,{today:date,lessonId:'raz-d-animal-tongues',rng:()=>.5});
+  const available=new Set(bank.questions.filter(q=>lesson(q.id)==='raz-d-animal-tongues').map(E.unitKey));
+  assert.equal(ids.length,Math.min(20,available.size));
+});
+test('legacy eight-question settings upgrade without changing history or the active set',()=>{
+  const s=state(),q=question('gt-veg-q01');
+  E.grade(bank,s,q.id,q.answer,false,date);
+  s.settings.size=8;s.session={items:[q.id],index:0,results:[],day:date};
+  const history=structuredClone(s.history),session=structuredClone(s.session);
+  E.validateState(s,bank);
+  assert.equal(s.settings.size,10);
+  assert.deepEqual(s.history,history);assert.deepEqual(s.session,session);
+});
 test('a backlog rotates all three courses even when every unit in one book is weak',()=>{
   const s=state();
   for(const q of bank.questions.filter(q=>lesson(q.id)==='raz-d-greater-than')){
