@@ -7,3 +7,9 @@ question-bank.json.tmp
 dist/
 bank.js
 version.js
+/.uploads/
+/.screenshots/
+/.trae-html-share-packages/
+/英语*.zip
+/英语*.html
+/english-review

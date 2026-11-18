@@ -14,7 +14,8 @@ for(const name of ['bank.js','engine.js','storage.js','version.js','app.js']) {
   const js=fs.readFileSync(path.join(root,name),'utf8').replace(/<\/script/gi,'<\\/script');
   html=html.replace(`<script src="${name}"></script>`,()=>`<script>${js}</script>`);
 }
-fs.writeFileSync(path.resolve(root,'../英语复习小站.html'),html);
+const standalone=path.basename(root)==='workspace'?path.join(root,'英语复习小站.html'):path.resolve(root,'../英语复习小站.html');
+fs.writeFileSync(standalone,html);
 const dist=path.join(root,'dist');
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});

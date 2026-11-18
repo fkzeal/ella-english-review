@@ -14,6 +14,8 @@
 
 ## 本地运行及部署
 
+云任务项目根目录已整理为 `/workspace`，该目录现在直接包含 `.git`、源码与 GitHub remote，供 TRAE 的“转至本地执行”检查。`/workspace/english-review` 是兼容旧链接的本地符号链接，未加入 Git。上传素材、历史 ZIP、独立预览 HTML 均未加入仓库。Git 仓库根目录迁移已验证；实际任务转移需在 TRAE 桌面端完成并核对。
+
 需要 Node.js 18+，无需安装依赖。
 
 ```sh
