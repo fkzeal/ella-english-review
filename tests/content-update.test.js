@@ -35,3 +35,19 @@ test('RAZ default dates remain defaults and variants do not duplicate review uni
     assert.equal(new Set(units).size, units.length);
   }
 });
+test('a book repeat is one batch covering all points and retries preserve mastery',()=>{
+  const lesson='raz-d-animal-tongues',state=E.emptyState();E.syncBatches(bank,state,'2026-11-18');
+  const q=bank.questions.find(q=>q.pointId==='raz-d-animal-tongues-animals');
+  E.grade(bank,state,q.id,q.answer,false,'2026-11-18');
+  const progress=structuredClone(state.units[E.unitKey(q)]);
+  E.addBookRepeat(bank,state,lesson,'2026-11-18','2026-11-18');
+  assert.equal(state.localBatches.length,1);
+  assert.deepEqual(new Set(state.localBatches[0].items[0].modules),new Set(['lv','rg','skills']));
+  E.addBookRepeat(bank,state,lesson,'2026-11-18','2026-11-18');
+  assert.equal(state.localBatches.length,1);
+  assert.deepEqual(state.units[E.unitKey(q)],progress);
+  E.validateState(state,bank);
+  const before=JSON.stringify(state);
+  assert.throws(()=>E.addBookRepeat(bank,state,lesson,'2026-11-16','2026-11-18'));
+  assert.equal(JSON.stringify(state),before);
+});

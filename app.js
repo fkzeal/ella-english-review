@@ -81,22 +81,34 @@
   function pointRow(p){const l=bank.lessons.find(l=>l.id===p.lessonId),sp=state.points[p.id];return `<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${esc(p.title)}</strong><small>${lessonLabel(l)}</small></div><span class="tag">${sp?.errors?'需要巩固':sp?.stage?'间隔复习':'首次回顾'}</span></div>`;}
   function sessionLanding(){const t=state.session;return head('KEEP GOING','上次的练习，等你继续。',`已经完成 ${t.index} / ${t.items.length} 题。`)+`<div class="card quiz"><h2>还有 ${t.items.length-t.index} 题</h2><p class="muted">从上次停下的地方，接着练。</p><div class="actions"><button class="button start-button" data-action="resume">开始练习 →</button><button class="button secondary" data-action="end">结束本组</button></div></div>`;}
   function moduleControls(l,ps){
+    if(l.system==='raz')return bookControls(l,ps);
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
       const available=ps.some(p=>p.module===m),info=available?E.moduleDate(bank,state,l.id,m):null;
       const repeats=(state.localBatches||[]).filter(b=>b.items.some(i=>i.lessonId===l.id&&i.modules.includes(m)));
       return `<div class="module-block"><label class="check"><input type="checkbox" data-lesson="${l.id}" data-module="${m}" ${(state.learned[l.id]||[]).includes(m)?'checked':''} ${!available?'disabled':''}>${moduleNames[m]}${!available?'（待补充）':''}</label>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">学习日期</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}学习日期" value="${info.date}"></div><p class="note">${info.source==='manual'?'家长已修改':info.source==='batch'?'来自发布的学习批次':'默认：题库生成日期的前一天，可修改'}${info.date>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${info.date}" aria-label="${moduleNames[m]}复读日期"><button class="button secondary small" data-action="record-repeat" data-id="${l.id}" data-module="${m}">记录复读</button></div>${repeats.map(b=>`<span class="tag">${esc(b.learnedOn)}</span>`).join('')}</details>`:''}</div>`;
     }).join('')}</div>`;
   }
+  function lessonModules(id){return [...new Set(bank.points.filter(p=>p.lessonId===id).map(p=>p.module))];}
+  function bookControls(l,ps){
+    const modules=[...new Set(ps.map(p=>p.module))];
+    const infos=modules.map(m=>E.moduleDate(bank,state,l.id,m));
+    const dates=[...new Set(infos.map(info=>info.date))].sort();
+    const checked=modules.every(m=>(state.learned[l.id]||[]).includes(m));
+    const partial=!checked&&modules.some(m=>(state.learned[l.id]||[]).includes(m));
+    const repeats=[...new Set((state.localBatches||[]).filter(b=>b.items.some(i=>i.lessonId===l.id)).map(b=>b.learnedOn))].sort();
+    const note=dates.length>1?'已有记录的学习日期不同，选择日期后统一整本绘本；原答题记录保留。':infos.every(info=>info.source==='default')?'默认：题库生成日期的前一天，可修改':infos.some(info=>info.source==='manual')?'家长已修改':'来自发布的学习批次';
+    return `<div class="checks"><div class="module-block"><label class="check"><input type="checkbox" data-book-lesson="${l.id}" ${checked?'checked':''}>已学这本绘本${partial?'（部分进度已登记）':''}</label><div class="module-date-row"><label for="date-${l.id}-book">学习日期</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本学习日期" value="${dates.length===1?dates[0]:''}"></div><p class="note">${note}${dates.length===1&&dates[0]>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${dates.at(-1)}" aria-label="绘本复读日期"><button class="button secondary small" data-action="record-book-repeat" data-id="${l.id}">记录复读</button></div>${repeats.map(date=>`<span class="tag">${esc(date)}</span>`).join('')}</details></div></div>`;
+  }
   function courseView(){
     const bank=currentContent();
     const list=bank.lessons.filter(l=>(l.system||'cambridge')===system&&(system!=='cambridge'||l.level===level));
-    return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。','已发布的学习批次自动安排复习，无需勾选。也可以手动暂停或补充已学模块。')+
+    return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。',system==='raz'?'每本绘本统一登记学习日期和复读，自动安排复习。':'已发布的学习批次自动安排复习，无需勾选。也可以手动暂停或补充已学模块。')+
       '<div class="filter-row">'+[['cambridge','猿辅导剑桥'],['raz','RAZ 绘本'],['ket','KET 词汇']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
       (system==='cambridge'?'<div class="filter-row">'+[1,2,3,4].map(n=>`<button class="chip ${n===level?'active':''}" data-action="level" data-level="${n}">Level ${n}</button>`).join('')+'</div>':'')+
-      `<div class="banner">每个模块都可修改学习日期，选择后自动保存。未提供日期时默认使用该模块题库生成日期的前一天，后续发布不会每天挪动。已答记录保留，未答日程随日期调整。</div>`+
+      `<div class="banner">${system==='raz'?'每本绘本统一修改学习日期，选择后自动保存。未提供日期时默认使用绘本题库生成日期的前一天。':'每个模块都可修改学习日期，选择后自动保存。未提供日期时默认使用该模块题库生成日期的前一天。'}后续发布不会每天挪动。已答记录保留，未答日程随日期调整。</div>`+
       (list.length?`<div class="course-grid">${list.map(l=>{
         const ps=bank.points.filter(p=>p.lessonId===l.id),qs=bank.questions.filter(q=>ps.some(p=>p.id===q.pointId));
-        return `<article class="card course ${l.status==='pending'?'pending':''}"><span class="tag">${lessonLabel(l)}</span><h3>${esc(l.title)}</h3><span class="muted">${esc(l.subtitle)}</span><p class="description">${l.status==='ready'?`${ps.length} 个考点 · ${qs.length} 道变式题<br>各模块独立记录学习日期。`:'待补充课程材料，暂不加入复习。'}</p>${l.status==='ready'?moduleControls(l,ps):''}<div class="bottom"><span>${l.status==='ready'?'已核对考点':'等待正文核对'}</span>${l.status==='ready'?`<button class="button secondary small" data-action="lesson-practice" data-id="${l.id}" ${!E.activePoints(bank,state).some(p=>p.lessonId===l.id)?'disabled':''}>复习本课 →</button>`:'<span>等待建库</span>'}</div></article>`;
+        return `<article class="card course ${l.status==='pending'?'pending':''}"><span class="tag">${lessonLabel(l)}</span><h3>${esc(l.title)}</h3><span class="muted">${esc(l.subtitle)}</span><p class="description">${l.status==='ready'?`${ps.length} 个考点 · ${qs.length} 道变式题<br>${l.system==='raz'?'整本绘本统一记录学习日期。':'各模块独立记录学习日期。'}`:'待补充课程材料，暂不加入复习。'}</p>${l.status==='ready'?moduleControls(l,ps):''}<div class="bottom"><span>${l.status==='ready'?'已核对考点':'等待正文核对'}</span>${l.status==='ready'?`<button class="button secondary small" data-action="lesson-practice" data-id="${l.id}" ${!E.activePoints(bank,state).some(p=>p.lessonId===l.id)?'disabled':''}>复习本课 →</button>`:'<span>等待建库</span>'}</div></article>`;
       }).join('')}</div>`:`<div class="card empty"><h2>这个级别，还没有导入课程</h2><p>继续在对话中上传 Level ${level} 的目录和内容截图。<br>我会整理成题库更新包，接入同一个复习站。</p><button class="button secondary" data-action="nav" data-target="library">查看题库更新方式</button></div>`);
   }
   function progressView(){
@@ -120,7 +132,7 @@
   }
   function batchesView(){
     const batches=[...(bank.batches||[]),...(state.localBatches||[])].sort((a,b)=>b.learnedOn.localeCompare(a.learnedOn));
-    return `<div class="card"><div class="card-header"><h2>学习批次与复读记录</h2><span class="tag">${batches.length} 批</span></div><p class="note">内容更新 ${esc(bank.updated||'未标注')} · 模块日期可在课程进度中校正。复读题库不重复。</p>${batches.length?batches.map(x=>`<div class="list-row"><div class="grow"><strong>${esc(x.learnedOn)} · ${x.learnedOn>E.day()?'等待学习日':'学习记录'}</strong><small>${x.items.map(item=>lessonLabel(bank.lessons.find(l=>l.id===item.lessonId))+' / '+item.modules.map(m=>moduleNames[m]).join('、')).join('<br>')}</small><small>${esc(x.note||'')}</small></div></div>`).join(''):'<div class="empty">没有发布的学习批次。<br>已建库模块按默认日期自动安排，可到课程进度修改日期或记录复读。</div>'}<p class="note">日程参考学习后 1、3、7、14、30 天；答错或提示后次日再练，逾期不会一次补齐所有节点。</p></div>`;
+    return `<div class="card"><div class="card-header"><h2>学习批次与复读记录</h2><span class="tag">${batches.length} 批</span></div><p class="note">内容更新 ${esc(bank.updated||'未标注')} · 学习日期可在课程进度中校正。复读题库不重复。</p>${batches.length?batches.map(x=>`<div class="list-row"><div class="grow"><strong>${esc(x.learnedOn)} · ${x.learnedOn>E.day()?'等待学习日':'学习记录'}</strong><small>${x.items.map(item=>{const l=bank.lessons.find(l=>l.id===item.lessonId);return lessonLabel(l)+(l.system==='raz'?'':' / '+item.modules.map(m=>moduleNames[m]).join('、'));}).join('<br>')}</small><small>${esc(x.note||'')}</small></div></div>`).join(''):'<div class="empty">没有发布的学习批次。<br>已建库内容按默认日期自动安排，可到课程进度修改日期或记录复读。</div>'}<p class="note">日程参考学习后 1、3、7、14、30 天；答错或提示后次日再练，逾期不会一次补齐所有节点。</p></div>`;
   }
   function libraryView(){
     const bank=currentContent();
@@ -244,6 +256,11 @@
     const action=el.dataset.action;
     if(action==='nav')navigate(el.dataset.target);
     else if(action==='system'){system=el.dataset.system;render();}
+    else if(action==='record-book-repeat'){
+      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再记录复读。');return;}
+      const date=el.closest('.module-block').querySelector('[data-repeat-date]').value;
+      try{const next=clone();E.addBookRepeat(bank,next,el.dataset.id,date);await commit(next);render();toast('绘本复读已记录，原题库和答题记录保留。');}catch(err){toast(err.message);}
+    }
     else if(action==='record-repeat'){
       if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再记录复读。');return;}
       const date=el.closest('.module-block').querySelector('[data-repeat-date]').value;
@@ -277,7 +294,13 @@
   }));
   app.addEventListener('change',event=>run(async()=>{
     const el=event.target;
-    if(el.dataset.dateLesson){
+    if(el.dataset.bookDate){
+      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再修改学习日期。');render();return;}
+      try{const next=clone();for(const m of lessonModules(el.dataset.bookDate))E.setModuleDate(bank,next,el.dataset.bookDate,m,el.value);await commit(next);render();toast('绘本学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
+    }else if(el.dataset.bookLesson){
+      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再调整绘本进度。');render();return;}
+      const next=clone();for(const m of lessonModules(el.dataset.bookLesson))E.setLearned(bank,next,el.dataset.bookLesson,m,el.checked);await commit(next);render();
+    }else if(el.dataset.dateLesson){
       if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再修改学习日期。');render();return;}
       try{const next=clone();E.setModuleDate(bank,next,el.dataset.dateLesson,el.dataset.dateModule,el.value);await commit(next);render();toast('学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
     }else if(el.dataset.lesson){

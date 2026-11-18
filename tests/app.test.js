@@ -98,3 +98,40 @@ test('legacy writer dropping metadata cannot hide a required bank migration',asy
   assert.equal(app.saved().bank.revision,bank.revision);
   assert.equal(app.data.get(S.KEY+'-before-update'),raw);
 });
+test('RAZ course progress shows one control per book and Cambridge keeps modules',async()=>{
+  const app=harness();await app.ready();
+  await app.click('nav',{target:'courses'});
+  assert.match(app.node('app').innerHTML,/data-module="lv"/);
+  assert.match(app.node('app').innerHTML,/data-module="rg"/);
+  assert.match(app.node('app').innerHTML,/data-module="skills"/);
+  await app.click('system',{system:'raz'});
+  const html=app.node('app').innerHTML;
+  assert.equal((html.match(/data-book-lesson=/g)||[]).length,2);
+  assert.equal((html.match(/data-book-date=/g)||[]).length,2);
+  assert.equal((html.match(/data-action="record-book-repeat"/g)||[]).length,2);
+  assert.doesNotMatch(html,/data-module=|data-date-module=|各模块独立|听力|Skill/);
+});
+test('book date and pause apply to all existing RAZ points without removing answers',async()=>{
+  const lesson='raz-d-greater-than',state=E.emptyState();E.syncBatches(bank,state);
+  const q=bank.questions.find(q=>q.pointId==='raz-d-greater-than-vegetables');
+  E.grade(bank,state,q.id,q.answer,false,'2026-11-18');
+  const app=harness(JSON.stringify({bank,state}));await app.ready();
+  await app.change({dataset:{bookDate:lesson},value:'2026-11-16'});
+  const saved=app.saved().state;
+  for(const module of ['lv','rg','skills'])assert.equal(E.moduleDate(bank,saved,lesson,module).date,'2026-11-16');
+  assert.deepEqual(saved.history,state.history);
+  assert.deepEqual(saved.units[E.unitKey(q)],state.units[E.unitKey(q)]);
+  await app.change({dataset:{bookLesson:lesson},checked:false});
+  assert(!E.activePoints(bank,app.saved().state).some(p=>p.lessonId===lesson));
+  await app.change({dataset:{bookLesson:lesson},checked:true});
+  assert.equal(E.activePoints(bank,app.saved().state).filter(p=>p.lessonId===lesson).length,5);
+  assert.deepEqual(app.saved().state.history,state.history);
+});
+test('conflicting old RAZ dates do not partially save a unified book date',async()=>{
+  const lesson='raz-d-greater-than',state=E.emptyState();E.syncBatches(bank,state);
+  E.addRepeat(bank,state,lesson,'rg','2026-11-18','2026-11-18');
+  const app=harness(JSON.stringify({bank,state}));await app.ready();
+  const before=JSON.stringify(app.saved().state);
+  await app.change({dataset:{bookDate:lesson},value:'2026-11-19'});
+  assert.equal(JSON.stringify(app.saved().state),before);
+});

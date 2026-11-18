@@ -167,6 +167,18 @@
     syncBatches(b,s,today);
   }
   // Published learning events are content; receipts and performance belong to the learner.
+  function addBookRepeat(b,s,id,date,today=day()){
+    if(b.lessons.find(l=>l.id===id)?.system!=='raz')throw new Error('该课程不是 RAZ 绘本');
+    const modules=[...new Set(b.points.filter(p=>p.lessonId===id).map(p=>p.module))];
+    if(!modules.length)throw new Error('该绘本尚未建库');
+    if(!validDay(date)||date>today)throw new Error('复读日期不能晚于今天');
+    for(const m of modules)if(date<moduleDate(b,s,id,m,today).date)throw new Error('复读日期不能早于首次学习日期');
+    const missing=modules.filter(m=>!(s.localBatches||[]).some(x=>x.learnedOn===date&&x.items.some(i=>i.lessonId===id&&i.modules.includes(m))));
+    if(!missing.length)return;
+    s.localBatches ||= [];
+    s.localBatches.push({id:`local-${Date.now()}-${s.localBatches.length}`,learnedOn:date,items:[{lessonId:id,modules:missing}],note:'家长记录绘本复读'});
+    syncBatches(b,s,today);
+  }
   // Reconciliation is idempotent and never overwrites an answered point's performance.
   function syncBatches(b,s,today=day()){
     s.batchReceipts ||= {};s.paused ||= {};s.learningDates ||= {};
@@ -311,5 +323,5 @@
     }
     return validateBank(merged);
   }
-  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
+  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
 });
