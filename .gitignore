@@ -7,6 +7,7 @@ question-bank.json.tmp
 dist/
 bank.js
 version.js
+audio-manifest.js
 /.uploads/
 /.screenshots/
 /.trae-html-share-packages/

@@ -1,13 +1,13 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 const E=require('../engine'),S=require('../storage'),bank=require('../question-bank.json');
-function harness(initial,shared){
+function harness(initial,shared,overrides={}){
   const data=shared||new Map(initial===undefined?[]:[[S.KEY,initial]]);
   const nodes=new Map();
   function node(id){
     if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',classList:{add(){},remove(){},toggle(){}},listeners:{},addEventListener(k,fn){this.listeners[k]=fn;}});
     return nodes.get(id);
   }
-  const win={ReviewEngine:E,ReviewStorage:S,LESSON_BANK:structuredClone(bank),scrollTo(){},addEventListener(k,fn){this[k]=fn;}};
+  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:require('../audio-player'),setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
   const ctx={window:win,document:{getElementById:node,querySelectorAll:()=>[],querySelector:()=>node('brand'),addEventListener(){}},
     navigator:{locks:{request:async(k,fn)=>fn()}},localStorage:{getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)},
     location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(){},console,URL,Blob};
@@ -28,6 +28,21 @@ test('app startup with invalid data renders recovery controls without overwritin
   assert.match(app.node('app').innerHTML,/导出原始记录/);
   await app.click('start');
   assert.equal(app.data.get(S.KEY),raw);
+});
+test('slow listening repeats neither reveal the transcript nor mark help, and leaving stops playback',async()=>{
+  const state=E.emptyState();E.syncBatches(bank,state);
+  const q=bank.questions.find(q=>q.type==='listening'),plays=[];let stops=0;
+  state.session={items:[q.id],index:0,results:[],day:E.day()};
+  const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{
+    ReviewAudio:{create:()=>({play:(text,options)=>plays.push({text,...options}),stop:()=>stops++})}
+  });
+  await app.ready();await app.click('resume');
+  assert.match(app.node('app').innerHTML,/慢速听/);
+  await app.click('play',{id:q.id,speed:'slow'});
+  assert.equal(plays[0].text,q.audioText);assert.equal(plays[0].slow,true);
+  assert(!app.saved().state.session.hints?.[q.id]);
+  assert.doesNotMatch(app.node('app').innerHTML,/已展开听力文本/);
+  const count=stops;await app.click('pause');assert(stops>count);
 });
 test('app transcript → pause → reload → resume → answer stays assisted',async()=>{
   const state=E.emptyState();E.syncBatches(bank,state);

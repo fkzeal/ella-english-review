@@ -9,7 +9,8 @@
   const typeNames={choice:'词汇选择',cloze:'选词填空',listening:'听力选择',reading:'阅读理解'};
   let bank=E.validateBank(window.LESSON_BANK), state=E.emptyState(),page='today',level=2,system='cambridge';
   let selected=null,help=false,feedback=null,showTranscript=false,storageAvailable=true;
-  let toastTimer=null,audioTimer=null,playing=false,audioTicket=0;
+  let toastTimer=null;
+  const listening=window.ReviewAudio.create(window,window.LESSON_AUDIO||{clips:{}});
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function toast(message){document.getElementById('toast').textContent=message;document.getElementById('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>document.getElementById('toast').classList.remove('show'),4000);}
   function adopt(saved){
@@ -54,7 +55,7 @@
     }catch(err){toast('在线题库暂未同步，继续使用已保存的内容。');}
     finally{clearTimeout(timeout);}
   }
-  function stopAudio(){audioTicket++;clearTimeout(audioTimer);playing=false;if(window.speechSynthesis)window.speechSynthesis.cancel();}
+  function stopAudio(){listening.stop();}
   function dateLabel(d){return new Date(d+'T12:00:00').toLocaleDateString('zh-CN',{month:'long',day:'numeric'});}
   function head(label,title,description){
     return `<div class="page-head"><div><div class="eyebrow">${label}</div><h1>${title}</h1><p class="subtitle">${description}</p></div><div class="date-pill">${new Date().toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'})}</div></div>`;
@@ -139,7 +140,7 @@
       `<div class="library-grid"><section>${batchesView()}<div class="card"><div class="card-header"><h2>已建立的内容</h2><span class="tag">${bank.questions.length} 题</span></div><p class="note">原创变式题，不是官方题库。未核对正文的书不会生成文章理解题。</p>${ready.map(l=>`<h3 class="section-label">${lessonLabel(l)}</h3>${bank.points.filter(p=>p.lessonId===l.id).map(p=>`<details><summary>${esc(p.title)} <span class="note">· ${bank.questions.filter(q=>q.pointId===p.id).length} 题</span></summary><p>${esc(p.description)}</p><p><strong>考点依据：</strong>${esc(p.evidence)}</p>${bank.questions.filter(q=>q.pointId===p.id).map(q=>`<div class="question-preview"><span class="tag">${typeNames[q.type]}</span><p>${esc(q.prompt)}</p>${q.passage?'<p>'+esc(q.passage)+'</p>':''}${q.audioText?'<p>朗读稿：'+esc(q.audioText)+'</p>':''}<div>${q.options.map((o,i)=>`${String.fromCharCode(65+i)}. ${esc(o)}`).join('<br>')}</div><b>答案：${esc(q.options[q.answer])}</b><div>${esc(q.explanation)}</div><p class="note">${esc(q.source)}</p></div>`).join('')}</details>`).join('')}`).join('')}</div></section>
       <aside><div class="card"><h3>对话更新题库</h3><div class="step-row"><span class="step-num">1</span><div><h3>转发学习素材</h3><p>注明实际学习日期、书名／级别和正文截图；复读时只需日期与已建库书名。</p></div></div><div class="step-row"><span class="step-num">2</span><div><h3>核对考点，建立学习批次</h3><p>生成变式题，保存来源与稳定编号。</p></div></div><div class="step-row"><span class="step-num">3</span><div><h3>发布到同一个网址</h3><p>打开网页时自动同步题库，保留本地答题记录，无需妈妈导入或配置。</p></div></div><div class="library-tools" style="margin-top:20px"><button class="button" data-action="refresh-bank">检查在线题库更新 ↻</button><button class="button secondary" data-action="import-bank">备用：导入更新包 ↑</button><button class="button secondary" data-action="export-bank">导出当前题库 ↓</button></div></div>
       <div class="card"><h3>学习记录与备份</h3><p class="note">第一版保存于当前浏览器，不自动跨设备同步。换设备前导出完整备份。</p><div class="library-tools"><button class="button secondary" data-action="export-state">导出完整备份 ↓</button><button class="button secondary" data-action="import-state">恢复完整备份 ↑</button></div></div>
-      <div class="card"><h3>每组题量</h3><div class="field"><label for="size">复习上限</label><select id="size"><option value="6" ${state.settings.size===6?'selected':''}>6 题 · 轻松一点</option><option value="8" ${state.settings.size===8?'selected':''}>8 题 · 标准练习</option><option value="10" ${state.settings.size===10?'selected':''}>10 题 · 多练一点</option></select></div><p class="note">未完成的到期考点分批复习。无到期内容时可额外练习，答对不会提前推进日程。</p><button class="button secondary small" data-action="test-audio">试听英文朗读 ♫</button><p class="note" style="margin-top:10px">听力使用设备的英文朗读声音，未使用真人录音。无法朗读时支持家长读题。</p></div></aside></div><input id="bank-file" type="file" accept=".json,application/json" class="hidden"><input id="state-file" type="file" accept=".json,application/json" class="hidden">`;
+      <div class="card"><h3>每组题量</h3><div class="field"><label for="size">复习上限</label><select id="size"><option value="6" ${state.settings.size===6?'selected':''}>6 题 · 轻松一点</option><option value="8" ${state.settings.size===8?'selected':''}>8 题 · 标准练习</option><option value="10" ${state.settings.size===10?'selected':''}>10 题 · 多练一点</option></select></div><p class="note">未完成的到期考点分批复习。无到期内容时可额外练习，答对不会提前推进日程。</p><div class="actions"><button class="button secondary small" data-action="test-audio">试听英文朗读 ♫</button><button class="button secondary small" data-action="test-audio" data-speed="slow">慢速试听</button></div><p class="note" style="margin-top:10px">统一英式合成朗读，句间稍作停顿。可慢速重听，听力重播不计为提示。</p></div></aside></div><input id="bank-file" type="file" accept=".json,application/json" class="hidden"><input id="state-file" type="file" accept=".json,application/json" class="hidden">`;
   }
   function currentContent(){
     const questions=E.availableQuestions(bank),points=bank.points.filter(p=>questions.some(q=>q.pointId===p.id));
@@ -184,7 +185,7 @@
     let counter=0;
     const options=E.shuffle(shown.options.map((text,i)=>({text,index:i})),()=>seeded(shown.id,t.day,counter++));
     app.innerHTML=layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div><span class="note">${esc(shownP.title)}</span>
-      ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
+      ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><button class="button secondary" data-action="play" data-id="${shown.id}" data-speed="slow">慢速听</button><button class="link-button" data-action="stop-audio">停止</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
       ${shown.passage?`<div class="passage" lang="en">${esc(shown.passage)}</div>`:''}<h2>${esc(shown.prompt)}</h2><div class="options">${options.map((o,i)=>`<button class="option ${selected===o.index?'selected':''} ${feedback?(o.index===shown.answer?'correct':o.index===feedback.selected?'wrong':''):''}" data-action="select" data-option="${o.index}" ${feedback?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o.text)}</span>${feedback&&o.index===shown.answer?'<span style="margin-left:auto">✓</span>':''}</button>`).join('')}</div>
       ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status"><strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'选错了，我们看看为什么。'}</strong><p>${esc(shown.explanation)}</p></div>`:''}
       <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`;
@@ -218,20 +219,10 @@
       d.oncancel=e=>{e.preventDefault();finish(false);};d.showModal();
     });
   }
-  function play(text){
-    stopAudio();
+  function play(text,slow=false){
     const status=document.getElementById('audio-status');
     const tell=msg=>{if(status)status.textContent=msg;else toast(msg);};
-    if(!window.speechSynthesis||!window.SpeechSynthesisUtterance){tell('设备不支持英文朗读，请让家长读题，或查看文本提示。');return;}
-    const utter=new SpeechSynthesisUtterance(text);utter.lang='en-GB';utter.rate=.85;
-    const voices=speechSynthesis.getVoices(),english=voices.find(v=>v.lang==='en-GB')||voices.find(v=>v.lang.startsWith('en'));
-    if(english)utter.voice=english;
-    const ticket=audioTicket;playing=true;
-    utter.onstart=()=>{if(ticket===audioTicket)tell('正在播放英文…');};
-    utter.onend=()=>{if(ticket===audioTicket){clearTimeout(audioTimer);playing=false;tell('播放结束，可以再听一次。');}};
-    utter.onerror=()=>{if(ticket===audioTicket){clearTimeout(audioTimer);playing=false;tell('朗读未成功，请使用家长读题稿，或查看文本提示。');}};
-    speechSynthesis.speak(utter);
-    audioTimer=setTimeout(()=>{if(ticket===audioTicket&&playing){stopAudio();tell('朗读未完成，请使用家长读题稿或文本提示。');}},45000);
+    listening.play(text,{slow,tell});
   }
   function download(filename,value){
     const blob=new Blob([JSON.stringify(value,null,2)],{type:'application/json'});
@@ -264,8 +255,9 @@
     else if(action==='finish'){const next=clone();next.session=null;await commit(next);feedback=null;render();await refreshBank();}
     else if(action==='end'&&await ask('结束这组练习？','已完成的作答和复习安排都会保留，未答题目不计入结果。')){const next=clone();next.session=null;await commit(next);render();await refreshBank();}
     else if(action==='transcript'){await rememberHelp(true,true);showTranscript=true;renderQuiz();}
-    else if(action==='play')play(bank.questions.find(q=>q.id===el.dataset.id).audioText);
-    else if(action==='test-audio')play('Hello! Let us review English together. I always go swimming on Tuesdays.');
+    else if(action==='play')play(bank.questions.find(q=>q.id===el.dataset.id).audioText,el.dataset.speed==='slow');
+    else if(action==='stop-audio'){stopAudio();const status=document.getElementById('audio-status');if(status)status.textContent='已停止，可以重新播放。';}
+    else if(action==='test-audio')play('Hello! Let us review English together. I always go swimming on Tuesdays.',el.dataset.speed==='slow');
     else if(action==='refresh-bank'){if(location.protocol==='file:')toast('本地单文件无法联网同步；请使用部署网址或导入更新包。');else await refreshBank();}
     else if(action==='export-bank')download('温故-题库.json',bank);
     else if(action==='export-state')download(`温故-完整备份-${E.day()}.json`,{kind:'lesson-loop-backup',version:1,exportedAt:new Date().toISOString(),bank,state});
