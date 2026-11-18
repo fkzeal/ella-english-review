@@ -1,0 +1,16 @@
+/question-bank.json
+  Cache-Control: no-store
+/bank.js
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/app.js
+  Cache-Control: no-cache
+/engine.js
+  Cache-Control: no-cache
+/style.css
+  Cache-Control: no-cache
+/storage.js
+  Cache-Control: no-cache
+/version.js
+  Cache-Control: no-cache

@@ -1,0 +1,4 @@
+# Fixed Cloudflare Pages project. The actual hostname is verified after publishing.
+name = "ella-english-review"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-18"

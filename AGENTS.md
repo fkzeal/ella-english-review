@@ -1,0 +1,14 @@
+# 本项目后续题库维护约定
+
+- 采用对话识图生成题库，不增加运行时模型接口或妈妈端 OCR；模型与素材处理发生在当前 TRAE 工作中。
+- 真实内容只维护 `question-bank.json`；不要直接改生成的 bank.js/dist。
+- 实际确认日期写入 batches。按用户最新要求：未提供学习日期时，网页默认模块题库生成日的前一天，明确标注为默认并允许家长修改。每个模块维护稳定的 moduleGeneratedOn，普通发布不得改写它；默认日期不得伪称已确认日期。
+- 不凭 RAZ 书名编造正文。未核对正文的书保持 pending，无题目、无学习批次。歧义页请求补图。
+- RAZ/词汇/剑桥并存，使用稳定 lessonId、pointId、questionId、batchId。复读新增 batchId，复用书和考点。
+- 原创变式题附答案、解析与素材依据；文章理解必须有明确原文支持。图片保留在用户上传或中间资料位置，不加入公开 dist。
+- 已发布题目答案/选项/pointId 不原地更换：生成新编号，避免历史 selected 指向不同内容。
+- 题库使用 mode=snapshot 与递增 revision；删除题目在合并时转为 active=false 保留历史。增量包用 mode=patch。reviewUnit 为考点内稳定分项编号，已有值不可换含义。
+- 写入记录统一走 storage.js：Web Locks（不可用时 IndexedDB 事务锁）+ 原文版本核对，异常数据不可自动覆盖。app.js 的保存和同步必须 await；版本冲突应中止当前操作并提示重试。
+- 构建前运行 npm test，构建后部署 dist 到既有网址；不得声称 localhost 或单文件下载是公网发布。
+- 保留浏览器学习记录键 lesson-loop-data-v1；变更不能清空记录。新的在线内容先合并，再 syncBatches；未完成练习时延后更新。
+- 发布需要真实托管账号/目标服务器。未配置目标时交付可部署包并说明限制，不擅自付费购买服务。

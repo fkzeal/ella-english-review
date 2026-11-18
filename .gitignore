@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.env
+.env.*
+*.log
+question-bank.json.tmp
+dist/
+bank.js
+version.js

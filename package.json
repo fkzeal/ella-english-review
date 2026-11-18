@@ -1,0 +1,17 @@
+{
+  "name": "lesson-loop",
+  "version": "0.4.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js",
+    "build": "node scripts/build.js",
+    "record": "node scripts/record-learning.js",
+    "hosting:login": "wrangler login --browser=false --scopes account:read user:read pages:write",
+    "hosting:create": "node scripts/create-hosting.js",
+    "deploy": "node scripts/deploy.js"
+  },
+  "devDependencies": {
+    "wrangler": "4.45.0"
+  }
+}

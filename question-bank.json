@@ -1,0 +1,801 @@
+{
+  "version": 1,
+  "revision": 4,
+  "mode": "snapshot",
+  "updated": "2026-11-18",
+  "batches": [],
+  "lessons": [
+    {
+      "id": "raz-d-country-places",
+      "system": "raz",
+      "level": "D",
+      "number": 36,
+      "title": "Country Places",
+      "subtitle": "已确认书名与级别；等待正文截图",
+      "status": "pending",
+      "source": "用户任务截图；Reading A-Z book.php?id=1076，仅有官方简介，未取得完整正文"
+    },
+    {
+      "id": "l2-01",
+      "moduleGeneratedOn": {"lv":"2026-11-16","rg":"2026-11-16","skills":"2026-11-16"},
+      "level": 2,
+      "number": 1,
+      "title": "My week",
+      "subtitle": "我的一周",
+      "status": "ready",
+      "source": "IMG_5130、IMG_5135–5137；仅覆盖可见内容"
+    },
+    {
+      "id": "l2-02",
+      "level": 2,
+      "number": 2,
+      "title": "Rules",
+      "subtitle": "规则",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-03",
+      "level": 2,
+      "number": 3,
+      "title": "Let's be safe!",
+      "subtitle": "注意安全",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-04",
+      "level": 2,
+      "number": 4,
+      "title": "A trip in the count…",
+      "subtitle": "原截图标题截断，待补充",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-05",
+      "level": 2,
+      "number": 5,
+      "title": "My day",
+      "subtitle": "我的一天",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-06",
+      "level": 2,
+      "number": 6,
+      "title": "Look after the Ear…",
+      "subtitle": "原截图标题截断，待补充",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-07",
+      "level": 2,
+      "number": 7,
+      "title": "A costume party",
+      "subtitle": "化装舞会",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-08",
+      "level": 2,
+      "number": 8,
+      "title": "It's party time!",
+      "subtitle": "派对时间",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "l2-09",
+      "level": 2,
+      "number": 9,
+      "title": "People who help us",
+      "subtitle": "帮助我们的人",
+      "status": "pending",
+      "source": "IMG_5130；目前仅确认目录，未建立考点"
+    }
+  ],
+  "points": [
+    {
+      "id": "l2-01-days",
+      "lessonId": "l2-01",
+      "module": "lv",
+      "title": "星期与顺序",
+      "description": "识别星期名称，理解一周中的先后顺序。",
+      "evidence": "IMG_5137 中周历列出 Mon.–Sun.；顺序题为基于周历的原创练习。"
+    },
+    {
+      "id": "l2-01-activities",
+      "lessonId": "l2-01",
+      "module": "lv",
+      "title": "活动表达",
+      "description": "理解 go swimming、play the piano、read books。",
+      "evidence": "IMG_5137 中游泳、钢琴及书本图标；活动词组为对应图意的变式练习。"
+    },
+    {
+      "id": "l2-01-frequency",
+      "lessonId": "l2-01",
+      "module": "rg",
+      "title": "always 与 never",
+      "description": "结合情境理解“总是”和“从不”，选出正确表达。",
+      "evidence": "IMG_5136：It always cleans its face. But it never washes its face in the water."
+    },
+    {
+      "id": "l2-01-listen",
+      "lessonId": "l2-01",
+      "module": "skills",
+      "title": "听懂活动与星期",
+      "description": "听简短句子，辨认谁在哪天做什么。",
+      "evidence": "IMG_5137：I always go swimming on Tuesdays. 基于已确认句型的原创听力。"
+    },
+    {
+      "id": "l2-01-read",
+      "lessonId": "l2-01",
+      "module": "skills",
+      "title": "读懂一周安排",
+      "description": "读短文或周计划，寻找明确信息并概括主要内容。",
+      "evidence": "IMG_5137 周历与 Let’s read；短文为原创变式，不是课程原文。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "l2-01-days-q01",
+      "reviewUnit": "monday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期一”对应哪个英文单词？",
+      "options": [
+        "Monday",
+        "Wednesday",
+        "Friday"
+      ],
+      "answer": 0,
+      "explanation": "Monday 表示星期一。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q02",
+      "reviewUnit": "tuesday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期二”对应哪个英文单词？",
+      "options": [
+        "Tuesday",
+        "Thursday",
+        "Saturday"
+      ],
+      "answer": 0,
+      "explanation": "Tuesday 表示星期二。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q03",
+      "reviewUnit": "wednesday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期三”对应哪个英文单词？",
+      "options": [
+        "Wednesday",
+        "Friday",
+        "Sunday"
+      ],
+      "answer": 0,
+      "explanation": "Wednesday 表示星期三。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q04",
+      "reviewUnit": "thursday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期四”对应哪个英文单词？",
+      "options": [
+        "Thursday",
+        "Saturday",
+        "Monday"
+      ],
+      "answer": 0,
+      "explanation": "Thursday 表示星期四。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q05",
+      "reviewUnit": "friday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期五”对应哪个英文单词？",
+      "options": [
+        "Friday",
+        "Sunday",
+        "Tuesday"
+      ],
+      "answer": 0,
+      "explanation": "Friday 表示星期五。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q06",
+      "reviewUnit": "saturday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期六”对应哪个英文单词？",
+      "options": [
+        "Saturday",
+        "Monday",
+        "Wednesday"
+      ],
+      "answer": 0,
+      "explanation": "Saturday 表示星期六。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q07",
+      "reviewUnit": "sunday",
+      "pointId": "l2-01-days",
+      "type": "choice",
+      "prompt": "“星期日”对应哪个英文单词？",
+      "options": [
+        "Sunday",
+        "Tuesday",
+        "Thursday"
+      ],
+      "answer": 0,
+      "explanation": "Sunday 表示星期日。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q08",
+      "reviewUnit": "tuesday",
+      "pointId": "l2-01-days",
+      "type": "cloze",
+      "prompt": "Monday, _____, Wednesday",
+      "options": [
+        "Thursday",
+        "Tuesday",
+        "Friday"
+      ],
+      "answer": 1,
+      "explanation": "Monday 后一天是 Tuesday，再后一天是 Wednesday。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q09",
+      "reviewUnit": "wednesday",
+      "pointId": "l2-01-days",
+      "type": "cloze",
+      "prompt": "Tuesday, _____, Thursday",
+      "options": [
+        "Friday",
+        "Wednesday",
+        "Saturday"
+      ],
+      "answer": 1,
+      "explanation": "Tuesday 后一天是 Wednesday，再后一天是 Thursday。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q10",
+      "reviewUnit": "thursday",
+      "pointId": "l2-01-days",
+      "type": "cloze",
+      "prompt": "Wednesday, _____, Friday",
+      "options": [
+        "Saturday",
+        "Thursday",
+        "Sunday"
+      ],
+      "answer": 1,
+      "explanation": "Wednesday 后一天是 Thursday，再后一天是 Friday。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q11",
+      "reviewUnit": "friday",
+      "pointId": "l2-01-days",
+      "type": "cloze",
+      "prompt": "Thursday, _____, Saturday",
+      "options": [
+        "Sunday",
+        "Friday",
+        "Monday"
+      ],
+      "answer": 1,
+      "explanation": "Thursday 后一天是 Friday，再后一天是 Saturday。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-days-q12",
+      "reviewUnit": "saturday",
+      "pointId": "l2-01-days",
+      "type": "cloze",
+      "prompt": "Friday, _____, Sunday",
+      "options": [
+        "Monday",
+        "Saturday",
+        "Tuesday"
+      ],
+      "answer": 1,
+      "explanation": "Friday 后一天是 Saturday，再后一天是 Sunday。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-activities-q01",
+      "reviewUnit": "swimming",
+      "pointId": "l2-01-activities",
+      "type": "choice",
+      "prompt": "哪个短语表示“去游泳”？",
+      "options": [
+        "play the piano",
+        "read books",
+        "go swimming"
+      ],
+      "answer": 2,
+      "explanation": "go swimming 表示“去游泳”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-activities-q02",
+      "reviewUnit": "swimming",
+      "pointId": "l2-01-activities",
+      "type": "choice",
+      "prompt": "“go swimming”是什么意思？",
+      "options": [
+        "去游泳",
+        "弹钢琴",
+        "读书"
+      ],
+      "answer": 0,
+      "explanation": "go swimming 表示“去游泳”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-activities-q03",
+      "reviewUnit": "piano",
+      "pointId": "l2-01-activities",
+      "type": "choice",
+      "prompt": "哪个短语表示“弹钢琴”？",
+      "options": [
+        "read books",
+        "go swimming",
+        "play the piano"
+      ],
+      "answer": 2,
+      "explanation": "play the piano 表示“弹钢琴”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-activities-q04",
+      "reviewUnit": "piano",
+      "pointId": "l2-01-activities",
+      "type": "choice",
+      "prompt": "“play the piano”是什么意思？",
+      "options": [
+        "弹钢琴",
+        "去游泳",
+        "读书"
+      ],
+      "answer": 0,
+      "explanation": "play the piano 表示“弹钢琴”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-activities-q05",
+      "reviewUnit": "books",
+      "pointId": "l2-01-activities",
+      "type": "choice",
+      "prompt": "哪个短语表示“读书”？",
+      "options": [
+        "go swimming",
+        "play the piano",
+        "read books"
+      ],
+      "answer": 2,
+      "explanation": "read books 表示“读书”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-activities-q06",
+      "reviewUnit": "books",
+      "pointId": "l2-01-activities",
+      "type": "choice",
+      "prompt": "“read books”是什么意思？",
+      "options": [
+        "读书",
+        "去游泳",
+        "弹钢琴"
+      ],
+      "answer": 0,
+      "explanation": "read books 表示“读书”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q01",
+      "reviewUnit": "always",
+      "pointId": "l2-01-frequency",
+      "type": "cloze",
+      "prompt": "我每个星期二都游泳。选词：\nI _____ go swimming on Tuesdays.",
+      "options": [
+        "never",
+        "always"
+      ],
+      "answer": 1,
+      "explanation": "每次都做，用 always（总是）。never 表示从不。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q02",
+      "reviewUnit": "never",
+      "pointId": "l2-01-frequency",
+      "type": "cloze",
+      "prompt": "我从不在星期一游泳。选词：\nI _____ go swimming on Mondays.",
+      "options": [
+        "always",
+        "never"
+      ],
+      "answer": 1,
+      "explanation": "从不做，用 never。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q03",
+      "reviewUnit": "always",
+      "pointId": "l2-01-frequency",
+      "type": "cloze",
+      "prompt": "我每个星期二都读书。选词：\nI _____ read books on Tuesdays.",
+      "options": [
+        "never",
+        "always"
+      ],
+      "answer": 1,
+      "explanation": "每次都做，用 always（总是）。never 表示从不。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q04",
+      "reviewUnit": "never",
+      "pointId": "l2-01-frequency",
+      "type": "cloze",
+      "prompt": "我从不在星期一读书。选词：\nI _____ read books on Mondays.",
+      "options": [
+        "always",
+        "never"
+      ],
+      "answer": 1,
+      "explanation": "从不做，用 never。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q05",
+      "reviewUnit": "always",
+      "pointId": "l2-01-frequency",
+      "type": "cloze",
+      "prompt": "我每个星期二都弹钢琴。选词：\nI _____ play the piano on Tuesdays.",
+      "options": [
+        "never",
+        "always"
+      ],
+      "answer": 1,
+      "explanation": "每次都做，用 always（总是）。never 表示从不。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q06",
+      "reviewUnit": "never",
+      "pointId": "l2-01-frequency",
+      "type": "cloze",
+      "prompt": "我从不在星期一弹钢琴。选词：\nI _____ play the piano on Mondays.",
+      "options": [
+        "always",
+        "never"
+      ],
+      "answer": 1,
+      "explanation": "从不做，用 never。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q07",
+      "reviewUnit": "always",
+      "pointId": "l2-01-frequency",
+      "type": "choice",
+      "prompt": "It always cleans its face. 这句话里的 always 是什么意思？",
+      "options": [
+        "偶尔",
+        "从不",
+        "总是"
+      ],
+      "answer": 2,
+      "explanation": "always 的意思是“总是”。句意：它总是清洁自己的脸。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-frequency-q08",
+      "reviewUnit": "never",
+      "pointId": "l2-01-frequency",
+      "type": "choice",
+      "prompt": "It never washes its face in the water. 这句话里的 never 是什么意思？",
+      "options": [
+        "总是",
+        "从不",
+        "有时"
+      ],
+      "answer": 1,
+      "explanation": "never 的意思是“从不”。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+    },
+    {
+      "id": "l2-01-listen-q01",
+      "reviewUnit": "tuesday",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：Tom 在哪天进行这项活动？",
+      "options": [
+        "Mondays",
+        "Tuesdays",
+        "Fridays"
+      ],
+      "answer": 1,
+      "explanation": "录音说 on Tuesdays，所以选 Tuesdays。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "Hi, I'm Tom. I always go swimming on Tuesdays."
+    },
+    {
+      "id": "l2-01-listen-q02",
+      "reviewUnit": "friday",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：Anna 在哪天进行这项活动？",
+      "options": [
+        "Sundays",
+        "Wednesdays",
+        "Fridays"
+      ],
+      "answer": 2,
+      "explanation": "录音说 on Fridays，所以选 Fridays。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "Hi, I'm Anna. I always read books on Fridays."
+    },
+    {
+      "id": "l2-01-listen-q03",
+      "reviewUnit": "wednesday",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：Ben 在哪天进行这项活动？",
+      "options": [
+        "Wednesdays",
+        "Mondays",
+        "Saturdays"
+      ],
+      "answer": 0,
+      "explanation": "录音说 on Wednesdays，所以选 Wednesdays。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "Hi, I'm Ben. I always play the piano on Wednesdays."
+    },
+    {
+      "id": "l2-01-listen-q04",
+      "reviewUnit": "sunday",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：Lucy 在哪天进行这项活动？",
+      "options": [
+        "Saturdays",
+        "Sundays",
+        "Thursdays"
+      ],
+      "answer": 1,
+      "explanation": "录音说 on Sundays，所以选 Sundays。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "Hi, I'm Lucy. I always go swimming on Sundays."
+    },
+    {
+      "id": "l2-01-listen-q05",
+      "reviewUnit": "monday",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：Sam 在哪天进行这项活动？",
+      "options": [
+        "Mondays",
+        "Fridays",
+        "Tuesdays"
+      ],
+      "answer": 0,
+      "explanation": "录音说 on Mondays，所以选 Mondays。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "Hi, I'm Sam. I always read books on Mondays."
+    },
+    {
+      "id": "l2-01-listen-q06",
+      "reviewUnit": "saturday",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：Amy 在哪天进行这项活动？",
+      "options": [
+        "Wednesdays",
+        "Sundays",
+        "Saturdays"
+      ],
+      "answer": 2,
+      "explanation": "录音说 on Saturdays，所以选 Saturdays。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "Hi, I'm Amy. I always play the piano on Saturdays."
+    },
+    {
+      "id": "l2-01-listen-q07",
+      "reviewUnit": "activity-positive",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：说话的人每周二做什么？",
+      "options": [
+        "read books",
+        "play the piano",
+        "go swimming"
+      ],
+      "answer": 2,
+      "explanation": "录音说 I always go swimming on Tuesdays. 每周二去游泳。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "I always go swimming on Tuesdays."
+    },
+    {
+      "id": "l2-01-listen-q08",
+      "reviewUnit": "activity-negative",
+      "pointId": "l2-01-listen",
+      "type": "listening",
+      "prompt": "听一听：说话的人从不在星期一做什么？",
+      "options": [
+        "go swimming",
+        "read books",
+        "play the piano"
+      ],
+      "answer": 0,
+      "explanation": "录音中的 never go swimming 表示从不去游泳。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "audioText": "I never go swimming on Mondays."
+    },
+    {
+      "id": "l2-01-read-q01",
+      "reviewUnit": "find-day",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "Anna 在哪天读书？",
+      "options": [
+        "Tuesdays",
+        "Fridays",
+        "Thursdays"
+      ],
+      "answer": 1,
+      "explanation": "短文中 I read books on Fridays. 给出了答案。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays."
+    },
+    {
+      "id": "l2-01-read-q02",
+      "reviewUnit": "find-activity",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "Anna 在 Tuesdays 做什么？",
+      "options": [
+        "play the piano",
+        "read books",
+        "go swimming"
+      ],
+      "answer": 2,
+      "explanation": "I always go swimming on Tuesdays. 表示这天去游泳。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays."
+    },
+    {
+      "id": "l2-01-read-q03",
+      "reviewUnit": "main-idea",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "这段短文主要介绍什么？",
+      "options": [
+        "一周的活动安排",
+        "怎样清洁脸",
+        "一本书的故事"
+      ],
+      "answer": 0,
+      "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays."
+    },
+    {
+      "id": "l2-01-read-q04",
+      "reviewUnit": "find-day",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "Ben 在哪天读书？",
+      "options": [
+        "Wednesdays",
+        "Sundays",
+        "Thursdays"
+      ],
+      "answer": 1,
+      "explanation": "短文中 I read books on Sundays. 给出了答案。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays."
+    },
+    {
+      "id": "l2-01-read-q05",
+      "reviewUnit": "find-activity",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "Ben 在 Wednesdays 做什么？",
+      "options": [
+        "play the piano",
+        "read books",
+        "go swimming"
+      ],
+      "answer": 2,
+      "explanation": "I always go swimming on Wednesdays. 表示这天去游泳。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays."
+    },
+    {
+      "id": "l2-01-read-q06",
+      "reviewUnit": "main-idea",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "这段短文主要介绍什么？",
+      "options": [
+        "一周的活动安排",
+        "怎样清洁脸",
+        "一本书的故事"
+      ],
+      "answer": 0,
+      "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays."
+    },
+    {
+      "id": "l2-01-read-q07",
+      "reviewUnit": "find-day",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "Lucy 在哪天读书？",
+      "options": [
+        "Saturdays",
+        "Mondays",
+        "Thursdays"
+      ],
+      "answer": 1,
+      "explanation": "短文中 I read books on Mondays. 给出了答案。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+    },
+    {
+      "id": "l2-01-read-q08",
+      "reviewUnit": "find-activity",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "Lucy 在 Saturdays 做什么？",
+      "options": [
+        "play the piano",
+        "read books",
+        "go swimming"
+      ],
+      "answer": 2,
+      "explanation": "I always go swimming on Saturdays. 表示这天去游泳。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+    },
+    {
+      "id": "l2-01-read-q09",
+      "reviewUnit": "main-idea",
+      "pointId": "l2-01-read",
+      "type": "reading",
+      "prompt": "这段短文主要介绍什么？",
+      "options": [
+        "一周的活动安排",
+        "怎样清洁脸",
+        "一本书的故事"
+      ],
+      "answer": 0,
+      "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+    }
+  ]
+}
