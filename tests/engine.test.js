@@ -127,12 +127,15 @@ test('date correction moves only unreviewed schedules; repeat reading cannot rai
   E.syncBatches(b,s,'2026-11-18');assert.equal(s.points[q.pointId].stage,1);
   assert.equal(s.history.length,1);
 });
-test('pausing automatic content survives syncing and reenabling retains progress',()=>{
+test('legacy unchecked content resumes automatically without losing progress',()=>{
   const {b,s}=dated();
+  const q=b.questions[0];E.grade(b,s,q.id,q.answer,false,'2026-11-18');
+  const history=structuredClone(s.history),unit=structuredClone(s.units[E.unitKey(q)]);
   E.setLearned(b,s,'l2-01','lv',false);
   E.syncBatches(b,s,'2026-11-18');
-  assert.equal(E.activePoints(b,s).length,3);
-  E.setLearned(b,s,'l2-01','lv',true);assert.equal(E.activePoints(b,s).length,5);
+  assert.equal(E.activePoints(b,s).length,5);
+  assert.deepEqual(s.history,history);assert.deepEqual(s.units[E.unitKey(q)],unit);
+  assert.deepEqual(s.paused,{});
 });
 test('RAZ and KET content can mix with Cambridge; invalid or unverified batch references fail',()=>{
   const {b,s}=dated(),q=b.questions[0];

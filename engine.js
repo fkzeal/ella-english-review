@@ -181,7 +181,9 @@
   }
   // Reconciliation is idempotent and never overwrites an answered point's performance.
   function syncBatches(b,s,today=day()){
-    s.batchReceipts ||= {};s.paused ||= {};s.learningDates ||= {};
+    // Old unchecked modules must not suppress automatically enrolled content.
+    // Keep the legacy field readable by old backups, but retire its pause flags.
+    s.batchReceipts ||= {};s.paused = {};s.learningDates ||= {};
     const all=learningEvents(b,s,today);
     const events=all.filter(x=>x.learnedOn<=today).sort((a,c)=>a.learnedOn.localeCompare(c.learnedOn)||a.id.localeCompare(c.id));
     const dates=new Map(b.points.map(p=>[p.id,moduleDate(b,s,p.lessonId,p.module,today).date]));
@@ -189,7 +191,7 @@
       for(const item of batch.items){
         for(const p of b.points.filter(p=>p.lessonId===item.lessonId&&item.modules.includes(p.module))){
           if(dates.get(p.id)>today||batch.learnedOn<dates.get(p.id))continue;
-          if(!s.paused[p.id])s.learned[p.lessonId]=[...new Set([...(s.learned[p.lessonId]||[]),p.module])];
+          s.learned[p.lessonId]=[...new Set([...(s.learned[p.lessonId]||[]),p.module])];
           // Repeated reading brings the next check closer, without pretending it was answered.
           const signature=JSON.stringify({learnedOn:batch.learnedOn,items:batch.items});
           if(s.batchReceipts[batch.id]!==signature&&s.points[p.id]?.lastDay&&batch.learnedOn>s.points[p.id].lastDay){

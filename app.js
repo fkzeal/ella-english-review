@@ -85,7 +85,7 @@
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
       const available=ps.some(p=>p.module===m),info=available?E.moduleDate(bank,state,l.id,m):null;
       const repeats=(state.localBatches||[]).filter(b=>b.items.some(i=>i.lessonId===l.id&&i.modules.includes(m)));
-      return `<div class="module-block"><label class="check"><input type="checkbox" data-lesson="${l.id}" data-module="${m}" ${(state.learned[l.id]||[]).includes(m)?'checked':''} ${!available?'disabled':''}>${moduleNames[m]}${!available?'（待补充）':''}</label>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">学习日期</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}学习日期" value="${info.date}"></div><p class="note">${info.source==='manual'?'家长已修改':info.source==='batch'?'来自发布的学习批次':'默认：题库生成日期的前一天，可修改'}${info.date>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${info.date}" aria-label="${moduleNames[m]}复读日期"><button class="button secondary small" data-action="record-repeat" data-id="${l.id}" data-module="${m}">记录复读</button></div>${repeats.map(b=>`<span class="tag">${esc(b.learnedOn)}</span>`).join('')}</details>`:''}</div>`;
+      return `<div class="module-block"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">学习日期</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}学习日期" value="${info.date}"></div><p class="note">${info.source==='manual'?'家长已修改':info.source==='batch'?'来自发布的学习批次':'默认：题库生成日期的前一天，可修改'}${info.date>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${info.date}" aria-label="${moduleNames[m]}复读日期"><button class="button secondary small" data-action="record-repeat" data-id="${l.id}" data-module="${m}">记录复读</button></div>${repeats.map(b=>`<span class="tag">${esc(b.learnedOn)}</span>`).join('')}</details>`:''}</div>`;
     }).join('')}</div>`;
   }
   function lessonModules(id){return [...new Set(bank.points.filter(p=>p.lessonId===id).map(p=>p.module))];}
@@ -93,16 +93,14 @@
     const modules=[...new Set(ps.map(p=>p.module))];
     const infos=modules.map(m=>E.moduleDate(bank,state,l.id,m));
     const dates=[...new Set(infos.map(info=>info.date))].sort();
-    const checked=modules.every(m=>(state.learned[l.id]||[]).includes(m));
-    const partial=!checked&&modules.some(m=>(state.learned[l.id]||[]).includes(m));
     const repeats=[...new Set((state.localBatches||[]).filter(b=>b.items.some(i=>i.lessonId===l.id)).map(b=>b.learnedOn))].sort();
     const note=dates.length>1?'已有记录的学习日期不同，选择日期后统一整本绘本；原答题记录保留。':infos.every(info=>info.source==='default')?'默认：题库生成日期的前一天，可修改':infos.some(info=>info.source==='manual')?'家长已修改':'来自发布的学习批次';
-    return `<div class="checks"><div class="module-block"><label class="check"><input type="checkbox" data-book-lesson="${l.id}" ${checked?'checked':''}>已学这本绘本${partial?'（部分进度已登记）':''}</label><div class="module-date-row"><label for="date-${l.id}-book">学习日期</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本学习日期" value="${dates.length===1?dates[0]:''}"></div><p class="note">${note}${dates.length===1&&dates[0]>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${dates.at(-1)}" aria-label="绘本复读日期"><button class="button secondary small" data-action="record-book-repeat" data-id="${l.id}">记录复读</button></div>${repeats.map(date=>`<span class="tag">${esc(date)}</span>`).join('')}</details></div></div>`;
+    return `<div class="checks"><div class="module-block"><div class="module-date-row"><label for="date-${l.id}-book">学习日期</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本学习日期" value="${dates.length===1?dates[0]:''}"></div><p class="note">${note}${dates.length===1&&dates[0]>E.day()?' · 等待学习日':''}</p><details class="repeat-controls"><summary>记录复读${repeats.length?' · '+repeats.length+' 次':''}</summary><div class="module-date-row"><input type="date" data-repeat-date value="${E.day()}" max="${E.day()}" min="${dates.at(-1)}" aria-label="绘本复读日期"><button class="button secondary small" data-action="record-book-repeat" data-id="${l.id}">记录复读</button></div>${repeats.map(date=>`<span class="tag">${esc(date)}</span>`).join('')}</details></div></div>`;
   }
   function courseView(){
     const bank=currentContent();
     const list=bank.lessons.filter(l=>(l.system||'cambridge')===system&&(system!=='cambridge'||l.level===level));
-    return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。',system==='raz'?'每本绘本统一登记学习日期和复读，自动安排复习。':'已发布的学习批次自动安排复习，无需勾选。也可以手动暂停或补充已学模块。')+
+    return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。',system==='raz'?'已有绘本题库按学习日期自动安排复习，可修改日期或记录复读。':'已有课程题库按各模块的学习日期自动安排复习，可修改日期或记录复读。')+
       '<div class="filter-row">'+[['cambridge','猿辅导剑桥'],['raz','RAZ 绘本'],['ket','KET 词汇']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
       (system==='cambridge'?'<div class="filter-row">'+[1,2,3,4].map(n=>`<button class="chip ${n===level?'active':''}" data-action="level" data-level="${n}">Level ${n}</button>`).join('')+'</div>':'')+
       `<div class="banner">${system==='raz'?'每本绘本统一修改学习日期，选择后自动保存。未提供日期时默认使用绘本题库生成日期的前一天。':'每个模块都可修改学习日期，选择后自动保存。未提供日期时默认使用该模块题库生成日期的前一天。'}后续发布不会每天挪动。已答记录保留，未答日程随日期调整。</div>`+
@@ -163,7 +161,7 @@
     }
     else if(!E.duePoints(bank,state).length)practice=true;
     const items=E.plan(bank,state,{practice,lessonId,preview});
-    if(!items.length){toast('先登记已有题库的已学模块，再开始复习。');return;}
+    if(!items.length){toast('暂时没有可复习内容，请检查学习日期或补充题库。');return;}
     const next=clone();next.session={items,index:0,results:[],hints:{},day:E.day(),practice,lessonId,preview};await commit(next);
     selected=null;help=false;feedback=null;showTranscript=false;page='today';setNav();renderQuiz();
   }
@@ -297,15 +295,9 @@
     if(el.dataset.bookDate){
       if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再修改学习日期。');render();return;}
       try{const next=clone();for(const m of lessonModules(el.dataset.bookDate))E.setModuleDate(bank,next,el.dataset.bookDate,m,el.value);await commit(next);render();toast('绘本学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
-    }else if(el.dataset.bookLesson){
-      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再调整绘本进度。');render();return;}
-      const next=clone();for(const m of lessonModules(el.dataset.bookLesson))E.setLearned(bank,next,el.dataset.bookLesson,m,el.checked);await commit(next);render();
     }else if(el.dataset.dateLesson){
       if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再修改学习日期。');render();return;}
       try{const next=clone();E.setModuleDate(bank,next,el.dataset.dateLesson,el.dataset.dateModule,el.value);await commit(next);render();toast('学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
-    }else if(el.dataset.lesson){
-      if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再调整已学模块。');render();return;}
-      const next=clone();E.setLearned(bank,next,el.dataset.lesson,el.dataset.module,el.checked);await commit(next);render();
     }else if(el.id==='help-check'){await rememberHelp(el.checked);el.checked=help;}
     else if(el.id==='size'){const next=clone();next.settings.size=Number(el.value);await commit(next);}
     else if(el.id==='bank-file'||el.id==='state-file'){
