@@ -29,6 +29,28 @@ test('app startup with invalid data renders recovery controls without overwritin
   await app.click('start');
   assert.equal(app.data.get(S.KEY),raw);
 });
+test('cat encouragement follows saved correct answers and clears on the next question',async()=>{
+  for(const assisted of [false,true]){
+    const state=E.emptyState();E.syncBatches(bank,state);
+    const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2);
+    state.session={items:qs.map(q=>q.id),index:0,results:[],day:E.day()};
+    const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}));
+    await app.ready();await app.click('resume');
+    assert.doesNotMatch(app.node('app').innerHTML,/cat-cheer/);
+    if(assisted)await app.change({id:'help-check',checked:true,dataset:{}});
+    await app.click('select',{option:String(qs[0].answer)});
+    assert.match(app.node('app').innerHTML,/cat-cheer/);
+    assert.equal(app.saved().state.history.length,1);
+    assert.equal(app.saved().state.history[0].help,assisted);
+    if(assisted)assert.match(app.node('app').innerHTML,/这次借助了提示/);
+    await app.click('next');
+    assert.doesNotMatch(app.node('app').innerHTML,/cat-cheer|snow-confetti/);
+    await app.click('select',{option:String((qs[1].answer+1)%qs[1].options.length)});
+    assert.doesNotMatch(app.node('app').innerHTML,/cat-cheer|snow-confetti/);
+    assert.match(app.node('app').innerHTML,/没关系/);
+    assert.equal(app.saved().state.history.length,2);
+  }
+});
 test('slow listening repeats neither reveal the transcript nor mark help, and leaving stops playback',async()=>{
   const state=E.emptyState();E.syncBatches(bank,state);
   const q=bank.questions.find(q=>q.type==='listening'),plays=[];let stops=0;
@@ -43,6 +65,23 @@ test('slow listening repeats neither reveal the transcript nor mark help, and le
   assert(!app.saved().state.session.hints?.[q.id]);
   assert.doesNotMatch(app.node('app').innerHTML,/已展开听力文本/);
   const count=stops;await app.click('pause');assert(stops>count);
+});
+test('correct answers rotate six kittens, continuing after reload and skipping wrong answers',async()=>{
+  const state=E.emptyState();E.syncBatches(bank,state);
+  const qs=bank.questions.filter(q=>q.type==='choice').slice(0,8);
+  state.session={items:qs.map(q=>q.id),index:0,results:[],day:E.day()};
+  let app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}));
+  await app.ready();await app.click('resume');
+  const cats=[];
+  for(let i=0;i<qs.length;i++){
+    if(i===3){await app.click('pause');app=harness(undefined,app.data);await app.ready();await app.click('resume');}
+    await app.click('select',{option:String(i===2?(qs[i].answer+1)%qs[i].options.length:qs[i].answer)});
+    const match=app.node('app').innerHTML.match(/data-kitten="([^"]+)"/);
+    if(i===2)assert.equal(match,null);else cats.push(match[1]);
+    await app.click('next');
+  }
+  assert.deepEqual(cats,['ginger','tuxedo','calico','gray','siamese','cream','ginger']);
+  assert.equal(app.saved().state.history.length,8);
 });
 test('app transcript → pause → reload → resume → answer stays assisted',async()=>{
   const state=E.emptyState();E.syncBatches(bank,state);

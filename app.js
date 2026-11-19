@@ -60,6 +60,22 @@
   function head(label,title,description){
     return `<div class="page-head"><div><div class="eyebrow">${label}</div><h1>${title}</h1><p class="subtitle">${description}</p></div><div class="date-pill">${new Date().toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'})}</div></div>`;
   }
+  const kittens=[
+    {coat:'ginger',art:'assets/kittens/ginger.webp',name:'小橘猫',phrase:'喵～这题答对啦！给你一只小爪爪。'},
+    {coat:'tuxedo',art:'assets/kittens/tuxedo.webp',name:'奶牛猫',phrase:'认真思考的你，超棒的！'},
+    {coat:'calico',art:'assets/kittens/calico.webp',name:'三花猫',phrase:'好棒，我们又学会一点点！'},
+    {coat:'gray',art:'assets/kittens/gray.webp',name:'小灰猫',phrase:'送你一颗小星星，继续加油呀！'},
+    {coat:'siamese',art:'assets/kittens/siamese.webp',name:'暹罗猫',phrase:'找到答案啦！和我击个掌吧。'},
+    {coat:'cream',art:'assets/kittens/cream.webp',name:'奶油猫',phrase:'为你的这个小进步，拍拍爪！'}
+  ];
+  function snowCat(className='',kitten=kittens[0]){
+    return `<span class="snow-cat illustrated-kitten kitten-${kitten.coat} ${className}" aria-hidden="true"><img class="kitten-art" src="${kitten.art}" width="600" height="600" alt="" draggable="false"></span>`;
+  }
+  function encouragement(result,index){
+    const wins=state.history.filter(r=>r.correct).length;
+    const kitten=kittens[Math.max(0,wins-1)%kittens.length];
+    return `<div class="cat-cheer" data-kitten="${kitten.coat}">${snowCat('cheer-cat',kitten)}<div><span class="cheer-label">${kitten.name}来给你加油啦</span><strong>${result.help?'我们一起找到答案啦！':kitten.phrase}</strong><span>${result.help?'下次试着自己想一想，慢慢来。':'把这个小发现，放进口袋里。'}</span></div><div class="snow-confetti" aria-hidden="true">${Array.from({length:16},(_,i)=>`<i style="--i:${i};--x:${(i*29)%100}%;--spin:${i%2?180:-210}deg">${i%3?'✦':'♥'}</i>`).join('')}</div></div>`;
+  }
   function layoutWarning(){return !storageAvailable?'<div class="banner warning">记录未能保存，已保护原始数据。请到「家长题库」导出原始记录或恢复有效备份，再继续练习。</div>':'';}
   function navigate(p){stopAudio();page=p;selected=null;help=false;feedback=null;showTranscript=false;render();window.scrollTo({top:0,behavior:'instant'});}
   function setNav(){
@@ -75,8 +91,8 @@
     const registered=Object.keys(state.batchReceipts||{}).length;
     const lessons=points.length?bank.lessons.filter(l=>points.some(p=>p.lessonId===l.id)):!registered&&starter?[starter]:[];
     const nextDue=active.map(p=>state.points[p.id]?.due).filter(Boolean).sort()[0];
-    return head('LET’S PRACTICE','今天，来练几道英语题吧。','选一个答案，就能马上知道对不对。')+
-      `<div class="student-home"><div class="hero"><div class="hero-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" width="150" height="150" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M26 12a11 11 0 1 0 1 9"/><path d="M19 12h7V5"/></svg></div><div class="eyebrow">YOUR ENGLISH PRACTICE</div><h2>准备好了吗？</h2><p>每次 ${state.settings.size} 题以内。慢慢想，选答案，看解析。</p><div class="hero-meta"><span>词汇选择 · 选词填空 · 听力 · 阅读</span></div><button class="button start-button" data-action="start" ${!lessons.length?'disabled':''}>开始练习 <span aria-hidden="true">→</span></button></div>
+    return head('LITTLE PAWS, HAPPY LEARNING','Ella，欢迎来到猫咪小屋。','小猫咪们已经准备好啦。今天也一起收获一个小进步吧！')+
+      `<div class="student-home"><div class="hero"><div class="hero-copy"><div class="winter-badge">♡ 猫咪陪伴的英语时光</div><h2>每天一点点，<br>和小猫一起进步。</h2><p>慢慢想，大胆试。<br>答对后，会有哪只小猫来打招呼呢？</p><div class="hero-meta"><span>🐾 每组 ${state.settings.size} 题以内</span><span>♡ 不计时，按自己的节奏</span></div><button class="button start-button" data-action="start" ${!lessons.length?'disabled':''}>和小猫开始练习 <span aria-hidden="true">→</span></button></div><div class="winter-scene"><span class="scene-spark spark-one" aria-hidden="true">✧</span><span class="scene-spark spark-two" aria-hidden="true">♡</span><div class="cat-orbit">${snowCat()}</div><div class="cat-hello">Hi, Ella! <span aria-hidden="true">♡</span></div><span class="scene-caption">YOUR LITTLE STUDY BUDDIES</span><div class="kitten-friends" aria-label="还有奶牛猫和三花猫陪你练习">${snowCat('friend-cat',kittens[1])}${snowCat('friend-cat',kittens[2])}</div></div></div><div class="adventure-steps" aria-label="练习步骤"><span><b>01</b> 看一看，听一听</span><span><b>02</b> 选出你的答案</span><span><b>03</b> 小猫来为你加油 ♡</span></div>
       <div class="card"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div></div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note">自动安排 · ${due.length} 个练习分组到期${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p>`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}<p class="note" style="margin-top:14px">看题 → 选答案 → 看对错 → 下一题</p></div></div>`;
   }
   function pointRow(p){const l=bank.lessons.find(l=>l.id===p.lessonId),sp=state.points[p.id];return `<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${esc(p.title)}</strong><small>${lessonLabel(l)}</small></div><span class="tag">${sp?.errors?'需要巩固':sp?.stage?'间隔复习':'首次回顾'}</span></div>`;}
@@ -187,7 +203,7 @@
     app.innerHTML=layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div><span class="note">${esc(shownP.title)}</span>
       ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><button class="button secondary" data-action="play" data-id="${shown.id}" data-speed="slow">慢速听</button><button class="link-button" data-action="stop-audio">停止</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
       ${shown.passage?`<div class="passage" lang="en">${esc(shown.passage)}</div>`:''}<h2>${esc(shown.prompt)}</h2><div class="options">${options.map((o,i)=>`<button class="option ${selected===o.index?'selected':''} ${feedback?(o.index===shown.answer?'correct':o.index===feedback.selected?'wrong':''):''}" data-action="select" data-option="${o.index}" ${feedback?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o.text)}</span>${feedback&&o.index===shown.answer?'<span style="margin-left:auto">✓</span>':''}</button>`).join('')}</div>
-      ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status"><strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'选错了，我们看看为什么。'}</strong><p>${esc(shown.explanation)}</p></div>`:''}
+      ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p></div>`:''}
       <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`;
   }
   function seeded(id,d,n){let hash=2166136261;for(const c of id+d+n)hash=Math.imul(hash^c.charCodeAt(0),16777619);hash^=hash>>>16;hash=Math.imul(hash,0x7feb352d);hash^=hash>>>15;return (hash>>>0)/4294967296;}
@@ -201,13 +217,14 @@
       for(const key of Object.keys(next.units||{}))if(key.startsWith(result.pointId+'::'))delete next.units[key];
     }
     next.session.results.push(result);next.session.index++;await commit(next);feedback=result;renderQuiz();
+    document.querySelector('.feedback')?.scrollIntoView?.({block:'nearest',behavior:'instant'});
   }
   function nextQuestion(){stopAudio();selected=null;help=false;showTranscript=false;feedback=null;if(state.session.index===state.session.items.length)renderSummary();else renderQuiz();}
   function renderSummary(){
     const t=state.session;
     if(!t){render();return;}
     const total=t.results.length,ind=t.results.filter(r=>r.correct&&!r.help).length;
-    app.innerHTML=layoutWarning()+`<div class="quiz"><div class="card summary"><div class="eyebrow">ONE SMALL STEP DONE</div><h1>这一小组，完成了。</h1><div class="score">${t.results.filter(r=>r.correct).length}<span class="muted" style="font-size:24px"> / ${total}</span></div><p class="muted">答对题数 · ${ind} 题独立答对</p><p>每练一次，都更熟悉一点。</p><div class="actions" style="justify-content:center;margin-top:25px"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`;
+    app.innerHTML=layoutWarning()+`<div class="quiz"><div class="card summary">${snowCat('summary-cat',kittens[5])}<div class="eyebrow">ONE SMALL STEP, A LITTLE SPARKLE</div><h1>今天的小探险，完成啦！</h1><div class="score">${t.results.filter(r=>r.correct).length}<span class="muted" style="font-size:24px"> / ${total}</span></div><p class="muted">答对题数 · ${ind} 题独立答对</p><p>谢谢你认真练习。小猫咪们为你的努力拍拍爪！</p><div class="actions" style="justify-content:center;margin-top:25px"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`;
   }
   async function ask(title,text){
     return new Promise(resolve=>{
