@@ -155,6 +155,8 @@ test('legacy writer dropping metadata cannot hide a required bank migration',asy
 test('course progress only edits initial dates and hides repeat and date provenance',async()=>{
   const app=harness();await app.ready();
   await app.click('nav',{target:'courses'});
+  assert.match(app.node('app').innerHTML,/class="chip active" data-action="system" data-system="raz"/);
+  await app.click('system',{system:'cambridge'});
   assert.match(app.node('app').innerHTML,/data-date-module="lv"/);
   assert.match(app.node('app').innerHTML,/data-date-module="rg"/);
   assert.match(app.node('app').innerHTML,/data-date-module="skills"/);

@@ -7,7 +7,7 @@
   const app=document.getElementById('app');
   const moduleNames={lv:'听力与词汇',rg:'阅读与语法',skills:'Skills 综合技能',reading:'绘本阅读',vocabulary:'词汇积累'};
   const typeNames={choice:'词汇选择',cloze:'选词填空',listening:'听力选择',reading:'阅读理解'};
-  let bank=E.validateBank(window.LESSON_BANK), state=E.emptyState(),page='today',level=2,system='cambridge';
+  let bank=E.validateBank(window.LESSON_BANK), state=E.emptyState(),page='today',level=2,system='raz';
   let selected=null,help=false,feedback=null,showTranscript=false,storageAvailable=true;
   let toastTimer=null;
   const listening=window.ReviewAudio.create(window,window.LESSON_AUDIO||{clips:{}});
@@ -101,7 +101,7 @@
     if(l.system==='raz')return bookControls(l,ps);
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
       const available=ps.some(p=>p.module===m),info=available?E.moduleDate(bank,state,l.id,m):null;
-      return `<div class="module-block"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">首次学习日期</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}首次学习日期" value="${info.date}"></div>${info.date>E.day()?'<p class="note">等待学习日</p>':''}`:''}</div>`;
+      return `<div class="module-block"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">首次学习</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}首次学习日期" value="${info.date}"></div>${info.date>E.day()?'<p class="note">等待学习日</p>':''}`:''}</div>`;
     }).join('')}</div>`;
   }
   function lessonModules(id){return [...new Set(bank.points.filter(p=>p.lessonId===id).map(p=>p.module))];}
@@ -109,13 +109,13 @@
     const modules=[...new Set(ps.map(p=>p.module))];
     const infos=modules.map(m=>E.moduleDate(bank,state,l.id,m));
     const dates=[...new Set(infos.map(info=>info.date))].sort();
-    return `<div class="checks"><div class="module-block"><div class="module-date-row"><label for="date-${l.id}-book">首次学习日期</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本首次学习日期" value="${dates.length===1?dates[0]:''}"></div>${dates.length>1?'<p class="note">旧记录日期不同，请选择整本绘本的首次学习日期。</p>':dates[0]>E.day()?'<p class="note">等待学习日</p>':''}</div></div>`;
+    return `<div class="checks"><div class="module-block"><div class="module-date-row"><label for="date-${l.id}-book">首次学习</label><input type="date" id="date-${l.id}-book" data-book-date="${l.id}" aria-label="绘本首次学习日期" value="${dates.length===1?dates[0]:''}"></div>${dates.length>1?'<p class="note">旧记录日期不同，请选择整本绘本的首次学习日期。</p>':dates[0]>E.day()?'<p class="note">等待学习日</p>':''}</div></div>`;
   }
   function courseView(){
     const bank=currentContent();
     const list=bank.lessons.filter(l=>(l.system||'cambridge')===system&&(system!=='cambridge'||l.level===level));
     return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。','调整首次学习日期，复习由系统根据答题表现自动安排。')+
-      '<div class="filter-row">'+[['cambridge','猿辅导剑桥'],['raz','RAZ 绘本'],['ket','KET 词汇']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
+      '<div class="filter-row">'+[['raz','RAZ 绘本'],['cambridge','猿辅导剑桥'],['ket','KET 词汇']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
       (system==='cambridge'?'<div class="filter-row">'+[1,2,3,4].map(n=>`<button class="chip ${n===level?'active':''}" data-action="level" data-level="${n}">Level ${n}</button>`).join('')+'</div>':'')+
       (list.length?`<div class="course-grid">${list.map(l=>{
         const ps=bank.points.filter(p=>p.lessonId===l.id),qs=bank.questions.filter(q=>ps.some(p=>p.id===q.pointId));
