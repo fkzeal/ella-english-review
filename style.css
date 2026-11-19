@@ -78,6 +78,11 @@ p{margin:0 0 16px}
 .module-date-row:first-child{margin-top:0}
 .module-date-row>label{font-size:12px;color:var(--muted);white-space:nowrap}
 .module-date-row input[type=date]{min-width:0;min-height:44px;max-width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font:inherit}
+.module-inline{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px}
+.module-inline>strong{min-width:0;font-size:14px}
+.module-inline>.module-date-row{margin-top:0;flex-wrap:nowrap}
+.module-inline input[type=date]{width:140px}
+.module-inline>.note{grid-column:1/-1;margin:4px 0 0}
 .repeat-controls{margin-top:8px;font-size:13px}
 .course{margin:0!important;display:flex;flex-direction:column}
 .course .tag{align-self:start;margin-bottom:12px}

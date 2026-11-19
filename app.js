@@ -101,7 +101,7 @@
     if(l.system==='raz')return bookControls(l,ps);
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
       const available=ps.some(p=>p.module===m),info=available?E.moduleDate(bank,state,l.id,m):null;
-      return `<div class="module-block"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><label for="date-${l.id}-${m}">首次学习</label><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}首次学习日期" value="${info.date}"></div>${info.date>E.day()?'<p class="note">等待学习日</p>':''}`:''}</div>`;
+      return `<div class="module-block module-inline"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}首次学习日期" value="${info.date}"></div>${info.date>E.day()?'<p class="note">等待学习日</p>':''}`:''}</div>`;
     }).join('')}</div>`;
   }
   function lessonModules(id){return [...new Set(bank.points.filter(p=>p.lessonId===id).map(p=>p.module))];}
