@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": 8,
+  "revision": 9,
   "mode": "snapshot",
   "updated": "2026-11-20",
   "batches": [],
@@ -644,7 +644,7 @@
       "level": "D",
       "number": 3,
       "title": "Why Does an Octopus Need Eight Arms?",
-      "subtitle": "章鱼的八条手臂；已核对第3–7页",
+      "subtitle": "章鱼的八条手臂；已核对正文第3–10页",
       "status": "ready",
       "moduleGeneratedOn": {
         "lv": "2026-11-20",
@@ -679,13 +679,16 @@
         },
         {
           "id": "ordinals",
-          "title": "first / second / third / fourth：第一至第四的顺序",
-          "evidence": "图3–6／第4–7页；作为同一组顺序对比，不重复计成四个目标。",
+          "title": "first 至 eighth：第一至第八的顺序",
+          "evidence": "图3–6／第4–7页；作为同一组顺序对比，不重复计成四个目标。 修订54补图1–3／第8–10页新增 fifth、sixth、seventh、eighth；仍是同一顺序对比目标。",
           "questionIds": [
             "raz-d-octopus-eight-arms-q04",
             "raz-d-octopus-eight-arms-q05",
             "raz-d-octopus-eight-arms-q06",
-            "raz-d-octopus-eight-arms-q07"
+            "raz-d-octopus-eight-arms-q07",
+            "raz-d-octopus-eight-arms-q22",
+            "raz-d-octopus-eight-arms-q23",
+            "raz-d-octopus-eight-arms-q24"
           ]
         },
         {
@@ -733,18 +736,56 @@
         {
           "id": "arm-purpose",
           "title": "根据故事找到每条手臂对应的用途",
-          "evidence": "图3–6／第4–7页；阅读与听力分别练习，同一信息匹配目标只计一次。",
+          "evidence": "图3–6／第4–7页；阅读与听力分别练习，同一信息匹配目标只计一次。 修订54补图1–3／第8–10页补齐第五至第八条手臂用途；旧题仍引用原有第4–7页。",
           "questionIds": [
             "raz-d-octopus-eight-arms-q14",
             "raz-d-octopus-eight-arms-q15",
             "raz-d-octopus-eight-arms-q16",
             "raz-d-octopus-eight-arms-q17",
             "raz-d-octopus-eight-arms-q20",
-            "raz-d-octopus-eight-arms-q21"
+            "raz-d-octopus-eight-arms-q21",
+            "raz-d-octopus-eight-arms-q29",
+            "raz-d-octopus-eight-arms-q30",
+            "raz-d-octopus-eight-arms-q31"
+          ]
+        },
+        {
+          "id": "hold-umbrella",
+          "title": "hold an umbrella：撑着一把伞",
+          "evidence": "修订54补图1／第8页 holding an umbrella；词义与听辨同属一目标。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q25",
+            "raz-d-octopus-eight-arms-q32"
+          ]
+        },
+        {
+          "id": "carry-bag",
+          "title": "carry a bag：提着一个包",
+          "evidence": "修订54补图2／第9页 carrying a bag；词义与听辨同属一目标。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q26",
+            "raz-d-octopus-eight-arms-q33"
+          ]
+        },
+        {
+          "id": "give-hugs",
+          "title": "give hugs：拥抱，区别于 give high fives",
+          "evidence": "修订54补图3／第10页 giving hugs；词义与听辨同属一目标。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q27",
+            "raz-d-octopus-eight-arms-q34"
+          ]
+        },
+        {
+          "id": "arm-is-arms-are",
+          "title": "单数 arm is 与复数 arms are 的主谓一致",
+          "evidence": "第8、9页 The fifth/sixth arm is；第10页 The seventh and eighth arms are。可见语法，不推抄教材讲解。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q28"
           ]
         }
       ],
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订45，2026-11-20归档。素材图1封面、图2–6正文第3–7页；拟人故事。后3屏及第五至第八条手臂用途待补。 实际学习日期未单独确认；沿用可修改的默认首次学习日期。"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订45图1封面、图2–6正文第3–7页；修订54补图1–3正文第8–10页。逐页核对，正文已补齐；拟人故事，不能扩写成动物生物学结论。实际学习日期未单独确认，保留原可修改默认日期；不新增学习batch。"
     }
   ],
   "points": [
@@ -873,40 +914,40 @@
       "lessonId": "raz-d-octopus-eight-arms",
       "module": "lv",
       "title": "章鱼、数量与顺序",
-      "description": "辨认 octopus、arm、eight 和第一至第四的顺序。",
-      "evidence": "图1–6，已核对正文第3–7页。"
+      "description": "辨认 octopus、arm、eight 和第一至第八的顺序。",
+      "evidence": "图1–6，已核对正文第3–7页。 修订54补图1–3／第8–10页。"
     },
     {
       "id": "raz-d-octopus-eight-arms-actions",
       "lessonId": "raz-d-octopus-eight-arms",
       "module": "lv",
       "title": "故事中的活动",
-      "description": "理解刷牙、梳头、抛接球、击掌；均为拟人故事中的用途。",
-      "evidence": "图3–6／正文第4–7页。"
+      "description": "理解刷牙、梳头、抛接球、击掌、撑伞、提包与拥抱；均为拟人故事中的用途。",
+      "evidence": "图3–6／正文第4–7页。 修订54补图1–3／第8–10页。"
     },
     {
       "id": "raz-d-octopus-eight-arms-for-ing",
       "lessonId": "raz-d-octopus-eight-arms",
       "module": "rg",
       "title": "is for + 动词-ing",
-      "description": "根据句型选择 brushing、combing 等-ing形式。",
-      "evidence": "图3–6／正文第4–7页。"
+      "description": "用 for + 动词-ing 表达用途，并区分 arm is 与 arms are。",
+      "evidence": "图3–6／正文第4–7页。 修订54补图1–3／第8–10页。"
     },
     {
       "id": "raz-d-octopus-eight-arms-read",
       "lessonId": "raz-d-octopus-eight-arms",
       "module": "skills",
       "title": "阅读手臂的用途",
-      "description": "从已收到的四句正文提取明确用途；不推断缺页。",
-      "evidence": "图3–6／正文第4–7页。"
+      "description": "从已核对第4–10页原句节选提取手臂用途；旧题节选保持原样。",
+      "evidence": "图3–6／正文第4–7页。 修订54补图1–3／第8–10页。"
     },
     {
       "id": "raz-d-octopus-eight-arms-listen",
       "lessonId": "raz-d-octopus-eight-arms",
       "module": "skills",
       "title": "听懂故事中的词与用途",
-      "description": "根据已收到正文编写听辨稿，听读与词义分项练习。",
-      "evidence": "图2–6／正文第3–7页；朗读稿为原创听辨。"
+      "description": "听辨已核对的故事词与用途；原句朗读和原创听辨分别标明。",
+      "evidence": "图2–6／正文第3–7页；朗读稿为原创听辨。 修订54补图1–3／第8–10页。"
     },
     {
       "id": "l2-02-activities",
@@ -4196,6 +4237,308 @@
           "source": "本题朗读稿 · 原创听辨"
         }
       ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q22",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "reviewUnit": "ordinal-fifth",
+      "type": "choice",
+      "prompt": "first、second、third、fourth 之后，下一个顺序词是哪一个？",
+      "options": [
+        "eighth",
+        "fifth",
+        "sixth"
+      ],
+      "answer": 1,
+      "explanation": "fourth 是第四，下一个是第五 fifth。第8页写 The fifth arm。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图1／第8页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fifth arm is for holding an umbrella.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第8页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q23",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "reviewUnit": "ordinal-sixth",
+      "type": "choice",
+      "prompt": "sixth arm 指按顺序数的哪一条手臂？",
+      "options": [
+        "第五条",
+        "第八条",
+        "第六条"
+      ],
+      "answer": 2,
+      "explanation": "sixth 是第六，six 是数字六；sixth arm 表示第六条手臂。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图2／第9页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The sixth arm is for carrying a bag.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第9页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q24",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "reviewUnit": "ordinal-seventh-eighth",
+      "type": "choice",
+      "prompt": "seventh and eighth 表示哪两个顺序？",
+      "options": [
+        "第七和第八",
+        "第六和第七",
+        "第五和第六"
+      ],
+      "answer": 0,
+      "explanation": "seventh 是第七，eighth 是第八；and 把这两个顺序词连接起来。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图3／第10页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The seventh and eighth arms are for giving hugs.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第10页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q25",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "reviewUnit": "hold-umbrella",
+      "type": "choice",
+      "prompt": "holding an umbrella 表示做什么？",
+      "options": [
+        "提着一个包",
+        "撑着一把伞",
+        "给人拥抱"
+      ],
+      "answer": 1,
+      "explanation": "holding 表示拿着、握着；umbrella 是伞。holding an umbrella 在这幅故事图中表示撑着一把伞。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图1／第8页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fifth arm is for holding an umbrella.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第8页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q26",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "reviewUnit": "carry-bag",
+      "type": "choice",
+      "prompt": "carrying a bag 表示做什么？",
+      "options": [
+        "撑着一把伞",
+        "梳头",
+        "提着一个包"
+      ],
+      "answer": 2,
+      "explanation": "carrying 表示携带、提着，bag 是包；合起来是提着一个包。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图2／第9页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The sixth arm is for carrying a bag.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第9页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q27",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "reviewUnit": "give-hugs",
+      "type": "choice",
+      "prompt": "giving hugs 与 giving high fives 的意思有什么不同？",
+      "options": [
+        "giving hugs 是拥抱；giving high fives 是击掌",
+        "giving hugs 是击掌；giving high fives 是拥抱",
+        "两个短语都表示梳头"
+      ],
+      "answer": 0,
+      "explanation": "hug 是拥抱，high five 是击掌。第10页出现 giving hugs；不要与第7页的 giving high fives 混淆。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图3／第10页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The seventh and eighth arms are for giving hugs.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第10页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q28",
+      "pointId": "raz-d-octopus-eight-arms-for-ing",
+      "reviewUnit": "arm-is-arms-are",
+      "type": "cloze",
+      "prompt": "The seventh and eighth arms ___ for giving hugs.",
+      "options": [
+        "is",
+        "are",
+        "am"
+      ],
+      "answer": 1,
+      "explanation": "主语是第七和第八这两条手臂，arms 是复数，配 are；第8、9页只有一条 arm，配 is。for 后仍用 giving 表达用途。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图1,2,3／第8、9、10页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fifth arm is for holding an umbrella.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第8页"
+        },
+        {
+          "kind": "original",
+          "text": "The sixth arm is for carrying a bag.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第9页"
+        },
+        {
+          "kind": "original",
+          "text": "The seventh and eighth arms are for giving hugs.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第10页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q29",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "reviewUnit": "read-purpose-fifth",
+      "type": "reading",
+      "prompt": "根据这段故事原文节选，哪条手臂用来撑伞？",
+      "options": [
+        "sixth arm",
+        "seventh and eighth arms",
+        "fifth arm"
+      ],
+      "answer": 2,
+      "explanation": "第一句明确写 The fifth arm is for holding an umbrella.，所以是第五条手臂。其他两句分别说提包和拥抱。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图1／第8页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fifth arm is for holding an umbrella.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第8页"
+        }
+      ],
+      "passage": "The fifth arm is for holding an umbrella.\nThe sixth arm is for carrying a bag.\nThe seventh and eighth arms are for giving hugs."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q30",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "reviewUnit": "read-purpose-sixth",
+      "type": "reading",
+      "prompt": "根据这段故事原文节选，sixth arm 用来做什么？",
+      "options": [
+        "carrying a bag",
+        "holding an umbrella",
+        "giving hugs"
+      ],
+      "answer": 0,
+      "explanation": "第二句明确写 The sixth arm is for carrying a bag.，所以是提包。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图2／第9页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The sixth arm is for carrying a bag.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第9页"
+        }
+      ],
+      "passage": "The fifth arm is for holding an umbrella.\nThe sixth arm is for carrying a bag.\nThe seventh and eighth arms are for giving hugs."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q31",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "reviewUnit": "read-purpose-seventh-eighth",
+      "type": "reading",
+      "prompt": "原文把哪两条手臂一起写作拥抱的用途？",
+      "options": [
+        "fifth and sixth",
+        "seventh and eighth",
+        "sixth and seventh"
+      ],
+      "answer": 1,
+      "explanation": "第三句直接写 The seventh and eighth arms are for giving hugs.，将第七和第八两条手臂放在同一句中。结论仅限这个拟人故事。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图3／第10页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The seventh and eighth arms are for giving hugs.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第10页"
+        }
+      ],
+      "passage": "The fifth arm is for holding an umbrella.\nThe sixth arm is for carrying a bag.\nThe seventh and eighth arms are for giving hugs."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q32",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "reviewUnit": "listen-hold-umbrella",
+      "type": "listening",
+      "prompt": "听一听，句子里的手臂用来做什么？",
+      "options": [
+        "提包",
+        "拥抱",
+        "撑伞"
+      ],
+      "answer": 2,
+      "explanation": "朗读说 holding an umbrella，表示撑着一把伞；这是故事中第五条手臂的用途。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图1／第8页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fifth arm is for holding an umbrella.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第8页"
+        }
+      ],
+      "audioText": "The fifth arm is for holding an umbrella."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q33",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "reviewUnit": "listen-carry-bag",
+      "type": "listening",
+      "prompt": "听一听，句子里的手臂用来做什么？",
+      "options": [
+        "提包",
+        "击掌",
+        "撑伞"
+      ],
+      "answer": 0,
+      "explanation": "朗读说 carrying a bag，表示提着一个包；这是故事中第六条手臂的用途。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图2／第9页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The sixth arm is for carrying a bag.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第9页"
+        }
+      ],
+      "audioText": "The sixth arm is for carrying a bag."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q34",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "reviewUnit": "listen-give-hugs",
+      "type": "listening",
+      "prompt": "听一听，句子说的活动是什么？",
+      "options": [
+        "击掌",
+        "拥抱",
+        "梳头"
+      ],
+      "answer": 1,
+      "explanation": "朗读中的 giving hugs 是拥抱，不是 giving high fives（击掌）。句子描述故事中的第七和第八条手臂。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订54补图3／第10页；依据逐字核对原句编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The seventh and eighth arms are for giving hugs.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第10页"
+        }
+      ],
+      "audioText": "The seventh and eighth arms are for giving hugs."
     }
   ]
 }

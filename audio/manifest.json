@@ -123,6 +123,21 @@
       "duration": 1.835,
       "sha256": "6cc9665d2646b26a65a7e21922bbf6e9af252cf66370306002f21db78b72a14a"
     },
+    "The fifth arm is for holding an umbrella.": {
+      "file": "audio/f02d22985876b716bef211d4.mp3",
+      "duration": 2.347,
+      "sha256": "09ff0937451a6b87109e7302ef58ac1bd899fcad04d55a7d59ea0f3295013074"
+    },
+    "The sixth arm is for carrying a bag.": {
+      "file": "audio/4b58b69af3cdf549780e6e59.mp3",
+      "duration": 2.155,
+      "sha256": "63b1288836dd84abf469ff9b31c81fa586ea3dc879c3692c73a5fe5f5c04f127"
+    },
+    "The seventh and eighth arms are for giving hugs.": {
+      "file": "audio/ed262931034ac5da79b4fbb6.mp3",
+      "duration": 2.603,
+      "sha256": "357284e136a6bde56aab940f0c450deaee6ee4238c6003489f3c3d84ca6bd073"
+    },
     "Hello! Let us review English together. I always go swimming on Tuesdays.": {
       "file": "audio/ead508667dd0aca4bf2ceabc.mp3",
       "duration": 5.948,
