@@ -232,6 +232,17 @@
       <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`);
   }
   function seeded(id,d,n){let hash=2166136261;for(const c of id+d+n)hash=Math.imul(hash^c.charCodeAt(0),16777619);hash^=hash>>>16;hash=Math.imul(hash,0x7feb352d);hash^=hash>>>15;return (hash>>>0)/4294967296;}
+  function scrollAnswerReview(){
+    const options=document.querySelector('.question .options'),actions=document.querySelector('.question .quiz-actions');
+    if(!options?.getBoundingClientRect||!actions?.getBoundingClientRect)return;
+    const viewport=window.visualViewport,height=viewport?.height||window.innerHeight,offset=viewport?.offsetTop||0;
+    const inset=Math.min(24,height*.04),top=options.getBoundingClientRect().top,bottom=actions.getBoundingClientRect().bottom;
+    if(top>=offset+inset&&bottom<=offset+height-inset)return;
+    // Keep all options when they fit; otherwise leave the explanation and next
+    // button in view without shrinking the child's reading text.
+    const shift=bottom-top<=height-inset*2?top-offset-inset:bottom-offset-height+inset;
+    window.scrollTo({top:Math.max(0,window.scrollY+shift),behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  }
   async function submit(){
     if(selected===null||feedback||!state.session)return;
     stopAudio();
@@ -245,9 +256,13 @@
     next.session.results.push(result);next.session.index++;await commit(next);
     if(revision!==viewRevision)return;
     feedback=result;renderQuiz();
-    document.querySelector('.feedback')?.scrollIntoView?.({block:'nearest',behavior:'instant'});
+    scrollAnswerReview();
   }
-  function nextQuestion(){stopAudio();selected=null;help=false;showTranscript=false;feedback=null;if(state.session.index===state.session.items.length)renderSummary();else renderQuiz();}
+  function nextQuestion(){
+    stopAudio();selected=null;help=false;showTranscript=false;feedback=null;
+    if(state.session.index===state.session.items.length)renderSummary();else renderQuiz();
+    document.querySelector('.question, .summary')?.scrollIntoView?.({block:'start',behavior:'instant'});
+  }
   function renderSummary(){
     const t=state.session;
     if(!t){render();return;}
