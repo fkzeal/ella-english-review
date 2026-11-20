@@ -38,7 +38,7 @@ test('patch target references resolve against the real existing bank, with inval
   lesson.learningTargets.find(t=>t.questionIds.includes(original.id)).questionIds.push(variant.id);
   const patch={version:1,revision:bank.revision+1,mode:'patch',lessons:[lesson],points:[],questions:[variant]};
   const before=JSON.stringify(bank),merged=E.mergeBank(bank,patch);
-  assert.equal(merged.questions.length,84);assert.equal(JSON.stringify(bank),before);
+  assert.equal(merged.questions.length,bank.questions.length+1);assert.equal(JSON.stringify(bank),before);
   assert.deepEqual(merged.questions.find(q=>q.id===original.id),original);
   const s=E.emptyState();E.syncBatches(bank,s,'2026-11-18');
   E.grade(bank,s,original.id,original.answer,false,'2026-11-18');

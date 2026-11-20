@@ -301,3 +301,49 @@ body{background:radial-gradient(ellipse at 0 10%,#fff0db,transparent 50%),radial
 @keyframes kitten-bounce{0%{opacity:0;transform:translateY(12px) scale(.8) rotate(-8deg)}35%{opacity:1;transform:translateY(-5px) scale(1.06) rotate(4deg)}65%{transform:translateY(0) scale(.98) rotate(-3deg)}100%{opacity:1;transform:none}}
 @media(max-width:700px){.friend-cat.illustrated-kitten{width:62px;height:62px}.kitten-friends{bottom:-8px;right:-18px}.cheer-cat.illustrated-kitten{width:91px;height:100px}.cat-cheer{gap:8px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.snow-confetti{display:none}.button:hover:not(:disabled){transform:none}}
+/* Tablet practice: use the screen width and give learning text room to breathe. */
+@media(min-width:701px) and (max-width:1400px){
+  main{max-width:none;padding:32px clamp(20px,2.2vw,32px) 60px}
+  .header{padding-inline:clamp(20px,2.2vw,32px)}
+  .parent-nav,footer{max-width:none;padding-inline:clamp(20px,2.2vw,32px)}
+  .quiz{max-width:none;font-size:20px}
+  .quiz-top{gap:20px;font-size:18px;flex-wrap:wrap}
+  .question{padding:clamp(24px,2.2vw,30px)}
+  .question .card-header{align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .question .card-header .note{min-width:0;white-space:normal}
+  .question h2{font-size:clamp(32px,2.5vw,34px);line-height:1.5;margin-top:24px;overflow-wrap:break-word}
+  .passage{padding:clamp(22px,2.2vw,28px);font-size:clamp(32px,3.2vw,36px);line-height:1.8;margin:24px 0;overflow-wrap:break-word}
+  .options{gap:16px;margin:28px 0}
+  .option{font-size:clamp(24px,2.2vw,26px);line-height:1.55;min-height:80px;padding:18px 22px;gap:18px}
+  .option .letter{width:38px;height:38px;font-size:18px;border-radius:12px}
+  .option>span:not(.letter){min-width:0;overflow-wrap:break-word}
+  .quiz .note,.quiz .check,.quiz .link-button,.audio span{font-size:18px;line-height:1.6}
+  .quiz .tag{font-size:16px;padding:6px 14px}
+  .quiz .button{font-size:20px;min-height:54px;padding:12px 24px}
+  .quiz input[type=checkbox]{width:24px;height:24px;flex-shrink:0}
+  .quiz .check{gap:12px;min-height:44px}
+  .quiz-actions{gap:16px;flex-wrap:wrap}
+  .quiz-actions>.note{min-width:0}
+  .audio{padding:24px;gap:18px}
+  .audio-script{font-size:26px;line-height:1.8;overflow-wrap:break-word}
+  .feedback{padding:24px}
+  .feedback>strong,.feedback p{font-size:22px;line-height:1.7}
+  .cat-cheer>div:not(.snow-confetti){min-width:0}
+  .cat-cheer strong{font-size:22px;line-height:1.6}
+  .cheer-label,.cat-cheer span:last-child{font-size:17px;letter-spacing:0}
+  .summary{font-size:22px}
+  .summary h1{font-size:34px}
+  .summary .result-row{font-size:20px;line-height:1.7}
+  .student-home .hero{padding:clamp(30px,3vw,42px)}
+  .student-home .hero p{font-size:20px}
+  .student-home .hero-meta{font-size:17px;gap:12px 20px}
+  .student-home .winter-badge{font-size:16px}
+  .student-home .hero .start-button{font-size:23px;min-height:62px}
+  .student-home .adventure-steps{font-size:17px;padding-block:24px}
+  .student-home .adventure-steps b{font-size:14px}
+  .student-home .card h3{font-size:22px}
+  .student-home .list-row strong{font-size:20px}
+  .student-home .list-row small,.student-home .note{font-size:17px}
+  .student-home .list-row .grow{min-width:0}
+  footer{font-size:13px}
+}

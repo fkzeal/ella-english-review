@@ -145,7 +145,7 @@ test('parent imports a real target patch, retires a whole course, and restores i
   const variant={...structuredClone(original),id:'gt-extra-choice',prompt:'Choose the word for carrots.'};
   lesson.learningTargets.find(t=>t.questionIds.includes(original.id)).questionIds.push(variant.id);
   await importFile('bank-file',{version:1,mode:'patch',revision:bank.revision+1,lessons:[lesson],points:[],questions:[variant]});
-  assert.equal(app.saved().bank.questions.length,84);
+  assert.equal(app.saved().bank.questions.length,bank.questions.length+1);
   const snapshot=structuredClone(bank);snapshot.revision+=2;
   snapshot.lessons=snapshot.lessons.filter(l=>l.id!==lesson.id);
   snapshot.points=snapshot.points.filter(p=>p.lessonId!==lesson.id);
@@ -276,7 +276,9 @@ test('course progress only edits initial dates and hides repeat and date provena
   assert.match(app.node('app').innerHTML,/首次学习日期/);
   await app.click('system',{system:'raz'});
   const html=app.node('app').innerHTML;
-  assert.equal((html.match(/data-book-date=/g)||[]).length,2);
+  const readyBooks=bank.lessons.filter(l=>l.system==='raz'&&l.status==='ready'&&
+    bank.points.some(p=>p.lessonId===l.id&&bank.questions.some(q=>q.pointId===p.id&&q.active!==false)));
+  assert.equal((html.match(/data-book-date=/g)||[]).length,readyBooks.length);
   assert.doesNotMatch(html,/type="checkbox"|data-book-lesson=|data-module=|data-date-module=|各模块独立|记录复读|题库生成|家长已修改|来自发布/);
   assert.match(html,/10 个学习目标/);
   assert.match(html,/12 个学习目标/);

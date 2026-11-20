@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "revision": 6,
+  "revision": 7,
   "mode": "snapshot",
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "batches": [],
   "lessons": [
     {
@@ -12,20 +12,104 @@
       "number": 1,
       "title": "Greater Than",
       "learningTargets": [
-        {"id":"carrot","title":"carrot / carrots：胡萝卜","evidence":"第5页。","questionIds":["gt-veg-q01"]},
-        {"id":"beet","title":"beet / beets：甜菜","evidence":"第4页。","questionIds":["gt-veg-q02"]},
-        {"id":"onion","title":"onion / onions：洋葱","evidence":"第8页。","questionIds":["gt-veg-q03"]},
-        {"id":"pepper","title":"pepper：图中的甜椒","evidence":"第11页文字及红甜椒图片；词义与听辨同属此词汇目标。","questionIds":["gt-veg-q04","gt-listen-q03"]},
-        {"id":"yam","title":"yam / yams：文中的薯类名称","evidence":"第7页；不根据插图确定植物品种。","questionIds":["gt-veg-q05"]},
-        {"id":"greater-than","title":"用 greater than 比较两个数量","evidence":"第6、9、12页；文字、阅读迁移和听辨是同一比较目标的不同任务。","questionIds":["gt-compare-q01","gt-compare-q02","gt-read-q02","gt-listen-q02"]},
-        {"id":"greatest","title":"用 greatest 找出多个数量中的最大值","evidence":"第12页明确出现 greatest 问句；不同于两数比较。","questionIds":["gt-compare-q03","gt-read-q03"]},
-        {"id":"there-number","title":"根据单复数选择 There is / There are","evidence":"第4–5、7–8、11页；is / are 是同一语法对比，不按变式重复计数。","questionIds":["gt-there-q01","gt-there-q02","gt-there-q04"]},
-        {"id":"noun-plural","title":"数量大于一时使用可数名词复数","evidence":"第8页 four onions 及其他数量句；与选择系动词的作答目标不同。","questionIds":["gt-there-q03"]},
-        {"id":"quantity-information","title":"从短文或朗读中提取蔬菜数量","evidence":"第4–5、7–8页；阅读与听力分别记录表现，内容目标不重复计数。","questionIds":["gt-read-q01","gt-read-q04","gt-listen-q01","gt-listen-q04"]}
+        {
+          "id": "carrot",
+          "title": "carrot / carrots：胡萝卜",
+          "evidence": "第5页。",
+          "questionIds": [
+            "gt-veg-q01"
+          ]
+        },
+        {
+          "id": "beet",
+          "title": "beet / beets：甜菜",
+          "evidence": "第4页。",
+          "questionIds": [
+            "gt-veg-q02"
+          ]
+        },
+        {
+          "id": "onion",
+          "title": "onion / onions：洋葱",
+          "evidence": "第8页。",
+          "questionIds": [
+            "gt-veg-q03"
+          ]
+        },
+        {
+          "id": "pepper",
+          "title": "pepper：图中的甜椒",
+          "evidence": "第11页文字及红甜椒图片；词义与听辨同属此词汇目标。",
+          "questionIds": [
+            "gt-veg-q04",
+            "gt-listen-q03"
+          ]
+        },
+        {
+          "id": "yam",
+          "title": "yam / yams：文中的薯类名称",
+          "evidence": "第7页；不根据插图确定植物品种。",
+          "questionIds": [
+            "gt-veg-q05"
+          ]
+        },
+        {
+          "id": "greater-than",
+          "title": "用 greater than 比较两个数量",
+          "evidence": "第6、9、12页；文字、阅读迁移和听辨是同一比较目标的不同任务。",
+          "questionIds": [
+            "gt-compare-q01",
+            "gt-compare-q02",
+            "gt-read-q02",
+            "gt-listen-q02"
+          ]
+        },
+        {
+          "id": "greatest",
+          "title": "用 greatest 找出多个数量中的最大值",
+          "evidence": "第12页明确出现 greatest 问句；不同于两数比较。",
+          "questionIds": [
+            "gt-compare-q03",
+            "gt-read-q03"
+          ]
+        },
+        {
+          "id": "there-number",
+          "title": "根据单复数选择 There is / There are",
+          "evidence": "第4–5、7–8、11页；is / are 是同一语法对比，不按变式重复计数。",
+          "questionIds": [
+            "gt-there-q01",
+            "gt-there-q02",
+            "gt-there-q04"
+          ]
+        },
+        {
+          "id": "noun-plural",
+          "title": "数量大于一时使用可数名词复数",
+          "evidence": "第8页 four onions 及其他数量句；与选择系动词的作答目标不同。",
+          "questionIds": [
+            "gt-there-q03"
+          ]
+        },
+        {
+          "id": "quantity-information",
+          "title": "从短文或朗读中提取蔬菜数量",
+          "evidence": "第4–5、7–8页；阅读与听力分别记录表现，内容目标不重复计数。",
+          "questionIds": [
+            "gt-read-q01",
+            "gt-read-q04",
+            "gt-listen-q01",
+            "gt-listen-q04"
+          ]
+        }
       ],
       "subtitle": "蔬菜数量与比较；仅覆盖已收到页面，第10页待补",
       "status": "ready",
-      "moduleGeneratedOn": {"lv":"2026-11-18","rg":"2026-11-18","skills":"2026-11-18"},
+      "moduleGeneratedOn": {
+        "lv": "2026-11-18",
+        "rg": "2026-11-18",
+        "skills": "2026-11-18"
+      },
       "source": "本轮用户上传截图：正文第3–9、11–12页；第8页重复上传只计一次；缺第10页。原图右上角小预览不计独立页面。学习日期未提供，网页默认生成日前一天并允许修改。"
     },
     {
@@ -35,22 +119,118 @@
       "number": 2,
       "title": "Animal Tongues",
       "learningTargets": [
-        {"id":"anteater","title":"anteater：食蚁兽","evidence":"第4页文字与照片。","questionIds":["at-animals-q01","at-listen-q01"]},
-        {"id":"lizard","title":"lizard：蜥蜴","evidence":"第5页文字与照片。","questionIds":["at-animals-q02"]},
-        {"id":"giraffe","title":"giraffe：长颈鹿","evidence":"第6页文字与照片。","questionIds":["at-animals-q03"]},
-        {"id":"turtle","title":"turtle：龟","evidence":"第7页文字与照片。","questionIds":["at-animals-q04"]},
-        {"id":"frog","title":"frog：青蛙","evidence":"第8页文字与照片。","questionIds":["at-animals-q05"]},
-        {"id":"long-thin","title":"理解 long, thin 并对应食蚁兽的舌头","evidence":"第4页；当前题目合并考查这一描述，未分别证明两个形容词的掌握。","questionIds":["at-features-q01"]},
-        {"id":"dark-strong","title":"理解 dark, strong 并对应长颈鹿的舌头","evidence":"第6页；词义与阅读匹配同属一个描述目标。","questionIds":["at-features-q02","at-read-q02"]},
-        {"id":"sticky","title":"理解 sticky 并对应青蛙的舌头","evidence":"第8页 long, sticky；包含词义、阅读匹配与听辨。","questionIds":["at-features-q03","at-read-q03","at-listen-q02"]},
-        {"id":"like-similarity","title":"理解 like 表示相似：像刷子／像虫","evidence":"第7、9页；两种比喻、语法选择及听辨围绕同一相似表达，不另算成四个目标。","questionIds":["at-features-q04","at-features-q05","at-has-q03","at-listen-q03"]},
-        {"id":"has-have","title":"根据主语单复数选择 has / have","evidence":"第3页 Animals have 与第4–9页 This…has 的对比。","questionIds":["at-has-q01","at-has-q02"]},
-        {"id":"tongue-purpose","title":"读懂舌头用于获取和吃食物","evidence":"第3页 use their tongues to get and eat food；不补充文外生物学推断。","questionIds":["at-read-q01"]},
-        {"id":"two-parts","title":"读懂 with two parts：一条舌头有两个部分","evidence":"第5页；区分两个分叉部分与两条舌头。","questionIds":["at-read-q04"]}
+        {
+          "id": "anteater",
+          "title": "anteater：食蚁兽",
+          "evidence": "第4页文字与照片。",
+          "questionIds": [
+            "at-animals-q01",
+            "at-listen-q01"
+          ]
+        },
+        {
+          "id": "lizard",
+          "title": "lizard：蜥蜴",
+          "evidence": "第5页文字与照片。",
+          "questionIds": [
+            "at-animals-q02"
+          ]
+        },
+        {
+          "id": "giraffe",
+          "title": "giraffe：长颈鹿",
+          "evidence": "第6页文字与照片。",
+          "questionIds": [
+            "at-animals-q03"
+          ]
+        },
+        {
+          "id": "turtle",
+          "title": "turtle：龟",
+          "evidence": "第7页文字与照片。",
+          "questionIds": [
+            "at-animals-q04"
+          ]
+        },
+        {
+          "id": "frog",
+          "title": "frog：青蛙",
+          "evidence": "第8页文字与照片。",
+          "questionIds": [
+            "at-animals-q05"
+          ]
+        },
+        {
+          "id": "long-thin",
+          "title": "理解 long, thin 并对应食蚁兽的舌头",
+          "evidence": "第4页；当前题目合并考查这一描述，未分别证明两个形容词的掌握。",
+          "questionIds": [
+            "at-features-q01"
+          ]
+        },
+        {
+          "id": "dark-strong",
+          "title": "理解 dark, strong 并对应长颈鹿的舌头",
+          "evidence": "第6页；词义与阅读匹配同属一个描述目标。",
+          "questionIds": [
+            "at-features-q02",
+            "at-read-q02"
+          ]
+        },
+        {
+          "id": "sticky",
+          "title": "理解 sticky 并对应青蛙的舌头",
+          "evidence": "第8页 long, sticky；包含词义、阅读匹配与听辨。",
+          "questionIds": [
+            "at-features-q03",
+            "at-read-q03",
+            "at-listen-q02"
+          ]
+        },
+        {
+          "id": "like-similarity",
+          "title": "理解 like 表示相似：像刷子／像虫",
+          "evidence": "第7、9页；两种比喻、语法选择及听辨围绕同一相似表达，不另算成四个目标。",
+          "questionIds": [
+            "at-features-q04",
+            "at-features-q05",
+            "at-has-q03",
+            "at-listen-q03"
+          ]
+        },
+        {
+          "id": "has-have",
+          "title": "根据主语单复数选择 has / have",
+          "evidence": "第3页 Animals have 与第4–9页 This…has 的对比。",
+          "questionIds": [
+            "at-has-q01",
+            "at-has-q02"
+          ]
+        },
+        {
+          "id": "tongue-purpose",
+          "title": "读懂舌头用于获取和吃食物",
+          "evidence": "第3页 use their tongues to get and eat food；不补充文外生物学推断。",
+          "questionIds": [
+            "at-read-q01"
+          ]
+        },
+        {
+          "id": "two-parts",
+          "title": "读懂 with two parts：一条舌头有两个部分",
+          "evidence": "第5页；区分两个分叉部分与两条舌头。",
+          "questionIds": [
+            "at-read-q04"
+          ]
+        }
       ],
       "subtitle": "动物舌头的特征与用途",
       "status": "ready",
-      "moduleGeneratedOn": {"lv":"2026-11-18","rg":"2026-11-18","skills":"2026-11-18"},
+      "moduleGeneratedOn": {
+        "lv": "2026-11-18",
+        "rg": "2026-11-18",
+        "skills": "2026-11-18"
+      },
       "source": "本轮用户上传 Reading A-Z《Animal Tongues》Level D 封面及正文第3–10页，作者 Terri Patterson。学习日期未提供，网页默认生成日前一天并允许修改。"
     },
     {
@@ -65,28 +245,177 @@
     },
     {
       "id": "l2-01",
-      "moduleGeneratedOn": {"lv":"2026-11-16","rg":"2026-11-16","skills":"2026-11-16"},
+      "moduleGeneratedOn": {
+        "lv": "2026-11-16",
+        "rg": "2026-11-16",
+        "skills": "2026-11-16"
+      },
       "level": 2,
       "number": 1,
       "title": "My week",
       "learningTargets": [
-        {"id":"monday","title":"Monday：星期一","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q01"]},
-        {"id":"tuesday","title":"Tuesday：星期二","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q02"]},
-        {"id":"wednesday","title":"Wednesday：星期三","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q03"]},
-        {"id":"thursday","title":"Thursday：星期四","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q04"]},
-        {"id":"friday","title":"Friday：星期五","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q05"]},
-        {"id":"saturday","title":"Saturday：星期六","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q06"]},
-        {"id":"sunday","title":"Sunday：星期日","evidence":"已核对的 My week 星期词素材；当前独立词义题。","questionIds":["l2-01-days-q07"]},
-        {"id":"weekday-order","title":"根据前后关系排列星期词","evidence":"已核对的 My week 星期顺序练习；主要目标为顺序，不能仅算词义题。","questionIds":["l2-01-days-q08","l2-01-days-q09","l2-01-days-q10","l2-01-days-q11","l2-01-days-q12"]},
-        {"id":"swimming","title":"go swimming：去游泳","evidence":"已核对的 My week 活动表达素材。","questionIds":["l2-01-activities-q01","l2-01-activities-q02"]},
-        {"id":"piano","title":"play the piano：弹钢琴","evidence":"已核对的 My week 活动表达素材。","questionIds":["l2-01-activities-q03","l2-01-activities-q04"]},
-        {"id":"books","title":"read books：读书","evidence":"已核对的 My week 活动表达素材。","questionIds":["l2-01-activities-q05","l2-01-activities-q06"]},
-        {"id":"always","title":"always：总是／每次如此","evidence":"已核对的 My week 频率句及动物清洁描述；当前题考查意义与语境选择。","questionIds":["l2-01-frequency-q01","l2-01-frequency-q03","l2-01-frequency-q05","l2-01-frequency-q07"]},
-        {"id":"never","title":"never：从不","evidence":"已核对的 My week 频率句及动物清洁描述。","questionIds":["l2-01-frequency-q02","l2-01-frequency-q04","l2-01-frequency-q06","l2-01-frequency-q08"]},
-        {"id":"find-day","title":"从活动安排中提取星期信息","evidence":"基于已核对星期和活动表达编写的听力、阅读短文；听读分别记录表现，不重复统计内容目标。","questionIds":["l2-01-listen-q01","l2-01-listen-q02","l2-01-listen-q03","l2-01-listen-q04","l2-01-listen-q05","l2-01-listen-q06","l2-01-read-q01","l2-01-read-q04","l2-01-read-q07"]},
-        {"id":"find-activity","title":"根据给定星期找到相应活动","evidence":"当前原创听读任务；与询问哪一天的提取方向不同。","questionIds":["l2-01-listen-q07","l2-01-read-q02","l2-01-read-q05","l2-01-read-q08"]},
-        {"id":"negative-activity","title":"听懂 never 句中没有进行的活动","evidence":"现有原创听力 I never go swimming on Mondays；需要同时理解否定频率和活动。","questionIds":["l2-01-listen-q08"]},
-        {"id":"main-idea","title":"概括一周活动短文的主旨","evidence":"现有 My week 原创阅读短文，主旨与定位细节分开。","questionIds":["l2-01-read-q03","l2-01-read-q06","l2-01-read-q09"]}
+        {
+          "id": "monday",
+          "title": "Monday：星期一",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q01"
+          ]
+        },
+        {
+          "id": "tuesday",
+          "title": "Tuesday：星期二",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q02"
+          ]
+        },
+        {
+          "id": "wednesday",
+          "title": "Wednesday：星期三",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q03"
+          ]
+        },
+        {
+          "id": "thursday",
+          "title": "Thursday：星期四",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q04"
+          ]
+        },
+        {
+          "id": "friday",
+          "title": "Friday：星期五",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q05"
+          ]
+        },
+        {
+          "id": "saturday",
+          "title": "Saturday：星期六",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q06"
+          ]
+        },
+        {
+          "id": "sunday",
+          "title": "Sunday：星期日",
+          "evidence": "已核对的 My week 星期词素材；当前独立词义题。",
+          "questionIds": [
+            "l2-01-days-q07"
+          ]
+        },
+        {
+          "id": "weekday-order",
+          "title": "根据前后关系排列星期词",
+          "evidence": "已核对的 My week 星期顺序练习；主要目标为顺序，不能仅算词义题。",
+          "questionIds": [
+            "l2-01-days-q08",
+            "l2-01-days-q09",
+            "l2-01-days-q10",
+            "l2-01-days-q11",
+            "l2-01-days-q12"
+          ]
+        },
+        {
+          "id": "swimming",
+          "title": "go swimming：去游泳",
+          "evidence": "已核对的 My week 活动表达素材。",
+          "questionIds": [
+            "l2-01-activities-q01",
+            "l2-01-activities-q02"
+          ]
+        },
+        {
+          "id": "piano",
+          "title": "play the piano：弹钢琴",
+          "evidence": "已核对的 My week 活动表达素材。",
+          "questionIds": [
+            "l2-01-activities-q03",
+            "l2-01-activities-q04"
+          ]
+        },
+        {
+          "id": "books",
+          "title": "read books：读书",
+          "evidence": "已核对的 My week 活动表达素材。",
+          "questionIds": [
+            "l2-01-activities-q05",
+            "l2-01-activities-q06"
+          ]
+        },
+        {
+          "id": "always",
+          "title": "always：总是／每次如此",
+          "evidence": "已核对的 My week 频率句及动物清洁描述；当前题考查意义与语境选择。",
+          "questionIds": [
+            "l2-01-frequency-q01",
+            "l2-01-frequency-q03",
+            "l2-01-frequency-q05",
+            "l2-01-frequency-q07"
+          ]
+        },
+        {
+          "id": "never",
+          "title": "never：从不",
+          "evidence": "已核对的 My week 频率句及动物清洁描述。",
+          "questionIds": [
+            "l2-01-frequency-q02",
+            "l2-01-frequency-q04",
+            "l2-01-frequency-q06",
+            "l2-01-frequency-q08"
+          ]
+        },
+        {
+          "id": "find-day",
+          "title": "从活动安排中提取星期信息",
+          "evidence": "基于已核对星期和活动表达编写的听力、阅读短文；听读分别记录表现，不重复统计内容目标。",
+          "questionIds": [
+            "l2-01-listen-q01",
+            "l2-01-listen-q02",
+            "l2-01-listen-q03",
+            "l2-01-listen-q04",
+            "l2-01-listen-q05",
+            "l2-01-listen-q06",
+            "l2-01-read-q01",
+            "l2-01-read-q04",
+            "l2-01-read-q07"
+          ]
+        },
+        {
+          "id": "find-activity",
+          "title": "根据给定星期找到相应活动",
+          "evidence": "当前原创听读任务；与询问哪一天的提取方向不同。",
+          "questionIds": [
+            "l2-01-listen-q07",
+            "l2-01-read-q02",
+            "l2-01-read-q05",
+            "l2-01-read-q08"
+          ]
+        },
+        {
+          "id": "negative-activity",
+          "title": "听懂 never 句中没有进行的活动",
+          "evidence": "现有原创听力 I never go swimming on Mondays；需要同时理解否定频率和活动。",
+          "questionIds": [
+            "l2-01-listen-q08"
+          ]
+        },
+        {
+          "id": "main-idea",
+          "title": "概括一周活动短文的主旨",
+          "evidence": "现有 My week 原创阅读短文，主旨与定位细节分开。",
+          "questionIds": [
+            "l2-01-read-q03",
+            "l2-01-read-q06",
+            "l2-01-read-q09"
+          ]
+        }
       ],
       "subtitle": "我的一周",
       "status": "ready",
@@ -94,12 +423,157 @@
     },
     {
       "id": "l2-02",
+      "system": "cambridge",
       "level": 2,
       "number": 2,
       "title": "Rules",
-      "subtitle": "规则",
-      "status": "pending",
-      "source": "IMG_5130；目前仅确认目录，未建立考点"
+      "subtitle": "规则、活动短语与 must / mustn't",
+      "status": "ready",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-20",
+        "rg": "2026-11-20",
+        "skills": "2026-11-20"
+      },
+      "learningTargets": [
+        {
+          "id": "music",
+          "title": "listen to music：听音乐",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q01",
+            "l2-02-q12"
+          ]
+        },
+        {
+          "id": "cd",
+          "title": "listen to a CD：听CD",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q02"
+          ]
+        },
+        {
+          "id": "dvd",
+          "title": "watch a DVD：看DVD",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q03"
+          ]
+        },
+        {
+          "id": "comic",
+          "title": "read a comic：读漫画",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q04",
+            "l2-02-q29"
+          ]
+        },
+        {
+          "id": "film",
+          "title": "watch a film：看电影",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q05"
+          ]
+        },
+        {
+          "id": "email",
+          "title": "write an email：写邮件",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q06",
+            "l2-02-q13",
+            "l2-02-q30"
+          ]
+        },
+        {
+          "id": "skating",
+          "title": "go skating：去滑冰",
+          "evidence": "图9八个活动短语。 图10 skate 可作动词“滑冰”及名词“滑冰鞋”；不将词形变式重复计数。",
+          "questionIds": [
+            "l2-02-q07"
+          ]
+        },
+        {
+          "id": "shopping",
+          "title": "go shopping：去购物",
+          "evidence": "图9八个活动短语。",
+          "questionIds": [
+            "l2-02-q08",
+            "l2-02-q27"
+          ]
+        },
+        {
+          "id": "skateboarding",
+          "title": "go skateboarding：去玩滑板",
+          "evidence": "图10词义与go…ing表达。 同时出现 skateboard：滑板。",
+          "questionIds": [
+            "l2-02-q09",
+            "l2-02-q11",
+            "l2-02-q28"
+          ]
+        },
+        {
+          "id": "skiing",
+          "title": "go skiing：去滑雪",
+          "evidence": "图10词义与go…ing表达。",
+          "questionIds": [
+            "l2-02-q10",
+            "l2-02-q31"
+          ]
+        },
+        {
+          "id": "must-meaning",
+          "title": "must / mustn't：必须与禁止",
+          "evidence": "图7可见must/mustn't语义；原创规则场景进行迁移，不把禁止解释为“不必”。",
+          "questionIds": [
+            "l2-02-q14",
+            "l2-02-q15",
+            "l2-02-q25",
+            "l2-02-q26",
+            "l2-02-q32"
+          ]
+        },
+        {
+          "id": "must-base",
+          "title": "must / mustn't 后用动词原形",
+          "evidence": "图7可见句式；肯定与否定变式同属一个目标。",
+          "questionIds": [
+            "l2-02-q16",
+            "l2-02-q17",
+            "l2-02-q18"
+          ]
+        },
+        {
+          "id": "must-person",
+          "title": "must 不随主语人称变化",
+          "evidence": "图7可见must无人称变化；不补抄老师遮挡的后半行。",
+          "questionIds": [
+            "l2-02-q19",
+            "l2-02-q20"
+          ]
+        },
+        {
+          "id": "must-question",
+          "title": "What must + 主语 + do? 的问答",
+          "evidence": "图7可见What must…do结构；问句排序与回答同属这一目标。",
+          "questionIds": [
+            "l2-02-q21",
+            "l2-02-q22"
+          ]
+        },
+        {
+          "id": "go-ing",
+          "title": "go + 动词-ing：活动表达",
+          "evidence": "图9 go skating/go shopping；图10 go skateboarding/go skiing；考查句型，区别于活动词义。",
+          "questionIds": [
+            "l2-02-q23",
+            "l2-02-q24"
+          ]
+        }
+      ],
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订45，2026-11-20归档。素材图8确认 Lesson 2 Rules；图9八个活动短语、图10滑冰／滑板／滑雪，图7 must 语法。老师遮挡部分不补抄。 实际学习日期未单独确认；沿用可修改的默认首次学习日期。"
     },
     {
       "id": "l2-03",
@@ -163,19 +637,197 @@
       "subtitle": "帮助我们的人",
       "status": "pending",
       "source": "IMG_5130；目前仅确认目录，未建立考点"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms",
+      "system": "raz",
+      "level": "D",
+      "number": 3,
+      "title": "Why Does an Octopus Need Eight Arms?",
+      "subtitle": "章鱼的八条手臂；已核对第3–7页",
+      "status": "ready",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-20",
+        "rg": "2026-11-20",
+        "skills": "2026-11-20"
+      },
+      "learningTargets": [
+        {
+          "id": "octopus",
+          "title": "octopus：章鱼",
+          "evidence": "图1封面及图2／第3页。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q01",
+            "raz-d-octopus-eight-arms-q18"
+          ]
+        },
+        {
+          "id": "arm",
+          "title": "arm / arms：手臂",
+          "evidence": "图2／第3页 eight arms 与图3／第4页 The first arm。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q02"
+          ]
+        },
+        {
+          "id": "eight",
+          "title": "eight：八",
+          "evidence": "图2／第3页 eight arms；词义与听读同属一个数量目标。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q03"
+          ]
+        },
+        {
+          "id": "ordinals",
+          "title": "first / second / third / fourth：第一至第四的顺序",
+          "evidence": "图3–6／第4–7页；作为同一组顺序对比，不重复计成四个目标。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q04",
+            "raz-d-octopus-eight-arms-q05",
+            "raz-d-octopus-eight-arms-q06",
+            "raz-d-octopus-eight-arms-q07"
+          ]
+        },
+        {
+          "id": "brush-teeth",
+          "title": "brush her teeth：刷牙",
+          "evidence": "图3／第4页 brushing her teeth。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q08",
+            "raz-d-octopus-eight-arms-q19"
+          ]
+        },
+        {
+          "id": "comb-hair",
+          "title": "comb her hair：梳头",
+          "evidence": "图4／第5页 combing her hair。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q09"
+          ]
+        },
+        {
+          "id": "play-catch",
+          "title": "play catch：玩抛接球游戏",
+          "evidence": "图5／第6页 playing catch。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q10"
+          ]
+        },
+        {
+          "id": "high-fives",
+          "title": "give high fives：击掌",
+          "evidence": "图6／第7页 giving high fives。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q11"
+          ]
+        },
+        {
+          "id": "for-ing",
+          "title": "is for + 动词-ing：表达用途",
+          "evidence": "图3–6／第4–7页相同句型；不同动词变式不新增目标。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q12",
+            "raz-d-octopus-eight-arms-q13"
+          ]
+        },
+        {
+          "id": "arm-purpose",
+          "title": "根据故事找到每条手臂对应的用途",
+          "evidence": "图3–6／第4–7页；阅读与听力分别练习，同一信息匹配目标只计一次。",
+          "questionIds": [
+            "raz-d-octopus-eight-arms-q14",
+            "raz-d-octopus-eight-arms-q15",
+            "raz-d-octopus-eight-arms-q16",
+            "raz-d-octopus-eight-arms-q17",
+            "raz-d-octopus-eight-arms-q20",
+            "raz-d-octopus-eight-arms-q21"
+          ]
+        }
+      ],
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订45，2026-11-20归档。素材图1封面、图2–6正文第3–7页；拟人故事。后3屏及第五至第八条手臂用途待补。 实际学习日期未单独确认；沿用可修改的默认首次学习日期。"
     }
   ],
   "points": [
-    {"id":"raz-d-greater-than-vegetables","lessonId":"raz-d-greater-than","module":"lv","title":"蔬菜名称","description":"辨认 carrots、beets、yams、onions、pepper；同一单词的变式共用复习单项。","evidence":"Greater Than 第4页 two beets、第5页 five carrots、第7页 three yams、第8页 four onions、第11页 one pepper。"},
-    {"id":"raz-d-greater-than-compare","lessonId":"raz-d-greater-than","module":"lv","title":"数量比较与最大值","description":"理解 greater than、more 与 greatest，区分两数比较和多个数量中选最大值。","evidence":"Greater Than 第6页 5 > 2、第9页 4 > 3、第12页 6 > 1 及 which number is the greatest；不补写缺少的第10页。"},
-    {"id":"raz-d-greater-than-there","lessonId":"raz-d-greater-than","module":"rg","title":"There is / There are","description":"根据 one 和复数数量选择 is / are，并注意名词单复数。","evidence":"Greater Than 第4–5、7–8页 There are…；第11页 There is one pepper。"},
-    {"id":"raz-d-greater-than-read","lessonId":"raz-d-greater-than","module":"skills","title":"阅读数量与比较","description":"从原创短文提取明确数量信息，比较两组及选择最多的一组。","evidence":"Greater Than 第5–6、8–9、11–12页的数量和比较表达；短文明确标注原创，非缺页原文。"},
-    {"id":"raz-d-greater-than-listen","lessonId":"raz-d-greater-than","module":"skills","title":"听懂数量与比较","description":"听出蔬菜名称、数量和 greater than；同一听力目标的变式共用单项。","evidence":"Greater Than 第5、8、11页数量句和第6、9页比较句；朗读稿为原创练习。"},
-    {"id":"raz-d-animal-tongues-animals","lessonId":"raz-d-animal-tongues","module":"lv","title":"动物名称","description":"辨认 anteater、lizard、giraffe、turtle、frog、cat。","evidence":"Animal Tongues 第4–9页的文字与动物照片。"},
-    {"id":"raz-d-animal-tongues-features","lessonId":"raz-d-animal-tongues","module":"lv","title":"舌头特征与比喻","description":"理解 long、thin、dark、strong、sticky，以及 like a brush / worm；特征只对应文中指定动物。","evidence":"Animal Tongues 第4页 long, thin；第5页 two parts；第6页 dark, strong；第7页 like a worm；第8页 long, sticky；第9页 like a brush。"},
-    {"id":"raz-d-animal-tongues-has","lessonId":"raz-d-animal-tongues","module":"rg","title":"has / have 与 like","description":"区分单数动物 has 和复数 animals have；理解描述相似特征的 like，不混同动词“喜欢”。","evidence":"Animal Tongues 第3页 Animals have…；第4–9页 This…has…；第7、9页 like a worm / brush。"},
-    {"id":"raz-d-animal-tongues-read","lessonId":"raz-d-animal-tongues","module":"skills","title":"阅读特征与用途","description":"提取动物与舌头特征的对应关系，理解文中共同用途；不将特定动物的特征推广到全部同类。","evidence":"Animal Tongues 第3页 They use their tongues to get and eat food；第4–9页描述；题内短文为基于可见文字的原创改写。"},
-    {"id":"raz-d-animal-tongues-listen","lessonId":"raz-d-animal-tongues","module":"skills","title":"听懂动物与特征","description":"从简短朗读稿辨认动物、特征及比喻。","evidence":"Animal Tongues 第4、6、8–9页已核对描述；听力为原创练习。"},
+    {
+      "id": "raz-d-greater-than-vegetables",
+      "lessonId": "raz-d-greater-than",
+      "module": "lv",
+      "title": "蔬菜名称",
+      "description": "辨认 carrots、beets、yams、onions、pepper；同一单词的变式共用复习单项。",
+      "evidence": "Greater Than 第4页 two beets、第5页 five carrots、第7页 three yams、第8页 four onions、第11页 one pepper。"
+    },
+    {
+      "id": "raz-d-greater-than-compare",
+      "lessonId": "raz-d-greater-than",
+      "module": "lv",
+      "title": "数量比较与最大值",
+      "description": "理解 greater than、more 与 greatest，区分两数比较和多个数量中选最大值。",
+      "evidence": "Greater Than 第6页 5 > 2、第9页 4 > 3、第12页 6 > 1 及 which number is the greatest；不补写缺少的第10页。"
+    },
+    {
+      "id": "raz-d-greater-than-there",
+      "lessonId": "raz-d-greater-than",
+      "module": "rg",
+      "title": "There is / There are",
+      "description": "根据 one 和复数数量选择 is / are，并注意名词单复数。",
+      "evidence": "Greater Than 第4–5、7–8页 There are…；第11页 There is one pepper。"
+    },
+    {
+      "id": "raz-d-greater-than-read",
+      "lessonId": "raz-d-greater-than",
+      "module": "skills",
+      "title": "阅读数量与比较",
+      "description": "从原创短文提取明确数量信息，比较两组及选择最多的一组。",
+      "evidence": "Greater Than 第5–6、8–9、11–12页的数量和比较表达；短文明确标注原创，非缺页原文。"
+    },
+    {
+      "id": "raz-d-greater-than-listen",
+      "lessonId": "raz-d-greater-than",
+      "module": "skills",
+      "title": "听懂数量与比较",
+      "description": "听出蔬菜名称、数量和 greater than；同一听力目标的变式共用单项。",
+      "evidence": "Greater Than 第5、8、11页数量句和第6、9页比较句；朗读稿为原创练习。"
+    },
+    {
+      "id": "raz-d-animal-tongues-animals",
+      "lessonId": "raz-d-animal-tongues",
+      "module": "lv",
+      "title": "动物名称",
+      "description": "辨认 anteater、lizard、giraffe、turtle、frog、cat。",
+      "evidence": "Animal Tongues 第4–9页的文字与动物照片。"
+    },
+    {
+      "id": "raz-d-animal-tongues-features",
+      "lessonId": "raz-d-animal-tongues",
+      "module": "lv",
+      "title": "舌头特征与比喻",
+      "description": "理解 long、thin、dark、strong、sticky，以及 like a brush / worm；特征只对应文中指定动物。",
+      "evidence": "Animal Tongues 第4页 long, thin；第5页 two parts；第6页 dark, strong；第7页 like a worm；第8页 long, sticky；第9页 like a brush。"
+    },
+    {
+      "id": "raz-d-animal-tongues-has",
+      "lessonId": "raz-d-animal-tongues",
+      "module": "rg",
+      "title": "has / have 与 like",
+      "description": "区分单数动物 has 和复数 animals have；理解描述相似特征的 like，不混同动词“喜欢”。",
+      "evidence": "Animal Tongues 第3页 Animals have…；第4–9页 This…has…；第7、9页 like a worm / brush。"
+    },
+    {
+      "id": "raz-d-animal-tongues-read",
+      "lessonId": "raz-d-animal-tongues",
+      "module": "skills",
+      "title": "阅读特征与用途",
+      "description": "提取动物与舌头特征的对应关系，理解文中共同用途；不将特定动物的特征推广到全部同类。",
+      "evidence": "Animal Tongues 第3页 They use their tongues to get and eat food；第4–9页描述；题内短文为基于可见文字的原创改写。"
+    },
+    {
+      "id": "raz-d-animal-tongues-listen",
+      "lessonId": "raz-d-animal-tongues",
+      "module": "skills",
+      "title": "听懂动物与特征",
+      "description": "从简短朗读稿辨认动物、特征及比喻。",
+      "evidence": "Animal Tongues 第4、6、8–9页已核对描述；听力为原创练习。"
+    },
     {
       "id": "l2-01-days",
       "lessonId": "l2-01",
@@ -215,49 +867,712 @@
       "title": "读懂一周安排",
       "description": "读短文或周计划，寻找明确信息并概括主要内容。",
       "evidence": "IMG_5137 周历与 Let’s read；短文为原创变式，不是课程原文。"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-words",
+      "lessonId": "raz-d-octopus-eight-arms",
+      "module": "lv",
+      "title": "章鱼、数量与顺序",
+      "description": "辨认 octopus、arm、eight 和第一至第四的顺序。",
+      "evidence": "图1–6，已核对正文第3–7页。"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-actions",
+      "lessonId": "raz-d-octopus-eight-arms",
+      "module": "lv",
+      "title": "故事中的活动",
+      "description": "理解刷牙、梳头、抛接球、击掌；均为拟人故事中的用途。",
+      "evidence": "图3–6／正文第4–7页。"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-for-ing",
+      "lessonId": "raz-d-octopus-eight-arms",
+      "module": "rg",
+      "title": "is for + 动词-ing",
+      "description": "根据句型选择 brushing、combing 等-ing形式。",
+      "evidence": "图3–6／正文第4–7页。"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-read",
+      "lessonId": "raz-d-octopus-eight-arms",
+      "module": "skills",
+      "title": "阅读手臂的用途",
+      "description": "从已收到的四句正文提取明确用途；不推断缺页。",
+      "evidence": "图3–6／正文第4–7页。"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-listen",
+      "lessonId": "raz-d-octopus-eight-arms",
+      "module": "skills",
+      "title": "听懂故事中的词与用途",
+      "description": "根据已收到正文编写听辨稿，听读与词义分项练习。",
+      "evidence": "图2–6／正文第3–7页；朗读稿为原创听辨。"
+    },
+    {
+      "id": "l2-02-activities",
+      "lessonId": "l2-02",
+      "module": "lv",
+      "title": "常见活动短语",
+      "description": "听音乐和CD、看DVD和电影、读漫画、写邮件、购物及三类运动。",
+      "evidence": "图9八个短语及图10滑冰、滑板、滑雪词义。"
+    },
+    {
+      "id": "l2-02-must-meaning",
+      "lessonId": "l2-02",
+      "module": "rg",
+      "title": "必须与禁止",
+      "description": "用 must / mustn't 表达有明确要求的规则。",
+      "evidence": "图7可见must/mustn't语义。"
+    },
+    {
+      "id": "l2-02-must-form",
+      "lessonId": "l2-02",
+      "module": "rg",
+      "title": "must 的句式",
+      "description": "动词原形、无人称变化以及What must…do问答。",
+      "evidence": "图7可见语法结构；不抄被遮挡内容。"
+    },
+    {
+      "id": "l2-02-go-ing",
+      "lessonId": "l2-02",
+      "module": "rg",
+      "title": "go + 动词-ing",
+      "description": "根据活动表达选择-ing形式。",
+      "evidence": "图9–10。"
+    },
+    {
+      "id": "l2-02-read",
+      "lessonId": "l2-02",
+      "module": "skills",
+      "title": "阅读活动与规则",
+      "description": "根据明确标注的原创短文提取活动、必须与禁止的信息。",
+      "evidence": "用图7、图9–10内容编写原创迁移短文，非课件Skills原文。"
+    },
+    {
+      "id": "l2-02-listen",
+      "lessonId": "l2-02",
+      "module": "skills",
+      "title": "听懂活动与规则",
+      "description": "用原创英式朗读辨认活动，并听懂mustn't。",
+      "evidence": "用图7、图9–10内容编写原创听辨稿，非课件听力。"
     }
   ],
   "questions": [
-    {"id":"gt-veg-q01","reviewUnit":"carrot","pointId":"raz-d-greater-than-vegetables","type":"choice","prompt":"carrots 是哪一种蔬菜？","options":["胡萝卜","洋葱","甜菜"],"answer":0,"explanation":"carrot 是胡萝卜，carrots 是复数。","source":"Greater Than 第5页；原创词义题。"},
-    {"id":"gt-veg-q02","reviewUnit":"beet","pointId":"raz-d-greater-than-vegetables","type":"choice","prompt":"beets 对应什么？","options":["胡萝卜","甜菜","洋葱"],"answer":1,"explanation":"beets 是甜菜，书中第4页写有 two beets。","source":"Greater Than 第4页；原创词义题。"},
-    {"id":"gt-veg-q03","reviewUnit":"onion","pointId":"raz-d-greater-than-vegetables","type":"choice","prompt":"“洋葱”的英文单词是哪个？","options":["pepper","carrot","onion"],"answer":2,"explanation":"onion 表示洋葱，onions 是复数。","source":"Greater Than 第8页；原创词义题。"},
-    {"id":"gt-veg-q04","reviewUnit":"pepper","pointId":"raz-d-greater-than-vegetables","type":"choice","prompt":"书中 one pepper 的 pepper 指什么？","options":["一个甜椒","一粒黑胡椒","一根胡萝卜"],"answer":0,"explanation":"第11页图片是红色甜椒；这里 pepper 指甜椒，而非黑胡椒粒。","source":"Greater Than 第11页文字及红甜椒图；原创词义题。"},
-    {"id":"gt-veg-q05","reviewUnit":"yam","pointId":"raz-d-greater-than-vegetables","type":"choice","prompt":"Which word completes the phrase? three ___（三个薯类块茎）","options":["onions","yams","peppers"],"answer":1,"explanation":"书中第7页使用 three yams。yam 常译薯蓣或山药类块茎；本题保留原文名称，不据插图断定植物品种。","source":"Greater Than 第7页；原创词汇题。"},
-    {"id":"gt-compare-q01","reviewUnit":"greater-than","pointId":"raz-d-greater-than-compare","type":"choice","prompt":"Which sentence is true?","options":["Two is greater than five.","Five is greater than two.","Five is the same as two."],"answer":1,"explanation":"5 > 2，所以 Five is greater than two. 正确。","source":"Greater Than 第6页；原创比较题。"},
-    {"id":"gt-compare-q02","reviewUnit":"greater-than","pointId":"raz-d-greater-than-compare","type":"cloze","prompt":"Four is ___ than three.","options":["less","the same","greater"],"answer":2,"explanation":"4 > 3，应填 greater；greater than 表示大于。","source":"Greater Than 第9页；原创比较变式，与 gt-compare-q01 共用复习单项。"},
-    {"id":"gt-compare-q03","reviewUnit":"greatest","pointId":"raz-d-greater-than-compare","type":"choice","prompt":"The numbers are two, four and six. Which is the greatest?","options":["six","two","four"],"answer":0,"explanation":"greatest 表示最大；2、4、6 中最大的是 6。","source":"Greater Than 第12页 greatest 问句；数值组合为原创迁移练习。"},
-    {"id":"gt-there-q01","reviewUnit":"there-is","pointId":"raz-d-greater-than-there","type":"cloze","prompt":"There ___ one pepper.","options":["are","is","am"],"answer":1,"explanation":"one pepper 是单数，使用 There is。","source":"Greater Than 第11页；原创句型题。"},
-    {"id":"gt-there-q02","reviewUnit":"there-are","pointId":"raz-d-greater-than-there","type":"cloze","prompt":"There ___ five carrots.","options":["is","am","are"],"answer":2,"explanation":"five carrots 是复数，使用 There are。","source":"Greater Than 第5页；原创句型题。"},
-    {"id":"gt-there-q03","reviewUnit":"plural-noun","pointId":"raz-d-greater-than-there","type":"cloze","prompt":"There are four ___.","options":["onions","onion","an onion"],"answer":0,"explanation":"four 后使用复数名词 onions；an onion 表示一个洋葱。","source":"Greater Than 第8页；原创名词复数题。"},
-    {"id":"gt-there-q04","reviewUnit":"there-are","pointId":"raz-d-greater-than-there","type":"cloze","prompt":"There ___ two beets.","options":["is","are","am"],"answer":1,"explanation":"two beets 是复数，所以用 are。","source":"Greater Than 第4页；原创句型变式，与 gt-there-q02 共用复习单项。"},
-    {"id":"gt-read-q01","reviewUnit":"find-quantity","pointId":"raz-d-greater-than-read","type":"reading","passage":"In our garden, there are five carrots, four onions and one pepper.","prompt":"How many onions are there?","options":["five","one","four"],"answer":2,"explanation":"短文明确写 four onions，所以有四个洋葱。","source":"Greater Than 第5、8、11页数量；原创短文，非绘本原文。"},
-    {"id":"gt-read-q02","reviewUnit":"compare-groups","pointId":"raz-d-greater-than-read","type":"reading","passage":"In our garden, there are five carrots, four onions and one pepper.","prompt":"Which group has more: carrots or onions?","options":["carrots","onions","They have the same number."],"answer":0,"explanation":"胡萝卜有5根、洋葱有4个，5 > 4，所以 carrots 更多。","source":"Greater Than 第5、8页数量及第6、9页比较句型；原创短文与迁移题。"},
-    {"id":"gt-read-q03","reviewUnit":"greatest-group","pointId":"raz-d-greater-than-read","type":"reading","passage":"In our garden, there are five carrots, four onions and one pepper.","prompt":"Which group has the greatest number?","options":["peppers","carrots","onions"],"answer":1,"explanation":"三组数量分别为5、4、1，最大是5，因此是胡萝卜。","source":"Greater Than 第5、8、11–12页；原创短文与迁移题，不依赖缺少的第10页。"},
-    {"id":"gt-read-q04","reviewUnit":"find-quantity","pointId":"raz-d-greater-than-read","type":"reading","passage":"There are three yams and two beets in a basket.","prompt":"How many yams are in the basket?","options":["two","five","three"],"answer":2,"explanation":"短文中的 three yams 明确说明数量是三。","source":"Greater Than 第4、7页词汇与数量；篮子情境为原创，与 gt-read-q01 共用定位数量单项。"},
-    {"id":"gt-listen-q01","reviewUnit":"hear-quantity","pointId":"raz-d-greater-than-listen","type":"listening","audioText":"There are four onions.","prompt":"听一听：有几个洋葱？","options":["四个","一个","五个"],"answer":0,"explanation":"four onions 表示四个洋葱。","source":"Greater Than 第8页；原创听力题。"},
-    {"id":"gt-listen-q02","reviewUnit":"hear-comparison","pointId":"raz-d-greater-than-listen","type":"listening","audioText":"Five is greater than two.","prompt":"听一听：哪两个数在比较？","options":["four and three","five and two","six and one"],"answer":1,"explanation":"朗读稿比较的是 five 和 two，并说明五大于二。","source":"Greater Than 第6页；原创听力题。"},
-    {"id":"gt-listen-q03","reviewUnit":"hear-vegetable","pointId":"raz-d-greater-than-listen","type":"listening","audioText":"There is one pepper.","prompt":"听一听：说到的是哪一种蔬菜？","options":["onion","carrot","pepper"],"answer":2,"explanation":"朗读稿中说的是 one pepper，一个甜椒。","source":"Greater Than 第11页；原创听力题。"},
-    {"id":"gt-listen-q04","reviewUnit":"hear-quantity","pointId":"raz-d-greater-than-listen","type":"listening","audioText":"There are five carrots.","prompt":"听一听：有几根胡萝卜？","options":["五根","四根","两根"],"answer":0,"explanation":"five carrots 表示五根胡萝卜。","source":"Greater Than 第5页；原创听力变式，与 gt-listen-q01 共用听数量单项。"},
-    {"id":"at-animals-q01","reviewUnit":"anteater","pointId":"raz-d-animal-tongues-animals","type":"choice","prompt":"anteater 是哪一种动物？","options":["长颈鹿","食蚁兽","青蛙"],"answer":1,"explanation":"anteater 表示食蚁兽。","source":"Animal Tongues 第4页；原创词义题。"},
-    {"id":"at-animals-q02","reviewUnit":"lizard","pointId":"raz-d-animal-tongues-animals","type":"choice","prompt":"“蜥蜴”的英文是哪个？","options":["frog","turtle","lizard"],"answer":2,"explanation":"lizard 表示蜥蜴；文中这只蜥蜴的舌头有两个分叉部分。","source":"Animal Tongues 第5页；原创词义题。"},
-    {"id":"at-animals-q03","reviewUnit":"giraffe","pointId":"raz-d-animal-tongues-animals","type":"choice","prompt":"giraffe 对应哪一种动物？","options":["长颈鹿","食蚁兽","猫"],"answer":0,"explanation":"giraffe 表示长颈鹿。","source":"Animal Tongues 第6页；原创词义题。"},
-    {"id":"at-animals-q04","reviewUnit":"turtle","pointId":"raz-d-animal-tongues-animals","type":"choice","prompt":"文中的 turtle 是哪一种动物？","options":["蜥蜴","龟","青蛙"],"answer":1,"explanation":"turtle 表示龟；此页描述的是图片中的这只龟，不代表所有龟的舌头都像虫。","source":"Animal Tongues 第7页；原创词义题。"},
-    {"id":"at-animals-q05","reviewUnit":"frog","pointId":"raz-d-animal-tongues-animals","type":"choice","prompt":"“青蛙”的英文单词是哪个？","options":["cat","giraffe","frog"],"answer":2,"explanation":"frog 表示青蛙。","source":"Animal Tongues 第8页；原创词义题。"},
-    {"id":"at-features-q01","reviewUnit":"long-thin","pointId":"raz-d-animal-tongues-features","type":"choice","prompt":"long, thin 描述怎样的舌头？","options":["长而细","深色而有力","像刷子"],"answer":0,"explanation":"long 表示长，thin 表示细；这是文中食蚁兽舌头的描述。","source":"Animal Tongues 第4页；原创特征词义题。"},
-    {"id":"at-features-q02","reviewUnit":"dark-strong","pointId":"raz-d-animal-tongues-features","type":"choice","prompt":"文中 dark, strong 的意思是什么？","options":["长而黏","颜色深而有力","像一条虫"],"answer":1,"explanation":"dark 指颜色深，strong 指有力；书中用它们描述这只长颈鹿的舌头。","source":"Animal Tongues 第6页；原创特征词义题。"},
-    {"id":"at-features-q03","reviewUnit":"sticky","pointId":"raz-d-animal-tongues-features","type":"choice","prompt":"sticky 的意思是什么？","options":["细的","深色的","黏的"],"answer":2,"explanation":"sticky 表示黏的；文中青蛙的舌头被描述为 long, sticky。","source":"Animal Tongues 第8页；原创词义题。"},
-    {"id":"at-features-q04","reviewUnit":"like-brush","pointId":"raz-d-animal-tongues-features","type":"choice","prompt":"a tongue like a brush 是什么意思？","options":["像刷子一样的舌头","一条喜欢刷子的舌头","像虫一样的舌头"],"answer":0,"explanation":"like 在这个短语里表示“像”，brush 表示刷子；文中用来形容猫的舌头。","source":"Animal Tongues 第9页；原创比喻理解题。"},
-    {"id":"at-features-q05","reviewUnit":"like-worm","pointId":"raz-d-animal-tongues-features","type":"choice","prompt":"文中这只龟的舌头像什么？","options":["a brush","a worm","a leaf"],"answer":1,"explanation":"第7页写 like a worm，意思是像一条虫；仅描述文中这只龟。","source":"Animal Tongues 第7页；原创特征理解题。"},
-    {"id":"at-has-q01","reviewUnit":"singular-has","pointId":"raz-d-animal-tongues-has","type":"cloze","prompt":"This frog ___ a long, sticky tongue.","options":["have","are","has"],"answer":2,"explanation":"This frog 是第三人称单数，表示“有”时使用 has。","source":"Animal Tongues 第8页；原创句型题。"},
-    {"id":"at-has-q02","reviewUnit":"plural-have","pointId":"raz-d-animal-tongues-has","type":"cloze","prompt":"Animals ___ many kinds of tongues.","options":["have","has","is"],"answer":0,"explanation":"Animals 是复数，使用 have。","source":"Animal Tongues 第3页；原创句型题。"},
-    {"id":"at-has-q03","reviewUnit":"like-similarity","pointId":"raz-d-animal-tongues-has","type":"cloze","prompt":"This cat has a tongue ___ a brush.","options":["likes","like","liking"],"answer":1,"explanation":"这里 like 作介词，表示“像”；likes 是动词“喜欢”的第三人称单数形式。","source":"Animal Tongues 第9页；原创句型题。"},
-    {"id":"at-read-q01","reviewUnit":"tongue-purpose","pointId":"raz-d-animal-tongues-read","type":"reading","passage":"Animals have different tongues. They use their tongues to get food and to eat it.","prompt":"According to the passage, what do animals use their tongues for?","options":["To count vegetables.","To read books.","To get and eat food."],"answer":2,"explanation":"短文明确说明舌头用于获取和吃食物；不额外推断其他用途。","source":"Animal Tongues 第3页；基于可见文字的原创改写，非官方原题。"},
-    {"id":"at-read-q02","reviewUnit":"match-features","pointId":"raz-d-animal-tongues-read","type":"reading","passage":"The anteater has a long, thin tongue. The giraffe has a dark, strong tongue. The frog has a long, sticky tongue.","prompt":"Which animal has a dark, strong tongue in this passage?","options":["The giraffe.","The frog.","The anteater."],"answer":0,"explanation":"第二句明确说 giraffe 的舌头 dark, strong。","source":"Animal Tongues 第4、6、8页；原创整合短文，特征仅对应文中动物。"},
-    {"id":"at-read-q03","reviewUnit":"match-features","pointId":"raz-d-animal-tongues-read","type":"reading","passage":"The anteater has a long, thin tongue. The giraffe has a dark, strong tongue. The frog has a long, sticky tongue.","prompt":"Which animal has a long, sticky tongue in this passage?","options":["The anteater.","The frog.","The giraffe."],"answer":1,"explanation":"第三句明确说 frog 的舌头 long, sticky。","source":"Animal Tongues 第4、6、8页；原创整合短文，与 at-read-q02 共用特征匹配单项。"},
-    {"id":"at-read-q04","reviewUnit":"two-parts","pointId":"raz-d-animal-tongues-read","type":"reading","passage":"This lizard has a tongue with two parts. This cat has a tongue like a brush.","prompt":"What does the passage say about this lizard's tongue?","options":["It is like a brush.","It is dark and strong.","It has two parts."],"answer":2,"explanation":"第一句明确说明这只蜥蜴的舌头有 two parts；不是说它有两条舌头。","source":"Animal Tongues 第5、9页；原创整合短文。"},
-    {"id":"at-listen-q01","reviewUnit":"hear-animal","pointId":"raz-d-animal-tongues-listen","type":"listening","audioText":"This anteater has a long, thin tongue.","prompt":"听一听：说到的是哪一种动物？","options":["anteater","frog","giraffe"],"answer":0,"explanation":"朗读稿开头说 This anteater，指食蚁兽。","source":"Animal Tongues 第4页；原创听力题。"},
-    {"id":"at-listen-q02","reviewUnit":"hear-feature","pointId":"raz-d-animal-tongues-listen","type":"listening","audioText":"This frog has a long, sticky tongue.","prompt":"听一听：舌头有哪些特征？","options":["dark and strong","long and sticky","long and thin"],"answer":1,"explanation":"朗读稿说 long, sticky，即长而黏。","source":"Animal Tongues 第8页；原创听力题。"},
-    {"id":"at-listen-q03","reviewUnit":"hear-similarity","pointId":"raz-d-animal-tongues-listen","type":"listening","audioText":"This cat has a tongue like a brush.","prompt":"听一听：猫的舌头像什么？","options":["a worm","a leaf","a brush"],"answer":2,"explanation":"朗读稿中 like a brush 表示像刷子。","source":"Animal Tongues 第9页；原创听力题。"},
+    {
+      "id": "gt-veg-q01",
+      "reviewUnit": "carrot",
+      "pointId": "raz-d-greater-than-vegetables",
+      "type": "choice",
+      "prompt": "carrots 是哪一种蔬菜？",
+      "options": [
+        "胡萝卜",
+        "洋葱",
+        "甜菜"
+      ],
+      "answer": 0,
+      "explanation": "carrot 是胡萝卜，carrots 是复数。",
+      "source": "Greater Than 第5页；原创词义题。"
+    },
+    {
+      "id": "gt-veg-q02",
+      "reviewUnit": "beet",
+      "pointId": "raz-d-greater-than-vegetables",
+      "type": "choice",
+      "prompt": "beets 对应什么？",
+      "options": [
+        "胡萝卜",
+        "甜菜",
+        "洋葱"
+      ],
+      "answer": 1,
+      "explanation": "beets 是甜菜，书中第4页写有 two beets。",
+      "source": "Greater Than 第4页；原创词义题。"
+    },
+    {
+      "id": "gt-veg-q03",
+      "reviewUnit": "onion",
+      "pointId": "raz-d-greater-than-vegetables",
+      "type": "choice",
+      "prompt": "“洋葱”的英文单词是哪个？",
+      "options": [
+        "pepper",
+        "carrot",
+        "onion"
+      ],
+      "answer": 2,
+      "explanation": "onion 表示洋葱，onions 是复数。",
+      "source": "Greater Than 第8页；原创词义题。"
+    },
+    {
+      "id": "gt-veg-q04",
+      "reviewUnit": "pepper",
+      "pointId": "raz-d-greater-than-vegetables",
+      "type": "choice",
+      "prompt": "书中 one pepper 的 pepper 指什么？",
+      "options": [
+        "一个甜椒",
+        "一粒黑胡椒",
+        "一根胡萝卜"
+      ],
+      "answer": 0,
+      "explanation": "第11页图片是红色甜椒；这里 pepper 指甜椒，而非黑胡椒粒。",
+      "source": "Greater Than 第11页文字及红甜椒图；原创词义题。"
+    },
+    {
+      "id": "gt-veg-q05",
+      "reviewUnit": "yam",
+      "pointId": "raz-d-greater-than-vegetables",
+      "type": "choice",
+      "prompt": "Which word completes the phrase? three ___（三个薯类块茎）",
+      "options": [
+        "onions",
+        "yams",
+        "peppers"
+      ],
+      "answer": 1,
+      "explanation": "书中第7页使用 three yams。yam 常译薯蓣或山药类块茎；本题保留原文名称，不据插图断定植物品种。",
+      "source": "Greater Than 第7页；原创词汇题。"
+    },
+    {
+      "id": "gt-compare-q01",
+      "reviewUnit": "greater-than",
+      "pointId": "raz-d-greater-than-compare",
+      "type": "choice",
+      "prompt": "Which sentence is true?",
+      "options": [
+        "Two is greater than five.",
+        "Five is greater than two.",
+        "Five is the same as two."
+      ],
+      "answer": 1,
+      "explanation": "5 > 2，所以 Five is greater than two. 正确。",
+      "source": "Greater Than 第6页；原创比较题。"
+    },
+    {
+      "id": "gt-compare-q02",
+      "reviewUnit": "greater-than",
+      "pointId": "raz-d-greater-than-compare",
+      "type": "cloze",
+      "prompt": "Four is ___ than three.",
+      "options": [
+        "less",
+        "the same",
+        "greater"
+      ],
+      "answer": 2,
+      "explanation": "4 > 3，应填 greater；greater than 表示大于。",
+      "source": "Greater Than 第9页；原创比较变式，与 gt-compare-q01 共用复习单项。"
+    },
+    {
+      "id": "gt-compare-q03",
+      "reviewUnit": "greatest",
+      "pointId": "raz-d-greater-than-compare",
+      "type": "choice",
+      "prompt": "The numbers are two, four and six. Which is the greatest?",
+      "options": [
+        "six",
+        "two",
+        "four"
+      ],
+      "answer": 0,
+      "explanation": "greatest 表示最大；2、4、6 中最大的是 6。",
+      "source": "Greater Than 第12页 greatest 问句；数值组合为原创迁移练习。"
+    },
+    {
+      "id": "gt-there-q01",
+      "reviewUnit": "there-is",
+      "pointId": "raz-d-greater-than-there",
+      "type": "cloze",
+      "prompt": "There ___ one pepper.",
+      "options": [
+        "are",
+        "is",
+        "am"
+      ],
+      "answer": 1,
+      "explanation": "one pepper 是单数，使用 There is。",
+      "source": "Greater Than 第11页；原创句型题。"
+    },
+    {
+      "id": "gt-there-q02",
+      "reviewUnit": "there-are",
+      "pointId": "raz-d-greater-than-there",
+      "type": "cloze",
+      "prompt": "There ___ five carrots.",
+      "options": [
+        "is",
+        "am",
+        "are"
+      ],
+      "answer": 2,
+      "explanation": "five carrots 是复数，使用 There are。",
+      "source": "Greater Than 第5页；原创句型题。"
+    },
+    {
+      "id": "gt-there-q03",
+      "reviewUnit": "plural-noun",
+      "pointId": "raz-d-greater-than-there",
+      "type": "cloze",
+      "prompt": "There are four ___.",
+      "options": [
+        "onions",
+        "onion",
+        "an onion"
+      ],
+      "answer": 0,
+      "explanation": "four 后使用复数名词 onions；an onion 表示一个洋葱。",
+      "source": "Greater Than 第8页；原创名词复数题。"
+    },
+    {
+      "id": "gt-there-q04",
+      "reviewUnit": "there-are",
+      "pointId": "raz-d-greater-than-there",
+      "type": "cloze",
+      "prompt": "There ___ two beets.",
+      "options": [
+        "is",
+        "are",
+        "am"
+      ],
+      "answer": 1,
+      "explanation": "two beets 是复数，所以用 are。",
+      "source": "Greater Than 第4页；原创句型变式，与 gt-there-q02 共用复习单项。"
+    },
+    {
+      "id": "gt-read-q01",
+      "reviewUnit": "find-quantity",
+      "pointId": "raz-d-greater-than-read",
+      "type": "reading",
+      "passage": "In our garden, there are five carrots, four onions and one pepper.",
+      "prompt": "How many onions are there?",
+      "options": [
+        "five",
+        "one",
+        "four"
+      ],
+      "answer": 2,
+      "explanation": "短文明确写 four onions，所以有四个洋葱。",
+      "source": "Greater Than 第5、8、11页数量；原创短文，非绘本原文。"
+    },
+    {
+      "id": "gt-read-q02",
+      "reviewUnit": "compare-groups",
+      "pointId": "raz-d-greater-than-read",
+      "type": "reading",
+      "passage": "In our garden, there are five carrots, four onions and one pepper.",
+      "prompt": "Which group has more: carrots or onions?",
+      "options": [
+        "carrots",
+        "onions",
+        "They have the same number."
+      ],
+      "answer": 0,
+      "explanation": "胡萝卜有5根、洋葱有4个，5 > 4，所以 carrots 更多。",
+      "source": "Greater Than 第5、8页数量及第6、9页比较句型；原创短文与迁移题。"
+    },
+    {
+      "id": "gt-read-q03",
+      "reviewUnit": "greatest-group",
+      "pointId": "raz-d-greater-than-read",
+      "type": "reading",
+      "passage": "In our garden, there are five carrots, four onions and one pepper.",
+      "prompt": "Which group has the greatest number?",
+      "options": [
+        "peppers",
+        "carrots",
+        "onions"
+      ],
+      "answer": 1,
+      "explanation": "三组数量分别为5、4、1，最大是5，因此是胡萝卜。",
+      "source": "Greater Than 第5、8、11–12页；原创短文与迁移题，不依赖缺少的第10页。"
+    },
+    {
+      "id": "gt-read-q04",
+      "reviewUnit": "find-quantity",
+      "pointId": "raz-d-greater-than-read",
+      "type": "reading",
+      "passage": "There are three yams and two beets in a basket.",
+      "prompt": "How many yams are in the basket?",
+      "options": [
+        "two",
+        "five",
+        "three"
+      ],
+      "answer": 2,
+      "explanation": "短文中的 three yams 明确说明数量是三。",
+      "source": "Greater Than 第4、7页词汇与数量；篮子情境为原创，与 gt-read-q01 共用定位数量单项。"
+    },
+    {
+      "id": "gt-listen-q01",
+      "reviewUnit": "hear-quantity",
+      "pointId": "raz-d-greater-than-listen",
+      "type": "listening",
+      "audioText": "There are four onions.",
+      "prompt": "听一听：有几个洋葱？",
+      "options": [
+        "四个",
+        "一个",
+        "五个"
+      ],
+      "answer": 0,
+      "explanation": "four onions 表示四个洋葱。",
+      "source": "Greater Than 第8页；原创听力题。"
+    },
+    {
+      "id": "gt-listen-q02",
+      "reviewUnit": "hear-comparison",
+      "pointId": "raz-d-greater-than-listen",
+      "type": "listening",
+      "audioText": "Five is greater than two.",
+      "prompt": "听一听：哪两个数在比较？",
+      "options": [
+        "four and three",
+        "five and two",
+        "six and one"
+      ],
+      "answer": 1,
+      "explanation": "朗读稿比较的是 five 和 two，并说明五大于二。",
+      "source": "Greater Than 第6页；原创听力题。"
+    },
+    {
+      "id": "gt-listen-q03",
+      "reviewUnit": "hear-vegetable",
+      "pointId": "raz-d-greater-than-listen",
+      "type": "listening",
+      "audioText": "There is one pepper.",
+      "prompt": "听一听：说到的是哪一种蔬菜？",
+      "options": [
+        "onion",
+        "carrot",
+        "pepper"
+      ],
+      "answer": 2,
+      "explanation": "朗读稿中说的是 one pepper，一个甜椒。",
+      "source": "Greater Than 第11页；原创听力题。"
+    },
+    {
+      "id": "gt-listen-q04",
+      "reviewUnit": "hear-quantity",
+      "pointId": "raz-d-greater-than-listen",
+      "type": "listening",
+      "audioText": "There are five carrots.",
+      "prompt": "听一听：有几根胡萝卜？",
+      "options": [
+        "五根",
+        "四根",
+        "两根"
+      ],
+      "answer": 0,
+      "explanation": "five carrots 表示五根胡萝卜。",
+      "source": "Greater Than 第5页；原创听力变式，与 gt-listen-q01 共用听数量单项。"
+    },
+    {
+      "id": "at-animals-q01",
+      "reviewUnit": "anteater",
+      "pointId": "raz-d-animal-tongues-animals",
+      "type": "choice",
+      "prompt": "anteater 是哪一种动物？",
+      "options": [
+        "长颈鹿",
+        "食蚁兽",
+        "青蛙"
+      ],
+      "answer": 1,
+      "explanation": "anteater 表示食蚁兽。",
+      "source": "Animal Tongues 第4页；原创词义题。"
+    },
+    {
+      "id": "at-animals-q02",
+      "reviewUnit": "lizard",
+      "pointId": "raz-d-animal-tongues-animals",
+      "type": "choice",
+      "prompt": "“蜥蜴”的英文是哪个？",
+      "options": [
+        "frog",
+        "turtle",
+        "lizard"
+      ],
+      "answer": 2,
+      "explanation": "lizard 表示蜥蜴；文中这只蜥蜴的舌头有两个分叉部分。",
+      "source": "Animal Tongues 第5页；原创词义题。"
+    },
+    {
+      "id": "at-animals-q03",
+      "reviewUnit": "giraffe",
+      "pointId": "raz-d-animal-tongues-animals",
+      "type": "choice",
+      "prompt": "giraffe 对应哪一种动物？",
+      "options": [
+        "长颈鹿",
+        "食蚁兽",
+        "猫"
+      ],
+      "answer": 0,
+      "explanation": "giraffe 表示长颈鹿。",
+      "source": "Animal Tongues 第6页；原创词义题。"
+    },
+    {
+      "id": "at-animals-q04",
+      "reviewUnit": "turtle",
+      "pointId": "raz-d-animal-tongues-animals",
+      "type": "choice",
+      "prompt": "文中的 turtle 是哪一种动物？",
+      "options": [
+        "蜥蜴",
+        "龟",
+        "青蛙"
+      ],
+      "answer": 1,
+      "explanation": "turtle 表示龟；此页描述的是图片中的这只龟，不代表所有龟的舌头都像虫。",
+      "source": "Animal Tongues 第7页；原创词义题。"
+    },
+    {
+      "id": "at-animals-q05",
+      "reviewUnit": "frog",
+      "pointId": "raz-d-animal-tongues-animals",
+      "type": "choice",
+      "prompt": "“青蛙”的英文单词是哪个？",
+      "options": [
+        "cat",
+        "giraffe",
+        "frog"
+      ],
+      "answer": 2,
+      "explanation": "frog 表示青蛙。",
+      "source": "Animal Tongues 第8页；原创词义题。"
+    },
+    {
+      "id": "at-features-q01",
+      "reviewUnit": "long-thin",
+      "pointId": "raz-d-animal-tongues-features",
+      "type": "choice",
+      "prompt": "long, thin 描述怎样的舌头？",
+      "options": [
+        "长而细",
+        "深色而有力",
+        "像刷子"
+      ],
+      "answer": 0,
+      "explanation": "long 表示长，thin 表示细；这是文中食蚁兽舌头的描述。",
+      "source": "Animal Tongues 第4页；原创特征词义题。"
+    },
+    {
+      "id": "at-features-q02",
+      "reviewUnit": "dark-strong",
+      "pointId": "raz-d-animal-tongues-features",
+      "type": "choice",
+      "prompt": "文中 dark, strong 的意思是什么？",
+      "options": [
+        "长而黏",
+        "颜色深而有力",
+        "像一条虫"
+      ],
+      "answer": 1,
+      "explanation": "dark 指颜色深，strong 指有力；书中用它们描述这只长颈鹿的舌头。",
+      "source": "Animal Tongues 第6页；原创特征词义题。"
+    },
+    {
+      "id": "at-features-q03",
+      "reviewUnit": "sticky",
+      "pointId": "raz-d-animal-tongues-features",
+      "type": "choice",
+      "prompt": "sticky 的意思是什么？",
+      "options": [
+        "细的",
+        "深色的",
+        "黏的"
+      ],
+      "answer": 2,
+      "explanation": "sticky 表示黏的；文中青蛙的舌头被描述为 long, sticky。",
+      "source": "Animal Tongues 第8页；原创词义题。"
+    },
+    {
+      "id": "at-features-q04",
+      "reviewUnit": "like-brush",
+      "pointId": "raz-d-animal-tongues-features",
+      "type": "choice",
+      "prompt": "a tongue like a brush 是什么意思？",
+      "options": [
+        "像刷子一样的舌头",
+        "一条喜欢刷子的舌头",
+        "像虫一样的舌头"
+      ],
+      "answer": 0,
+      "explanation": "like 在这个短语里表示“像”，brush 表示刷子；文中用来形容猫的舌头。",
+      "source": "Animal Tongues 第9页；原创比喻理解题。"
+    },
+    {
+      "id": "at-features-q05",
+      "reviewUnit": "like-worm",
+      "pointId": "raz-d-animal-tongues-features",
+      "type": "choice",
+      "prompt": "文中这只龟的舌头像什么？",
+      "options": [
+        "a brush",
+        "a worm",
+        "a leaf"
+      ],
+      "answer": 1,
+      "explanation": "第7页写 like a worm，意思是像一条虫；仅描述文中这只龟。",
+      "source": "Animal Tongues 第7页；原创特征理解题。"
+    },
+    {
+      "id": "at-has-q01",
+      "reviewUnit": "singular-has",
+      "pointId": "raz-d-animal-tongues-has",
+      "type": "cloze",
+      "prompt": "This frog ___ a long, sticky tongue.",
+      "options": [
+        "have",
+        "are",
+        "has"
+      ],
+      "answer": 2,
+      "explanation": "This frog 是第三人称单数，表示“有”时使用 has。",
+      "source": "Animal Tongues 第8页；原创句型题。"
+    },
+    {
+      "id": "at-has-q02",
+      "reviewUnit": "plural-have",
+      "pointId": "raz-d-animal-tongues-has",
+      "type": "cloze",
+      "prompt": "Animals ___ many kinds of tongues.",
+      "options": [
+        "have",
+        "has",
+        "is"
+      ],
+      "answer": 0,
+      "explanation": "Animals 是复数，使用 have。",
+      "source": "Animal Tongues 第3页；原创句型题。"
+    },
+    {
+      "id": "at-has-q03",
+      "reviewUnit": "like-similarity",
+      "pointId": "raz-d-animal-tongues-has",
+      "type": "cloze",
+      "prompt": "This cat has a tongue ___ a brush.",
+      "options": [
+        "likes",
+        "like",
+        "liking"
+      ],
+      "answer": 1,
+      "explanation": "这里 like 作介词，表示“像”；likes 是动词“喜欢”的第三人称单数形式。",
+      "source": "Animal Tongues 第9页；原创句型题。"
+    },
+    {
+      "id": "at-read-q01",
+      "reviewUnit": "tongue-purpose",
+      "pointId": "raz-d-animal-tongues-read",
+      "type": "reading",
+      "passage": "Animals have different tongues. They use their tongues to get food and to eat it.",
+      "prompt": "According to the passage, what do animals use their tongues for?",
+      "options": [
+        "To count vegetables.",
+        "To read books.",
+        "To get and eat food."
+      ],
+      "answer": 2,
+      "explanation": "短文明确说明舌头用于获取和吃食物；不额外推断其他用途。",
+      "source": "Animal Tongues 第3页；基于可见文字的原创改写，非官方原题。"
+    },
+    {
+      "id": "at-read-q02",
+      "reviewUnit": "match-features",
+      "pointId": "raz-d-animal-tongues-read",
+      "type": "reading",
+      "passage": "The anteater has a long, thin tongue. The giraffe has a dark, strong tongue. The frog has a long, sticky tongue.",
+      "prompt": "Which animal has a dark, strong tongue in this passage?",
+      "options": [
+        "The giraffe.",
+        "The frog.",
+        "The anteater."
+      ],
+      "answer": 0,
+      "explanation": "第二句明确说 giraffe 的舌头 dark, strong。",
+      "source": "Animal Tongues 第4、6、8页；原创整合短文，特征仅对应文中动物。"
+    },
+    {
+      "id": "at-read-q03",
+      "reviewUnit": "match-features",
+      "pointId": "raz-d-animal-tongues-read",
+      "type": "reading",
+      "passage": "The anteater has a long, thin tongue. The giraffe has a dark, strong tongue. The frog has a long, sticky tongue.",
+      "prompt": "Which animal has a long, sticky tongue in this passage?",
+      "options": [
+        "The anteater.",
+        "The frog.",
+        "The giraffe."
+      ],
+      "answer": 1,
+      "explanation": "第三句明确说 frog 的舌头 long, sticky。",
+      "source": "Animal Tongues 第4、6、8页；原创整合短文，与 at-read-q02 共用特征匹配单项。"
+    },
+    {
+      "id": "at-read-q04",
+      "reviewUnit": "two-parts",
+      "pointId": "raz-d-animal-tongues-read",
+      "type": "reading",
+      "passage": "This lizard has a tongue with two parts. This cat has a tongue like a brush.",
+      "prompt": "What does the passage say about this lizard's tongue?",
+      "options": [
+        "It is like a brush.",
+        "It is dark and strong.",
+        "It has two parts."
+      ],
+      "answer": 2,
+      "explanation": "第一句明确说明这只蜥蜴的舌头有 two parts；不是说它有两条舌头。",
+      "source": "Animal Tongues 第5、9页；原创整合短文。"
+    },
+    {
+      "id": "at-listen-q01",
+      "reviewUnit": "hear-animal",
+      "pointId": "raz-d-animal-tongues-listen",
+      "type": "listening",
+      "audioText": "This anteater has a long, thin tongue.",
+      "prompt": "听一听：说到的是哪一种动物？",
+      "options": [
+        "anteater",
+        "frog",
+        "giraffe"
+      ],
+      "answer": 0,
+      "explanation": "朗读稿开头说 This anteater，指食蚁兽。",
+      "source": "Animal Tongues 第4页；原创听力题。"
+    },
+    {
+      "id": "at-listen-q02",
+      "reviewUnit": "hear-feature",
+      "pointId": "raz-d-animal-tongues-listen",
+      "type": "listening",
+      "audioText": "This frog has a long, sticky tongue.",
+      "prompt": "听一听：舌头有哪些特征？",
+      "options": [
+        "dark and strong",
+        "long and sticky",
+        "long and thin"
+      ],
+      "answer": 1,
+      "explanation": "朗读稿说 long, sticky，即长而黏。",
+      "source": "Animal Tongues 第8页；原创听力题。"
+    },
+    {
+      "id": "at-listen-q03",
+      "reviewUnit": "hear-similarity",
+      "pointId": "raz-d-animal-tongues-listen",
+      "type": "listening",
+      "audioText": "This cat has a tongue like a brush.",
+      "prompt": "听一听：猫的舌头像什么？",
+      "options": [
+        "a worm",
+        "a leaf",
+        "a brush"
+      ],
+      "answer": 2,
+      "explanation": "朗读稿中 like a brush 表示像刷子。",
+      "source": "Animal Tongues 第9页；原创听力题。"
+    },
     {
       "id": "l2-01-days-q01",
       "reviewUnit": "monday",
@@ -913,6 +2228,817 @@
       "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
       "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q01",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "octopus",
+      "prompt": "octopus 是哪一种动物？",
+      "options": [
+        "章鱼",
+        "乌龟",
+        "长颈鹿"
+      ],
+      "answer": 0,
+      "explanation": "octopus 表示章鱼，封面和第3页都出现了这个词。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图1、图2／第3页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q02",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "arm",
+      "prompt": "eight arms 中的 arms 是什么意思？",
+      "options": [
+        "牙齿",
+        "头发",
+        "手臂"
+      ],
+      "answer": 2,
+      "explanation": "arm 是手臂；这里用复数 arms。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q03",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "eight",
+      "prompt": "eight 表示哪个数字？",
+      "options": [
+        "3",
+        "8",
+        "4"
+      ],
+      "answer": 1,
+      "explanation": "eight 是八；故事问章鱼为什么需要八条手臂。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q04",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "ordinal-first",
+      "prompt": "first 表示第几？",
+      "options": [
+        "第一",
+        "第二",
+        "第三"
+      ],
+      "answer": 0,
+      "explanation": "first 表示第一。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的first arm；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q05",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "ordinal-second",
+      "prompt": "second 表示第几？",
+      "options": [
+        "第一",
+        "第三",
+        "第二"
+      ],
+      "answer": 2,
+      "explanation": "second 表示第二。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的second arm；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q06",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "ordinal-third",
+      "prompt": "third 表示第几？",
+      "options": [
+        "第二",
+        "第三",
+        "第一"
+      ],
+      "answer": 1,
+      "explanation": "third 表示第三。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的third arm；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q07",
+      "pointId": "raz-d-octopus-eight-arms-words",
+      "type": "choice",
+      "reviewUnit": "ordinal-fourth",
+      "prompt": "fourth 表示第几？",
+      "options": [
+        "第四",
+        "第一",
+        "第二"
+      ],
+      "answer": 0,
+      "explanation": "fourth 表示第四。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的fourth arm；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q08",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "type": "choice",
+      "reviewUnit": "brush-teeth",
+      "prompt": "brushing her teeth 是做什么？",
+      "options": [
+        "梳头",
+        "击掌",
+        "刷牙"
+      ],
+      "answer": 2,
+      "explanation": "brushing her teeth 表示刷牙，这是故事中章鱼做的活动。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q09",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "type": "choice",
+      "reviewUnit": "comb-hair",
+      "prompt": "combing her hair 是做什么？",
+      "options": [
+        "抛接球",
+        "梳头",
+        "刷牙"
+      ],
+      "answer": 1,
+      "explanation": "combing her hair 表示梳头，这是故事中章鱼做的活动。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q10",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "type": "choice",
+      "reviewUnit": "play-catch",
+      "prompt": "playing catch 是做什么？",
+      "options": [
+        "玩抛接球游戏",
+        "击掌",
+        "梳头"
+      ],
+      "answer": 0,
+      "explanation": "playing catch 表示玩抛接球游戏，这是故事中章鱼做的活动。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图5／第6页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q11",
+      "pointId": "raz-d-octopus-eight-arms-actions",
+      "type": "choice",
+      "reviewUnit": "high-fives",
+      "prompt": "giving high fives 是做什么？",
+      "options": [
+        "抛接球",
+        "刷牙",
+        "击掌"
+      ],
+      "answer": 2,
+      "explanation": "giving high fives 表示击掌，这是故事中章鱼做的活动。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图6／第7页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q12",
+      "pointId": "raz-d-octopus-eight-arms-for-ing",
+      "type": "cloze",
+      "reviewUnit": "for-ing",
+      "prompt": "The first arm is for ___ her teeth.",
+      "options": [
+        "brushes",
+        "brushing",
+        "brush"
+      ],
+      "answer": 1,
+      "explanation": "表达用途时，这里用 is for + 动词-ing，因此选 brushing。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q13",
+      "pointId": "raz-d-octopus-eight-arms-for-ing",
+      "type": "cloze",
+      "reviewUnit": "for-ing",
+      "prompt": "The second arm is for ___ her hair.",
+      "options": [
+        "combing",
+        "comb",
+        "combs"
+      ],
+      "answer": 0,
+      "explanation": "for 后面用 combing，与课文的 is for combing her hair 一致。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q14",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "type": "reading",
+      "reviewUnit": "read-purpose-first",
+      "prompt": "在这个故事里，first arm 用来做什么？",
+      "options": [
+        "playing catch",
+        "giving high fives",
+        "brushing her teeth"
+      ],
+      "answer": 2,
+      "explanation": "原文明确写了 The first arm is for brushing her teeth.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第4页；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q15",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "type": "reading",
+      "reviewUnit": "read-purpose-second",
+      "prompt": "在这个故事里，second arm 用来做什么？",
+      "options": [
+        "playing catch",
+        "combing her hair",
+        "brushing her teeth"
+      ],
+      "answer": 1,
+      "explanation": "原文明确写了 The second arm is for combing her hair.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第5页；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q16",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "type": "reading",
+      "reviewUnit": "read-purpose-third",
+      "prompt": "在这个故事里，third arm 用来做什么？",
+      "options": [
+        "playing catch",
+        "giving high fives",
+        "combing her hair"
+      ],
+      "answer": 0,
+      "explanation": "原文明确写了 The third arm is for playing catch.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第6页；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q17",
+      "pointId": "raz-d-octopus-eight-arms-read",
+      "type": "reading",
+      "reviewUnit": "read-purpose-fourth",
+      "prompt": "在这个故事里，fourth arm 用来做什么？",
+      "options": [
+        "combing her hair",
+        "brushing her teeth",
+        "giving high fives"
+      ],
+      "answer": 2,
+      "explanation": "原文明确写了 The fourth arm is for giving high fives.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第7页；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q18",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "type": "listening",
+      "reviewUnit": "listen-octopus",
+      "prompt": "听一听，句子说的是哪种动物？",
+      "options": [
+        "乌龟",
+        "章鱼",
+        "青蛙"
+      ],
+      "answer": 1,
+      "explanation": "朗读中的 octopus 是章鱼。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "An octopus has eight arms."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q19",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "type": "listening",
+      "reviewUnit": "listen-brush-teeth",
+      "prompt": "听一听，这条手臂用来做什么？",
+      "options": [
+        "刷牙",
+        "梳头",
+        "击掌"
+      ],
+      "answer": 0,
+      "explanation": "brushing her teeth 表示刷牙。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "The first arm is for brushing her teeth."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q20",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "type": "listening",
+      "reviewUnit": "listen-purpose-second",
+      "prompt": "听一听，哪条手臂用来梳头？",
+      "options": [
+        "third arm",
+        "fourth arm",
+        "second arm"
+      ],
+      "answer": 2,
+      "explanation": "朗读说 The second arm is for combing her hair.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "The second arm is for combing her hair."
+    },
+    {
+      "id": "raz-d-octopus-eight-arms-q21",
+      "pointId": "raz-d-octopus-eight-arms-listen",
+      "type": "listening",
+      "reviewUnit": "listen-purpose-fourth",
+      "prompt": "听一听，fourth arm 用来做什么？",
+      "options": [
+        "brushing her teeth",
+        "giving high fives",
+        "playing catch"
+      ],
+      "answer": 1,
+      "explanation": "朗读明确说第四条手臂用来 giving high fives，也就是击掌。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图6／第7页；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "The fourth arm is for giving high fives."
+    },
+    {
+      "id": "l2-02-q01",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "music",
+      "prompt": "listen to music 是什么意思？",
+      "options": [
+        "听音乐",
+        "看电影",
+        "读漫画"
+      ],
+      "answer": 0,
+      "explanation": "listen to music 表示听音乐。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q02",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "cd",
+      "prompt": "listen to a CD 是什么意思？",
+      "options": [
+        "看DVD",
+        "写邮件",
+        "听CD"
+      ],
+      "answer": 2,
+      "explanation": "listen to a CD 表示听CD。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q03",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "dvd",
+      "prompt": "watch a DVD 是什么意思？",
+      "options": [
+        "读漫画",
+        "看DVD",
+        "听CD"
+      ],
+      "answer": 1,
+      "explanation": "watch a DVD 表示看DVD。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q04",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "comic",
+      "prompt": "read a comic 是什么意思？",
+      "options": [
+        "读漫画",
+        "写邮件",
+        "听音乐"
+      ],
+      "answer": 0,
+      "explanation": "read a comic 表示读漫画。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q05",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "film",
+      "prompt": "watch a film 是什么意思？",
+      "options": [
+        "去购物",
+        "滑雪",
+        "看电影"
+      ],
+      "answer": 2,
+      "explanation": "watch a film 表示看电影。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q06",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "email",
+      "prompt": "write an email 是什么意思？",
+      "options": [
+        "看电影",
+        "写邮件",
+        "读漫画"
+      ],
+      "answer": 1,
+      "explanation": "write an email 表示写邮件。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q07",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "skating",
+      "prompt": "go skating 是什么意思？",
+      "options": [
+        "去滑冰",
+        "去滑雪",
+        "去玩滑板"
+      ],
+      "answer": 0,
+      "explanation": "go skating 表示去滑冰。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q08",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "shopping",
+      "prompt": "go shopping 是什么意思？",
+      "options": [
+        "去滑冰",
+        "去滑雪",
+        "去购物"
+      ],
+      "answer": 2,
+      "explanation": "go shopping 表示去购物。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q09",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "skateboarding",
+      "prompt": "go skateboarding 是什么意思？",
+      "options": [
+        "去滑雪",
+        "去玩滑板",
+        "去滑冰"
+      ],
+      "answer": 1,
+      "explanation": "go skateboarding 表示去玩滑板。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q10",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "skiing",
+      "prompt": "go skiing 是什么意思？",
+      "options": [
+        "去滑雪",
+        "去玩滑板",
+        "去购物"
+      ],
+      "answer": 0,
+      "explanation": "go skiing 表示去滑雪。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q11",
+      "pointId": "l2-02-activities",
+      "type": "choice",
+      "reviewUnit": "skateboarding",
+      "prompt": "skateboard 指哪一种物品？",
+      "options": [
+        "滑冰鞋",
+        "CD",
+        "滑板"
+      ],
+      "answer": 2,
+      "explanation": "skateboard 是滑板；skate 可指滑冰鞋，二者不同。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q12",
+      "pointId": "l2-02-activities",
+      "type": "cloze",
+      "reviewUnit": "music",
+      "prompt": "listen ___ music",
+      "options": [
+        "at",
+        "to",
+        "on"
+      ],
+      "answer": 1,
+      "explanation": "听音乐的完整表达是 listen to music，需要 to。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q13",
+      "pointId": "l2-02-activities",
+      "type": "cloze",
+      "reviewUnit": "email",
+      "prompt": "write ___ email",
+      "options": [
+        "an",
+        "a",
+        "to"
+      ],
+      "answer": 0,
+      "explanation": "课件写的是 write an email；email 前使用 an。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q14",
+      "pointId": "l2-02-must-meaning",
+      "type": "choice",
+      "reviewUnit": "must-meaning",
+      "prompt": "老师说“你必须听。”哪句英文表达了这个要求？",
+      "options": [
+        "You mustn't listen.",
+        "You listen.",
+        "You must listen."
+      ],
+      "answer": 2,
+      "explanation": "must 表示必须；mustn't 表示禁止。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创规则场景；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q15",
+      "pointId": "l2-02-must-meaning",
+      "type": "choice",
+      "reviewUnit": "must-meaning",
+      "prompt": "规则写着 You mustn't listen to music. 它要求什么？",
+      "options": [
+        "可以听音乐，也可以不听",
+        "禁止听音乐",
+        "必须听音乐"
+      ],
+      "answer": 1,
+      "explanation": "mustn't 是不允许，表示禁止，不是可以自由选择。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创规则场景；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q16",
+      "pointId": "l2-02-must-form",
+      "type": "cloze",
+      "reviewUnit": "must-base",
+      "prompt": "You must ___ an email.",
+      "options": [
+        "write",
+        "writes",
+        "writing"
+      ],
+      "answer": 0,
+      "explanation": "must 后用动词原形 write。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q17",
+      "pointId": "l2-02-must-form",
+      "type": "cloze",
+      "reviewUnit": "must-base",
+      "prompt": "She mustn't ___ a film.",
+      "options": [
+        "watches",
+        "watching",
+        "watch"
+      ],
+      "answer": 2,
+      "explanation": "mustn't 后也用动词原形 watch。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q18",
+      "pointId": "l2-02-must-form",
+      "type": "cloze",
+      "reviewUnit": "must-base",
+      "prompt": "He must ___ to the CD.",
+      "options": [
+        "listening",
+        "listen",
+        "listens"
+      ],
+      "answer": 1,
+      "explanation": "虽然主语是 He，must 后仍用动词原形 listen。主要考查must后动词形式。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q19",
+      "pointId": "l2-02-must-form",
+      "type": "cloze",
+      "reviewUnit": "must-person",
+      "prompt": "I must listen. She ___ listen too.",
+      "options": [
+        "must",
+        "musts",
+        "musting"
+      ],
+      "answer": 0,
+      "explanation": "must 不随人称变化，She 后仍用 must。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创变式；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q20",
+      "pointId": "l2-02-must-form",
+      "type": "choice",
+      "reviewUnit": "must-person",
+      "prompt": "哪一句正确？",
+      "options": [
+        "He musts listen.",
+        "He musting listen.",
+        "He must listen."
+      ],
+      "answer": 2,
+      "explanation": "must 没有人称变化，不加-s或-ing。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创变式；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q21",
+      "pointId": "l2-02-must-form",
+      "type": "choice",
+      "reviewUnit": "must-question",
+      "prompt": "想问“她必须做什么？”，应该怎么说？",
+      "options": [
+        "What must do she?",
+        "What must she do?",
+        "What she must do?"
+      ],
+      "answer": 1,
+      "explanation": "正确顺序是 What + must + 主语 + do?",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q22",
+      "pointId": "l2-02-must-form",
+      "type": "choice",
+      "reviewUnit": "must-question",
+      "prompt": "规则是 You must read a comic. 问：What must I do? 应怎样回答？",
+      "options": [
+        "You must read a comic.",
+        "You must watch a DVD.",
+        "You must go shopping."
+      ],
+      "answer": 0,
+      "explanation": "What must I do? 问我必须做什么；根据给定规则回答 You must read a comic.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创问答；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q23",
+      "pointId": "l2-02-go-ing",
+      "type": "cloze",
+      "reviewUnit": "go-ing",
+      "prompt": "I go ___.（去滑冰）",
+      "options": [
+        "skate",
+        "skates",
+        "skating"
+      ],
+      "answer": 2,
+      "explanation": "去滑冰用 go skating；go 后接活动的-ing形式。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9–10；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q24",
+      "pointId": "l2-02-go-ing",
+      "type": "cloze",
+      "reviewUnit": "go-ing",
+      "prompt": "We go ___.（去滑雪）",
+      "options": [
+        "skis",
+        "skiing",
+        "ski"
+      ],
+      "answer": 1,
+      "explanation": "去滑雪用 go skiing。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+    },
+    {
+      "id": "l2-02-q25",
+      "pointId": "l2-02-read",
+      "type": "reading",
+      "reviewUnit": "read-must",
+      "prompt": "在漫画俱乐部，哪项活动是必须做的？",
+      "options": [
+        "read a comic",
+        "watch a DVD",
+        "go shopping"
+      ],
+      "answer": 0,
+      "explanation": "第一句 you must read a comic 明确说明必须读漫画。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；整段为原创迁移短文；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+    },
+    {
+      "id": "l2-02-q26",
+      "pointId": "l2-02-read",
+      "type": "reading",
+      "reviewUnit": "read-mustnt",
+      "prompt": "在漫画俱乐部，哪项活动被禁止？",
+      "options": [
+        "read a comic",
+        "listen to a CD",
+        "watch a DVD"
+      ],
+      "answer": 2,
+      "explanation": "You mustn't watch a DVD. 明确禁止看DVD。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；整段为原创迁移短文；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+    },
+    {
+      "id": "l2-02-q27",
+      "pointId": "l2-02-read",
+      "type": "reading",
+      "reviewUnit": "read-shopping",
+      "prompt": "俱乐部活动结束后，Anna 做什么？",
+      "options": [
+        "go skiing",
+        "go shopping",
+        "go skating"
+      ],
+      "answer": 1,
+      "explanation": "After the club, Anna goes shopping. 明确说Anna去购物。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；整段为原创迁移短文，goes为阅读句中的人称形式；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+    },
+    {
+      "id": "l2-02-q28",
+      "pointId": "l2-02-read",
+      "type": "reading",
+      "reviewUnit": "read-skateboarding",
+      "prompt": "短文里的 Ben 做哪项运动？",
+      "options": [
+        "去玩滑板",
+        "去滑冰",
+        "去滑雪"
+      ],
+      "answer": 0,
+      "explanation": "Ben goes skateboarding. 中的 skateboarding 是玩滑板。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；整段为原创迁移短文；根据已核对素材编写的原创练习，非官方原题",
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+    },
+    {
+      "id": "l2-02-q29",
+      "pointId": "l2-02-listen",
+      "type": "listening",
+      "reviewUnit": "listen-comic",
+      "prompt": "听一听，Anna 想做什么？",
+      "options": [
+        "watch a film",
+        "listen to a CD",
+        "read a comic"
+      ],
+      "answer": 2,
+      "explanation": "朗读说 Anna wants to read a comic.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；原创听辨句；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "Anna wants to read a comic."
+    },
+    {
+      "id": "l2-02-q30",
+      "pointId": "l2-02-listen",
+      "type": "listening",
+      "reviewUnit": "listen-email",
+      "prompt": "听一听，Ben 必须做什么？",
+      "options": [
+        "go shopping",
+        "write an email",
+        "watch a DVD"
+      ],
+      "answer": 1,
+      "explanation": "朗读说 Ben must write an email.",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创听辨句；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "Ben must write an email."
+    },
+    {
+      "id": "l2-02-q31",
+      "pointId": "l2-02-listen",
+      "type": "listening",
+      "reviewUnit": "listen-skiing",
+      "prompt": "听一听，他们去做什么？",
+      "options": [
+        "去滑雪",
+        "去滑冰",
+        "去玩滑板"
+      ],
+      "answer": 0,
+      "explanation": "go skiing 是去滑雪。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；原创听辨句；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "We go skiing."
+    },
+    {
+      "id": "l2-02-q32",
+      "pointId": "l2-02-listen",
+      "type": "listening",
+      "reviewUnit": "listen-mustnt",
+      "prompt": "听一听，这条规则要求什么？",
+      "options": [
+        "必须听音乐",
+        "必须读漫画",
+        "禁止听音乐"
+      ],
+      "answer": 2,
+      "explanation": "You mustn't listen to music. 中的 mustn't 表示禁止。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创规则听辨句；根据已核对素材编写的原创练习，非官方原题",
+      "audioText": "You mustn't listen to music."
     }
   ]
 }
