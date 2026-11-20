@@ -100,8 +100,10 @@ input[type=checkbox]{width:17px;height:17px;accent-color:var(--green)}
 .progress-track{height:7px;border-radius:10px;background:var(--line);overflow:hidden;margin-bottom:24px}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--aqua),var(--green));transition:width .2s}
 .question{padding:32px}
-.question-header{align-items:flex-start}
-.question-heading{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
+.question .question-header{align-items:center;flex-wrap:nowrap}
+.question-heading{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;min-width:0;flex:1}
+.question-heading .tag{flex-shrink:0}
+.question-heading .note{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .error-feedback-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:13px;text-decoration:none;white-space:nowrap;flex-shrink:0}
 .error-feedback-button:hover{background:var(--paper);color:var(--ink)}
 .question h2{font-size:25px;white-space:pre-wrap;margin-top:20px}
@@ -305,7 +307,14 @@ body{background:radial-gradient(ellipse at 0 10%,#fff0db,transparent 50%),radial
 @keyframes kitten-bounce{0%{opacity:0;transform:translateY(12px) scale(.8) rotate(-8deg)}35%{opacity:1;transform:translateY(-5px) scale(1.06) rotate(4deg)}65%{transform:translateY(0) scale(.98) rotate(-3deg)}100%{opacity:1;transform:none}}
 @media(max-width:700px){.friend-cat.illustrated-kitten{width:62px;height:62px}.kitten-friends{bottom:-8px;right:-18px}.cheer-cat.illustrated-kitten{width:91px;height:100px}.cat-cheer{gap:8px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.snow-confetti{display:none}.button:hover:not(:disabled){transform:none}}
-/* Tablet practice: use the screen width and give learning text room to breathe. */
+/* Practice: keep readable text and screen-width layout above the mobile breakpoint. */
+.due-courses .list-row{flex-wrap:wrap}
+.due-courses .grow{min-width:0;flex-basis:180px}
+.due-unit-count{font-size:14px;color:var(--tag-ink);white-space:nowrap}
+.due-total{margin-top:18px;color:var(--ink);font-weight:650}
+.due-explanation{margin-top:14px}
+.due-explanation>summary{cursor:pointer;color:var(--muted)}
+.due-explanation p{margin:10px 0 0}
 .answer-reference{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
 .answer-reference>summary{font-size:18px;font-weight:650;color:var(--ink);min-height:44px;display:flex;align-items:center;gap:10px;cursor:pointer}
 .answer-reference>summary::before{content:"▸";color:var(--green)}
@@ -313,15 +322,15 @@ body{background:radial-gradient(ellipse at 0 10%,#fff0db,transparent 50%),radial
 .reference-item{margin-top:14px}
 .reference-source{display:block;font-size:13px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
 .reference-text{margin:8px 0 0;padding-left:14px;border-left:3px solid var(--aqua);font-size:20px;line-height:1.75;white-space:pre-wrap;overflow-wrap:break-word}
-@media(min-width:701px) and (max-width:1400px){
+@media(min-width:701px){
   main{max-width:none;padding:32px clamp(20px,2.2vw,32px) 60px}
   .header{padding-inline:clamp(20px,2.2vw,32px)}
   .parent-nav,footer{max-width:none;padding-inline:clamp(20px,2.2vw,32px)}
   .quiz{max-width:none;font-size:20px}
   .quiz-top{gap:20px;font-size:18px;flex-wrap:wrap}
   .question{padding:clamp(24px,2.2vw,30px)}
-  .question .card-header{align-items:flex-start;gap:12px;flex-wrap:wrap}
-  .question .card-header .note{min-width:0;white-space:normal}
+  .question .card-header{align-items:center;gap:12px;flex-wrap:nowrap}
+  .question .card-header .note{min-width:0;white-space:nowrap}
   .question h2{font-size:clamp(32px,2.5vw,34px);line-height:1.5;margin-top:24px;overflow-wrap:break-word}
   .passage{padding:clamp(22px,2.2vw,28px);font-size:clamp(32px,3.2vw,36px);line-height:1.8;margin:24px 0;overflow-wrap:break-word}
   .options{gap:16px;margin:28px 0}
@@ -358,6 +367,7 @@ body{background:radial-gradient(ellipse at 0 10%,#fff0db,transparent 50%),radial
   .student-home .card h3{font-size:22px}
   .student-home .list-row strong{font-size:20px}
   .student-home .list-row small,.student-home .note{font-size:17px}
+  .student-home .due-unit-count{font-size:17px}
   .student-home .list-row .grow{min-width:0}
   footer{font-size:13px}
 }

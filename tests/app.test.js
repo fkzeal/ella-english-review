@@ -12,6 +12,7 @@ function harness(initial,shared,overrides={}){
   const ctx={window:win,document:{getElementById:node,querySelectorAll:()=>[nav],querySelector:()=>node('brand'),addEventListener(){}},
     navigator:{locks:{request:async(k,fn)=>fn()}},localStorage:{getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)},
     location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(fn){win.interval=fn;},console,URL,Blob,...overrides.context};
+  win.CatRewards=require('../rewards');win.CAT_CATALOG=require('../assets/cats/catalog.json');
   vm.runInNewContext(fs.readFileSync(require.resolve('../app'),'utf8'),ctx);
   return {data,node,win,async ready(){await new Promise(resolve=>setImmediate(resolve));},
     async click(action,props={}){
@@ -198,7 +199,7 @@ test('a deferred offline update without its audio retains a usable old bank and 
   assert(app.saved().state.session.items.length>0);
   assert.doesNotMatch(app.node('app').innerHTML,/记录未能保存/);
 });
-test('correct answers rotate six kittens, continuing after reload and skipping wrong answers',async()=>{
+test('correct answers rotate the supplied cat catalog, continuing after reload and skipping wrong answers',async()=>{
   const state=E.emptyState();E.syncBatches(bank,state);
   const qs=bank.questions.filter(q=>q.type==='choice').slice(0,8);
   state.session={items:qs.map(q=>q.id),index:0,results:[],day:E.day()};
@@ -212,8 +213,32 @@ test('correct answers rotate six kittens, continuing after reload and skipping w
     if(i===2)assert.equal(match,null);else cats.push(match[1]);
     await app.click('next');
   }
-  assert.deepEqual(cats,['ginger','tuxedo','calico','gray','siamese','cream','ginger']);
+  assert.deepEqual(cats,['cat-001','cat-002','cat-003','cat-004','cat-005','cat-006','cat-007']);
   assert.equal(app.saved().state.history.length,8);
+});
+test('final answer saves its full-group star receipt atomically and summary reload cannot award twice',async()=>{
+  const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2);
+  let app=harness(sessionRaw(qs));await app.ready();await app.click('resume');
+  await app.click('select',{option:String(qs[0].answer)});await app.click('next');
+  assert.equal(app.saved().state.rewards.balance,0);
+  await app.click('select',{option:String(qs[1].answer)});
+  assert.equal(app.saved().state.rewards.balance,2);
+  assert.equal(app.saved().state.rewards.settlements.length,1);
+  await app.click('next');await app.click('summary');await app.click('summary');
+  app=harness(undefined,app.data);await app.ready();await app.click('summary');
+  assert.equal(app.saved().state.rewards.balance,2);
+  assert.equal(app.saved().state.rewards.settlements.length,1);
+  assert.match(app.node('app').innerHTML,/全答对！收获 1 颗星星/);
+});
+test('completed pre-feature sessions keep old history and receive no retroactive stars',async()=>{
+  const state=E.emptyState();E.syncBatches(bank,state);const q=bank.questions[0];
+  const result=E.grade(bank,state,q.id,q.answer,false);
+  state.session={items:[q.id],index:1,results:[result],day:E.day()};
+  const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}));
+  await app.ready();await app.click('summary');
+  assert.equal(app.saved().state.rewards,undefined);
+  assert.equal(app.saved().state.history.length,1);
+  assert.match(app.node('app').innerHTML,/之前的练习/);
 });
 test('app transcript → pause → reload → resume → answer stays assisted',async()=>{
   const state=E.emptyState();E.syncBatches(bank,state);
@@ -344,4 +369,62 @@ test('conflicting old RAZ dates do not partially save a unified book date',async
   const before=JSON.stringify(app.saved().state);
   await app.change({dataset:{bookDate:lesson},value:'2026-11-19'});
   assert.equal(JSON.stringify(app.saved().state),before);
+});
+function reviewClock(initial='2026-11-20'){
+  let today=initial;
+  const engine={...E,day:()=>today,
+    syncBatches:(b,s)=>E.syncBatches(b,s,today),
+    activePoints:(b,s)=>E.activePoints(b,s,today),
+    duePoints:(b,s)=>E.duePoints(b,s,today),
+    dueUnits:(b,s)=>E.dueUnits(b,s,today),
+    plan:(b,s,opts)=>E.plan(b,s,{today,...opts})};
+  class ClockDate extends Date{
+    constructor(...args){super(...(args.length?args:[`${today}T12:00:00`]));}
+  }
+  return {engine,Date:ClockDate,set(day){today=day;}};
+}
+test('home due counts refresh at midnight without storage changes, including a paused session',async()=>{
+  for(const paused of [false,true]){
+    const clock=reviewClock(),state=E.emptyState();E.syncBatches(bank,state,'2026-11-20');
+    const qs=E.availableQuestions(bank).filter(q=>E.activePoints(bank,state,'2026-11-20').some(p=>p.id===q.pointId));
+    for(const q of qs)E.grade(bank,state,q.id,q.answer,false,'2026-11-20');
+    const q=qs.find(q=>q.reviewUnit);
+    state.units[E.unitKey(q)].due='2026-11-21';E.syncUnits(bank,state,'2026-11-20');
+    if(paused)state.session={items:[q.id],index:0,results:[],day:'2026-11-20'};
+    const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{ReviewEngine:clock.engine,context:{Date:clock.Date}});
+    await app.ready();
+    assert.doesNotMatch(app.node('app').innerHTML,/今天到期的课程/);
+    const raw=app.data.get(S.KEY);
+    clock.set('2026-11-21');app.win.interval();await app.ready();
+    assert.equal(app.data.get(S.KEY),raw,'crossing midnight alone must not rewrite learner records');
+    assert.match(app.node('app').innerHTML,/今天到期的课程/);
+    assert.match(app.node('app').innerHTML,/1 个考点待复习/);
+  }
+});
+test('a midnight refresh preserves the visible quiz, answer feedback, and settlement',async()=>{
+  const clock=reviewClock('2026-11-21'),qs=bank.questions.filter(q=>q.type==='choice').slice(0,2);
+  const app=harness(sessionRaw(qs),undefined,{ReviewEngine:clock.engine,context:{Date:clock.Date}});
+  await app.ready();await app.click('resume');
+  async function rollover(){
+    const html=app.node('app').innerHTML;
+    clock.set(E.plusDay(clock.engine.day(),1));app.win.interval();await app.ready();
+    assert.equal(app.node('app').innerHTML,html);
+  }
+  await rollover();
+  await app.click('select',{option:String(qs[0].answer)});await rollover();
+  await app.click('next');await app.click('select',{option:String(qs[1].answer)});await app.click('next');await rollover();
+  assert.match(app.node('app').innerHTML,/小探险完成啦/);
+});
+test('an independent correct answer removes its due unit while sibling groups remain due',async()=>{
+  const clock=reviewClock('2026-11-21'),state=E.emptyState();E.syncBatches(bank,state,'2026-11-21');
+  const q=bank.questions.find(q=>q.id==='gt-veg-q02');
+  state.session={items:[q.id],index:0,results:[],day:'2026-11-21'};
+  const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{ReviewEngine:clock.engine,context:{Date:clock.Date}});
+  await app.ready();assert.match(app.node('app').innerHTML,/114 个考点待复习/);
+  await app.click('resume');await app.click('select',{option:String(q.answer)});await app.click('next');await app.click('finish');
+  assert.match(app.node('app').innerHTML,/113 个考点待复习/);
+  assert.equal(app.saved().state.units[E.unitKey(q)].due,'2026-11-24');
+  assert.equal(E.duePoints(bank,app.saved().state,'2026-11-21').length,26);
+  const next=E.plan(bank,app.saved().state,{today:'2026-11-21',size:1000});
+  assert(!next.some(id=>E.unitKey(bank.questions.find(q=>q.id===id))===E.unitKey(q)));
 });

@@ -17,4 +17,6 @@ audio-manifest.js
 /.course-imports/
 /.error-feedback/
 feedback-config.js
+cat-catalog.js
 __pycache__/
+.DS_Store

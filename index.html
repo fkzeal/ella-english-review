@@ -6,12 +6,14 @@
   <meta name="theme-color" content="#fff4e9">
   <title>温故 · Ella 的猫咪小屋</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cat-club.css">
 </head>
 <body>
   <header class="header">
     <a class="brand" href="#today" aria-label="温故首页"><span class="brand-mark" aria-hidden="true">🐾</span><span>温故 · 猫咪小屋<span class="brand-en">ELLA’S KITTY CLUB</span></span></a>
     <nav aria-label="主导航">
       <button data-page="today" class="nav active">🐾 今日练习</button>
+      <button data-page="collection" class="nav">猫咪图鉴</button>
       <button data-page="library" data-parent-entry class="nav">家长空间</button>
     </nav>
     <div class="header-note">小小的爪爪，大大的鼓励 ♡</div>
@@ -28,7 +30,10 @@
     <h2 id="confirm-title"></h2><p id="confirm-text"></p>
     <div class="actions"><button id="confirm-cancel" class="button secondary">取消</button><button id="confirm-ok" class="button">确认</button></div>
   </dialog>
+  <dialog id="cat-dialog" aria-labelledby="cat-dialog-title"></dialog>
   <script src="bank.js"></script>
+  <script src="cat-catalog.js"></script>
+  <script src="rewards.js"></script>
   <script src="engine.js"></script>
   <script src="storage.js"></script>
   <script src="version.js"></script>

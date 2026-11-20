@@ -1,0 +1,902 @@
+[
+  {
+    "id": "cat-001",
+    "number": 1,
+    "name": "粉结英短招手猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-001.webp",
+    "thumb": "assets/cats/cat-001-thumb.webp",
+    "shadow": "assets/cats/cat-001-shadow.webp"
+  },
+  {
+    "id": "cat-002",
+    "number": 2,
+    "name": "蓝结布偶歪头猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-002.webp",
+    "thumb": "assets/cats/cat-002-thumb.webp",
+    "shadow": "assets/cats/cat-002-shadow.webp"
+  },
+  {
+    "id": "cat-003",
+    "number": 3,
+    "name": "桃结波斯笑脸猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-003.webp",
+    "thumb": "assets/cats/cat-003-thumb.webp",
+    "shadow": "assets/cats/cat-003-shadow.webp"
+  },
+  {
+    "id": "cat-004",
+    "number": 4,
+    "name": "薄荷暹罗打滚猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-004.webp",
+    "thumb": "assets/cats/cat-004-thumb.webp",
+    "shadow": "assets/cats/cat-004-shadow.webp"
+  },
+  {
+    "id": "cat-005",
+    "number": 5,
+    "name": "紫巾短腿漫步猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-005.webp",
+    "thumb": "assets/cats/cat-005-thumb.webp",
+    "shadow": "assets/cats/cat-005-shadow.webp"
+  },
+  {
+    "id": "cat-006",
+    "number": 6,
+    "name": "柠檬豹纹伸懒腰猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-006.webp",
+    "thumb": "assets/cats/cat-006-thumb.webp",
+    "shadow": "assets/cats/cat-006-shadow.webp"
+  },
+  {
+    "id": "cat-007",
+    "number": 7,
+    "name": "紫结长毛害羞猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-007.webp",
+    "thumb": "assets/cats/cat-007-thumb.webp",
+    "shadow": "assets/cats/cat-007-shadow.webp"
+  },
+  {
+    "id": "cat-008",
+    "number": 8,
+    "name": "桃巾银灰捧脸猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-008.webp",
+    "thumb": "assets/cats/cat-008-thumb.webp",
+    "shadow": "assets/cats/cat-008-shadow.webp"
+  },
+  {
+    "id": "cat-009",
+    "number": 9,
+    "name": "绿结奶油午睡猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-009.webp",
+    "thumb": "assets/cats/cat-009-thumb.webp",
+    "shadow": "assets/cats/cat-009-shadow.webp"
+  },
+  {
+    "id": "cat-010",
+    "number": 10,
+    "name": "粉结卷耳趴趴猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-010.webp",
+    "thumb": "assets/cats/cat-010-thumb.webp",
+    "shadow": "assets/cats/cat-010-shadow.webp"
+  },
+  {
+    "id": "cat-011",
+    "number": 11,
+    "name": "红结三花举爪猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-011.webp",
+    "thumb": "assets/cats/cat-011-thumb.webp",
+    "shadow": "assets/cats/cat-011-shadow.webp"
+  },
+  {
+    "id": "cat-012",
+    "number": 12,
+    "name": "格结奶牛飞吻猫",
+    "category": "日常表情",
+    "art": "assets/cats/cat-012.webp",
+    "thumb": "assets/cats/cat-012-thumb.webp",
+    "shadow": "assets/cats/cat-012-shadow.webp"
+  },
+  {
+    "id": "cat-013",
+    "number": 13,
+    "name": "星星披肩灰猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-013.webp",
+    "thumb": "assets/cats/cat-013-thumb.webp",
+    "shadow": "assets/cats/cat-013-shadow.webp"
+  },
+  {
+    "id": "cat-014",
+    "number": 14,
+    "name": "蓝领布偶读书猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-014.webp",
+    "thumb": "assets/cats/cat-014-thumb.webp",
+    "shadow": "assets/cats/cat-014-shadow.webp"
+  },
+  {
+    "id": "cat-015",
+    "number": 15,
+    "name": "毕业帽白猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-015.webp",
+    "thumb": "assets/cats/cat-015-thumb.webp",
+    "shadow": "assets/cats/cat-015-shadow.webp"
+  },
+  {
+    "id": "cat-016",
+    "number": 16,
+    "name": "校服奶牛奖杯猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-016.webp",
+    "thumb": "assets/cats/cat-016-thumb.webp",
+    "shadow": "assets/cats/cat-016-shadow.webp"
+  },
+  {
+    "id": "cat-017",
+    "number": 17,
+    "name": "积木短腿猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-017.webp",
+    "thumb": "assets/cats/cat-017-thumb.webp",
+    "shadow": "assets/cats/cat-017-shadow.webp"
+  },
+  {
+    "id": "cat-018",
+    "number": 18,
+    "name": "苹果围巾暹罗猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-018.webp",
+    "thumb": "assets/cats/cat-018-thumb.webp",
+    "shadow": "assets/cats/cat-018-shadow.webp"
+  },
+  {
+    "id": "cat-019",
+    "number": 19,
+    "name": "放大镜长毛猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-019.webp",
+    "thumb": "assets/cats/cat-019-thumb.webp",
+    "shadow": "assets/cats/cat-019-shadow.webp"
+  },
+  {
+    "id": "cat-020",
+    "number": 20,
+    "name": "画笔围裙豹纹猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-020.webp",
+    "thumb": "assets/cats/cat-020-thumb.webp",
+    "shadow": "assets/cats/cat-020-shadow.webp"
+  },
+  {
+    "id": "cat-021",
+    "number": 21,
+    "name": "彩铅奶油猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-021.webp",
+    "thumb": "assets/cats/cat-021-thumb.webp",
+    "shadow": "assets/cats/cat-021-shadow.webp"
+  },
+  {
+    "id": "cat-022",
+    "number": 22,
+    "name": "尤克里里灰猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-022.webp",
+    "thumb": "assets/cats/cat-022-thumb.webp",
+    "shadow": "assets/cats/cat-022-shadow.webp"
+  },
+  {
+    "id": "cat-023",
+    "number": 23,
+    "name": "抱书三花猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-023.webp",
+    "thumb": "assets/cats/cat-023-thumb.webp",
+    "shadow": "assets/cats/cat-023-shadow.webp"
+  },
+  {
+    "id": "cat-024",
+    "number": 24,
+    "name": "皇冠奖牌白猫",
+    "category": "学习奖励",
+    "art": "assets/cats/cat-024.webp",
+    "thumb": "assets/cats/cat-024-thumb.webp",
+    "shadow": "assets/cats/cat-024-shadow.webp"
+  },
+  {
+    "id": "cat-025",
+    "number": 25,
+    "name": "草莓蛋糕奶牛厨师猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-025.webp",
+    "thumb": "assets/cats/cat-025-thumb.webp",
+    "shadow": "assets/cats/cat-025-shadow.webp"
+  },
+  {
+    "id": "cat-026",
+    "number": 26,
+    "name": "牛角包布偶猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-026.webp",
+    "thumb": "assets/cats/cat-026-thumb.webp",
+    "shadow": "assets/cats/cat-026-shadow.webp"
+  },
+  {
+    "id": "cat-027",
+    "number": 27,
+    "name": "爱心饼干灰猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-027.webp",
+    "thumb": "assets/cats/cat-027-thumb.webp",
+    "shadow": "assets/cats/cat-027-shadow.webp"
+  },
+  {
+    "id": "cat-028",
+    "number": 28,
+    "name": "擀面杖橘猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-028.webp",
+    "thumb": "assets/cats/cat-028-thumb.webp",
+    "shadow": "assets/cats/cat-028-shadow.webp"
+  },
+  {
+    "id": "cat-029",
+    "number": 29,
+    "name": "草莓帽白猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-029.webp",
+    "thumb": "assets/cats/cat-029-thumb.webp",
+    "shadow": "assets/cats/cat-029-shadow.webp"
+  },
+  {
+    "id": "cat-030",
+    "number": 30,
+    "name": "冰淇淋暹罗猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-030.webp",
+    "thumb": "assets/cats/cat-030-thumb.webp",
+    "shadow": "assets/cats/cat-030-shadow.webp"
+  },
+  {
+    "id": "cat-031",
+    "number": 31,
+    "name": "蜂蜜罐三花猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-031.webp",
+    "thumb": "assets/cats/cat-031-thumb.webp",
+    "shadow": "assets/cats/cat-031-shadow.webp"
+  },
+  {
+    "id": "cat-032",
+    "number": 32,
+    "name": "茶杯短腿猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-032.webp",
+    "thumb": "assets/cats/cat-032-thumb.webp",
+    "shadow": "assets/cats/cat-032-shadow.webp"
+  },
+  {
+    "id": "cat-033",
+    "number": 33,
+    "name": "苹果篮豹纹猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-033.webp",
+    "thumb": "assets/cats/cat-033-thumb.webp",
+    "shadow": "assets/cats/cat-033-shadow.webp"
+  },
+  {
+    "id": "cat-034",
+    "number": 34,
+    "name": "搅拌碗长毛厨师猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-034.webp",
+    "thumb": "assets/cats/cat-034-thumb.webp",
+    "shadow": "assets/cats/cat-034-shadow.webp"
+  },
+  {
+    "id": "cat-035",
+    "number": 35,
+    "name": "松饼奶油猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-035.webp",
+    "thumb": "assets/cats/cat-035-thumb.webp",
+    "shadow": "assets/cats/cat-035-shadow.webp"
+  },
+  {
+    "id": "cat-036",
+    "number": 36,
+    "name": "甜甜圈银白猫",
+    "category": "烘焙美食",
+    "art": "assets/cats/cat-036.webp",
+    "thumb": "assets/cats/cat-036-thumb.webp",
+    "shadow": "assets/cats/cat-036-shadow.webp"
+  },
+  {
+    "id": "cat-037",
+    "number": 37,
+    "name": "听诊器小医生猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-037.webp",
+    "thumb": "assets/cats/cat-037-thumb.webp",
+    "shadow": "assets/cats/cat-037-shadow.webp"
+  },
+  {
+    "id": "cat-038",
+    "number": 38,
+    "name": "消防帽橘猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-038.webp",
+    "thumb": "assets/cats/cat-038-thumb.webp",
+    "shadow": "assets/cats/cat-038-shadow.webp"
+  },
+  {
+    "id": "cat-039",
+    "number": 39,
+    "name": "信封邮递员灰猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-039.webp",
+    "thumb": "assets/cats/cat-039-thumb.webp",
+    "shadow": "assets/cats/cat-039-shadow.webp"
+  },
+  {
+    "id": "cat-040",
+    "number": 40,
+    "name": "星星宇航员豹纹猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-040.webp",
+    "thumb": "assets/cats/cat-040-thumb.webp",
+    "shadow": "assets/cats/cat-040-shadow.webp"
+  },
+  {
+    "id": "cat-041",
+    "number": 41,
+    "name": "小飞机布偶飞行猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-041.webp",
+    "thumb": "assets/cats/cat-041-thumb.webp",
+    "shadow": "assets/cats/cat-041-shadow.webp"
+  },
+  {
+    "id": "cat-042",
+    "number": 42,
+    "name": "雏菊短腿园丁猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-042.webp",
+    "thumb": "assets/cats/cat-042-thumb.webp",
+    "shadow": "assets/cats/cat-042-shadow.webp"
+  },
+  {
+    "id": "cat-043",
+    "number": 43,
+    "name": "贝雷帽奶牛画家猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-043.webp",
+    "thumb": "assets/cats/cat-043-thumb.webp",
+    "shadow": "assets/cats/cat-043-shadow.webp"
+  },
+  {
+    "id": "cat-044",
+    "number": 44,
+    "name": "望远镜长毛探险猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-044.webp",
+    "thumb": "assets/cats/cat-044-thumb.webp",
+    "shadow": "assets/cats/cat-044-shadow.webp"
+  },
+  {
+    "id": "cat-045",
+    "number": 45,
+    "name": "小提琴白猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-045.webp",
+    "thumb": "assets/cats/cat-045-thumb.webp",
+    "shadow": "assets/cats/cat-045-shadow.webp"
+  },
+  {
+    "id": "cat-046",
+    "number": 46,
+    "name": "芭蕾三花猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-046.webp",
+    "thumb": "assets/cats/cat-046-thumb.webp",
+    "shadow": "assets/cats/cat-046-shadow.webp"
+  },
+  {
+    "id": "cat-047",
+    "number": 47,
+    "name": "咖啡师奶油猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-047.webp",
+    "thumb": "assets/cats/cat-047-thumb.webp",
+    "shadow": "assets/cats/cat-047-shadow.webp"
+  },
+  {
+    "id": "cat-048",
+    "number": 48,
+    "name": "相机银白猫",
+    "category": "职业伙伴",
+    "art": "assets/cats/cat-048.webp",
+    "thumb": "assets/cats/cat-048-thumb.webp",
+    "shadow": "assets/cats/cat-048-shadow.webp"
+  },
+  {
+    "id": "cat-049",
+    "number": 49,
+    "name": "皇冠爱心公主猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-049.webp",
+    "thumb": "assets/cats/cat-049-thumb.webp",
+    "shadow": "assets/cats/cat-049-shadow.webp"
+  },
+  {
+    "id": "cat-050",
+    "number": 50,
+    "name": "星杖英短魔法猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-050.webp",
+    "thumb": "assets/cats/cat-050-thumb.webp",
+    "shadow": "assets/cats/cat-050-shadow.webp"
+  },
+  {
+    "id": "cat-051",
+    "number": 51,
+    "name": "花环布偶仙女猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-051.webp",
+    "thumb": "assets/cats/cat-051-thumb.webp",
+    "shadow": "assets/cats/cat-051-shadow.webp"
+  },
+  {
+    "id": "cat-052",
+    "number": 52,
+    "name": "龙帽暹罗猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-052.webp",
+    "thumb": "assets/cats/cat-052-thumb.webp",
+    "shadow": "assets/cats/cat-052-shadow.webp"
+  },
+  {
+    "id": "cat-053",
+    "number": 53,
+    "name": "小红帽三花猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-053.webp",
+    "thumb": "assets/cats/cat-053-thumb.webp",
+    "shadow": "assets/cats/cat-053-shadow.webp"
+  },
+  {
+    "id": "cat-054",
+    "number": 54,
+    "name": "皇冠短腿王子猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-054.webp",
+    "thumb": "assets/cats/cat-054-thumb.webp",
+    "shadow": "assets/cats/cat-054-shadow.webp"
+  },
+  {
+    "id": "cat-055",
+    "number": 55,
+    "name": "独角兽豹纹猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-055.webp",
+    "thumb": "assets/cats/cat-055-thumb.webp",
+    "shadow": "assets/cats/cat-055-shadow.webp"
+  },
+  {
+    "id": "cat-056",
+    "number": 56,
+    "name": "橡果长毛精灵猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-056.webp",
+    "thumb": "assets/cats/cat-056-thumb.webp",
+    "shadow": "assets/cats/cat-056-shadow.webp"
+  },
+  {
+    "id": "cat-057",
+    "number": 57,
+    "name": "贝壳白色人鱼猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-057.webp",
+    "thumb": "assets/cats/cat-057-thumb.webp",
+    "shadow": "assets/cats/cat-057-shadow.webp"
+  },
+  {
+    "id": "cat-058",
+    "number": 58,
+    "name": "蝴蝶银灰猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-058.webp",
+    "thumb": "assets/cats/cat-058-thumb.webp",
+    "shadow": "assets/cats/cat-058-shadow.webp"
+  },
+  {
+    "id": "cat-059",
+    "number": 59,
+    "name": "天使奶牛猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-059.webp",
+    "thumb": "assets/cats/cat-059-thumb.webp",
+    "shadow": "assets/cats/cat-059-shadow.webp"
+  },
+  {
+    "id": "cat-060",
+    "number": 60,
+    "name": "月亮奶油晚安猫",
+    "category": "童话魔法",
+    "art": "assets/cats/cat-060.webp",
+    "thumb": "assets/cats/cat-060-thumb.webp",
+    "shadow": "assets/cats/cat-060-shadow.webp"
+  },
+  {
+    "id": "cat-061",
+    "number": 61,
+    "name": "雨帽小伞灰猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-061.webp",
+    "thumb": "assets/cats/cat-061-thumb.webp",
+    "shadow": "assets/cats/cat-061-shadow.webp"
+  },
+  {
+    "id": "cat-062",
+    "number": 62,
+    "name": "雏菊花环布偶猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-062.webp",
+    "thumb": "assets/cats/cat-062-thumb.webp",
+    "shadow": "assets/cats/cat-062-shadow.webp"
+  },
+  {
+    "id": "cat-063",
+    "number": 63,
+    "name": "野餐篮短腿猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-063.webp",
+    "thumb": "assets/cats/cat-063-thumb.webp",
+    "shadow": "assets/cats/cat-063-shadow.webp"
+  },
+  {
+    "id": "cat-064",
+    "number": 64,
+    "name": "贝壳三花水手猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-064.webp",
+    "thumb": "assets/cats/cat-064-thumb.webp",
+    "shadow": "assets/cats/cat-064-shadow.webp"
+  },
+  {
+    "id": "cat-065",
+    "number": 65,
+    "name": "向日葵帽白猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-065.webp",
+    "thumb": "assets/cats/cat-065-thumb.webp",
+    "shadow": "assets/cats/cat-065-shadow.webp"
+  },
+  {
+    "id": "cat-066",
+    "number": 66,
+    "name": "西瓜豹纹猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-066.webp",
+    "thumb": "assets/cats/cat-066-thumb.webp",
+    "shadow": "assets/cats/cat-066-shadow.webp"
+  },
+  {
+    "id": "cat-067",
+    "number": 67,
+    "name": "泳圈暹罗猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-067.webp",
+    "thumb": "assets/cats/cat-067-thumb.webp",
+    "shadow": "assets/cats/cat-067-shadow.webp"
+  },
+  {
+    "id": "cat-068",
+    "number": 68,
+    "name": "枫叶长毛秋日猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-068.webp",
+    "thumb": "assets/cats/cat-068-thumb.webp",
+    "shadow": "assets/cats/cat-068-shadow.webp"
+  },
+  {
+    "id": "cat-069",
+    "number": 69,
+    "name": "南瓜橡果奶油猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-069.webp",
+    "thumb": "assets/cats/cat-069-thumb.webp",
+    "shadow": "assets/cats/cat-069-shadow.webp"
+  },
+  {
+    "id": "cat-070",
+    "number": 70,
+    "name": "针织帽奶牛冬日猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-070.webp",
+    "thumb": "assets/cats/cat-070-thumb.webp",
+    "shadow": "assets/cats/cat-070-shadow.webp"
+  },
+  {
+    "id": "cat-071",
+    "number": 71,
+    "name": "耳罩雪团银白猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-071.webp",
+    "thumb": "assets/cats/cat-071-thumb.webp",
+    "shadow": "assets/cats/cat-071-shadow.webp"
+  },
+  {
+    "id": "cat-072",
+    "number": 72,
+    "name": "云朵围巾灰猫",
+    "category": "四季天气",
+    "art": "assets/cats/cat-072.webp",
+    "thumb": "assets/cats/cat-072-thumb.webp",
+    "shadow": "assets/cats/cat-072-shadow.webp"
+  },
+  {
+    "id": "cat-073",
+    "number": 73,
+    "name": "足球头带灰猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-073.webp",
+    "thumb": "assets/cats/cat-073-thumb.webp",
+    "shadow": "assets/cats/cat-073-shadow.webp"
+  },
+  {
+    "id": "cat-074",
+    "number": 74,
+    "name": "滑板暹罗猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-074.webp",
+    "thumb": "assets/cats/cat-074-thumb.webp",
+    "shadow": "assets/cats/cat-074-shadow.webp"
+  },
+  {
+    "id": "cat-075",
+    "number": 75,
+    "name": "自行车短腿猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-075.webp",
+    "thumb": "assets/cats/cat-075-thumb.webp",
+    "shadow": "assets/cats/cat-075-shadow.webp"
+  },
+  {
+    "id": "cat-076",
+    "number": 76,
+    "name": "瑜伽白猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-076.webp",
+    "thumb": "assets/cats/cat-076-thumb.webp",
+    "shadow": "assets/cats/cat-076-shadow.webp"
+  },
+  {
+    "id": "cat-077",
+    "number": 77,
+    "name": "帆船奶牛猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-077.webp",
+    "thumb": "assets/cats/cat-077-thumb.webp",
+    "shadow": "assets/cats/cat-077-shadow.webp"
+  },
+  {
+    "id": "cat-078",
+    "number": 78,
+    "name": "热气球豹纹猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-078.webp",
+    "thumb": "assets/cats/cat-078-thumb.webp",
+    "shadow": "assets/cats/cat-078-shadow.webp"
+  },
+  {
+    "id": "cat-079",
+    "number": 79,
+    "name": "背包长毛登山猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-079.webp",
+    "thumb": "assets/cats/cat-079-thumb.webp",
+    "shadow": "assets/cats/cat-079-shadow.webp"
+  },
+  {
+    "id": "cat-080",
+    "number": 80,
+    "name": "钓鱼帽三花猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-080.webp",
+    "thumb": "assets/cats/cat-080-thumb.webp",
+    "shadow": "assets/cats/cat-080-shadow.webp"
+  },
+  {
+    "id": "cat-081",
+    "number": 81,
+    "name": "彩带布偶猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-081.webp",
+    "thumb": "assets/cats/cat-081-thumb.webp",
+    "shadow": "assets/cats/cat-081-shadow.webp"
+  },
+  {
+    "id": "cat-082",
+    "number": 82,
+    "name": "雪橇奶油猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-082.webp",
+    "thumb": "assets/cats/cat-082-thumb.webp",
+    "shadow": "assets/cats/cat-082-shadow.webp"
+  },
+  {
+    "id": "cat-083",
+    "number": 83,
+    "name": "篮球银灰猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-083.webp",
+    "thumb": "assets/cats/cat-083-thumb.webp",
+    "shadow": "assets/cats/cat-083-shadow.webp"
+  },
+  {
+    "id": "cat-084",
+    "number": 84,
+    "name": "运动奖杯白猫",
+    "category": "运动探索",
+    "art": "assets/cats/cat-084.webp",
+    "thumb": "assets/cats/cat-084-thumb.webp",
+    "shadow": "assets/cats/cat-084-shadow.webp"
+  },
+  {
+    "id": "cat-085",
+    "number": 85,
+    "name": "生日蛋糕灰猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-085.webp",
+    "thumb": "assets/cats/cat-085-thumb.webp",
+    "shadow": "assets/cats/cat-085-shadow.webp"
+  },
+  {
+    "id": "cat-086",
+    "number": 86,
+    "name": "蕾丝睡帽白猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-086.webp",
+    "thumb": "assets/cats/cat-086-thumb.webp",
+    "shadow": "assets/cats/cat-086-shadow.webp"
+  },
+  {
+    "id": "cat-087",
+    "number": 87,
+    "name": "皇冠礼物奶牛猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-087.webp",
+    "thumb": "assets/cats/cat-087-thumb.webp",
+    "shadow": "assets/cats/cat-087-shadow.webp"
+  },
+  {
+    "id": "cat-088",
+    "number": 88,
+    "name": "兔耳彩蛋短腿猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-088.webp",
+    "thumb": "assets/cats/cat-088-thumb.webp",
+    "shadow": "assets/cats/cat-088-shadow.webp"
+  },
+  {
+    "id": "cat-089",
+    "number": 89,
+    "name": "圣诞礼物暹罗猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-089.webp",
+    "thumb": "assets/cats/cat-089-thumb.webp",
+    "shadow": "assets/cats/cat-089-shadow.webp"
+  },
+  {
+    "id": "cat-090",
+    "number": 90,
+    "name": "南瓜帽三花猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-090.webp",
+    "thumb": "assets/cats/cat-090-thumb.webp",
+    "shadow": "assets/cats/cat-090-shadow.webp"
+  },
+  {
+    "id": "cat-091",
+    "number": 91,
+    "name": "灯笼布偶猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-091.webp",
+    "thumb": "assets/cats/cat-091-thumb.webp",
+    "shadow": "assets/cats/cat-091-shadow.webp"
+  },
+  {
+    "id": "cat-092",
+    "number": 92,
+    "name": "气球豹纹派对猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-092.webp",
+    "thumb": "assets/cats/cat-092-thumb.webp",
+    "shadow": "assets/cats/cat-092-shadow.webp"
+  },
+  {
+    "id": "cat-093",
+    "number": 93,
+    "name": "读书入睡长毛猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-093.webp",
+    "thumb": "assets/cats/cat-093-thumb.webp",
+    "shadow": "assets/cats/cat-093-shadow.webp"
+  },
+  {
+    "id": "cat-094",
+    "number": 94,
+    "name": "多肉花盆奶油猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-094.webp",
+    "thumb": "assets/cats/cat-094-thumb.webp",
+    "shadow": "assets/cats/cat-094-shadow.webp"
+  },
+  {
+    "id": "cat-095",
+    "number": 95,
+    "name": "抱熊银灰猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-095.webp",
+    "thumb": "assets/cats/cat-095-thumb.webp",
+    "shadow": "assets/cats/cat-095-shadow.webp"
+  },
+  {
+    "id": "cat-096",
+    "number": 96,
+    "name": "蝴蝶结爱心白猫",
+    "category": "节日陪伴",
+    "art": "assets/cats/cat-096.webp",
+    "thumb": "assets/cats/cat-096-thumb.webp",
+    "shadow": "assets/cats/cat-096-shadow.webp"
+  },
+  {
+    "id": "cat-097",
+    "number": 97,
+    "name": "青蛙帽招手灰猫",
+    "category": "动物变装",
+    "art": "assets/cats/cat-097.webp",
+    "thumb": "assets/cats/cat-097-thumb.webp",
+    "shadow": "assets/cats/cat-097-shadow.webp"
+  },
+  {
+    "id": "cat-098",
+    "number": 98,
+    "name": "蜜蜂花朵布偶猫",
+    "category": "动物变装",
+    "art": "assets/cats/cat-098.webp",
+    "thumb": "assets/cats/cat-098-thumb.webp",
+    "shadow": "assets/cats/cat-098-shadow.webp"
+  },
+  {
+    "id": "cat-099",
+    "number": 99,
+    "name": "熊猫帽三花猫",
+    "category": "动物变装",
+    "art": "assets/cats/cat-099.webp",
+    "thumb": "assets/cats/cat-099-thumb.webp",
+    "shadow": "assets/cats/cat-099-shadow.webp"
+  },
+  {
+    "id": "cat-100",
+    "number": 100,
+    "name": "企鹅帽笑脸白猫",
+    "category": "动物变装",
+    "art": "assets/cats/cat-100.webp",
+    "thumb": "assets/cats/cat-100-thumb.webp",
+    "shadow": "assets/cats/cat-100-shadow.webp"
+  }
+]

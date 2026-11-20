@@ -1,8 +1,8 @@
 (function (root, factory) {
-  const engine = factory();
+  const engine = factory(typeof module === 'object' && module.exports ? require('./rewards') : root.CatRewards);
   if (typeof module === 'object' && module.exports) module.exports = engine;
   else root.ReviewEngine = engine;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (rewards) {
   'use strict';
   const INTERVALS = [1,3,7,14,30];
   const MODULES = ['lv','rg','skills','reading','vocabulary'];
@@ -128,12 +128,21 @@
       if(t.results.some((r,i)=>!r||r.questionId!==t.items[i]||typeof r.correct!=='boolean'||typeof r.help!=='boolean'||!Number.isInteger(r.selected)||r.selected<0||r.selected>=b.questions.find(q=>q.id===r.questionId).options.length)) throw new Error('练习结果不正确');
     }
     // Preserve old records while moving the retired 8-question choice to 10.
+    rewards.validate(s);
     if(s.settings.size===8)s.settings.size=10;
     return s;
   }
   function availableQuestions(b){return b.questions.filter(q=>q.active!==false);}
   function activePoints(b,s,today=day()) { return b.points.filter(p=>availableQuestions(b).some(q=>q.pointId===p.id)&&(s.learned[p.lessonId]||[]).includes(p.module)&&!s.paused?.[p.id]&&(!s.learningDates?.[p.id]||s.learningDates[p.id]<=today)); }
   function duePoints(b,s,today=day()) { return activePoints(b,s,today).filter(p=>!s.points[p.id] || s.points[p.id].due<=today); }
+  function dueUnits(b,s,today=day()){
+    const points=new Set(duePoints(b,s,today).map(p=>p.id)),units=new Map();
+    for(const q of availableQuestions(b)){
+      if(!points.has(q.pointId)||(q.reviewUnit&&s.units?.[unitKey(q)]?.due>today))continue;
+      if(!units.has(unitKey(q)))units.set(unitKey(q),q);
+    }
+    return [...units.values()];
+  }
   function setLearned(b,s,id,module,on,today=day()) {
     const l=b.lessons.find(l=>l.id===id);
     if(!l || l.status!=='ready' || !MODULES.includes(module)) throw new Error('该课程尚无可用考点');
@@ -358,5 +367,5 @@
     }
     return validateBank(merged);
   }
-  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
+  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,dueUnits,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
 });

@@ -1,17 +1,22 @@
 /* Content lives in question-bank.json; learner data is independent of content updates. */
 (function(){
   'use strict';
-  const E=window.ReviewEngine,STORE=window.ReviewStorage.KEY;
-  const store=window.ReviewStorage.create({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},E,navigator.locks,window.indexedDB);
+  const E=window.ReviewEngine,R=window.CatRewards,catalog=window.CAT_CATALOG;
+  const catPreview=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('preview')==='cats';
+  const storageKey=key=>catPreview?key+'-cat-preview':key,STORE=storageKey(window.ReviewStorage.KEY);
+  const store=window.ReviewStorage.create({getItem:key=>localStorage.getItem(storageKey(key)),setItem:(key,value)=>localStorage.setItem(storageKey(key),value)},E,navigator.locks,window.indexedDB);
   let baseline=JSON.stringify(window.LESSON_BANK),pendingBank=null,starting=false;
   const app=document.getElementById('app');
   const moduleNames={lv:'听力与词汇',rg:'阅读与语法',skills:'Skills 综合技能',reading:'绘本阅读',vocabulary:'词汇积累'};
   const typeNames={choice:'词汇选择',cloze:'选词填空',listening:'听力选择',reading:'阅读理解'};
   let bank=E.validateBank(window.LESSON_BANK), state=E.emptyState(),page='today',level=2,system='raz';
   let selected=null,help=false,feedback=null,showTranscript=false,storageAvailable=true;
-  let toastTimer=null,viewRevision=0,audioManifest=window.LESSON_AUDIO||{clips:{}};
+  let toastTimer=null,viewRevision=0,viewKind='page',renderedDay=null,audioManifest=window.LESSON_AUDIO||{clips:{}};
+  let catFilter='all',catCategory='all',viewerId=null;
+  const animatedRewards=new Set();
+  const uid=()=>window.crypto?.randomUUID?.()||`reward-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   const listening=window.ReviewAudio.create(window,audioManifest);
-  function setApp(html){viewRevision++;app.innerHTML=html;}
+  function setApp(html,kind='page'){viewRevision++;viewKind=kind;renderedDay=E.day();app.innerHTML=html;}
   async function prepareAudio(nextBank){
     try{return window.ReviewAudio.validateManifest(audioManifest,nextBank);}catch(err){
       if(!/^https?:$/.test(location.protocol))throw Object.assign(new Error(err.message),{name:'AudioSyncError'});
@@ -95,30 +100,38 @@
   }
   function encouragement(result,index){
     const wins=state.history.filter(r=>r.correct).length;
-    const kitten=kittens[Math.max(0,wins-1)%kittens.length];
+    const cat=catalog[Math.max(0,wins-1)%catalog.length];
+    const kitten={...cat,coat:cat.id,phrase:['认真思考的你，超棒的！','好棒，我们又学会一点点！','找到答案啦！和我击个掌吧。'][wins%3]};
     return `<div class="cat-cheer" data-kitten="${kitten.coat}">${snowCat('cheer-cat',kitten)}<div><span class="cheer-label">${kitten.name}来给你加油啦</span><strong>${result.help?'我们一起找到答案啦！':kitten.phrase}</strong><span>${result.help?'下次试着自己想一想，慢慢来。':'把这个小发现，放进口袋里。'}</span></div><div class="snow-confetti" aria-hidden="true">${Array.from({length:16},(_,i)=>`<i style="--i:${i};--x:${(i*29)%100}%;--spin:${i%2?180:-210}deg">${i%3?'✦':'♥'}</i>`).join('')}</div></div>`;
   }
-  function layoutWarning(){return !storageAvailable?'<div class="banner warning">记录未能保存，已保护原始数据。请到「家长题库」导出原始记录或恢复有效备份，再继续练习。</div>':'';}
+  function layoutWarning(){return (catPreview?'<div class="cat-preview-tools"><div><strong>动画试玩</strong><span>使用独立的演示进度</span></div><div><button data-action="preview-full">全对结算 +1星</button><button data-action="preview-half">答对8/10 +半星</button><button data-action="preview-low">答对7/10 无星星</button><button data-action="preview-ready">攒满三颗星</button></div><a href="./">进入正常练习 ↗</a></div>':'')+(!storageAvailable?'<div class="banner warning">记录未能保存，已保护原始数据。请到「家长题库」导出原始记录或恢复有效备份，再继续练习。</div>':'');}
   function navigate(p){stopAudio();page=p;selected=null;help=false;feedback=null;showTranscript=false;render();window.scrollTo({top:0,behavior:'instant'});}
   function setNav(){
-    document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.hasAttribute('data-parent-entry')?page!=='today':el.dataset.page===page));
-    document.getElementById('parent-nav').classList.toggle('hidden',page==='today');
+    const parent=!['today','collection'].includes(page);
+    document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.hasAttribute('data-parent-entry')?parent:el.dataset.page===page));
+    document.getElementById('parent-nav').classList.toggle('hidden',!parent);
   }
-  function render(){setNav();setApp(layoutWarning()+({today:todayView,courses:courseView,progress:progressView,library:libraryView}[page]||todayView)());}
+  function render(){setNav();setApp(layoutWarning()+({today:todayView,collection:collectionView,courses:courseView,progress:progressView,library:libraryView}[page]||todayView)());}
   function todayView(){
-    if(state.session && state.session.index<state.session.items.length)return sessionLanding();
-    const active=E.activePoints(bank,state),due=E.duePoints(bank,state);
+    const unfinished=state.session&&state.session.index<state.session.items.length;
+    const today=E.day(),active=E.activePoints(bank,state,today),due=E.duePoints(bank,state,today),units=E.dueUnits(bank,state,today);
     const points=due.length?due:active;
     const starter=starterLesson();
     const registered=Object.keys(state.batchReceipts||{}).length;
     const lessons=points.length?bank.lessons.filter(l=>points.some(p=>p.lessonId===l.id)):!registered&&starter?[starter]:[];
     const nextDue=active.map(p=>state.points[p.id]?.due).filter(Boolean).sort()[0];
-    return head('LITTLE PAWS, HAPPY LEARNING','Ella，欢迎来到猫咪小屋。','小猫咪们已经准备好啦。今天也一起收获一个小进步吧！')+
-      `<div class="student-home"><div class="hero"><div class="hero-copy"><div class="winter-badge">♡ 猫咪陪伴的英语时光</div><h2>每天一点点，<br>和小猫一起进步。</h2><p>慢慢想，大胆试。<br>答对后，会有哪只小猫来打招呼呢？</p><div class="hero-meta"><span>🐾 每组 ${state.settings.size} 题以内</span><span>♡ 不计时，按自己的节奏</span></div><button class="button start-button" data-action="start" ${!lessons.length?'disabled':''}>和小猫开始练习 <span aria-hidden="true">→</span></button></div><div class="winter-scene"><span class="scene-spark spark-one" aria-hidden="true">✧</span><span class="scene-spark spark-two" aria-hidden="true">♡</span><div class="cat-orbit">${snowCat()}</div><div class="cat-hello">Hi, Ella! <span aria-hidden="true">♡</span></div><span class="scene-caption">YOUR LITTLE STUDY BUDDIES</span><div class="kitten-friends" aria-label="还有奶牛猫和三花猫陪你练习">${snowCat('friend-cat',kittens[1])}${snowCat('friend-cat',kittens[2])}</div></div></div><div class="adventure-steps" aria-label="练习步骤"><span><b>01</b> 看一看，听一听</span><span><b>02</b> 选出你的答案</span><span><b>03</b> 小猫来为你加油 ♡</span></div>
-      <div class="card"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div></div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note">自动安排 · ${due.length} 个练习分组到期${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p>`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}<p class="note" style="margin-top:14px">看题 → 选答案 → 看对错 → 下一题</p></div></div>`;
+    const lessonByPoint=new Map(bank.points.map(p=>[p.id,p.lessonId])),counts=new Map();
+    const reasons={first:0,weak:0,interval:0};
+    for(const q of units){
+      const id=lessonByPoint.get(q.pointId),record=q.reviewUnit?state.units?.[E.unitKey(q)]:state.points[q.pointId];
+      counts.set(id,(counts.get(id)||0)+1);
+      reasons[!record?.lastDay?'first':record.missDay===record.lastDay?'weak':'interval']++;
+    }
+    return `<div class="home-heading">${head('LITTLE PAWS, HAPPY LEARNING','Ella，欢迎来到猫咪小屋。','小猫咪们已经准备好啦。今天也一起收获一个小进步吧！')}</div>`+
+      `<div class="student-home"><div class="student-dashboard"><section class="hero home-welcome" aria-label="小猫欢迎与开始练习"><div class="hero-copy"><div class="winter-badge">♡ 猫咪陪伴的英语时光</div><h2>每天一点点，<br>和小猫一起学。</h2><p>慢慢想，大胆试。<br>今天也和小猫击个掌吧！</p></div><div class="winter-scene"><span class="scene-spark spark-one" aria-hidden="true">✧</span><span class="scene-spark spark-two" aria-hidden="true">♡</span><div class="cat-orbit">${snowCat()}</div><div class="cat-hello">Hi, Ella! <span aria-hidden="true">♡</span></div><div class="kitten-friends" aria-label="还有奶牛猫和三花猫陪你练习">${snowCat('friend-cat',kittens[1])}${snowCat('friend-cat',kittens[2])}</div></div><div class="welcome-actions">${unfinished?`<p class="resume-note">上次已完成 ${state.session.index} / ${state.session.items.length} 题，接着来吧。</p>`:`<div class="hero-meta"><span>🐾 每组 ${state.settings.size} 题以内</span><span>♡ 不计时，慢慢想</span></div>`}<div class="actions"><button class="button start-button" data-action="${unfinished?'resume':'start'}" ${!unfinished&&!lessons.length?'disabled':''}>${unfinished?'继续上次练习':'和小猫开始练习'} <span aria-hidden="true">→</span></button>${unfinished?'<button class="link-button" data-action="end">结束本组</button>':''}</div></div></section>${rewardView(false)}</div><div class="adventure-steps" aria-label="练习步骤"><span><b>01</b> 看一看，听一听</span><span><b>02</b> 选出你的答案</span><span><b>03</b> 小猫来为你加油 ♡</span></div>
+      <div class="card due-courses"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div>${units.length?`<span class="due-unit-count">待复习 ${counts.get(l.id)||0} 项</span>`:''}</div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note due-total">${units.length} 个考点待复习${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p><p class="note">${units.length?`每次最多 ${state.settings.size} 题，慢慢来；答对的考点会安排到之后。`:'今天的到期复习已完成，可以休息，也可以额外练习。'}</p>${units.length?`<details class="due-explanation"><summary>为什么有这些复习？</summary><p class="note">首次回顾 ${reasons.first} 项 · 错题或提示后巩固 ${reasons.weak} 项 · 间隔复习 ${reasons.interval} 项</p><p class="note">已登记学习的内容，尚未在这里独立完成回顾，也会加入到期复习。${due.length} 个练习分组包含这些考点，组内各项分别安排；一个考点答对，不会推迟其他考点。</p>${['localhost','127.0.0.1'].includes(location.hostname)?'<p class="note">记录保存在当前浏览器中，本地预览与正式网址分别保存。</p>':''}</details>`:''}`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}</div></div>`;
   }
   function pointRow(p){const l=bank.lessons.find(l=>l.id===p.lessonId),sp=state.points[p.id];return `<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${esc(p.title)}</strong><small>${lessonLabel(l)}</small></div><span class="tag">${sp?.errors?'需要巩固':sp?.stage?'间隔复习':'首次回顾'}</span></div>`;}
-  function sessionLanding(){const t=state.session;return head('KEEP GOING','上次的练习，等你继续。',`已经完成 ${t.index} / ${t.items.length} 题。`)+`<div class="card quiz"><h2>还有 ${t.items.length-t.index} 题</h2><p class="muted">从上次停下的地方，接着练。</p><div class="actions"><button class="button start-button" data-action="resume">开始练习 →</button><button class="button secondary" data-action="end">结束本组</button></div></div>`;}
   function moduleControls(l,ps){
     if(l.system==='raz')return bookControls(l,ps);
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
@@ -201,7 +214,7 @@
     else if(!E.duePoints(bank,state).length)practice=true;
     const items=E.plan(bank,state,{practice,lessonId,preview});
     if(!items.length){toast('暂时没有可复习内容，请检查学习日期或补充题库。');return;}
-    const next=clone();next.session={items,index:0,results:[],hints:{},day:E.day(),practice,lessonId,preview};await commit(next);
+    const next=clone();next.rewards ||= R.empty();next.session={items,index:0,results:[],hints:{},day:E.day(),practice,lessonId,preview,rewardId:uid()};await commit(next);
     if(revision!==viewRevision)return;
     selected=null;help=false;feedback=null;showTranscript=false;page='today';setNav();renderQuiz();
   }
@@ -215,12 +228,12 @@
     else delete next.session.hints[id];
     await commit(next);help=Boolean(next.session.hints[id]);
   }
-  function referenceView(q){
+  function referenceView(q,expanded=false){
     const labels={original:'教材原句',excerpt:'教材／课件词句',note:'素材要点（核对记录）',practice:'本题原创材料'};
     const references=q.references||(q.passage?[{kind:'practice',text:q.passage,source:'本题阅读材料 · 原创练习'}]:
       q.audioText?[{kind:'practice',text:q.audioText,source:'本题朗读稿 · 原创听辨'}]:[]);
     if(!references.length)return '';
-    return `<details class="answer-reference"><summary>参考原文</summary>${references.map(r=>
+    return `<details class="answer-reference"${expanded?' open':''}><summary>参考原文</summary>${references.map(r=>
       `<div class="reference-item"><span class="reference-source">${esc(labels[r.kind])} · ${esc(r.source)}</span><blockquote class="reference-text">${esc(r.text)}</blockquote></div>`).join('')}</details>`;
   }
   function errorFeedbackLink(q,lesson){
@@ -238,11 +251,11 @@
     const position=feedback?t.index:t.index+1;
     let counter=0;
     const options=E.shuffle(shown.options.map((text,i)=>({text,index:i})),()=>seeded(shown.id,t.day,counter++));
-    setApp(layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header question-header"><div class="question-heading"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div>${errorFeedbackLink(shown,shownL)}</div><span class="note">${esc(shownP.title)}</span>
+    setApp(layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header question-header"><div class="question-heading"><span class="tag">${typeNames[shown.type]}</span><span class="note" title="${lessonLabel(shownL)}">${lessonLabel(shownL)}</span></div>${errorFeedbackLink(shown,shownL)}</div>
       ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><button class="button secondary" data-action="play" data-id="${shown.id}" data-speed="slow">慢速听</button><button class="link-button" data-action="stop-audio">停止</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
       ${shown.passage?`<div class="passage" lang="en">${esc(shown.passage)}</div>`:''}<h2>${esc(shown.prompt)}</h2><div class="options">${options.map((o,i)=>`<button class="option ${selected===o.index?'selected':''} ${feedback?(o.index===shown.answer?'correct':o.index===feedback.selected?'wrong':''):''}" data-action="select" data-option="${o.index}" ${feedback?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o.text)}</span>${feedback&&o.index===shown.answer?'<span style="margin-left:auto">✓</span>':''}</button>`).join('')}</div>
-      ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p>${referenceView(shown)}</div>`:''}
-      <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`);
+      ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p>${referenceView(shown,!feedback.correct)}</div>`:''}
+      <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`,'quiz');
   }
   function seeded(id,d,n){let hash=2166136261;for(const c of id+d+n)hash=Math.imul(hash^c.charCodeAt(0),16777619);hash^=hash>>>16;hash=Math.imul(hash,0x7feb352d);hash^=hash>>>15;return (hash>>>0)/4294967296;}
   function scrollAnswerReview(){
@@ -261,12 +274,14 @@
     stopAudio();
     const revision=viewRevision;
     const next=clone(),q=next.session.items[next.session.index];
+    // An older unfinished session can join the reward system when resumed.
+    next.rewards ||= R.empty();next.session.rewardId ||= uid();
     const result=E.grade(bank,next,q,selected,help,E.day());
     if(next.session.preview){
       delete next.points[result.pointId];
       for(const key of Object.keys(next.units||{}))if(key.startsWith(result.pointId+'::'))delete next.units[key];
     }
-    next.session.results.push(result);next.session.index++;await commit(next);
+    next.session.results.push(result);next.session.index++;R.settle(next);await commit(next);
     if(revision!==viewRevision)return;
     feedback=result;renderQuiz();
     scrollAnswerReview();
@@ -280,7 +295,90 @@
     const t=state.session;
     if(!t){render();return;}
     const total=t.results.length,ind=t.results.filter(r=>r.correct&&!r.help).length;
-    setApp(layoutWarning()+`<div class="quiz"><div class="card summary">${snowCat('summary-cat',kittens[5])}<div class="eyebrow">ONE SMALL STEP, A LITTLE SPARKLE</div><h1>今天的小探险，完成啦！</h1><div class="score">${t.results.filter(r=>r.correct).length}<span class="muted" style="font-size:24px"> / ${total}</span></div><p class="muted">答对题数 · ${ind} 题独立答对</p><p>谢谢你认真练习。小猫咪们为你的努力拍拍爪！</p><div class="actions" style="justify-content:center;margin-top:25px"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`);
+    const receipt=state.rewards?.settlements.find(s=>s.id===t.rewardId);
+    const fresh=receipt&&!animatedRewards.has(receipt.id);
+    if(receipt)animatedRewards.add(receipt.id);
+    setApp(layoutWarning()+`<div class="quiz"><div class="card summary club-summary"><div class="eyebrow">A LITTLE EFFORT, A LITTLE MAGIC</div><h1>小探险完成啦！</h1><div class="summary-score"><span class="score">${t.results.filter(r=>r.correct).length}<small> / ${total}</small></span><div>题答对了<br><span class="muted">${ind} 题独立答对</span></div></div>${rewardView(true,fresh)}<div class="actions summary-actions"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`,'summary');
+  }
+  function star(fill,i,animate=false){
+    const path='M25 3 31.8 17.1 47.4 19.4 36.2 30.4 38.8 46 25 38.7 11.2 46 13.8 30.4 2.6 19.4 18.2 17.1Z';
+    return `<span class="club-star ${animate?'star-earned':''}" style="--delay:${i*110}ms" aria-hidden="true"><svg viewBox="0 0 50 50"><defs><linearGradient id="star-${i}"><stop offset="${fill*100}%" stop-color="#edb748"/><stop offset="${fill*100}%" stop-color="#ebe5d9"/></linearGradient></defs><path d="${path}" fill="url(#star-${i})" stroke="${fill?'#cf9c40':'#dcd3c4'}" stroke-width="1.8" stroke-linejoin="round"/></svg></span>`;
+  }
+  function chest(className=''){
+    return `<span class="treasure-chest ${className}" aria-hidden="true"><svg viewBox="0 0 180 150"><ellipse cx="90" cy="138" rx="68" ry="9" fill="#66432d" opacity=".1"/><g class="chest-body"><path d="M28 68h124v54q0 9-9 9H37q-9 0-9-9Z" fill="#ba7650" stroke="#865a43" stroke-width="3"/><path d="M31 91h118v14H31Z" fill="#d78d5a"/><path d="M45 69h12v61H45Zm78 0h12v61h-12Z" fill="#f2c56d"/><path d="M29 119h122v10H29Z" fill="#9b6247"/></g><g class="chest-lid"><path d="M26 70V49q0-30 31-30h66q31 0 31 30v21Z" fill="#d89867" stroke="#865a43" stroke-width="3"/><path d="M43 21h13v49H43Zm81 0h13v49h-13Z" fill="#f5cf83"/><path d="M27 58h126v12H27Z" fill="#efbd63"/><path d="M61 34h58" stroke="#ebba87" stroke-width="3" stroke-linecap="round"/></g><rect x="77" y="60" width="26" height="32" rx="7" fill="#ffe3a0" stroke="#b98a43" stroke-width="2"/><path d="m90 67 2.6 5.4 6 .9-4.3 4.2 1 6-5.3-2.8-5.3 2.8 1-6-4.3-4.2 6-.9Z" fill="#b47e3b"/></svg></span>`;
+  }
+  function rewardView(summary=false,animate=false){
+    const r=state.rewards||R.empty(),full=r.openings.length===100,ready=r.balance>=6&&!full;
+    const progress=Math.min(6,r.balance),receipt=summary&&r.settlements.find(s=>s.id===state.session?.rewardId);
+    const award=receipt?.units||0;
+    const total=state.session?.items.length||state.settings.size,minimum=Math.ceil(total*4/5);
+    const message=summary?(state.session?.preview?'这次是体验练习，正式练习就能攒星星。':!receipt?'这组是之前的练习，从下一组开始攒星星吧。':award===2?'全答对！收获 1 颗星星':award===1?`答对 ${receipt.correct} 题，收获半颗星星`:`继续加油，答对至少 ${minimum} 题就能收获半颗星星`):'你的星星，正在召唤新朋友';
+    const remaining=(6-progress)/2;
+    return `<section class="club-reward ${summary?'is-settlement':'is-compact'} ${ready?'chest-ready':''}" aria-label="星星与猫咪宝箱"><div class="reward-main"><div class="eyebrow">KITTY TREASURE</div><h2 class="reward-heading">${message}</h2><div class="star-meter" role="img" aria-label="宝箱星星进度 ${progress/2} / 3 颗">${[0,1,2].map(i=>star(Math.max(0,Math.min(1,(progress-i*2)/2)),i,animate&&award>0&&i*2<progress&&i*2+2>progress-award)).join('')}<span class="star-count">${progress/2}<small> / 3</small></span></div><p class="reward-note">${full?'100 位朋友到齐啦，星星继续记录你的努力。':ready?'三颗星星集齐啦！打开宝箱，遇见一位新朋友。':`再攒 ${remaining} 颗星星，就能邀请一只猫咪。`}${r.balance>6&&!full?`<br>共 ${r.balance/2} 颗，多出的星星会留给下个宝箱。`:''}</p>${summary?`<p class="reward-rules">全答对 +1 星 · 答对至少 ${minimum} 题 +半星</p>`:''}</div><div class="reward-chest">${chest()}<button class="button chest-button" data-action="open-chest" ${!ready||!storageAvailable?'disabled':''}>${full?'图鉴已集齐':ready?'打开猫咪宝箱 ✦':'等待星星集齐'}</button></div><button class="collection-link" data-action="nav" data-target="collection"><span>猫咪图鉴</span><strong>${r.openings.length}<small> / 100</small></strong><span aria-hidden="true">↗</span></button>${!summary&&state.session&&state.session.index===state.session.items.length?'<button class="link-button last-settlement" data-action="summary">查看上组结果 →</button>':''}</section>`;
+  }
+  function collectionView(){
+    const unlocked=state.rewards?.openings||[],categories=[...new Set(catalog.map(c=>c.category))];
+    const cats=catalog.filter(c=>(catCategory==='all'||catCategory===c.category)&&(catFilter==='all'||unlocked.some(o=>o.catId===c.id)));
+    return head('MY LITTLE KITTY ALBUM','每一只猫咪，都是努力的纪念。',`已收集 ${unlocked.length} / 100 只 · 三颗星星，遇见一位新朋友`)+
+      `<div class="album-banner"><div><span class="album-tag">ELLA’S COLLECTION</span><h2>猫咪图鉴</h2><p>小小爪印，一页一页填满。</p></div><div class="album-count">${unlocked.length}<small> / 100</small><div class="album-track"><span style="width:${unlocked.length}%"></span></div></div></div><div class="album-toolbar"><div class="album-tabs" aria-label="图鉴范围"><button data-action="cat-filter" data-filter="all" aria-pressed="${catFilter==='all'}">全部猫咪</button><button data-action="cat-filter" data-filter="unlocked" aria-pressed="${catFilter==='unlocked'}">已收集 ${unlocked.length}</button></div><label class="album-category">主题 <select id="cat-category"><option value="all">全部主题</option>${categories.map(c=>`<option value="${esc(c)}" ${catCategory===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label></div>${!unlocked.length?'<p class="album-tip">朋友们正躲在剪影里。完成练习、攒满三颗星星，打开第一只宝箱吧。</p>':''}<div class="cat-grid">${cats.map(c=>{
+        const opening=unlocked.find(o=>o.catId===c.id),newest=opening&&opening===unlocked.at(-1);
+        return `<button class="cat-card ${opening?'unlocked':'locked'} ${newest?'newest':''}" ${opening?`data-action="view-cat" data-id="${c.id}"`:'disabled'} aria-label="${opening?`放大浏览 ${esc(c.name)}`:`第 ${c.number} 只猫咪，尚未解锁`}"><span class="cat-number">No. ${String(c.number).padStart(3,'0')}</span>${newest?'<span class="new-cat-tag">新朋友</span>':''}<img src="${opening?c.thumb:c.shadow}" alt="" width="256" height="256" loading="lazy" decoding="async"><strong>${opening?esc(c.name):'等待相遇'}</strong><span class="cat-category">${opening?esc(c.category):'未解锁 · ♡'}</span></button>`;
+      }).join('')}</div>${!cats.length?'<div class="card album-empty"><h3>这个主题还没有新朋友</h3><p>攒满三颗星星，打开宝箱看看吧。</p><button class="button" data-action="nav" data-target="today">去练习 →</button></div>':''}`;
+  }
+  function showCat(id){
+    const opening=state.rewards?.openings.find(o=>o.catId===id),cat=catalog.find(c=>c.id===id);
+    if(!cat||!opening)return;
+    viewerId=id;
+    const dialog=document.getElementById('cat-dialog'),unlocked=state.rewards.openings;
+    dialog.className='cat-dialog cat-viewer';
+    dialog.innerHTML=`<button class="dialog-close" data-cat-action="close" aria-label="关闭图鉴">×</button><div class="eyebrow">${esc(cat.category)} · NO. ${String(cat.number).padStart(3,'0')}</div><img class="viewer-art" src="${cat.art}" alt="${esc(cat.name)}" width="1024" height="1024"><h2 id="cat-dialog-title">${esc(cat.name)}</h2><p>相遇于 ${new Date(opening.at).toLocaleDateString('zh-CN')}</p><div class="viewer-controls"><button class="button secondary" data-cat-action="prev" ${unlocked.length<2?'disabled':''} aria-label="上一只猫咪">←</button><span>${unlocked.indexOf(opening)+1} / ${unlocked.length}</span><button class="button secondary" data-cat-action="next" ${unlocked.length<2?'disabled':''} aria-label="下一只猫咪">→</button></div>`;
+    if(!dialog.open)dialog.showModal();else dialog.querySelector('.dialog-close')?.focus?.();
+  }
+  async function openChest(){
+    const revision=viewRevision,next=clone(),opening=R.open(next,uid());
+    await commit(next);
+    // Save the draw before animation: closing or reloading cannot lose the cat.
+    if(revision!==viewRevision){toast('新猫咪已收进图鉴。');return;}
+    if(document.querySelector('.club-summary'))renderSummary();else render();
+    const cat=catalog.find(c=>c.id===opening.catId),dialog=document.getElementById('cat-dialog');
+    dialog.className='cat-dialog chest-opening';
+    dialog.innerHTML=`<button class="dialog-close" data-cat-action="close-reveal" aria-label="关闭，猫咪已保存到图鉴">×</button><div class="eyebrow">A NEW LITTLE FRIEND</div><h2 id="cat-dialog-title">宝箱里，藏着谁？</h2><div class="chest-stage"><div class="treasure-glow"></div><span class="reveal-spark spark-a" aria-hidden="true">✦</span><span class="reveal-spark spark-b" aria-hidden="true">✧</span>${chest('opening-chest')}<img class="reveal-cat" src="${cat.art}" width="1024" height="1024" alt="${esc(cat.name)}"></div><div class="reveal-caption"><span class="new-friend-label">NEW · 第 ${next.rewards.openings.length} 位朋友</span><h3>${esc(cat.name)}</h3><p>${esc(cat.category)} · 正在等你收藏</p></div><div class="reveal-bottom"><button class="button" data-cat-action="collect">收进猫咪图鉴 ♡</button><span class="album-destination" aria-label="猫咪图鉴">▤<small>我的图鉴</small></span></div><p class="reveal-saved">猫咪已经保存，随时可以在图鉴里找到它。</p>`;
+    dialog.showModal();
+  }
+  async function collectCat(){
+    const revision=viewRevision;
+    const dialog=document.getElementById('cat-dialog'),image=dialog.querySelector('.reveal-cat'),target=dialog.querySelector('.album-destination');
+    if(!dialog.open)return;
+    const button=dialog.querySelector('[data-cat-action="collect"]');if(button)button.disabled=true;
+    const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if(image?.animate&&target&&!reduced){
+      const a=image.getBoundingClientRect(),b=target.getBoundingClientRect();
+      dialog.classList.add('collecting-cat');
+      const animation=image.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${b.x+b.width/2-a.x-a.width/2}px,${b.y+b.height/2-a.y-a.height/2}px) scale(.08) rotate(12deg)`,opacity:0}],{duration:750,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+      try{await animation.finished;}catch{}
+    }
+    if(!dialog.open||revision!==viewRevision)return;
+    dialog.close();navigate('collection');
+    document.querySelector('.cat-card.newest')?.scrollIntoView?.({block:'center',behavior:'instant'});
+    document.querySelector('.cat-card.newest')?.focus?.();
+  }
+  function simulateGroup(next,correct,total=10){
+    const items=E.availableQuestions(bank).slice(0,total).map(q=>q.id);
+    next.rewards ||= R.empty();
+    next.session={rewardId:uid(),items,index:0,results:[],hints:{},day:E.day(),practice:true};
+    for(const [i,id] of items.entries()){
+      const q=bank.questions.find(q=>q.id===id),result=E.grade(bank,next,id,i<correct?q.answer:(q.answer+1)%q.options.length,false,E.day());
+      next.session.results.push(result);next.session.index++;
+    }
+    R.settle(next);
+  }
+  async function previewReward(action){
+    if(!catPreview)return;
+    const revision=viewRevision,next=clone();
+    if(action==='preview-ready'){while((next.rewards?.balance||0)<6)simulateGroup(next,10);}
+    else simulateGroup(next,action==='preview-full'?10:action==='preview-half'?8:7);
+    await commit(next);
+    if(revision===viewRevision){page='today';setNav();renderSummary();}
   }
   async function ask(title,text){
     return new Promise(resolve=>{
@@ -327,6 +425,11 @@
     else if(action==='practice')await start(true);
     else if(action==='lesson-practice')await start(true,el.dataset.id);
     else if(action==='resume')resume();
+    else if(action==='summary')renderSummary();
+    else if(action==='open-chest')await openChest();
+    else if(action==='cat-filter'){catFilter=el.dataset.filter;render();}
+    else if(action==='view-cat')showCat(el.dataset.id);
+    else if(action.startsWith('preview-'))await previewReward(action);
     else if(action==='select'){selected=Number(el.dataset.option);await submit();}
     else if(action==='submit')await submit();
     else if(action==='next')nextQuestion();
@@ -362,6 +465,7 @@
       try{const next=clone();E.setModuleDate(bank,next,el.dataset.dateLesson,el.dataset.dateModule,el.value);await commit(next);render();toast('学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
     }else if(el.id==='help-check'){await rememberHelp(el.checked);if(revision===viewRevision)target.checked=help;}
     else if(el.id==='size'){const next=clone();next.settings.size=Number(el.value);await commit(next);}
+    else if(el.id==='cat-category'){catCategory=el.value;render();}
     else if(el.id==='bank-file'||el.id==='state-file'){
       const file=el.files[0];if(!file)return;
       try {
@@ -390,6 +494,22 @@
   });
   document.querySelectorAll('header [data-page], #parent-nav [data-page]').forEach(el=>el.addEventListener('click',()=>navigate(el.dataset.page)));
   document.querySelector('.brand').addEventListener('click',e=>{e.preventDefault();navigate('today');});
+  document.getElementById('cat-dialog').addEventListener('click',event=>{
+    const target=event.target.closest('[data-cat-action]');if(!target||target.disabled)return;
+    const action=target.dataset.catAction;
+    if(action==='collect'){collectCat().catch(err=>toast(err.message));return;}
+    if(action==='close-reveal'){document.getElementById('cat-dialog').close();navigate('collection');return;}
+    if(action==='close'){document.getElementById('cat-dialog').close();return;}
+    if(action==='prev'||action==='next'){
+      const cats=state.rewards?.openings||[],i=cats.findIndex(o=>o.catId===viewerId);
+      if(cats.length)showCat(cats[(i+(action==='next'?1:-1)+cats.length)%cats.length].catId);
+    }
+  });
+  document.getElementById('cat-dialog').addEventListener('keydown',event=>{
+    if(!document.getElementById('cat-dialog').classList.contains('cat-viewer'))return;
+    const cats=state.rewards?.openings||[],i=cats.findIndex(o=>o.catId===viewerId);
+    if(cats.length&&(event.key==='ArrowRight'||event.key==='ArrowLeft')){event.preventDefault();showCat(cats[(i+(event.key==='ArrowRight'?1:-1)+cats.length)%cats.length].catId);}
+  });
   async function boot(){
     try{
       const saved=store.read();
@@ -405,13 +525,20 @@
         }
       }
       await syncLearning();
+      if(catPreview&&!saved){
+        const next=clone();for(let i=0;i<3;i++)simulateGroup(next,10);
+        await commit(next);
+      }
     }catch(err){storageAvailable=err.name==='AudioSyncError';toast(err.message||'原始记录已保护，请先导出或恢复备份。');}
     render();
+    if(catPreview&&state.session?.index===state.session?.items.length)renderSummary();
     if(storageAvailable)await refreshBank();
   }
   queue=boot();
   async function tick(){
-    const changed=await syncLearning();if(changed&&!state.session)render();await refreshBank();
+    const changed=await syncLearning();
+    if(viewKind==='page'&&(changed||renderedDay!==E.day()))render();
+    await refreshBank(viewKind==='page');
   }
   window.addEventListener('storage',event=>{if(event.key===STORE||event.key===null)run(async()=>{});});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)run(tick);});
