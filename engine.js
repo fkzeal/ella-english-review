@@ -61,6 +61,9 @@
       if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer >= q.options.length) fail(`题目 ${q.id} 答案无效`);
       if(q.type === 'listening' && !text(q.audioText)) fail(`听力题 ${q.id} 缺少朗读稿`);
       if(q.type === 'reading' && !text(q.passage)) fail(`阅读题 ${q.id} 缺少文章`);
+      if(q.references!==undefined&&(!Array.isArray(q.references)||!q.references.length||q.references.length>6||
+        q.references.some(r=>!r||!['original','excerpt','note','practice'].includes(r.kind)||!text(r.text,1,5000)||!text(r.source,1,500))))
+        fail(`题目 ${q.id} 参考素材无效`);
     }
     for (const p of b.points) if (!b.questions.some(q=>q.pointId===p.id)) fail(`考点 ${p.id} 没有可用题目`);
     for(const l of b.lessons)if(l.learningTargets!==undefined){

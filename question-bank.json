@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": 7,
+  "revision": 8,
   "mode": "snapshot",
   "updated": "2026-11-20",
   "batches": [],
@@ -971,7 +971,14 @@
       ],
       "answer": 0,
       "explanation": "carrot 是胡萝卜，carrots 是复数。",
-      "source": "Greater Than 第5页；原创词义题。"
+      "source": "Greater Than 第5页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "five carrots",
+          "source": "Greater Than · 第5页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-veg-q02",
@@ -986,7 +993,14 @@
       ],
       "answer": 1,
       "explanation": "beets 是甜菜，书中第4页写有 two beets。",
-      "source": "Greater Than 第4页；原创词义题。"
+      "source": "Greater Than 第4页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "two beets",
+          "source": "Greater Than · 第4页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-veg-q03",
@@ -1001,7 +1015,14 @@
       ],
       "answer": 2,
       "explanation": "onion 表示洋葱，onions 是复数。",
-      "source": "Greater Than 第8页；原创词义题。"
+      "source": "Greater Than 第8页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "four onions",
+          "source": "Greater Than · 第8页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-veg-q04",
@@ -1016,7 +1037,14 @@
       ],
       "answer": 0,
       "explanation": "第11页图片是红色甜椒；这里 pepper 指甜椒，而非黑胡椒粒。",
-      "source": "Greater Than 第11页文字及红甜椒图；原创词义题。"
+      "source": "Greater Than 第11页文字及红甜椒图；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "one pepper",
+          "source": "Greater Than · 第11页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-veg-q05",
@@ -1031,7 +1059,14 @@
       ],
       "answer": 1,
       "explanation": "书中第7页使用 three yams。yam 常译薯蓣或山药类块茎；本题保留原文名称，不据插图断定植物品种。",
-      "source": "Greater Than 第7页；原创词汇题。"
+      "source": "Greater Than 第7页；原创词汇题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "three yams",
+          "source": "Greater Than · 第7页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-compare-q01",
@@ -1046,7 +1081,14 @@
       ],
       "answer": 1,
       "explanation": "5 > 2，所以 Five is greater than two. 正确。",
-      "source": "Greater Than 第6页；原创比较题。"
+      "source": "Greater Than 第6页；原创比较题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "greater than",
+          "source": "Greater Than · 第6、9页 · 数量比较表达"
+        }
+      ]
     },
     {
       "id": "gt-compare-q02",
@@ -1061,7 +1103,14 @@
       ],
       "answer": 2,
       "explanation": "4 > 3，应填 greater；greater than 表示大于。",
-      "source": "Greater Than 第9页；原创比较变式，与 gt-compare-q01 共用复习单项。"
+      "source": "Greater Than 第9页；原创比较变式，与 gt-compare-q01 共用复习单项。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "greater than",
+          "source": "Greater Than · 第6、9页 · 数量比较表达"
+        }
+      ]
     },
     {
       "id": "gt-compare-q03",
@@ -1076,7 +1125,14 @@
       ],
       "answer": 0,
       "explanation": "greatest 表示最大；2、4、6 中最大的是 6。",
-      "source": "Greater Than 第12页 greatest 问句；数值组合为原创迁移练习。"
+      "source": "Greater Than 第12页 greatest 问句；数值组合为原创迁移练习。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "greatest",
+          "source": "Greater Than · 第12页 · 最大值问句中的词"
+        }
+      ]
     },
     {
       "id": "gt-there-q01",
@@ -1091,7 +1147,14 @@
       ],
       "answer": 1,
       "explanation": "one pepper 是单数，使用 There is。",
-      "source": "Greater Than 第11页；原创句型题。"
+      "source": "Greater Than 第11页；原创句型题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "one pepper",
+          "source": "Greater Than · 第11页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-there-q02",
@@ -1106,7 +1169,14 @@
       ],
       "answer": 2,
       "explanation": "five carrots 是复数，使用 There are。",
-      "source": "Greater Than 第5页；原创句型题。"
+      "source": "Greater Than 第5页；原创句型题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "five carrots",
+          "source": "Greater Than · 第5页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-there-q03",
@@ -1121,7 +1191,14 @@
       ],
       "answer": 0,
       "explanation": "four 后使用复数名词 onions；an onion 表示一个洋葱。",
-      "source": "Greater Than 第8页；原创名词复数题。"
+      "source": "Greater Than 第8页；原创名词复数题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "four onions",
+          "source": "Greater Than · 第8页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-there-q04",
@@ -1136,7 +1213,14 @@
       ],
       "answer": 1,
       "explanation": "two beets 是复数，所以用 are。",
-      "source": "Greater Than 第4页；原创句型变式，与 gt-there-q02 共用复习单项。"
+      "source": "Greater Than 第4页；原创句型变式，与 gt-there-q02 共用复习单项。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "two beets",
+          "source": "Greater Than · 第4页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "gt-read-q01",
@@ -1152,7 +1236,19 @@
       ],
       "answer": 2,
       "explanation": "短文明确写 four onions，所以有四个洋葱。",
-      "source": "Greater Than 第5、8、11页数量；原创短文，非绘本原文。"
+      "source": "Greater Than 第5、8、11页数量；原创短文，非绘本原文。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "four onions",
+          "source": "Greater Than · 第8页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "In our garden, there are five carrots, four onions and one pepper.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "gt-read-q02",
@@ -1168,7 +1264,19 @@
       ],
       "answer": 0,
       "explanation": "胡萝卜有5根、洋葱有4个，5 > 4，所以 carrots 更多。",
-      "source": "Greater Than 第5、8页数量及第6、9页比较句型；原创短文与迁移题。"
+      "source": "Greater Than 第5、8页数量及第6、9页比较句型；原创短文与迁移题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "five carrots\nfour onions",
+          "source": "Greater Than · 第5、8页 · 已核对数量词句"
+        },
+        {
+          "kind": "practice",
+          "text": "In our garden, there are five carrots, four onions and one pepper.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "gt-read-q03",
@@ -1184,7 +1292,19 @@
       ],
       "answer": 1,
       "explanation": "三组数量分别为5、4、1，最大是5，因此是胡萝卜。",
-      "source": "Greater Than 第5、8、11–12页；原创短文与迁移题，不依赖缺少的第10页。"
+      "source": "Greater Than 第5、8、11–12页；原创短文与迁移题，不依赖缺少的第10页。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "five carrots\nfour onions\none pepper",
+          "source": "Greater Than · 第5、8、11页 · 已核对数量词句"
+        },
+        {
+          "kind": "practice",
+          "text": "In our garden, there are five carrots, four onions and one pepper.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "gt-read-q04",
@@ -1200,7 +1320,19 @@
       ],
       "answer": 2,
       "explanation": "短文中的 three yams 明确说明数量是三。",
-      "source": "Greater Than 第4、7页词汇与数量；篮子情境为原创，与 gt-read-q01 共用定位数量单项。"
+      "source": "Greater Than 第4、7页词汇与数量；篮子情境为原创，与 gt-read-q01 共用定位数量单项。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "three yams",
+          "source": "Greater Than · 第7页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "There are three yams and two beets in a basket.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "gt-listen-q01",
@@ -1216,7 +1348,19 @@
       ],
       "answer": 0,
       "explanation": "four onions 表示四个洋葱。",
-      "source": "Greater Than 第8页；原创听力题。"
+      "source": "Greater Than 第8页；原创听力题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "four onions",
+          "source": "Greater Than · 第8页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "There are four onions.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "gt-listen-q02",
@@ -1232,7 +1376,19 @@
       ],
       "answer": 1,
       "explanation": "朗读稿比较的是 five 和 two，并说明五大于二。",
-      "source": "Greater Than 第6页；原创听力题。"
+      "source": "Greater Than 第6页；原创听力题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "greater than",
+          "source": "Greater Than · 第6、9页 · 数量比较表达"
+        },
+        {
+          "kind": "practice",
+          "text": "Five is greater than two.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "gt-listen-q03",
@@ -1248,7 +1404,19 @@
       ],
       "answer": 2,
       "explanation": "朗读稿中说的是 one pepper，一个甜椒。",
-      "source": "Greater Than 第11页；原创听力题。"
+      "source": "Greater Than 第11页；原创听力题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "one pepper",
+          "source": "Greater Than · 第11页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "There is one pepper.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "gt-listen-q04",
@@ -1264,7 +1432,19 @@
       ],
       "answer": 0,
       "explanation": "five carrots 表示五根胡萝卜。",
-      "source": "Greater Than 第5页；原创听力变式，与 gt-listen-q01 共用听数量单项。"
+      "source": "Greater Than 第5页；原创听力变式，与 gt-listen-q01 共用听数量单项。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "five carrots",
+          "source": "Greater Than · 第5页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "There are five carrots.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "at-animals-q01",
@@ -1279,7 +1459,14 @@
       ],
       "answer": 1,
       "explanation": "anteater 表示食蚁兽。",
-      "source": "Animal Tongues 第4页；原创词义题。"
+      "source": "Animal Tongues 第4页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "anteater\nlong, thin",
+          "source": "Animal Tongues · 第4页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-animals-q02",
@@ -1294,7 +1481,14 @@
       ],
       "answer": 2,
       "explanation": "lizard 表示蜥蜴；文中这只蜥蜴的舌头有两个分叉部分。",
-      "source": "Animal Tongues 第5页；原创词义题。"
+      "source": "Animal Tongues 第5页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "lizard\nwith two parts",
+          "source": "Animal Tongues · 第5页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-animals-q03",
@@ -1309,7 +1503,14 @@
       ],
       "answer": 0,
       "explanation": "giraffe 表示长颈鹿。",
-      "source": "Animal Tongues 第6页；原创词义题。"
+      "source": "Animal Tongues 第6页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "giraffe\ndark, strong",
+          "source": "Animal Tongues · 第6页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-animals-q04",
@@ -1324,7 +1525,14 @@
       ],
       "answer": 1,
       "explanation": "turtle 表示龟；此页描述的是图片中的这只龟，不代表所有龟的舌头都像虫。",
-      "source": "Animal Tongues 第7页；原创词义题。"
+      "source": "Animal Tongues 第7页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "turtle\nlike a worm",
+          "source": "Animal Tongues · 第7页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-animals-q05",
@@ -1339,7 +1547,14 @@
       ],
       "answer": 2,
       "explanation": "frog 表示青蛙。",
-      "source": "Animal Tongues 第8页；原创词义题。"
+      "source": "Animal Tongues 第8页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "frog\nlong, sticky",
+          "source": "Animal Tongues · 第8页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-features-q01",
@@ -1354,7 +1569,14 @@
       ],
       "answer": 0,
       "explanation": "long 表示长，thin 表示细；这是文中食蚁兽舌头的描述。",
-      "source": "Animal Tongues 第4页；原创特征词义题。"
+      "source": "Animal Tongues 第4页；原创特征词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "anteater\nlong, thin",
+          "source": "Animal Tongues · 第4页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-features-q02",
@@ -1369,7 +1591,14 @@
       ],
       "answer": 1,
       "explanation": "dark 指颜色深，strong 指有力；书中用它们描述这只长颈鹿的舌头。",
-      "source": "Animal Tongues 第6页；原创特征词义题。"
+      "source": "Animal Tongues 第6页；原创特征词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "giraffe\ndark, strong",
+          "source": "Animal Tongues · 第6页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-features-q03",
@@ -1384,7 +1613,14 @@
       ],
       "answer": 2,
       "explanation": "sticky 表示黏的；文中青蛙的舌头被描述为 long, sticky。",
-      "source": "Animal Tongues 第8页；原创词义题。"
+      "source": "Animal Tongues 第8页；原创词义题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "frog\nlong, sticky",
+          "source": "Animal Tongues · 第8页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-features-q04",
@@ -1399,7 +1635,14 @@
       ],
       "answer": 0,
       "explanation": "like 在这个短语里表示“像”，brush 表示刷子；文中用来形容猫的舌头。",
-      "source": "Animal Tongues 第9页；原创比喻理解题。"
+      "source": "Animal Tongues 第9页；原创比喻理解题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "like a brush",
+          "source": "Animal Tongues · 第9页 · 猫的舌头描述片段"
+        }
+      ]
     },
     {
       "id": "at-features-q05",
@@ -1414,7 +1657,14 @@
       ],
       "answer": 1,
       "explanation": "第7页写 like a worm，意思是像一条虫；仅描述文中这只龟。",
-      "source": "Animal Tongues 第7页；原创特征理解题。"
+      "source": "Animal Tongues 第7页；原创特征理解题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "turtle\nlike a worm",
+          "source": "Animal Tongues · 第7页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-has-q01",
@@ -1429,7 +1679,14 @@
       ],
       "answer": 2,
       "explanation": "This frog 是第三人称单数，表示“有”时使用 has。",
-      "source": "Animal Tongues 第8页；原创句型题。"
+      "source": "Animal Tongues 第8页；原创句型题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "frog\nlong, sticky",
+          "source": "Animal Tongues · 第8页 · 已核对词句"
+        }
+      ]
     },
     {
       "id": "at-has-q02",
@@ -1444,7 +1701,14 @@
       ],
       "answer": 0,
       "explanation": "Animals 是复数，使用 have。",
-      "source": "Animal Tongues 第3页；原创句型题。"
+      "source": "Animal Tongues 第3页；原创句型题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Animals have",
+          "source": "Animal Tongues · 第3页 · 已核对句子片段"
+        }
+      ]
     },
     {
       "id": "at-has-q03",
@@ -1459,7 +1723,14 @@
       ],
       "answer": 1,
       "explanation": "这里 like 作介词，表示“像”；likes 是动词“喜欢”的第三人称单数形式。",
-      "source": "Animal Tongues 第9页；原创句型题。"
+      "source": "Animal Tongues 第9页；原创句型题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "like a brush",
+          "source": "Animal Tongues · 第9页 · 猫的舌头描述片段"
+        }
+      ]
     },
     {
       "id": "at-read-q01",
@@ -1475,7 +1746,19 @@
       ],
       "answer": 2,
       "explanation": "短文明确说明舌头用于获取和吃食物；不额外推断其他用途。",
-      "source": "Animal Tongues 第3页；基于可见文字的原创改写，非官方原题。"
+      "source": "Animal Tongues 第3页；基于可见文字的原创改写，非官方原题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "use their tongues to get and eat food",
+          "source": "Animal Tongues · 第3页 · 已核对用途表达"
+        },
+        {
+          "kind": "practice",
+          "text": "They use their tongues to get food and to eat it.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "at-read-q02",
@@ -1491,7 +1774,19 @@
       ],
       "answer": 0,
       "explanation": "第二句明确说 giraffe 的舌头 dark, strong。",
-      "source": "Animal Tongues 第4、6、8页；原创整合短文，特征仅对应文中动物。"
+      "source": "Animal Tongues 第4、6、8页；原创整合短文，特征仅对应文中动物。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "giraffe\ndark, strong",
+          "source": "Animal Tongues · 第6页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "The giraffe has a dark, strong tongue.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "at-read-q03",
@@ -1507,7 +1802,19 @@
       ],
       "answer": 1,
       "explanation": "第三句明确说 frog 的舌头 long, sticky。",
-      "source": "Animal Tongues 第4、6、8页；原创整合短文，与 at-read-q02 共用特征匹配单项。"
+      "source": "Animal Tongues 第4、6、8页；原创整合短文，与 at-read-q02 共用特征匹配单项。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "frog\nlong, sticky",
+          "source": "Animal Tongues · 第8页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "The frog has a long, sticky tongue.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "at-read-q04",
@@ -1523,7 +1830,19 @@
       ],
       "answer": 2,
       "explanation": "第一句明确说明这只蜥蜴的舌头有 two parts；不是说它有两条舌头。",
-      "source": "Animal Tongues 第5、9页；原创整合短文。"
+      "source": "Animal Tongues 第5、9页；原创整合短文。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "lizard\nwith two parts",
+          "source": "Animal Tongues · 第5页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "This lizard has a tongue with two parts.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "at-listen-q01",
@@ -1539,7 +1858,19 @@
       ],
       "answer": 0,
       "explanation": "朗读稿开头说 This anteater，指食蚁兽。",
-      "source": "Animal Tongues 第4页；原创听力题。"
+      "source": "Animal Tongues 第4页；原创听力题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "anteater\nlong, thin",
+          "source": "Animal Tongues · 第4页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "This anteater has a long, thin tongue.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "at-listen-q02",
@@ -1555,7 +1886,19 @@
       ],
       "answer": 1,
       "explanation": "朗读稿说 long, sticky，即长而黏。",
-      "source": "Animal Tongues 第8页；原创听力题。"
+      "source": "Animal Tongues 第8页；原创听力题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "frog\nlong, sticky",
+          "source": "Animal Tongues · 第8页 · 已核对词句"
+        },
+        {
+          "kind": "practice",
+          "text": "This frog has a long, sticky tongue.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "at-listen-q03",
@@ -1571,7 +1914,19 @@
       ],
       "answer": 2,
       "explanation": "朗读稿中 like a brush 表示像刷子。",
-      "source": "Animal Tongues 第9页；原创听力题。"
+      "source": "Animal Tongues 第9页；原创听力题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "like a brush",
+          "source": "Animal Tongues · 第9页 · 猫的舌头描述片段"
+        },
+        {
+          "kind": "practice",
+          "text": "This cat has a tongue like a brush.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q01",
@@ -1586,7 +1941,14 @@
       ],
       "answer": 0,
       "explanation": "Monday 表示星期一。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q02",
@@ -1601,7 +1963,14 @@
       ],
       "answer": 0,
       "explanation": "Tuesday 表示星期二。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Tuesday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q03",
@@ -1616,7 +1985,14 @@
       ],
       "answer": 0,
       "explanation": "Wednesday 表示星期三。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Wednesday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q04",
@@ -1631,7 +2007,14 @@
       ],
       "answer": 0,
       "explanation": "Thursday 表示星期四。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Thursday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q05",
@@ -1646,7 +2029,14 @@
       ],
       "answer": 0,
       "explanation": "Friday 表示星期五。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Friday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q06",
@@ -1661,7 +2051,14 @@
       ],
       "answer": 0,
       "explanation": "Saturday 表示星期六。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Saturday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q07",
@@ -1676,7 +2073,14 @@
       ],
       "answer": 0,
       "explanation": "Sunday 表示星期日。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Sunday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q08",
@@ -1691,7 +2095,14 @@
       ],
       "answer": 1,
       "explanation": "Monday 后一天是 Tuesday，再后一天是 Wednesday。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q09",
@@ -1706,7 +2117,14 @@
       ],
       "answer": 1,
       "explanation": "Tuesday 后一天是 Wednesday，再后一天是 Thursday。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Tuesday, Wednesday, Thursday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q10",
@@ -1721,7 +2139,14 @@
       ],
       "answer": 1,
       "explanation": "Wednesday 后一天是 Thursday，再后一天是 Friday。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Wednesday, Thursday, Friday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q11",
@@ -1736,7 +2161,14 @@
       ],
       "answer": 1,
       "explanation": "Thursday 后一天是 Friday，再后一天是 Saturday。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Thursday, Friday, Saturday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-days-q12",
@@ -1751,7 +2183,14 @@
       ],
       "answer": 1,
       "explanation": "Friday 后一天是 Saturday，再后一天是 Sunday。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Friday, Saturday, Sunday",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-activities-q01",
@@ -1766,7 +2205,14 @@
       ],
       "answer": 2,
       "explanation": "go swimming 表示“去游泳”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go swimming",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-activities-q02",
@@ -1781,7 +2227,14 @@
       ],
       "answer": 0,
       "explanation": "go swimming 表示“去游泳”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go swimming",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-activities-q03",
@@ -1796,7 +2249,14 @@
       ],
       "answer": 2,
       "explanation": "play the piano 表示“弹钢琴”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "play the piano",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-activities-q04",
@@ -1811,7 +2271,14 @@
       ],
       "answer": 0,
       "explanation": "play the piano 表示“弹钢琴”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "play the piano",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-activities-q05",
@@ -1826,7 +2293,14 @@
       ],
       "answer": 2,
       "explanation": "read books 表示“读书”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "read books",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-activities-q06",
@@ -1841,7 +2315,14 @@
       ],
       "answer": 0,
       "explanation": "read books 表示“读书”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "read books",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q01",
@@ -1855,7 +2336,14 @@
       ],
       "answer": 1,
       "explanation": "每次都做，用 always（总是）。never 表示从不。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "always",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q02",
@@ -1869,7 +2357,14 @@
       ],
       "answer": 1,
       "explanation": "从不做，用 never。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "never",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q03",
@@ -1883,7 +2378,14 @@
       ],
       "answer": 1,
       "explanation": "每次都做，用 always（总是）。never 表示从不。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "always",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q04",
@@ -1897,7 +2399,14 @@
       ],
       "answer": 1,
       "explanation": "从不做，用 never。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "never",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q05",
@@ -1911,7 +2420,14 @@
       ],
       "answer": 1,
       "explanation": "每次都做，用 always（总是）。never 表示从不。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "always",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q06",
@@ -1925,7 +2441,14 @@
       ],
       "answer": 1,
       "explanation": "从不做，用 never。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "never",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q07",
@@ -1940,7 +2463,14 @@
       ],
       "answer": 2,
       "explanation": "always 的意思是“总是”。句意：它总是清洁自己的脸。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "always",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-frequency-q08",
@@ -1955,7 +2485,14 @@
       ],
       "answer": 1,
       "explanation": "never 的意思是“从不”。",
-      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题"
+      "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "never",
+          "source": "My week · 已核对课件词句"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q01",
@@ -1971,7 +2508,19 @@
       "answer": 1,
       "explanation": "录音说 on Tuesdays，所以选 Tuesdays。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "Hi, I'm Tom. I always go swimming on Tuesdays."
+      "audioText": "Hi, I'm Tom. I always go swimming on Tuesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Tom. I always go swimming on Tuesdays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q02",
@@ -1987,7 +2536,19 @@
       "answer": 2,
       "explanation": "录音说 on Fridays，所以选 Fridays。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "Hi, I'm Anna. I always read books on Fridays."
+      "audioText": "Hi, I'm Anna. I always read books on Fridays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Anna. I always read books on Fridays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q03",
@@ -2003,7 +2564,19 @@
       "answer": 0,
       "explanation": "录音说 on Wednesdays，所以选 Wednesdays。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "Hi, I'm Ben. I always play the piano on Wednesdays."
+      "audioText": "Hi, I'm Ben. I always play the piano on Wednesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Ben. I always play the piano on Wednesdays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q04",
@@ -2019,7 +2592,19 @@
       "answer": 1,
       "explanation": "录音说 on Sundays，所以选 Sundays。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "Hi, I'm Lucy. I always go swimming on Sundays."
+      "audioText": "Hi, I'm Lucy. I always go swimming on Sundays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Lucy. I always go swimming on Sundays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q05",
@@ -2035,7 +2620,19 @@
       "answer": 0,
       "explanation": "录音说 on Mondays，所以选 Mondays。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "Hi, I'm Sam. I always read books on Mondays."
+      "audioText": "Hi, I'm Sam. I always read books on Mondays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Sam. I always read books on Mondays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q06",
@@ -2051,7 +2648,19 @@
       "answer": 2,
       "explanation": "录音说 on Saturdays，所以选 Saturdays。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "Hi, I'm Amy. I always play the piano on Saturdays."
+      "audioText": "Hi, I'm Amy. I always play the piano on Saturdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Amy. I always play the piano on Saturdays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q07",
@@ -2067,7 +2676,19 @@
       "answer": 2,
       "explanation": "录音说 I always go swimming on Tuesdays. 每周二去游泳。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "I always go swimming on Tuesdays."
+      "audioText": "I always go swimming on Tuesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I always go swimming on Tuesdays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-listen-q08",
@@ -2083,7 +2704,19 @@
       "answer": 0,
       "explanation": "录音中的 never go swimming 表示从不去游泳。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "audioText": "I never go swimming on Mondays."
+      "audioText": "I never go swimming on Mondays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I never go swimming on Mondays.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q01",
@@ -2099,7 +2732,19 @@
       "answer": 1,
       "explanation": "短文中 I read books on Fridays. 给出了答案。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays."
+      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I read books on Fridays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q02",
@@ -2115,7 +2760,19 @@
       "answer": 2,
       "explanation": "I always go swimming on Tuesdays. 表示这天去游泳。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays."
+      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I always go swimming on Tuesdays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q03",
@@ -2131,7 +2788,19 @@
       "answer": 0,
       "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays."
+      "passage": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Anna. I always go swimming on Tuesdays. I read books on Fridays. I never play the piano on Tuesdays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q04",
@@ -2147,7 +2816,19 @@
       "answer": 1,
       "explanation": "短文中 I read books on Sundays. 给出了答案。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays."
+      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I read books on Sundays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q05",
@@ -2163,7 +2844,19 @@
       "answer": 2,
       "explanation": "I always go swimming on Wednesdays. 表示这天去游泳。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays."
+      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I always go swimming on Wednesdays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q06",
@@ -2179,7 +2872,19 @@
       "answer": 0,
       "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays."
+      "passage": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Ben. I always go swimming on Wednesdays. I read books on Sundays. I never play the piano on Wednesdays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q07",
@@ -2195,7 +2900,19 @@
       "answer": 1,
       "explanation": "短文中 I read books on Mondays. 给出了答案。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I read books on Mondays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q08",
@@ -2211,7 +2928,19 @@
       "answer": 2,
       "explanation": "I always go swimming on Saturdays. 表示这天去游泳。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "I always go swimming on Saturdays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-01-read-q09",
@@ -2227,7 +2956,19 @@
       "answer": 0,
       "explanation": "短文介绍不同星期做什么，主要讲一周的活动安排。",
       "source": "对话上传的 IMG_5134–5137；原创变式练习，非官方原题",
-      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays."
+      "passage": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\ngo swimming · play the piano · read books\nalways · never",
+          "source": "My week · 原创听读所依据的课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Hi, I'm Lucy. I always go swimming on Saturdays. I read books on Mondays. I never play the piano on Saturdays.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q01",
@@ -2242,7 +2983,14 @@
       ],
       "answer": 0,
       "explanation": "octopus 表示章鱼，封面和第3页都出现了这个词。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图1、图2／第3页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图1、图2／第3页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Why does an octopus need eight arms?",
+          "source": "Why Does an Octopus Need Eight Arms? · 第3页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q02",
@@ -2257,7 +3005,14 @@
       ],
       "answer": 2,
       "explanation": "arm 是手臂；这里用复数 arms。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Why does an octopus need eight arms?",
+          "source": "Why Does an Octopus Need Eight Arms? · 第3页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q03",
@@ -2272,7 +3027,14 @@
       ],
       "answer": 1,
       "explanation": "eight 是八；故事问章鱼为什么需要八条手臂。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Why does an octopus need eight arms?",
+          "source": "Why Does an Octopus Need Eight Arms? · 第3页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q04",
@@ -2287,7 +3049,14 @@
       ],
       "answer": 0,
       "explanation": "first 表示第一。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的first arm；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的first arm；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The first arm is for brushing her teeth.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q05",
@@ -2302,7 +3071,14 @@
       ],
       "answer": 2,
       "explanation": "second 表示第二。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的second arm；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的second arm；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The second arm is for combing her hair.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第5页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q06",
@@ -2317,7 +3093,14 @@
       ],
       "answer": 1,
       "explanation": "third 表示第三。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的third arm；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的third arm；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The third arm is for playing catch.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第6页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q07",
@@ -2332,7 +3115,14 @@
       ],
       "answer": 0,
       "explanation": "fourth 表示第四。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的fourth arm；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页的fourth arm；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fourth arm is for giving high fives.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第7页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q08",
@@ -2347,7 +3137,14 @@
       ],
       "answer": 2,
       "explanation": "brushing her teeth 表示刷牙，这是故事中章鱼做的活动。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The first arm is for brushing her teeth.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q09",
@@ -2362,7 +3159,14 @@
       ],
       "answer": 1,
       "explanation": "combing her hair 表示梳头，这是故事中章鱼做的活动。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The second arm is for combing her hair.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第5页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q10",
@@ -2377,7 +3181,14 @@
       ],
       "answer": 0,
       "explanation": "playing catch 表示玩抛接球游戏，这是故事中章鱼做的活动。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图5／第6页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图5／第6页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The third arm is for playing catch.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第6页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q11",
@@ -2392,7 +3203,14 @@
       ],
       "answer": 2,
       "explanation": "giving high fives 表示击掌，这是故事中章鱼做的活动。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图6／第7页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图6／第7页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fourth arm is for giving high fives.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第7页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q12",
@@ -2407,7 +3225,14 @@
       ],
       "answer": 1,
       "explanation": "表达用途时，这里用 is for + 动词-ing，因此选 brushing。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The first arm is for brushing her teeth.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q13",
@@ -2422,7 +3247,14 @@
       ],
       "answer": 0,
       "explanation": "for 后面用 combing，与课文的 is for combing her hair 一致。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The second arm is for combing her hair.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第5页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q14",
@@ -2438,7 +3270,14 @@
       "answer": 2,
       "explanation": "原文明确写了 The first arm is for brushing her teeth.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第4页；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The first arm is for brushing her teeth.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q15",
@@ -2454,7 +3293,14 @@
       "answer": 1,
       "explanation": "原文明确写了 The second arm is for combing her hair.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第5页；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The second arm is for combing her hair.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第5页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q16",
@@ -2470,7 +3316,14 @@
       "answer": 0,
       "explanation": "原文明确写了 The third arm is for playing catch.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第6页；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The third arm is for playing catch.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第6页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q17",
@@ -2486,7 +3339,14 @@
       "answer": 2,
       "explanation": "原文明确写了 The fourth arm is for giving high fives.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3–6／第4–7页原文节选拼接，不代表完整绘本；本题依据第7页；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives."
+      "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fourth arm is for giving high fives.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第7页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q18",
@@ -2502,7 +3362,19 @@
       "answer": 1,
       "explanation": "朗读中的 octopus 是章鱼。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图2／第3页；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "An octopus has eight arms."
+      "audioText": "An octopus has eight arms.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Why does an octopus need eight arms?",
+          "source": "Why Does an Octopus Need Eight Arms? · 第3页"
+        },
+        {
+          "kind": "practice",
+          "text": "An octopus has eight arms.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q19",
@@ -2518,7 +3390,14 @@
       "answer": 0,
       "explanation": "brushing her teeth 表示刷牙。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图3／第4页；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "The first arm is for brushing her teeth."
+      "audioText": "The first arm is for brushing her teeth.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The first arm is for brushing her teeth.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q20",
@@ -2534,7 +3413,14 @@
       "answer": 2,
       "explanation": "朗读说 The second arm is for combing her hair.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图4／第5页；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "The second arm is for combing her hair."
+      "audioText": "The second arm is for combing her hair.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The second arm is for combing her hair.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第5页"
+        }
+      ]
     },
     {
       "id": "raz-d-octopus-eight-arms-q21",
@@ -2550,7 +3436,14 @@
       "answer": 1,
       "explanation": "朗读明确说第四条手臂用来 giving high fives，也就是击掌。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图6／第7页；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "The fourth arm is for giving high fives."
+      "audioText": "The fourth arm is for giving high fives.",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The fourth arm is for giving high fives.",
+          "source": "Why Does an Octopus Need Eight Arms? · 第7页"
+        }
+      ]
     },
     {
       "id": "l2-02-q01",
@@ -2565,7 +3458,14 @@
       ],
       "answer": 0,
       "explanation": "listen to music 表示听音乐。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "listen to music",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q02",
@@ -2580,7 +3480,14 @@
       ],
       "answer": 2,
       "explanation": "listen to a CD 表示听CD。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "listen to a CD",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q03",
@@ -2595,7 +3502,14 @@
       ],
       "answer": 1,
       "explanation": "watch a DVD 表示看DVD。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "watch a DVD",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q04",
@@ -2610,7 +3524,14 @@
       ],
       "answer": 0,
       "explanation": "read a comic 表示读漫画。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "read a comic",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q05",
@@ -2625,7 +3546,14 @@
       ],
       "answer": 2,
       "explanation": "watch a film 表示看电影。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "watch a film",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q06",
@@ -2640,7 +3568,14 @@
       ],
       "answer": 1,
       "explanation": "write an email 表示写邮件。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "write an email",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q07",
@@ -2655,7 +3590,14 @@
       ],
       "answer": 0,
       "explanation": "go skating 表示去滑冰。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go skating",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q08",
@@ -2670,7 +3612,14 @@
       ],
       "answer": 2,
       "explanation": "go shopping 表示去购物。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go shopping",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q09",
@@ -2685,7 +3634,14 @@
       ],
       "answer": 1,
       "explanation": "go skateboarding 表示去玩滑板。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "skateboard\ngo skateboarding",
+          "source": "Rules · 素材图10 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q10",
@@ -2700,7 +3656,14 @@
       ],
       "answer": 0,
       "explanation": "go skiing 表示去滑雪。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "ski\ngo skiing",
+          "source": "Rules · 素材图10 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q11",
@@ -2715,7 +3678,14 @@
       ],
       "answer": 2,
       "explanation": "skateboard 是滑板；skate 可指滑冰鞋，二者不同。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "skateboard\ngo skateboarding",
+          "source": "Rules · 素材图10 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q12",
@@ -2730,7 +3700,14 @@
       ],
       "answer": 1,
       "explanation": "听音乐的完整表达是 listen to music，需要 to。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "listen to music",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q13",
@@ -2745,7 +3722,14 @@
       ],
       "answer": 0,
       "explanation": "课件写的是 write an email；email 前使用 an。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "write an email",
+          "source": "Rules · 素材图9 · 课件词句"
+        }
+      ]
     },
     {
       "id": "l2-02-q14",
@@ -2760,7 +3744,14 @@
       ],
       "answer": 2,
       "explanation": "must 表示必须；mustn't 表示禁止。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创规则场景；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创规则场景；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must：必须\nmustn't：禁止",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q15",
@@ -2775,7 +3766,14 @@
       ],
       "answer": 1,
       "explanation": "mustn't 是不允许，表示禁止，不是可以自由选择。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创规则场景；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创规则场景；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must：必须\nmustn't：禁止",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q16",
@@ -2790,7 +3788,14 @@
       ],
       "answer": 0,
       "explanation": "must 后用动词原形 write。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must / mustn't + 动词原形",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q17",
@@ -2805,7 +3810,14 @@
       ],
       "answer": 2,
       "explanation": "mustn't 后也用动词原形 watch。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must / mustn't + 动词原形",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q18",
@@ -2820,7 +3832,14 @@
       ],
       "answer": 1,
       "explanation": "虽然主语是 He，must 后仍用动词原形 listen。主要考查must后动词形式。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创句子；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must / mustn't + 动词原形",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q19",
@@ -2835,7 +3854,14 @@
       ],
       "answer": 0,
       "explanation": "must 不随人称变化，She 后仍用 must。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创变式；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创变式；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must / mustn't 没有人称变化",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q20",
@@ -2850,7 +3876,14 @@
       ],
       "answer": 2,
       "explanation": "must 没有人称变化，不加-s或-ing。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创变式；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；原创变式；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must / mustn't 没有人称变化",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q21",
@@ -2865,7 +3898,14 @@
       ],
       "answer": 1,
       "explanation": "正确顺序是 What + must + 主语 + do?",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "What + must + 主语 + do?",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q22",
@@ -2880,7 +3920,14 @@
       ],
       "answer": 0,
       "explanation": "What must I do? 问我必须做什么；根据给定规则回答 You must read a comic.",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创问答；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创问答；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "note",
+          "text": "What + must + 主语 + do?",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        }
+      ]
     },
     {
       "id": "l2-02-q23",
@@ -2895,7 +3942,14 @@
       ],
       "answer": 2,
       "explanation": "去滑冰用 go skating；go 后接活动的-ing形式。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9–10；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9–10；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go skating\ngo shopping\ngo skateboarding\ngo skiing",
+          "source": "Rules · 素材图9–10 · 课件活动表达"
+        }
+      ]
     },
     {
       "id": "l2-02-q24",
@@ -2910,7 +3964,14 @@
       ],
       "answer": 1,
       "explanation": "去滑雪用 go skiing。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；根据已核对素材编写的原创练习，非官方原题",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go skating\ngo shopping\ngo skateboarding\ngo skiing",
+          "source": "Rules · 素材图9–10 · 课件活动表达"
+        }
+      ]
     },
     {
       "id": "l2-02-q25",
@@ -2926,7 +3987,19 @@
       "answer": 0,
       "explanation": "第一句 you must read a comic 明确说明必须读漫画。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；整段为原创迁移短文；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding.",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must：必须\nmustn't：禁止",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        },
+        {
+          "kind": "practice",
+          "text": "Ben goes skateboarding.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-02-q26",
@@ -2942,7 +4015,19 @@
       "answer": 2,
       "explanation": "You mustn't watch a DVD. 明确禁止看DVD。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；整段为原创迁移短文；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding.",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must：必须\nmustn't：禁止",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        },
+        {
+          "kind": "practice",
+          "text": "At the comic club, you must read a comic.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-02-q27",
@@ -2958,7 +4043,19 @@
       "answer": 1,
       "explanation": "After the club, Anna goes shopping. 明确说Anna去购物。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；整段为原创迁移短文，goes为阅读句中的人称形式；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "go shopping",
+          "source": "Rules · 素材图9 · 课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "You mustn't watch a DVD.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-02-q28",
@@ -2974,7 +4071,19 @@
       "answer": 0,
       "explanation": "Ben goes skateboarding. 中的 skateboarding 是玩滑板。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；整段为原创迁移短文；根据已核对素材编写的原创练习，非官方原题",
-      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding."
+      "passage": "At the comic club, you must read a comic.\nYou mustn't watch a DVD.\nAfter the club, Anna goes shopping.\nBen goes skateboarding.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "skateboard\ngo skateboarding",
+          "source": "Rules · 素材图10 · 课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "After the club, Anna goes shopping.",
+          "source": "本题阅读材料 · 原创练习"
+        }
+      ]
     },
     {
       "id": "l2-02-q29",
@@ -2990,7 +4099,19 @@
       "answer": 2,
       "explanation": "朗读说 Anna wants to read a comic.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图9；原创听辨句；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "Anna wants to read a comic."
+      "audioText": "Anna wants to read a comic.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "read a comic",
+          "source": "Rules · 素材图9 · 课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Anna wants to read a comic.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-02-q30",
@@ -3006,7 +4127,19 @@
       "answer": 1,
       "explanation": "朗读说 Ben must write an email.",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创听辨句；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "Ben must write an email."
+      "audioText": "Ben must write an email.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "write an email",
+          "source": "Rules · 素材图9 · 课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "Ben must write an email.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-02-q31",
@@ -3022,7 +4155,19 @@
       "answer": 0,
       "explanation": "go skiing 是去滑雪。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图10；原创听辨句；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "We go skiing."
+      "audioText": "We go skiing.",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "ski\ngo skiing",
+          "source": "Rules · 素材图10 · 课件词句"
+        },
+        {
+          "kind": "practice",
+          "text": "We go skiing.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     },
     {
       "id": "l2-02-q32",
@@ -3038,7 +4183,19 @@
       "answer": 2,
       "explanation": "You mustn't listen to music. 中的 mustn't 表示禁止。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；图7、图9；原创规则听辨句；根据已核对素材编写的原创练习，非官方原题",
-      "audioText": "You mustn't listen to music."
+      "audioText": "You mustn't listen to music.",
+      "references": [
+        {
+          "kind": "note",
+          "text": "must：必须\nmustn't：禁止",
+          "source": "Rules · 素材图7 · 已核对语法要点"
+        },
+        {
+          "kind": "practice",
+          "text": "You mustn't listen to music.",
+          "source": "本题朗读稿 · 原创听辨"
+        }
+      ]
     }
   ]
 }

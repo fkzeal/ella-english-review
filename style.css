@@ -302,6 +302,13 @@ body{background:radial-gradient(ellipse at 0 10%,#fff0db,transparent 50%),radial
 @media(max-width:700px){.friend-cat.illustrated-kitten{width:62px;height:62px}.kitten-friends{bottom:-8px;right:-18px}.cheer-cat.illustrated-kitten{width:91px;height:100px}.cat-cheer{gap:8px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.snow-confetti{display:none}.button:hover:not(:disabled){transform:none}}
 /* Tablet practice: use the screen width and give learning text room to breathe. */
+.answer-reference{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.answer-reference>summary{font-size:18px;font-weight:650;color:var(--ink);min-height:44px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.answer-reference>summary::before{content:"▸";color:var(--green)}
+.answer-reference[open]>summary::before{content:"▾"}
+.reference-item{margin-top:14px}
+.reference-source{display:block;font-size:13px;color:var(--muted);line-height:1.6;overflow-wrap:anywhere}
+.reference-text{margin:8px 0 0;padding-left:14px;border-left:3px solid var(--aqua);font-size:20px;line-height:1.75;white-space:pre-wrap;overflow-wrap:break-word}
 @media(min-width:701px) and (max-width:1400px){
   main{max-width:none;padding:32px clamp(20px,2.2vw,32px) 60px}
   .header{padding-inline:clamp(20px,2.2vw,32px)}
@@ -328,6 +335,9 @@ body{background:radial-gradient(ellipse at 0 10%,#fff0db,transparent 50%),radial
   .audio-script{font-size:26px;line-height:1.8;overflow-wrap:break-word}
   .feedback{padding:24px}
   .feedback>strong,.feedback p{font-size:22px;line-height:1.7}
+  .answer-reference>summary{font-size:22px;min-height:54px}
+  .reference-source{font-size:17px}
+  .reference-text{font-size:26px}
   .cat-cheer>div:not(.snow-confetti){min-width:0}
   .cat-cheer strong{font-size:22px;line-height:1.6}
   .cheer-label,.cat-cheer span:last-child{font-size:17px;letter-spacing:0}

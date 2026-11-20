@@ -215,6 +215,14 @@
     else delete next.session.hints[id];
     await commit(next);help=Boolean(next.session.hints[id]);
   }
+  function referenceView(q){
+    const labels={original:'教材原句',excerpt:'教材／课件词句',note:'素材要点（核对记录）',practice:'本题原创材料'};
+    const references=q.references||(q.passage?[{kind:'practice',text:q.passage,source:'本题阅读材料 · 原创练习'}]:
+      q.audioText?[{kind:'practice',text:q.audioText,source:'本题朗读稿 · 原创听辨'}]:[]);
+    if(!references.length)return '';
+    return `<details class="answer-reference"><summary>参考原文</summary>${references.map(r=>
+      `<div class="reference-item"><span class="reference-source">${esc(labels[r.kind])} · ${esc(r.source)}</span><blockquote class="reference-text">${esc(r.text)}</blockquote></div>`).join('')}</details>`;
+  }
   function renderQuiz(){
     const t=state.session;
     if(!t||(t.index>=t.items.length&&!feedback)){renderSummary();return;}
@@ -228,7 +236,7 @@
     setApp(layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div><span class="note">${esc(shownP.title)}</span>
       ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><button class="button secondary" data-action="play" data-id="${shown.id}" data-speed="slow">慢速听</button><button class="link-button" data-action="stop-audio">停止</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
       ${shown.passage?`<div class="passage" lang="en">${esc(shown.passage)}</div>`:''}<h2>${esc(shown.prompt)}</h2><div class="options">${options.map((o,i)=>`<button class="option ${selected===o.index?'selected':''} ${feedback?(o.index===shown.answer?'correct':o.index===feedback.selected?'wrong':''):''}" data-action="select" data-option="${o.index}" ${feedback?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o.text)}</span>${feedback&&o.index===shown.answer?'<span style="margin-left:auto">✓</span>':''}</button>`).join('')}</div>
-      ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p></div>`:''}
+      ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p>${referenceView(shown)}</div>`:''}
       <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`);
   }
   function seeded(id,d,n){let hash=2166136261;for(const c of id+d+n)hash=Math.imul(hash^c.charCodeAt(0),16777619);hash^=hash>>>16;hash=Math.imul(hash,0x7feb352d);hash^=hash>>>15;return (hash>>>0)/4294967296;}
