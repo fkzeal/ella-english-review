@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import tempfile
 from datetime import datetime
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -115,7 +115,9 @@ def published_receipt(path, directory):
                       "--json", "headSha,status,conclusion,url"], directory, "actions")
     if action.get("headSha") != commit or action.get("status") != "completed" or action.get("conclusion") != "success":
         raise ValueError("修复提交的Actions尚未成功")
-    with urlopen("https://ella-english-review.pages.dev/question-bank.json", timeout=30) as response:
+    request = Request("https://ella-english-review.pages.dev/question-bank.json",
+                      headers={"User-Agent": "Mozilla/5.0 (compatible; EllaFeedbackMaintenance/1.0)"})
+    with urlopen(request, timeout=30) as response:
         bank = json.load(response)
     if bank.get("revision", 0) < receipt.get("revision", 0):
         raise ValueError("生产题库尚未同步修复版本")
