@@ -8,7 +8,7 @@ function harness(initial,shared,overrides={}){
     return nodes.get(id);
   }
   const nav=Object.assign(node('nav-library'),{dataset:{page:'library'},hasAttribute:()=>false});
-  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:A,setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),LESSON_AUDIO:structuredClone(manifest),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
+  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:A,ReviewErrorFeedback:require('../error-feedback'),REVIEW_FEEDBACK:{formUrl:require('../feedback-store.json').formUrl},setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),LESSON_AUDIO:structuredClone(manifest),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
   const ctx={window:win,document:{getElementById:node,querySelectorAll:()=>[nav],querySelector:()=>node('brand'),addEventListener(){}},
     navigator:{locks:{request:async(k,fn)=>fn()}},localStorage:{getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)},
     location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(fn){win.interval=fn;},console,URL,Blob,...overrides.context};
@@ -73,6 +73,26 @@ function sessionRaw(qs){
   state.session={items:qs.map(q=>q.id),index:0,results:[],hints:{},day:E.day()};
   return JSON.stringify({bank,state,baseline:JSON.stringify(bank)});
 }
+test('error report always identifies the visible question even after the answer cursor advances',async()=>{
+  const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2),app=harness(sessionRaw(qs));
+  await app.ready();await app.click('resume');
+  function report(){
+    const html=app.node('app').innerHTML,match=html.match(/class="error-feedback-button" href="([^"]+)"/);
+    assert(match);assert.match(html,/target="_blank" rel="noopener noreferrer"/);
+    return new URL(match[1].replaceAll('&amp;','&'));
+  }
+  assert.equal(report().searchParams.get('prefill_题目编号'),qs[0].id);
+  const original=app.data.get(S.KEY);
+  report();assert.equal(app.data.get(S.KEY),original);
+  await app.click('select',{option:String(qs[0].answer)});
+  assert.equal(app.saved().state.session.index,1);
+  assert.equal(report().searchParams.get('prefill_题目编号'),qs[0].id);
+  assert(report().searchParams.get('prefill_题目内容').includes(qs[0].prompt));
+  assert.equal(report().searchParams.get('prefill_题库版本'),String(bank.revision));
+  await app.click('next');
+  assert.equal(report().searchParams.get('prefill_题目编号'),qs[1].id);
+  assert.equal(app.saved().state.history.length,1);
+});
 test('queued clicks on an old question are discarded after another tab advances the cursor',async()=>{
   const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2);let gate;
   const app=harness(sessionRaw(qs),undefined,{context:{

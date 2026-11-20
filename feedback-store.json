@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "baseToken": "JZRKbz0FWahGfXs4zkDclBT3n6c",
+  "tableId": "tbl3rU2X4zx2BHVx",
+  "formId": "vewInQhXN3",
+  "shareToken": "shrcnqzoSSgGriwRlTZ10AlMhVf",
+  "formUrl": "https://dcar.feishu.cn/share/base/shrcnqzoSSgGriwRlTZ10AlMhVf",
+  "baseUrl": "https://dcar.feishu.cn/base/JZRKbz0FWahGfXs4zkDclBT3n6c",
+  "fields": {
+    "反馈编号": "fldLo5JUI7",
+    "题目编号": "fldjfxZs5R",
+    "课程": "fldFTxrGFN",
+    "题目内容": "fldLsWPRuN",
+    "题库版本": "fldfBdg9UN",
+    "应用版本": "fldm99JT7R",
+    "问题类型": "fldlki2E4a",
+    "错误说明": "fldoE39bOf",
+    "处理状态": "fldtXZxqvr",
+    "替换题号": "fldWo0uSGv",
+    "修复题库版本": "fldSAwu34l",
+    "处理时间": "fldIFfIbWo",
+    "修复说明": "fld6oMb3zp",
+    "处理批次": "fldg8Ne0Mb",
+    "修复提交": "fldn53rjFf"
+  },
+  "pendingStatuses": ["待核查", "需补充素材", "修复待发布"],
+  "closedStatuses": ["已修复", "未发现错误", "重复反馈", "验证记录"]
+}

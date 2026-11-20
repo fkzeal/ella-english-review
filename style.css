@@ -100,6 +100,10 @@ input[type=checkbox]{width:17px;height:17px;accent-color:var(--green)}
 .progress-track{height:7px;border-radius:10px;background:var(--line);overflow:hidden;margin-bottom:24px}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--aqua),var(--green));transition:width .2s}
 .question{padding:32px}
+.question-header{align-items:flex-start}
+.question-heading{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-width:0}
+.error-feedback-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:13px;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.error-feedback-button:hover{background:var(--paper);color:var(--ink)}
 .question h2{font-size:25px;white-space:pre-wrap;margin-top:20px}
 .passage{padding:20px;background:#f6f8fd;border:1px solid var(--line);border-left:4px solid var(--aqua);border-radius:12px;font-size:18px;line-height:1.9;white-space:pre-wrap;margin:20px 0}
 .options{display:grid;gap:12px;margin:24px 0}

@@ -223,6 +223,11 @@
     return `<details class="answer-reference"><summary>参考原文</summary>${references.map(r=>
       `<div class="reference-item"><span class="reference-source">${esc(labels[r.kind])} · ${esc(r.source)}</span><blockquote class="reference-text">${esc(r.text)}</blockquote></div>`).join('')}</details>`;
   }
+  function errorFeedbackLink(q,lesson){
+    const id=window.crypto?.randomUUID?.()||`feedback-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const url=window.ReviewErrorFeedback.url(window.REVIEW_FEEDBACK,q,lesson,bank.revision,window.REVIEW_VERSION,id);
+    return url?`<a class="error-feedback-button" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="反馈本题错误（打开反馈表单）">反馈错误 <span aria-hidden="true">↗</span></a>`:'';
+  }
   function renderQuiz(){
     const t=state.session;
     if(!t||(t.index>=t.items.length&&!feedback)){renderSummary();return;}
@@ -233,7 +238,7 @@
     const position=feedback?t.index:t.index+1;
     let counter=0;
     const options=E.shuffle(shown.options.map((text,i)=>({text,index:i})),()=>seeded(shown.id,t.day,counter++));
-    setApp(layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div><span class="note">${esc(shownP.title)}</span>
+    setApp(layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header question-header"><div class="question-heading"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div>${errorFeedbackLink(shown,shownL)}</div><span class="note">${esc(shownP.title)}</span>
       ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><button class="button secondary" data-action="play" data-id="${shown.id}" data-speed="slow">慢速听</button><button class="link-button" data-action="stop-audio">停止</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
       ${shown.passage?`<div class="passage" lang="en">${esc(shown.passage)}</div>`:''}<h2>${esc(shown.prompt)}</h2><div class="options">${options.map((o,i)=>`<button class="option ${selected===o.index?'selected':''} ${feedback?(o.index===shown.answer?'correct':o.index===feedback.selected?'wrong':''):''}" data-action="select" data-option="${o.index}" ${feedback?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o.text)}</span>${feedback&&o.index===shown.answer?'<span style="margin-left:auto">✓</span>':''}</button>`).join('')}</div>
       ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p>${referenceView(shown)}</div>`:''}

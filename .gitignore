@@ -15,3 +15,6 @@ audio-manifest.js
 /英语*.html
 /english-review
 /.course-imports/
+/.error-feedback/
+feedback-config.js
+__pycache__/

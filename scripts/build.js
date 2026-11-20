@@ -6,19 +6,25 @@ fs.writeFileSync(path.join(root,'bank.js'),'window.LESSON_BANK = '+JSON.stringif
 const crypto=require('node:crypto');
 const audio=require('./audio-assets').prepareAudio(root,bank);
 fs.writeFileSync(path.join(root,'audio-manifest.js'),audio.script);
+const feedbackStore=JSON.parse(fs.readFileSync(path.join(root,'feedback-store.json'),'utf8'));
+const formUrl=new URL(feedbackStore.formUrl);
+if(formUrl.protocol!=='https:')throw new Error('Feedback form must use HTTPS');
+const feedbackScript='window.REVIEW_FEEDBACK = '+JSON.stringify({formUrl:formUrl.href})+';\n';
+fs.writeFileSync(path.join(root,'feedback-config.js'),feedbackScript);
 const kittenFiles=new Map(['ginger','tuxedo','calico','gray','siamese','cream'].map(name=>{
   const file=`assets/kittens/${name}.webp`;
   return [file,fs.readFileSync(path.join(root,file))];
 }));
 const hash=crypto.createHash('sha256');
-for(const name of ['index.html','style.css','engine.js','storage.js','app.js','audio-player.js','audio/manifest.json','question-bank.json','package.json'])hash.update(fs.readFileSync(path.join(root,name)));
+for(const name of ['index.html','style.css','engine.js','storage.js','app.js','audio-player.js','error-feedback.js','audio/manifest.json','question-bank.json','package.json'])hash.update(fs.readFileSync(path.join(root,name)));
+hash.update(feedbackScript);
 for(const bytes of audio.files.values())hash.update(bytes);
 for(const bytes of kittenFiles.values())hash.update(bytes);
 const version={app:require('../package.json').version,bank:bank.revision,build:hash.digest('hex').slice(0,12),builtAt:new Date().toISOString()};
 fs.writeFileSync(path.join(root,'version.js'),'window.REVIEW_VERSION = '+JSON.stringify(version)+';\n');
 let html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 html=html.replace('<link rel="stylesheet" href="style.css">',()=>'<style>'+fs.readFileSync(path.join(root,'style.css'),'utf8')+'</style>');
-for(const name of ['bank.js','engine.js','storage.js','version.js','audio-manifest.js','audio-player.js','app.js']) {
+for(const name of ['bank.js','engine.js','storage.js','version.js','audio-manifest.js','audio-player.js','feedback-config.js','error-feedback.js','app.js']) {
   let js=(name==='audio-manifest.js'?audio.standaloneScript:fs.readFileSync(path.join(root,name),'utf8')).replace(/<\/script/gi,'<\\/script');
   if(name==='app.js')for(const [file,bytes] of kittenFiles)js=js.replaceAll(file,`data:image/webp;base64,${bytes.toString('base64')}`);
   html=html.replace(`<script src="${name}"></script>`,()=>`<script>${js}</script>`);
@@ -28,7 +34,7 @@ fs.writeFileSync(standalone,html);
 const dist=path.join(root,'dist');
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});
-for(const name of ['index.html','style.css','bank.js','engine.js','storage.js','version.js','audio-manifest.js','audio-player.js','app.js','question-bank.json','_headers','99e0d85e952f8d812c763271f7a246d3.txt']){
+for(const name of ['index.html','style.css','bank.js','engine.js','storage.js','version.js','audio-manifest.js','audio-player.js','feedback-config.js','error-feedback.js','app.js','question-bank.json','_headers','99e0d85e952f8d812c763271f7a246d3.txt']){
   fs.copyFileSync(path.join(root,name),path.join(dist,name));
 }
 fs.mkdirSync(path.join(dist,'audio'));
