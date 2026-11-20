@@ -32,6 +32,7 @@ for(const name of ['index.html','style.css','bank.js','engine.js','storage.js','
   fs.copyFileSync(path.join(root,name),path.join(dist,name));
 }
 fs.mkdirSync(path.join(dist,'audio'));
+fs.copyFileSync(path.join(root,'audio/manifest.json'),path.join(dist,'audio-manifest.json'));
 for(const [name,bytes] of audio.files)fs.writeFileSync(path.join(dist,name),bytes);
 fs.mkdirSync(path.join(dist,'assets/kittens'),{recursive:true});
 for(const [name,bytes] of kittenFiles)fs.writeFileSync(path.join(dist,name),bytes);

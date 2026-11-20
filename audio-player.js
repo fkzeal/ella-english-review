@@ -5,6 +5,16 @@
   else root.ReviewAudio=api;
 })(typeof window==='object'?window:globalThis,function(){
   'use strict';
+  const DEMO_TEXT='Hello! Let us review English together. I always go swimming on Tuesdays.';
+  function validateManifest(manifest,bank){
+    const texts=new Set([DEMO_TEXT,...bank.questions.filter(q=>q.active!==false&&q.type==='listening').map(q=>q.audioText)]);
+    for(const text of texts){
+      const clip=manifest?.clips?.[text];
+      if(!clip||typeof clip.file!=='string'||(!/^audio\/[a-f0-9]{24}\.mp3$/.test(clip.file)&&!/^data:audio\/mpeg;base64,[A-Za-z0-9+/]+=*$/.test(clip.file))||!/^[a-f0-9]{64}$/.test(clip.sha256))
+        throw new Error('听力音频尚未同步，请稍后重试题库更新。');
+    }
+    return manifest;
+  }
   function chooseVoice(voices){
     return voices.filter(v=>/^en(?:-|_)/i.test(v.lang)).map((voice,index)=>{
       const name=voice.name||'';
@@ -95,7 +105,8 @@
         });
       }catch{fallback();}
     }
-    return {play,stop};
+    function updateManifest(next){stop();manifest=next;}
+    return {play,stop,updateManifest};
   }
-  return {create,chooseVoice};
+  return {create,chooseVoice,validateManifest,DEMO_TEXT};
 });

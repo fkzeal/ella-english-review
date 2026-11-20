@@ -23,11 +23,33 @@ function harness({voices=[],reject,clip=true}={}){
 }
 test('every current listening script has a checksum-verified clip and offline embedding',()=>{
   const audio=prepareAudio(path.resolve(__dirname,'..'),bank);
-  assert.equal(audio.files.size,16);
+  const texts=new Set([manifest.demoText,...bank.questions.filter(q=>q.active!==false&&q.type==='listening').map(q=>q.audioText)]);
+  assert.equal(audio.files.size,new Set([...texts].map(text=>manifest.clips[text].file)).size);
   for(const q of bank.questions.filter(q=>q.type==='listening')){
     assert(audio.manifest.clips[q.audioText]);
   }
   assert.match(audio.standaloneScript,/data:audio\/mpeg;base64,/);
+});
+test('live manifest replacement stops old playback and uses the refreshed recorded clip',()=>{
+  const h=harness();h.play();const old=h.media[0],late=old.onended;
+  const next=structuredClone(manifest),text='A newly published listening script.';
+  next.clips[text]=manifest.clips[manifest.demoText];
+  h.player.updateManifest(A.validateManifest(next,{questions:[{type:'listening',audioText:text}]}));
+  assert.equal(old.paused,true);assert.equal(h.timers.size,0);
+  const count=h.messages.length;late();assert.equal(h.messages.length,count);
+  h.play(text);assert.equal(h.media[1].src,next.clips[text].file);assert.equal(h.spoken.length,0);
+});
+test('manifest coverage rejects missing, unsafe or unhashed clips, while allowing embedded offline audio',()=>{
+  assert.equal(A.validateManifest(manifest,bank),manifest);
+  for(const change of [clip=>delete clip.sha256,clip=>clip.file='https://example.test/audio.mp3',clip=>clip.sha256='invalid']){
+    const invalid=structuredClone(manifest);change(invalid.clips[manifest.demoText]);
+    assert.throws(()=>A.validateManifest(invalid,bank),/尚未同步/);
+  }
+  const missing=structuredClone(manifest);delete missing.clips[bank.questions.find(q=>q.type==='listening').audioText];
+  assert.throws(()=>A.validateManifest(missing,bank),/尚未同步/);
+  const audio=prepareAudio(path.resolve(__dirname,'..'),bank);
+  const offline=JSON.parse(audio.standaloneScript.replace(/^window.LESSON_AUDIO = /,'').replace(/;\n$/,''));
+  A.validateManifest(offline,bank);
 });
 test('missing or damaged audio prevents publishing',()=>{
   const tmp=fs.mkdtempSync(path.join(os.tmpdir(),'ella-audio-test-'));

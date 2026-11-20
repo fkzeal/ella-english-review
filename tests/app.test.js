@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
-const E=require('../engine'),S=require('../storage'),bank=require('../question-bank.json');
+const E=require('../engine'),S=require('../storage'),A=require('../audio-player'),bank=require('../question-bank.json'),manifest=require('../audio/manifest.json');
 function harness(initial,shared,overrides={}){
   const data=shared||new Map(initial===undefined?[]:[[S.KEY,initial]]);
   const nodes=new Map();
@@ -7,10 +7,11 @@ function harness(initial,shared,overrides={}){
     if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',classList:{add(){},remove(){},toggle(){}},listeners:{},addEventListener(k,fn){this.listeners[k]=fn;}});
     return nodes.get(id);
   }
-  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:require('../audio-player'),setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
-  const ctx={window:win,document:{getElementById:node,querySelectorAll:()=>[],querySelector:()=>node('brand'),addEventListener(){}},
+  const nav=Object.assign(node('nav-library'),{dataset:{page:'library'},hasAttribute:()=>false});
+  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:A,setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),LESSON_AUDIO:structuredClone(manifest),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
+  const ctx={window:win,document:{getElementById:node,querySelectorAll:()=>[nav],querySelector:()=>node('brand'),addEventListener(){}},
     navigator:{locks:{request:async(k,fn)=>fn()}},localStorage:{getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)},
-    location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(){},console,URL,Blob};
+    location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(fn){win.interval=fn;},console,URL,Blob,...overrides.context};
   vm.runInNewContext(fs.readFileSync(require.resolve('../app'),'utf8'),ctx);
   return {data,node,win,async ready(){await new Promise(resolve=>setImmediate(resolve));},
     async click(action,props={}){
@@ -56,7 +57,7 @@ test('slow listening repeats neither reveal the transcript nor mark help, and le
   const q=bank.questions.find(q=>q.type==='listening'),plays=[];let stops=0;
   state.session={items:[q.id],index:0,results:[],day:E.day()};
   const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{
-    ReviewAudio:{create:()=>({play:(text,options)=>plays.push({text,...options}),stop:()=>stops++})}
+    ReviewAudio:{...A,create:()=>({play:(text,options)=>plays.push({text,...options}),stop:()=>stops++,updateManifest(){}})}
   });
   await app.ready();await app.click('resume');
   assert.match(app.node('app').innerHTML,/慢速听/);
@@ -65,6 +66,117 @@ test('slow listening repeats neither reveal the transcript nor mark help, and le
   assert(!app.saved().state.session.hints?.[q.id]);
   assert.doesNotMatch(app.node('app').innerHTML,/已展开听力文本/);
   const count=stops;await app.click('pause');assert(stops>count);
+});
+function deferred(){let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};}
+function sessionRaw(qs){
+  const state=E.emptyState();E.syncBatches(bank,state);
+  state.session={items:qs.map(q=>q.id),index:0,results:[],hints:{},day:E.day()};
+  return JSON.stringify({bank,state,baseline:JSON.stringify(bank)});
+}
+test('queued clicks on an old question are discarded after another tab advances the cursor',async()=>{
+  const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2);let gate;
+  const app=harness(sessionRaw(qs),undefined,{context:{
+    location:{protocol:'https:',href:'https://example.test/',host:'example.test'},AbortController,
+    fetch:async()=>{if(gate)await gate.promise;return {ok:true,json:async()=>structuredClone(bank)};}
+  }});
+  await app.ready();const other=harness(undefined,app.data);await other.ready();
+  await app.click('resume');await other.click('resume');
+  gate=deferred();app.win.interval();await app.ready();
+  const first=app.click('select',{option:String(qs[0].answer)}),second=app.click('select',{option:String(qs[0].answer)});
+  await other.click('select',{option:String(qs[0].answer)});gate.resolve();
+  await Promise.all([first,second]);
+  assert.equal(app.saved().state.history.length,1);
+  assert.equal(app.saved().state.session.index,1);
+  await app.click('resume');await app.click('select',{option:String(qs[1].answer)});
+  assert.equal(app.saved().state.history.length,2);
+  assert.equal(app.saved().state.history[1].questionId,qs[1].id);
+});
+test('a pending answer save cannot overwrite a page navigation',async()=>{
+  let gate;const locks={request:async(k,fn)=>{if(gate)await gate.promise;return fn();}};
+  const q=bank.questions.find(q=>q.type==='choice'),app=harness(sessionRaw([q]),undefined,{context:{navigator:{locks}}});
+  await app.ready();await app.click('resume');gate=deferred();
+  const answer=app.click('select',{option:String(q.answer)});await app.ready();
+  app.node('nav-library').listeners.click();assert.match(app.node('app').innerHTML,/PARENT/);
+  gate.resolve();await answer;
+  assert.match(app.node('app').innerHTML,/PARENT/);assert.equal(app.saved().state.history.length,1);
+});
+test('online bank updates refresh the audio manifest before exposing a new listening question',async()=>{
+  const q=bank.questions.find(q=>q.type==='listening'),old=structuredClone(bank),oldAudio=structuredClone(manifest),media=[],requests=[];
+  old.revision--;old.questions=old.questions.filter(x=>x.id!==q.id);
+  for(const l of old.lessons)if(l.learningTargets)l.learningTargets=l.learningTargets.map(t=>({...t,questionIds:t.questionIds.filter(id=>id!==q.id)})).filter(t=>t.questionIds.length);
+  delete oldAudio.clips[q.audioText];let published=false;
+  const app=harness(undefined,undefined,{LESSON_BANK:old,LESSON_AUDIO:oldAudio,Audio:class{
+    constructor(src){media.push(src);}play(){return Promise.resolve();}pause(){}removeAttribute(){}load(){}
+  },context:{location:{protocol:'https:',href:'https://example.test/',host:'example.test'},AbortController,
+    fetch:async url=>{requests.push(url.pathname);return {ok:true,json:async()=>structuredClone(url.pathname.includes('manifest')?manifest:published?bank:old)};}
+  }});
+  await app.ready();published=true;await app.click('refresh-bank');
+  assert.equal(app.saved().bank.revision,bank.revision);assert(requests.includes('/audio-manifest.json'));
+  const saved=app.saved();saved.state.session={items:[q.id],index:0,results:[],day:E.day()};
+  app.data.set(S.KEY,JSON.stringify(saved));await app.click('resume');await app.click('resume');
+  await app.click('play',{id:q.id});
+  assert.equal(media.at(-1),manifest.clips[q.audioText].file);
+});
+test('missing new audio leaves the old online bank and learner history intact',async()=>{
+  const state=E.emptyState();E.syncBatches(bank,state);
+  const original=bank.questions.find(q=>q.type==='choice');E.grade(bank,state,original.id,original.answer);
+  const incoming=structuredClone(bank);incoming.revision++;
+  const q=incoming.questions.find(q=>q.type==='listening'),oldId=q.id;
+  q.audioText='A newly published script.';q.id='new-listening-script';
+  for(const l of incoming.lessons)for(const t of l.learningTargets||[])t.questionIds=t.questionIds.map(id=>id===oldId?q.id:id);
+  const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{context:{
+    location:{protocol:'https:',href:'https://example.test/',host:'example.test'},AbortController,
+    fetch:async url=>({ok:true,json:async()=>structuredClone(url.pathname.includes('manifest')?manifest:incoming)})
+  }});
+  await app.ready();await app.click('refresh-bank');
+  assert.equal(app.saved().bank.revision,bank.revision);assert.deepEqual(app.saved().state.history,state.history);
+  assert.match(app.node('toast').textContent,/暂未同步/);
+});
+test('parent imports a real target patch, retires a whole course, and restores its valid historical backup',async()=>{
+  const original=bank.questions.find(q=>q.id==='gt-veg-q01'),state=E.emptyState();E.syncBatches(bank,state);
+  E.grade(bank,state,original.id,original.answer);
+  const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}));await app.ready();
+  app.node('confirm-dialog').showModal=()=>app.node('confirm-ok').onclick();
+  app.node('confirm-dialog').close=()=>{};
+  async function importFile(id,data){
+    const text=JSON.stringify(data);await app.change({id,dataset:{},value:'update.json',files:[{size:Buffer.byteLength(text),text:async()=>text}]});
+  }
+  const lesson=structuredClone(bank.lessons.find(l=>l.id==='raz-d-greater-than'));
+  const variant={...structuredClone(original),id:'gt-extra-choice',prompt:'Choose the word for carrots.'};
+  lesson.learningTargets.find(t=>t.questionIds.includes(original.id)).questionIds.push(variant.id);
+  await importFile('bank-file',{version:1,mode:'patch',revision:bank.revision+1,lessons:[lesson],points:[],questions:[variant]});
+  assert.equal(app.saved().bank.questions.length,84);
+  const snapshot=structuredClone(bank);snapshot.revision+=2;
+  snapshot.lessons=snapshot.lessons.filter(l=>l.id!==lesson.id);
+  snapshot.points=snapshot.points.filter(p=>p.lessonId!==lesson.id);
+  snapshot.questions=snapshot.questions.filter(q=>snapshot.points.some(p=>p.id===q.pointId));
+  await importFile('bank-file',snapshot);
+  assert.deepEqual(app.saved().state.history,state.history);
+  assert.equal(app.saved().bank.questions.find(q=>q.id===variant.id).active,false);
+  await app.click('nav',{target:'courses'});
+  assert.doesNotMatch(app.node('app').innerHTML,/Greater Than/);
+  await app.click('nav',{target:'library'});
+  assert.doesNotMatch(app.node('app').innerHTML,/class="section-label">RAZ D · Greater Than/);
+  assert.match(app.node('app').innerHTML,/已停用/);
+  const backup=app.saved();
+  await importFile('state-file',{kind:'lesson-loop-backup',version:1,bank:backup.bank,state:backup.state});
+  assert.deepEqual(app.saved().state.history,state.history);
+  const reloaded=harness(undefined,app.data);await reloaded.ready();
+  assert.deepEqual(reloaded.saved().state.history,state.history);
+});
+test('a deferred offline update without its audio retains a usable old bank and pending history',async()=>{
+  const q=bank.questions.find(q=>q.type==='listening'),old=structuredClone(bank),oldAudio=structuredClone(manifest);
+  old.revision--;old.questions=old.questions.filter(x=>x.id!==q.id);
+  for(const l of old.lessons)if(l.learningTargets)l.learningTargets=l.learningTargets.map(t=>({...t,questionIds:t.questionIds.filter(id=>id!==q.id)})).filter(t=>t.questionIds.length);
+  delete oldAudio.clips[q.audioText];
+  const state=E.emptyState();E.syncBatches(old,state);
+  const first=old.questions.find(q=>q.type==='choice');state.session={items:[first.id],index:0,results:[],day:E.day()};
+  const app=harness(JSON.stringify({bank:old,state,baseline:JSON.stringify(old)}),undefined,{LESSON_AUDIO:oldAudio});
+  await app.ready();await app.click('resume');await app.click('select',{option:String(first.answer)});
+  await app.click('finish');await app.click('start');
+  assert.equal(app.saved().bank.revision,old.revision);assert.equal(app.saved().state.history.length,1);
+  assert(app.saved().state.session.items.length>0);
+  assert.doesNotMatch(app.node('app').innerHTML,/记录未能保存/);
 });
 test('correct answers rotate six kittens, continuing after reload and skipping wrong answers',async()=>{
   const state=E.emptyState();E.syncBatches(bank,state);

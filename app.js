@@ -9,8 +9,26 @@
   const typeNames={choice:'词汇选择',cloze:'选词填空',listening:'听力选择',reading:'阅读理解'};
   let bank=E.validateBank(window.LESSON_BANK), state=E.emptyState(),page='today',level=2,system='raz';
   let selected=null,help=false,feedback=null,showTranscript=false,storageAvailable=true;
-  let toastTimer=null;
-  const listening=window.ReviewAudio.create(window,window.LESSON_AUDIO||{clips:{}});
+  let toastTimer=null,viewRevision=0,audioManifest=window.LESSON_AUDIO||{clips:{}};
+  const listening=window.ReviewAudio.create(window,audioManifest);
+  function setApp(html){viewRevision++;app.innerHTML=html;}
+  async function prepareAudio(nextBank){
+    try{return window.ReviewAudio.validateManifest(audioManifest,nextBank);}catch(err){
+      if(!/^https?:$/.test(location.protocol))throw Object.assign(new Error(err.message),{name:'AudioSyncError'});
+    }
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),5000);
+    try{
+      const res=await fetch(new URL('audio-manifest.json',location.href),{cache:'no-store',signal:controller.signal});
+      if(!res.ok)throw new Error('听力音频尚未同步，请稍后重试题库更新。');
+      return window.ReviewAudio.validateManifest(await res.json(),nextBank);
+    }catch(err){
+      throw Object.assign(new Error('听力音频尚未同步，请稍后重试题库更新。'),{name:'AudioSyncError'});
+    }finally{clearTimeout(timeout);}
+  }
+  function adoptAudio(manifest){
+    if(manifest===audioManifest)return;
+    listening.updateManifest(manifest);audioManifest=manifest;window.LESSON_AUDIO=manifest;
+  }
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function toast(message){document.getElementById('toast').textContent=message;document.getElementById('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>document.getElementById('toast').classList.remove('show'),4000);}
   function adopt(saved){
@@ -19,13 +37,14 @@
     selected=null;help=false;feedback=null;showTranscript=false;stopAudio();
   }
   async function commit(next,nextBank=bank,nextBaseline=baseline,options={}) {
+    const manifest=nextBank===bank?audioManifest:await prepareAudio(nextBank);
     try{await store.write({bank:nextBank,state:next,baseline:nextBaseline},options);}
     catch(err){
       storageAvailable=false;
       if(err.name==='ConflictError'){adopt(store.read());storageAvailable=true;render();}
       throw err;
     }
-    bank=nextBank;state=next;baseline=nextBaseline;storageAvailable=true;
+    bank=nextBank;state=next;baseline=nextBaseline;storageAvailable=true;adoptAudio(manifest);
   }
   function clone(){return JSON.parse(JSON.stringify(state));}
   function lessonLabel(l){
@@ -34,10 +53,13 @@
   function starterLesson(){return bank.lessons.find(l=>l.status==='ready'&&!(bank.batches||[]).some(b=>b.items.some(i=>i.lessonId===l.id)));}
   async function syncLearning(){const next=clone();E.syncBatches(bank,next);const changed=JSON.stringify(next)!==JSON.stringify(state);if(changed)await commit(next);return changed;}
   async function refreshBank(repaint=true){
+    const revision=viewRevision;
     if(pendingBank&&(!state.session||state.session.index>=state.session.items.length)){
-      const incoming=pendingBank,merged=E.mergeBank(bank,incoming),next=clone();E.syncBatches(merged,next);
-      await commit(next,merged,JSON.stringify(incoming));pendingBank=null;
-      if(repaint)render();
+      try{
+        const incoming=pendingBank,merged=E.mergeBank(bank,incoming),next=clone();E.syncBatches(merged,next);
+        await commit(next,merged,JSON.stringify(incoming));pendingBank=null;
+        if(repaint&&revision===viewRevision)render();
+      }catch(err){toast(err.message||'题库暂未同步，继续使用已保存的内容。');return;}
     }
     if(!/^https?:$/.test(location.protocol))return;
     const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),5000);
@@ -51,7 +73,7 @@
       E.validateState(next,merged);E.syncBatches(merged,next);
       const newBaseline=JSON.stringify(incoming);
       await commit(next,merged,newBaseline);pendingBank=null;
-      if(repaint)render();toast('最新题库已同步，答题记录保留。');
+      if(repaint&&revision===viewRevision)render();toast('最新题库已同步，答题记录保留。');
     }catch(err){toast('在线题库暂未同步，继续使用已保存的内容。');}
     finally{clearTimeout(timeout);}
   }
@@ -82,7 +104,7 @@
     document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.hasAttribute('data-parent-entry')?page!=='today':el.dataset.page===page));
     document.getElementById('parent-nav').classList.toggle('hidden',page==='today');
   }
-  function render(){setNav();app.innerHTML=layoutWarning()+({today:todayView,courses:courseView,progress:progressView,library:libraryView}[page]||todayView)();}
+  function render(){setNav();setApp(layoutWarning()+({today:todayView,courses:courseView,progress:progressView,library:libraryView}[page]||todayView)());}
   function todayView(){
     if(state.session && state.session.index<state.session.items.length)return sessionLanding();
     const active=E.activePoints(bank,state),due=E.duePoints(bank,state);
@@ -160,14 +182,16 @@
   }
   function currentContent(){
     const questions=E.availableQuestions(bank),points=bank.points.filter(p=>questions.some(q=>q.pointId===p.id));
-    return {...bank,points,questions,archivedCount:bank.questions.length-questions.length};
+    const lessons=bank.lessons.filter(l=>l.status==='pending'||points.some(p=>p.lessonId===l.id));
+    return {...bank,lessons,points,questions,archivedCount:bank.questions.length-questions.length};
   }
   async function start(practice=false,lessonId=null){
     if(state.session&&state.session.index<state.session.items.length){resume();return;}
     if(starting)return;
-    starting=true;
+    starting=true;const revision=viewRevision;
     try{await refreshBank(false);}finally{starting=false;}
     await syncLearning();
+    if(revision!==viewRevision)return;
     const active=E.activePoints(bank,state),preview=!active.length&&!Object.keys(state.batchReceipts||{}).length;
     if(preview){
       const starter=starterLesson();
@@ -178,6 +202,7 @@
     const items=E.plan(bank,state,{practice,lessonId,preview});
     if(!items.length){toast('暂时没有可复习内容，请检查学习日期或补充题库。');return;}
     const next=clone();next.session={items,index:0,results:[],hints:{},day:E.day(),practice,lessonId,preview};await commit(next);
+    if(revision!==viewRevision)return;
     selected=null;help=false;feedback=null;showTranscript=false;page='today';setNav();renderQuiz();
   }
   function resume(){selected=null;help=Boolean(state.session?.hints?.[state.session.items[state.session.index]]);feedback=null;showTranscript=Boolean(state.session?.transcriptHints?.[state.session.items[state.session.index]]);page='today';setNav();renderQuiz();}
@@ -200,23 +225,26 @@
     const position=feedback?t.index:t.index+1;
     let counter=0;
     const options=E.shuffle(shown.options.map((text,i)=>({text,index:i})),()=>seeded(shown.id,t.day,counter++));
-    app.innerHTML=layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div><span class="note">${esc(shownP.title)}</span>
+    setApp(layoutWarning()+`<div class="quiz"><div class="quiz-top"><button class="link-button" data-action="pause">← 保存并稍后继续</button><span>英语练习 · ${position} / ${t.items.length}</span></div><div class="progress-track"><div class="progress-fill" style="width:${t.index/t.items.length*100}%"></div></div><div class="card question" data-question-id="${shown.id}"><div class="card-header"><span class="tag">${typeNames[shown.type]}</span><span class="note">${lessonLabel(shownL)}</span></div><span class="note">${esc(shownP.title)}</span>
       ${shown.type==='listening'?`<div class="audio"><button class="button" data-action="play" data-id="${shown.id}">♫ 播放听力</button><button class="button secondary" data-action="play" data-id="${shown.id}" data-speed="slow">慢速听</button><button class="link-button" data-action="stop-audio">停止</button><span id="audio-status" role="status">可以重复听；先听，再选答案。</span></div><div class="actions"><button class="link-button" data-action="transcript">${showTranscript?'已展开听力文本':'查看听力文本（计为使用提示）'}</button><details><summary class="note">家长读题稿</summary><p class="audio-script" lang="en">${esc(shown.audioText)}</p><p class="note">家长照稿朗读，孩子不要看屏幕；这是家长辅助入口，不是权限隔离。</p></details></div>${showTranscript||feedback?`<div class="audio-script" lang="en">${esc(shown.audioText)}</div>`:''}`:''}
       ${shown.passage?`<div class="passage" lang="en">${esc(shown.passage)}</div>`:''}<h2>${esc(shown.prompt)}</h2><div class="options">${options.map((o,i)=>`<button class="option ${selected===o.index?'selected':''} ${feedback?(o.index===shown.answer?'correct':o.index===feedback.selected?'wrong':''):''}" data-action="select" data-option="${o.index}" ${feedback?'disabled':''}><span class="letter">${String.fromCharCode(65+i)}</span><span>${esc(o.text)}</span>${feedback&&o.index===shown.answer?'<span style="margin-left:auto">✓</span>':''}</button>`).join('')}</div>
       ${feedback?`<div class="feedback ${!feedback.correct?'wrong':''}" role="status">${feedback.correct?encouragement(feedback,t.index):''}<strong>${feedback.correct?(feedback.help?'答对了，这次借助了提示':'答对了！'):'没关系，我们一起看看为什么。'}</strong><p>${esc(shown.explanation)}</p></div>`:''}
-      <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`;
+      <div class="quiz-actions">${feedback?`<span class="note">看懂原因后，再继续。</span><button class="button" data-action="next">${t.index===t.items.length?'查看本组结果':'下一题 →'}</button>`:t.transcriptHints?.[shown.id]?`<span class="note">已查看听力文本，本题计为使用提示。</span><span class="note">点击选项，立即查看结果。</span>`:`<label class="check"><input type="checkbox" id="help-check" ${help?'checked':''}>这题用了提示或家长帮助</label><span class="note">点击选项，立即查看结果。</span>`}</div></div><p class="note" style="margin-top:16px">不计时，慢慢想。每个答案都会保存。</p></div>`);
   }
   function seeded(id,d,n){let hash=2166136261;for(const c of id+d+n)hash=Math.imul(hash^c.charCodeAt(0),16777619);hash^=hash>>>16;hash=Math.imul(hash,0x7feb352d);hash^=hash>>>15;return (hash>>>0)/4294967296;}
   async function submit(){
     if(selected===null||feedback||!state.session)return;
     stopAudio();
+    const revision=viewRevision;
     const next=clone(),q=next.session.items[next.session.index];
     const result=E.grade(bank,next,q,selected,help,E.day());
     if(next.session.preview){
       delete next.points[result.pointId];
       for(const key of Object.keys(next.units||{}))if(key.startsWith(result.pointId+'::'))delete next.units[key];
     }
-    next.session.results.push(result);next.session.index++;await commit(next);feedback=result;renderQuiz();
+    next.session.results.push(result);next.session.index++;await commit(next);
+    if(revision!==viewRevision)return;
+    feedback=result;renderQuiz();
     document.querySelector('.feedback')?.scrollIntoView?.({block:'nearest',behavior:'instant'});
   }
   function nextQuestion(){stopAudio();selected=null;help=false;showTranscript=false;feedback=null;if(state.session.index===state.session.items.length)renderSummary();else renderQuiz();}
@@ -224,7 +252,7 @@
     const t=state.session;
     if(!t){render();return;}
     const total=t.results.length,ind=t.results.filter(r=>r.correct&&!r.help).length;
-    app.innerHTML=layoutWarning()+`<div class="quiz"><div class="card summary">${snowCat('summary-cat',kittens[5])}<div class="eyebrow">ONE SMALL STEP, A LITTLE SPARKLE</div><h1>今天的小探险，完成啦！</h1><div class="score">${t.results.filter(r=>r.correct).length}<span class="muted" style="font-size:24px"> / ${total}</span></div><p class="muted">答对题数 · ${ind} 题独立答对</p><p>谢谢你认真练习。小猫咪们为你的努力拍拍爪！</p><div class="actions" style="justify-content:center;margin-top:25px"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`;
+    setApp(layoutWarning()+`<div class="quiz"><div class="card summary">${snowCat('summary-cat',kittens[5])}<div class="eyebrow">ONE SMALL STEP, A LITTLE SPARKLE</div><h1>今天的小探险，完成啦！</h1><div class="score">${t.results.filter(r=>r.correct).length}<span class="muted" style="font-size:24px"> / ${total}</span></div><p class="muted">答对题数 · ${ind} 题独立答对</p><p>谢谢你认真练习。小猫咪们为你的努力拍拍爪！</p><div class="actions" style="justify-content:center;margin-top:25px"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`);
   }
   async function ask(title,text){
     return new Promise(resolve=>{
@@ -236,7 +264,10 @@
       d.oncancel=e=>{e.preventDefault();finish(false);};d.showModal();
     });
   }
-  function play(text,slow=false){
+  async function play(text,slow=false){
+    const revision=viewRevision,manifest=await prepareAudio(bank);
+    if(revision!==viewRevision)return;
+    adoptAudio(manifest);
     const status=document.getElementById('audio-status');
     const tell=msg=>{if(status)status.textContent=msg;else toast(msg);};
     listening.play(text,{slow,tell});
@@ -248,15 +279,18 @@
   // Serialize local actions; each persistent write also checks the shared revision
   // under a Web Lock, so another tab can never silently overwrite this session.
   let queue=Promise.resolve();
-  function run(task){
+  function run(task,revision){
     queue=queue.then(async()=>{
       if(store.changed()){adopt(store.read());storageAvailable=true;render();toast('记录已从另一个页面同步，请再操作一次。');return;}
+      if(revision!==undefined&&revision!==viewRevision)return;
       await task();
-    }).catch(err=>{toast(err.message||'操作未保存，请重试。');render();});
+    }).catch(err=>{toast(err.message||'操作未保存，请重试。');if(revision===undefined||revision===viewRevision)render();});
     return queue;
   }
-  app.addEventListener('click',event=>run(async()=>{
-    const el=event.target.closest('[data-action]');if(!el||el.disabled)return;
+  app.addEventListener('click',event=>{
+    const target=event.target.closest('[data-action]');if(!target||target.disabled)return;
+    const el={dataset:{...target.dataset}},revision=viewRevision;
+    return run(async()=>{
     const action=el.dataset.action;
     if(action==='nav')navigate(el.dataset.target);
     else if(action==='system'){system=el.dataset.system;render();}
@@ -271,10 +305,10 @@
     else if(action==='pause'){feedback=null;stopAudio();render();}
     else if(action==='finish'){const next=clone();next.session=null;await commit(next);feedback=null;render();await refreshBank();}
     else if(action==='end'&&await ask('结束这组练习？','已完成的作答和复习安排都会保留，未答题目不计入结果。')){const next=clone();next.session=null;await commit(next);render();await refreshBank();}
-    else if(action==='transcript'){await rememberHelp(true,true);showTranscript=true;renderQuiz();}
-    else if(action==='play')play(bank.questions.find(q=>q.id===el.dataset.id).audioText,el.dataset.speed==='slow');
+    else if(action==='transcript'){await rememberHelp(true,true);if(revision===viewRevision){showTranscript=true;renderQuiz();}}
+    else if(action==='play')await play(bank.questions.find(q=>q.id===el.dataset.id).audioText,el.dataset.speed==='slow');
     else if(action==='stop-audio'){stopAudio();const status=document.getElementById('audio-status');if(status)status.textContent='已停止，可以重新播放。';}
-    else if(action==='test-audio')play('Hello! Let us review English together. I always go swimming on Tuesdays.',el.dataset.speed==='slow');
+    else if(action==='test-audio')await play(window.ReviewAudio.DEMO_TEXT,el.dataset.speed==='slow');
     else if(action==='refresh-bank'){if(location.protocol==='file:')toast('本地单文件无法联网同步；请使用部署网址或导入更新包。');else await refreshBank();}
     else if(action==='export-bank')download('温故-题库.json',bank);
     else if(action==='export-state')download(`温故-完整备份-${E.day()}.json`,{kind:'lesson-loop-backup',version:1,exportedAt:new Date().toISOString(),bank,state});
@@ -286,16 +320,19 @@
     }
     else if(action==='import-bank')document.getElementById('bank-file').click();
     else if(action==='import-state')document.getElementById('state-file').click();
-  }));
-  app.addEventListener('change',event=>run(async()=>{
-    const el=event.target;
+    },revision);
+  });
+  app.addEventListener('change',event=>{
+    const target=event.target,revision=viewRevision;
+    const el={id:target.id,dataset:{...target.dataset},value:target.value,checked:target.checked,files:target.files};
+    return run(async()=>{
     if(el.dataset.bookDate){
       if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再修改学习日期。');render();return;}
       try{const next=clone();for(const m of lessonModules(el.dataset.bookDate))E.setModuleDate(bank,next,el.dataset.bookDate,m,el.value);await commit(next);render();toast('绘本学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
     }else if(el.dataset.dateLesson){
       if(state.session&&state.session.index<state.session.items.length){toast('请先完成或结束当前练习，再修改学习日期。');render();return;}
       try{const next=clone();E.setModuleDate(bank,next,el.dataset.dateLesson,el.dataset.dateModule,el.value);await commit(next);render();toast('学习日期已保存，复习计划已更新。');}catch(err){toast(err.message);render();}
-    }else if(el.id==='help-check'){await rememberHelp(el.checked);el.checked=help;}
+    }else if(el.id==='help-check'){await rememberHelp(el.checked);if(revision===viewRevision)target.checked=help;}
     else if(el.id==='size'){const next=clone();next.settings.size=Number(el.value);await commit(next);}
     else if(el.id==='bank-file'||el.id==='state-file'){
       const file=el.files[0];if(!file)return;
@@ -319,9 +356,10 @@
           stopAudio();render();toast('记录已恢复，最新发布题库保留。');
         }
       }catch(err){toast(err.message||'导入失败，现有数据没有更改。');}
-      finally{el.value='';}
+      finally{target.value='';}
     }
-  }));
+    },revision);
+  });
   document.querySelectorAll('header [data-page], #parent-nav [data-page]').forEach(el=>el.addEventListener('click',()=>navigate(el.dataset.page)));
   document.querySelector('.brand').addEventListener('click',e=>{e.preventDefault();navigate('today');});
   async function boot(){
@@ -339,7 +377,7 @@
         }
       }
       await syncLearning();
-    }catch(err){storageAvailable=false;toast(err.message||'原始记录已保护，请先导出或恢复备份。');}
+    }catch(err){storageAvailable=err.name==='AudioSyncError';toast(err.message||'原始记录已保护，请先导出或恢复备份。');}
     render();
     if(storageAvailable)await refreshBank();
   }

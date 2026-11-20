@@ -23,20 +23,25 @@
   function emptyState() {
     return {version:1, learned:{}, points:{}, history:[], session:null, settings:{size:6},batchReceipts:{},paused:{},learningDates:{},moduleDates:{},defaultDates:{},localBatches:[]};
   }
-  function validateBank(b) {
+  function validateBankShape(b) {
     const fail = s => { throw new Error(`题库格式错误：${s}`); };
     if (!b || b.version !== 1 || !Array.isArray(b.lessons) || !Array.isArray(b.points) || !Array.isArray(b.questions)) fail('需要 version=1 和 lessons / points / questions 数组');
     if(b.revision!==undefined&&(!Number.isSafeInteger(b.revision)||b.revision<1))fail('题库版本无效');
     if(b.mode!==undefined&&!['snapshot','patch'].includes(b.mode))fail('题库更新模式无效');
     if (b.questions.length > 10000 || b.points.length > 3000 || b.lessons.length > 1000) fail('内容超出第一版容量');
+    if(b.batches!==undefined&&(!Array.isArray(b.batches)||b.batches.length>10000))fail('学习批次无效');
     const sets = {};
-    for (const key of ['lessons','points','questions']) {
+    for (const key of ['lessons','points','questions',...(b.batches!==undefined?['batches']:[])]) {
       sets[key] = new Set();
       for (const item of b[key]) {
         if (!item || typeof item.id !== 'string' || !/^[a-zA-Z0-9_-]{1,80}$/.test(item.id) || item.id in Object.prototype || sets[key].has(item.id)) fail(`${key} 存在无效或重复 ID`);
         sets[key].add(item.id);
       }
     }
+    return sets;
+  }
+  function validateBank(b) {
+    const sets=validateBankShape(b),fail=s=>{throw new Error(`题库格式错误：${s}`);};
     const text = (s,min=1,max=5000) => typeof s === 'string' && s.length >= min && s.length <= max;
     for (const l of b.lessons) {
       if (!(l.system==='raz'?/^[A-Z]{1,2}$/.test(l.level):l.system==='ket'?text(l.level):[1,2,3,4].includes(l.level)) || !Number.isInteger(l.number) || l.number < 1 || !text(l.title) || !text(l.subtitle,0) || !text(l.source) || !['ready','pending'].includes(l.status)) fail(`课程 ${l.id} 信息不完整`);
@@ -60,7 +65,8 @@
     for (const p of b.points) if (!b.questions.some(q=>q.pointId===p.id)) fail(`考点 ${p.id} 没有可用题目`);
     for(const l of b.lessons)if(l.learningTargets!==undefined){
       if(!Array.isArray(l.learningTargets)||!l.learningTargets.length)fail(`课程 ${l.id} 学习目标无效`);
-      const questions=availableQuestions(b).filter(q=>b.points.find(p=>p.id===q.pointId).lessonId===l.id);
+      const history=b.questions.filter(q=>b.points.find(p=>p.id===q.pointId).lessonId===l.id);
+      const active=history.filter(q=>q.active!==false),questions=active.length?active:history;
       const ids=new Set(),covered=new Set();
       for(const t of l.learningTargets){
         if(!t||!text(t.id)||ids.has(t.id)||!text(t.title)||!text(t.evidence)||!Array.isArray(t.questionIds)||!t.questionIds.length)fail(`课程 ${l.id} 学习目标信息不完整`);
@@ -70,7 +76,9 @@
           covered.add(id);
         }
       }
-      if(covered.size!==questions.length)fail(`课程 ${l.id} 存在未归入学习目标的题目`);
+      // A wholly retired course keeps its original targets for historical backups.
+      // Current courses still require exact coverage of their active questions.
+      if(active.length&&covered.size!==active.length)fail(`课程 ${l.id} 存在未归入学习目标的题目`);
     }
     if(b.batches!==undefined){
       if(!Array.isArray(b.batches)||b.batches.length>10000)fail('学习批次无效');
@@ -209,12 +217,11 @@
           if(dates.get(p.id)>today||batch.learnedOn<dates.get(p.id))continue;
           s.learned[p.lessonId]=[...new Set([...(s.learned[p.lessonId]||[]),p.module])];
           // Repeated reading brings the next check closer, without pretending it was answered.
-          const signature=JSON.stringify({learnedOn:batch.learnedOn,items:batch.items});
-          if(s.batchReceipts[batch.id]!==signature&&s.points[p.id]?.lastDay&&batch.learnedOn>s.points[p.id].lastDay){
-            const check=plusDay(batch.learnedOn,1);
-            if(check<s.points[p.id].due)s.points[p.id].due=check;
-            for(const [key,unit] of Object.entries(s.units||{}))if(key.startsWith(p.id+'::')&&unit.lastDay&&batch.learnedOn>unit.lastDay&&check<unit.due)unit.due=check;
-          }
+          const check=plusDay(batch.learnedOn,1),point=s.points[p.id];
+          if(point?.lastDay&&batch.learnedOn>point.lastDay&&check<point.due)point.due=check;
+          // A sibling's recent answer must not hide an older unit's repeat.
+          // Taking only an earlier due date also repairs old missed receipts idempotently.
+          for(const [key,unit] of Object.entries(s.units||{}))if(key.startsWith(p.id+'::')&&unit.lastDay&&batch.learnedOn>unit.lastDay&&check<unit.due)unit.due=check;
         }
       }
       s.batchReceipts[batch.id]=JSON.stringify({learnedOn:batch.learnedOn,items:batch.items});
@@ -331,7 +338,8 @@
     return result;
   }
   function mergeBank(current, incoming) {
-    validateBank(incoming);
+    if(incoming?.mode==='patch')validateBankShape(incoming);
+    else validateBank(incoming);
     if(incoming.revision&&current.revision&&incoming.revision<current.revision)throw new Error('题库版本较旧，已保留当前题库。');
     const merged={...current,...incoming,version:1,updated:incoming.updated||current.updated};
     for(const k of ['lessons','points','questions','batches']){
