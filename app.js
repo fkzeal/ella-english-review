@@ -5,6 +5,9 @@
   const catPreview=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('preview')==='cats';
   const storageKey=key=>catPreview?key+'-cat-preview':key,STORE=storageKey(window.ReviewStorage.KEY);
   const store=window.ReviewStorage.create({getItem:key=>localStorage.getItem(storageKey(key)),setItem:(key,value)=>localStorage.setItem(storageKey(key),value)},E,navigator.locks,window.indexedDB);
+  const cloud=window.LearningSync.create({storage:localStorage,crypto:window.crypto,fetch:(...args)=>fetch(...args),
+    enabled:location.hostname==='ella-english-review.pages.dev'&&location.protocol==='https:'&&!catPreview,
+    locks:navigator.locks,onChange:()=>{if(page==='library'&&viewKind==='page')render();}});
   let baseline=JSON.stringify(window.LESSON_BANK),pendingBank=null,starting=false;
   const app=document.getElementById('app');
   const moduleNames={lv:'听力与词汇',rg:'阅读与语法',skills:'Skills 综合技能',reading:'绘本阅读',vocabulary:'词汇积累'};
@@ -190,8 +193,13 @@
       (!storageAvailable?'<div class="card"><h3>原始记录恢复</h3><p>异常原始数据未被覆盖。先下载留存，再恢复有效的完整备份。</p><button class="button secondary" data-action="export-recovery">导出原始记录 ↓</button></div>':'')+
       `<div class="library-grid"><section>${batchesView()}<div class="card"><div class="card-header"><h2>已建立的内容</h2><span class="tag">${bank.questions.length} 题</span></div><p class="note">原创变式题，不是官方题库。未核对正文的书不会生成文章理解题。</p>${ready.map(l=>`<h3 class="section-label">${lessonLabel(l)}</h3>${bank.points.filter(p=>p.lessonId===l.id).map(p=>`<details><summary>${esc(p.title)} <span class="note">· ${bank.questions.filter(q=>q.pointId===p.id).length} 题</span></summary><p>${esc(p.description)}</p><p><strong>考点依据：</strong>${esc(p.evidence)}</p>${bank.questions.filter(q=>q.pointId===p.id).map(q=>`<div class="question-preview"><span class="tag">${typeNames[q.type]}</span><p>${esc(q.prompt)}</p>${q.passage?'<p>'+esc(q.passage)+'</p>':''}${q.audioText?'<p>朗读稿：'+esc(q.audioText)+'</p>':''}<div>${q.options.map((o,i)=>`${String.fromCharCode(65+i)}. ${esc(o)}`).join('<br>')}</div><b>答案：${esc(q.options[q.answer])}</b><div>${esc(q.explanation)}</div><p class="note">${esc(q.source)}</p></div>`).join('')}</details>`).join('')}`).join('')}</div></section>
       <aside><div class="card"><h3>对话更新题库</h3><div class="step-row"><span class="step-num">1</span><div><h3>转发学习素材</h3><p>注明实际学习日期、书名／级别和正文截图；复读时只需日期与已建库书名。</p></div></div><div class="step-row"><span class="step-num">2</span><div><h3>核对考点，建立学习批次</h3><p>生成变式题，保存来源与稳定编号。</p></div></div><div class="step-row"><span class="step-num">3</span><div><h3>发布到同一个网址</h3><p>打开网页时自动同步题库，保留本地答题记录，无需妈妈导入或配置。</p></div></div><div class="library-tools" style="margin-top:20px"><button class="button" data-action="refresh-bank">检查在线题库更新 ↻</button><button class="button secondary" data-action="import-bank">备用：导入更新包 ↑</button><button class="button secondary" data-action="export-bank">导出当前题库 ↓</button></div></div>
-      <div class="card"><h3>学习记录与备份</h3><p class="note">第一版保存于当前浏览器，不自动跨设备同步。换设备前导出完整备份。</p><div class="library-tools"><button class="button secondary" data-action="export-state">导出完整备份 ↓</button><button class="button secondary" data-action="import-state">恢复完整备份 ↑</button></div></div>
+      ${cloudView()}<div class="card"><h3>学习记录与备份</h3><p class="note">复习进度保存在当前浏览器；正式网址的新作答另存服务器供家长分析。换设备前仍请导出完整备份。</p><div class="library-tools"><button class="button secondary" data-action="export-state">导出完整备份 ↓</button><button class="button secondary" data-action="import-state">恢复完整备份 ↑</button></div></div>
       <div class="card"><h3>每组题量</h3><div class="field"><label for="size">复习上限</label><select id="size">${[6,10,15,20].map(size=>`<option value="${size}" ${state.settings.size===size?'selected':''}>${size} 题</option>`).join('')}</select></div><p class="note">未完成的到期考点分批复习。无到期内容时可额外练习，答对不会提前推进日程。</p><div class="actions"><button class="button secondary small" data-action="test-audio">试听英文朗读 ♫</button><button class="button secondary small" data-action="test-audio" data-speed="slow">慢速试听</button></div><p class="note" style="margin-top:10px">统一英式合成朗读，句间稍作停顿。可慢速重听，听力重播不计为提示。</p></div></aside></div><input id="bank-file" type="file" accept=".json,application/json" class="hidden"><input id="state-file" type="file" accept=".json,application/json" class="hidden">`;
+  }
+  function cloudView(){
+    const c=cloud.view(state.history);
+    if(!c.enabled)return '<div class="card"><h3>服务器学习记录</h3><p class="note">请用正式网址练习，本地预览与离线文件不上传。</p></div>';
+    return `<div class="card"><h3>本设备的服务器记录</h3><p class="note">设备编号</p><p style="overflow-wrap:anywhere"><code>${esc(c.deviceId||'登记中')}</code></p><p>${esc(c.status?.name||'尚未命名')} · ${c.status?.approved?'已确认真实学习设备':'待家长确认，暂不用于出题'}</p><p class="note">服务器累计作答 ${c.status?.answerCount??'—'} 次 · 答错 ${c.status?.wrongCount??'—'} 次<br>待上传 ${c.pending} 条 · ${c.busy?'正在同步':c.syncedAt?'最近同步 '+esc(new Date(c.syncedAt).toLocaleString('zh-CN')):'尚未完成同步'}</p>${c.error?`<p class="note">${esc(c.error)}</p>`:''}<div class="library-tools"><button class="button secondary" data-action="sync-records">同步服务器记录 ↻</button><button class="button secondary" data-action="backfill-records">回补本机旧记录 ↑</button></div><p class="note">回补会单独标记；导入的备份不计为本设备的新作答。把编号告诉家长即可确认主设备。</p></div>`;
   }
   function currentContent(){
     const questions=E.availableQuestions(bank),points=bank.points.filter(p=>questions.some(q=>q.pointId===p.id));
@@ -277,11 +285,16 @@
     // An older unfinished session can join the reward system when resumed.
     next.rewards ||= R.empty();next.session.rewardId ||= uid();
     const result=E.grade(bank,next,q,selected,help,E.day());
+    if(!next.session.preview){
+      try{await cloud.prepare(result,bank.questions.find(item=>item.id===q),bank.revision);}
+      catch(err){toast(err.message||'暂未登记服务器记录，本机仍可保存。');}
+    }
     if(next.session.preview){
       delete next.points[result.pointId];
       for(const key of Object.keys(next.units||{}))if(key.startsWith(result.pointId+'::'))delete next.units[key];
     }
     next.session.results.push(result);next.session.index++;R.settle(next);await commit(next);
+    void cloud.sync(state.history);
     if(revision!==viewRevision)return;
     feedback=result;renderQuiz();
     scrollAnswerReview();
@@ -443,6 +456,11 @@
     else if(action==='refresh-bank'){if(location.protocol==='file:')toast('本地单文件无法联网同步；请使用部署网址或导入更新包。');else await refreshBank();}
     else if(action==='export-bank')download('温故-题库.json',bank);
     else if(action==='export-state')download(`温故-完整备份-${E.day()}.json`,{kind:'lesson-loop-backup',version:1,exportedAt:new Date().toISOString(),bank,state});
+    else if(action==='sync-records')await cloud.sync(state.history);
+    else if(action==='backfill-records'){
+      if(!await ask('回补本机旧记录？','将尚未上传的旧作答另存服务器，并标记为历史回补；已导入的记录另作标记。它们不会自动用于衍生出题。'))return;
+      const next=clone();await cloud.backfill(next.history,bank);await commit(next);await cloud.sync(state.history);render();
+    }
     else if(action==='export-recovery'){
       const raw=store.recovery();
       if(!raw){toast('没有需要恢复的原始记录。');return;}
@@ -483,6 +501,11 @@
           E.validateBank(data.bank);E.validateState(data.state,data.bank);
           if(!await ask('恢复完整备份？','这会替换当前浏览器中的题库和学习记录。建议先导出当前备份。'))return;
           const restoredBank=E.mergeBank(data.bank,(bank.revision||0)>=(data.bank.revision||0)?bank:data.bank),restoredState=data.state;
+          for(const h of restoredState.history){
+            h.originDeviceId ||= h.deviceId||null;h.imported=true;
+            // Imported backups retain their provenance, but never replay live events.
+            h.recordSource='imported';delete h.deviceId;delete h.eventId;
+          }
           E.syncBatches(restoredBank,restoredState);E.validateState(restoredState,restoredBank);
           await commit(restoredState,restoredBank,baseline,{restore:true});
           stopAudio();render();toast('记录已恢复，最新发布题库保留。');
@@ -531,6 +554,7 @@
       }
     }catch(err){storageAvailable=err.name==='AudioSyncError';toast(err.message||'原始记录已保护，请先导出或恢复备份。');}
     render();
+    if(storageAvailable){try{await cloud.initialize();void cloud.sync(state.history);}catch(err){toast(err.message);}}
     if(catPreview&&state.session?.index===state.session?.items.length)renderSummary();
     if(storageAvailable)await refreshBank();
   }
@@ -539,8 +563,10 @@
     const changed=await syncLearning();
     if(viewKind==='page'&&(changed||renderedDay!==E.day()))render();
     await refreshBank(viewKind==='page');
+    void cloud.sync(state.history);
   }
   window.addEventListener('storage',event=>{if(event.key===STORE||event.key===null)run(async()=>{});});
+  window.addEventListener('online',()=>{void cloud.sync(state.history);});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)run(tick);});
   setInterval(()=>run(tick),120000);
 })();

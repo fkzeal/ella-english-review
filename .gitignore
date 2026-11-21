@@ -20,3 +20,6 @@ feedback-config.js
 cat-catalog.js
 __pycache__/
 .DS_Store
+/.learning-server/
+/wrangler.learning.toml
+/functions/api/_middleware.js

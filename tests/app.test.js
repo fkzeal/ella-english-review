@@ -13,6 +13,7 @@ function harness(initial,shared,overrides={}){
     navigator:{locks:{request:async(k,fn)=>fn()}},localStorage:{getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)},
     location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(fn){win.interval=fn;},console,URL,Blob,...overrides.context};
   win.CatRewards=require('../rewards');win.CAT_CATALOG=require('../assets/cats/catalog.json');
+  win.LearningSync=require('../learning-sync');
   vm.runInNewContext(fs.readFileSync(require.resolve('../app'),'utf8'),ctx);
   return {data,node,win,async ready(){await new Promise(resolve=>setImmediate(resolve));},
     async click(action,props={}){
@@ -181,9 +182,10 @@ test('parent imports a real target patch, retires a whole course, and restores i
   assert.match(app.node('app').innerHTML,/已停用/);
   const backup=app.saved();
   await importFile('state-file',{kind:'lesson-loop-backup',version:1,bank:backup.bank,state:backup.state});
-  assert.deepEqual(app.saved().state.history,state.history);
+  const importedHistory=state.history.map(h=>({...h,originDeviceId:null,imported:true,recordSource:'imported'}));
+  assert.deepEqual(app.saved().state.history,importedHistory);
   const reloaded=harness(undefined,app.data);await reloaded.ready();
-  assert.deepEqual(reloaded.saved().state.history,state.history);
+  assert.deepEqual(reloaded.saved().state.history,importedHistory);
 });
 test('a deferred offline update without its audio retains a usable old bank and pending history',async()=>{
   const q=bank.questions.find(q=>q.type==='listening'),old=structuredClone(bank),oldAudio=structuredClone(manifest);

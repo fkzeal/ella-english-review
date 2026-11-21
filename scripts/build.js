@@ -29,7 +29,7 @@ for(const [i,cat] of cats.entries()){
 const catScript='window.CAT_CATALOG = '+JSON.stringify(cats)+';\n';
 fs.writeFileSync(path.join(root,'cat-catalog.js'),catScript);
 const hash=crypto.createHash('sha256');
-for(const name of ['index.html','style.css','cat-club.css','rewards.js','engine.js','storage.js','app.js','audio-player.js','error-feedback.js','audio/manifest.json','question-bank.json','package.json'])hash.update(fs.readFileSync(path.join(root,name)));
+for(const name of ['index.html','style.css','cat-club.css','rewards.js','engine.js','storage.js','learning-sync.js','app.js','audio-player.js','error-feedback.js','audio/manifest.json','question-bank.json','package.json'])hash.update(fs.readFileSync(path.join(root,name)));
 hash.update(catScript);
 hash.update(feedbackScript);
 for(const bytes of audio.files.values())hash.update(bytes);
@@ -40,7 +40,7 @@ fs.writeFileSync(path.join(root,'version.js'),'window.REVIEW_VERSION = '+JSON.st
 let html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 html=html.replace('<link rel="stylesheet" href="style.css">',()=>'<style>'+fs.readFileSync(path.join(root,'style.css'),'utf8')+'</style>');
 html=html.replace('<link rel="stylesheet" href="cat-club.css">',()=>'<style>'+fs.readFileSync(path.join(root,'cat-club.css'),'utf8')+'</style>');
-for(const name of ['bank.js','cat-catalog.js','rewards.js','engine.js','storage.js','version.js','audio-manifest.js','audio-player.js','feedback-config.js','error-feedback.js','app.js']) {
+for(const name of ['bank.js','cat-catalog.js','rewards.js','engine.js','storage.js','learning-sync.js','version.js','audio-manifest.js','audio-player.js','feedback-config.js','error-feedback.js','app.js']) {
   let js=(name==='audio-manifest.js'?audio.standaloneScript:fs.readFileSync(path.join(root,name),'utf8')).replace(/<\/script/gi,'<\\/script');
   if(name==='app.js')for(const [file,bytes] of kittenFiles)js=js.replaceAll(file,`data:image/webp;base64,${bytes.toString('base64')}`);
   if(name==='cat-catalog.js')for(const [file,bytes] of catFiles)js=js.replaceAll(file,`data:image/webp;base64,${bytes.toString('base64')}`);
@@ -51,9 +51,10 @@ fs.writeFileSync(standalone,html);
 const dist=path.join(root,'dist');
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});
-for(const name of ['index.html','style.css','cat-club.css','cat-catalog.js','rewards.js','bank.js','engine.js','storage.js','version.js','audio-manifest.js','audio-player.js','feedback-config.js','error-feedback.js','app.js','question-bank.json','_headers','99e0d85e952f8d812c763271f7a246d3.txt']){
+for(const name of ['index.html','style.css','cat-club.css','cat-catalog.js','rewards.js','bank.js','engine.js','storage.js','learning-sync.js','version.js','audio-manifest.js','audio-player.js','feedback-config.js','error-feedback.js','app.js','question-bank.json','_headers','99e0d85e952f8d812c763271f7a246d3.txt']){
   fs.copyFileSync(path.join(root,name),path.join(dist,name));
 }
+fs.writeFileSync(path.join(dist,'_routes.json'),JSON.stringify({version:1,include:['/api/*'],exclude:[]}));
 fs.mkdirSync(path.join(dist,'audio'));
 fs.copyFileSync(path.join(root,'audio/manifest.json'),path.join(dist,'audio-manifest.json'));
 for(const [name,bytes] of audio.files)fs.writeFileSync(path.join(dist,name),bytes);
