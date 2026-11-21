@@ -14,6 +14,10 @@
   Cache-Control: no-cache
 /learning-sync.js
   Cache-Control: no-cache
+/account-state.js
+  Cache-Control: no-cache
+/account-sync.js
+  Cache-Control: no-cache
 /version.js
   Cache-Control: no-cache
 /audio-manifest.js

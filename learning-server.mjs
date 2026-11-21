@@ -1,3 +1,4 @@
+import {handleAccounts} from './account-server.mjs';
 // Only /api/* is routed here. Learning records never enter the static build.
 const encoder=new TextEncoder();
 export async function digest(value){
@@ -22,6 +23,7 @@ async function signedToken(secret,id,enrollment){
 }
 function validDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&new Date(value+'T12:00:00Z').toISOString().slice(0,10)===value;}
 export async function handle(request,env){
+  if(/^\/api\/accounts(?:\/|$)/.test(new URL(request.url).pathname)||/^\/api\/admin\/account/.test(new URL(request.url).pathname))return handleAccounts(request,env);
   try{
     const url=new URL(request.url),path=url.pathname.replace(/\/$/,'');
     if(!env.LEARNING_DB||!env.LEARNING_ADMIN_TOKEN)fail(503,'服务器记录尚未配置，本地记录不受影响');

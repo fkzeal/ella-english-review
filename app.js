@@ -5,9 +5,17 @@
   const catPreview=['localhost','127.0.0.1'].includes(location.hostname)&&new URLSearchParams(location.search).get('preview')==='cats';
   const storageKey=key=>catPreview?key+'-cat-preview':key,STORE=storageKey(window.ReviewStorage.KEY);
   const store=window.ReviewStorage.create({getItem:key=>localStorage.getItem(storageKey(key)),setItem:(key,value)=>localStorage.setItem(storageKey(key),value)},E,navigator.locks,window.indexedDB);
-  const cloud=window.LearningSync.create({storage:localStorage,crypto:window.crypto,fetch:(...args)=>fetch(...args),
+  const cloud=window.AccountSync.create({storage:localStorage,crypto:window.crypto,fetch:(...args)=>fetch(...args),
     enabled:location.hostname==='ella-english-review.pages.dev'&&location.protocol==='https:'&&!catPreview,
-    locks:navigator.locks,onChange:()=>{if(page==='library'&&viewKind==='page')render();}});
+    getBundle:()=>({bank,state,baseline}),
+    applyBundle:async bundle=>{
+      if(JSON.stringify(bundle.state)===JSON.stringify(state)&&JSON.stringify(bundle.bank)===JSON.stringify(bank)&&(bundle.baseline||baseline)===baseline)return;
+      const moved=state.session?.rewardId!==bundle.state.session?.rewardId||state.session?.index!==bundle.state.session?.index;
+      await commit(bundle.state,bundle.bank,bundle.baseline||baseline,{cloudWrite:true});
+      if(moved&&viewKind==='quiz'){feedback=null;selected=null;render();toast('练习进度已同步，点击继续练习。');}
+      else if(viewKind==='page')render();
+    },
+    onChange:()=>{updateAccountStatus();}});
   let baseline=JSON.stringify(window.LESSON_BANK),pendingBank=null,starting=false;
   const app=document.getElementById('app');
   const moduleNames={lv:'听力与词汇',rg:'阅读与语法',skills:'Skills 综合技能',reading:'绘本阅读',vocabulary:'词汇积累'};
@@ -15,7 +23,7 @@
   let bank=E.validateBank(window.LESSON_BANK), state=E.emptyState(),page='today',level=2,system='raz';
   let selected=null,help=false,feedback=null,showTranscript=false,storageAvailable=true;
   let toastTimer=null,viewRevision=0,viewKind='page',renderedDay=null,audioManifest=window.LESSON_AUDIO||{clips:{}};
-  let catFilter='all',catCategory='all',viewerId=null;
+  let catFilter='all',catCategory='all',viewerId=null,syncTimer=null,navigationEpoch=0;
   const animatedRewards=new Set();
   const uid=()=>window.crypto?.randomUUID?.()||`reward-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   const listening=window.ReviewAudio.create(window,audioManifest);
@@ -45,6 +53,7 @@
     selected=null;help=false;feedback=null;showTranscript=false;stopAudio();
   }
   async function commit(next,nextBank=bank,nextBaseline=baseline,options={}) {
+    if(!options.cloudWrite&&cloud.view().enabled&&state.accountId&&state.accountId!==cloud.view().account?.id)throw new Error('请重新绑定记录所属账号后继续。');
     const manifest=nextBank===bank?audioManifest:await prepareAudio(nextBank);
     try{await store.write({bank:nextBank,state:next,baseline:nextBaseline},options);}
     catch(err){
@@ -53,6 +62,41 @@
       throw err;
     }
     bank=nextBank;state=next;baseline=nextBaseline;storageAvailable=true;adoptAudio(manifest);
+    if(!options.cloudWrite){cloud.markDirty();updateAccountStatus();}
+    if(!options.cloudWrite&&(viewKind==='page'||!next.session||next.session.index===next.session.items.length))scheduleSync();
+  }
+  function scheduleSync(){
+    if(!cloud.view().account)return;
+    clearTimeout(syncTimer);syncTimer=setTimeout(()=>run(()=>cloud.sync()),1000);
+  }
+  function updateAccountStatus(){
+    const el=document.getElementById('account-status');if(!el)return;
+    const c=cloud.view();
+    el.textContent=c.account?`${c.account.name} · ${c.busy?'正在同步':c.error||c.dirty?'本机已保存，待同步':c.syncedAt?'云端已同步':'等待同步'}`:'绑定账号，带走学习进度';
+    const hello=document.querySelector('.cat-hello'),album=document.querySelector('.album-tag');
+    if(hello&&c.account)hello.innerHTML=`Hi, ${esc(c.account.name)}! <span aria-hidden="true">♡</span>`;
+    if(album&&c.account)album.textContent=c.account.name+' 的收藏';
+    const card=document.getElementById('account-card');
+    if(card&&page==='library'&&viewKind==='page')card.innerHTML=cloudPanel();
+  }
+  function showAccountDialog(){
+    const c=cloud.view(),d=document.getElementById('account-dialog');
+    d.innerHTML=`<div class="eyebrow">MY LITTLE HOME</div><h2 id="account-title">${c.account?'切换云端账号':'给这台设备选一个账号'}</h2><p>复习日程、练习记录和猫咪收藏，会跟着账号一起走。</p><form id="account-form"><div class="field"><label for="account-choice">使用者</label><select id="account-choice">${window.AccountSync.ACCOUNTS.map(([id,name])=>`<option value="${id}" ${c.account?.id===id?'selected':''}>${name}</option>`).join('')}</select></div><div class="field"><label for="account-code">私有登录码</label><input id="account-code" type="password" autocomplete="current-password" required placeholder="由家长提供，绑定后无需每次输入"></div>${!state.accountId?'<label class="check"><input id="account-import" type="checkbox" checked> 将本机已有进度迁移到这个账号</label>':'<p class="note">切换前自动保存当前账号。不同账号的进度各自保留。</p>'}<p id="account-error" class="note" role="alert"></p><div class="actions"><button type="button" class="button secondary" id="account-later">稍后</button><button type="submit" class="button">绑定并同步</button></div></form>`;
+    document.getElementById('account-later').onclick=()=>d.close();
+    document.getElementById('account-form').onsubmit=e=>{
+      e.preventDefault();
+      const id=document.getElementById('account-choice').value,code=document.getElementById('account-code').value,importLocal=document.getElementById('account-import')?.checked??false;
+      const button=d.querySelector('[type="submit"]');button.disabled=true;
+      run(async()=>{
+        try{
+          const old=cloud.view().account;
+          if(old&&old.id!==id&&!await cloud.sync())throw new Error('当前账号尚未同步成功，请联网后再切换。');
+          await cloud.login(id,code,{importLocal});d.close();feedback=null;selected=null;render();toast('账号已绑定，学习进度已同步。');
+        }catch(err){document.getElementById('account-error').textContent=err.message;}
+        finally{button.disabled=false;}
+      });
+    };
+    d.showModal();
   }
   function clone(){return JSON.parse(JSON.stringify(state));}
   function lessonLabel(l){
@@ -108,13 +152,13 @@
     return `<div class="cat-cheer" data-kitten="${kitten.coat}">${snowCat('cheer-cat',kitten)}<div><span class="cheer-label">${kitten.name}来给你加油啦</span><strong>${result.help?'我们一起找到答案啦！':kitten.phrase}</strong><span>${result.help?'下次试着自己想一想，慢慢来。':'把这个小发现，放进口袋里。'}</span></div><div class="snow-confetti" aria-hidden="true">${Array.from({length:16},(_,i)=>`<i style="--i:${i};--x:${(i*29)%100}%;--spin:${i%2?180:-210}deg">${i%3?'✦':'♥'}</i>`).join('')}</div></div>`;
   }
   function layoutWarning(){return (catPreview?'<div class="cat-preview-tools"><div><strong>动画试玩</strong><span>使用独立的演示进度</span></div><div><button data-action="preview-full">全对结算 +1星</button><button data-action="preview-half">答对8/10 +半星</button><button data-action="preview-low">答对7/10 无星星</button><button data-action="preview-ready">攒满三颗星</button></div><a href="./">进入正常练习 ↗</a></div>':'')+(!storageAvailable?'<div class="banner warning">记录未能保存，已保护原始数据。请到「家长题库」导出原始记录或恢复有效备份，再继续练习。</div>':'');}
-  function navigate(p){stopAudio();page=p;selected=null;help=false;feedback=null;showTranscript=false;render();window.scrollTo({top:0,behavior:'instant'});}
+  function navigate(p){navigationEpoch++;stopAudio();page=p;selected=null;help=false;feedback=null;showTranscript=false;render();window.scrollTo({top:0,behavior:'instant'});}
   function setNav(){
     const parent=!['today','collection'].includes(page);
     document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.hasAttribute('data-parent-entry')?parent:el.dataset.page===page));
     document.getElementById('parent-nav').classList.toggle('hidden',!parent);
   }
-  function render(){setNav();setApp(layoutWarning()+({today:todayView,collection:collectionView,courses:courseView,progress:progressView,library:libraryView}[page]||todayView)());}
+  function render(){setNav();setApp(layoutWarning()+(cloud.view().enabled?'<div class="account-strip"><button class="link-button" data-action="account" id="account-status"></button></div>':'')+({today:todayView,collection:collectionView,courses:courseView,progress:progressView,library:libraryView}[page]||todayView)());updateAccountStatus();}
   function todayView(){
     const unfinished=state.session&&state.session.index<state.session.items.length;
     const today=E.day(),active=E.activePoints(bank,state,today),due=E.duePoints(bank,state,today),units=E.dueUnits(bank,state,today);
@@ -130,7 +174,7 @@
       counts.set(id,(counts.get(id)||0)+1);
       reasons[!record?.lastDay?'first':record.missDay===record.lastDay?'weak':'interval']++;
     }
-    return `<div class="home-heading">${head('LITTLE PAWS, HAPPY LEARNING','Ella，欢迎来到猫咪小屋。','小猫咪们已经准备好啦。今天也一起收获一个小进步吧！')}</div>`+
+    return `<div class="home-heading">${head('LITTLE PAWS, HAPPY LEARNING',esc(cloud.view().account?.name||'Ella')+'，欢迎来到猫咪小屋。','小猫咪们已经准备好啦。今天也一起收获一个小进步吧！')}</div>`+
       `<div class="student-home"><div class="student-dashboard"><section class="hero home-welcome" aria-label="小猫欢迎与开始练习"><div class="hero-copy"><div class="winter-badge">♡ 猫咪陪伴的英语时光</div><h2>每天一点点，<br>和小猫一起学。</h2><p>慢慢想，大胆试。<br>今天也和小猫击个掌吧！</p></div><div class="winter-scene"><span class="scene-spark spark-one" aria-hidden="true">✧</span><span class="scene-spark spark-two" aria-hidden="true">♡</span><div class="cat-orbit">${snowCat()}</div><div class="cat-hello">Hi, Ella! <span aria-hidden="true">♡</span></div><div class="kitten-friends" aria-label="还有奶牛猫和三花猫陪你练习">${snowCat('friend-cat',kittens[1])}${snowCat('friend-cat',kittens[2])}</div></div><div class="welcome-actions">${unfinished?`<p class="resume-note">上次已完成 ${state.session.index} / ${state.session.items.length} 题，接着来吧。</p>`:`<div class="hero-meta"><span>🐾 每组 ${state.settings.size} 题以内</span><span>♡ 不计时，慢慢想</span></div>`}<div class="actions"><button class="button start-button" data-action="${unfinished?'resume':'start'}" ${!unfinished&&!lessons.length?'disabled':''}>${unfinished?'继续上次练习':'和小猫开始练习'} <span aria-hidden="true">→</span></button>${unfinished?'<button class="link-button" data-action="end">结束本组</button>':''}</div></div></section>${rewardView(false)}</div><div class="adventure-steps" aria-label="练习步骤"><span><b>01</b> 看一看，听一听</span><span><b>02</b> 选出你的答案</span><span><b>03</b> 小猫来为你加油 ♡</span></div>
       <div class="card due-courses"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div>${units.length?`<span class="due-unit-count">待复习 ${counts.get(l.id)||0} 项</span>`:''}</div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note due-total">${units.length} 个考点待复习${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p><p class="note">${units.length?`每次最多 ${state.settings.size} 题，慢慢来；答对的考点会安排到之后。`:'今天的到期复习已完成，可以休息，也可以额外练习。'}</p>${units.length?`<details class="due-explanation"><summary>为什么有这些复习？</summary><p class="note">首次回顾 ${reasons.first} 项 · 错题或提示后巩固 ${reasons.weak} 项 · 间隔复习 ${reasons.interval} 项</p><p class="note">已登记学习的内容，尚未在这里独立完成回顾，也会加入到期复习。${due.length} 个练习分组包含这些考点，组内各项分别安排；一个考点答对，不会推迟其他考点。</p>${['localhost','127.0.0.1'].includes(location.hostname)?'<p class="note">记录保存在当前浏览器中，本地预览与正式网址分别保存。</p>':''}</details>`:''}`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}</div></div>`;
   }
@@ -193,13 +237,15 @@
       (!storageAvailable?'<div class="card"><h3>原始记录恢复</h3><p>异常原始数据未被覆盖。先下载留存，再恢复有效的完整备份。</p><button class="button secondary" data-action="export-recovery">导出原始记录 ↓</button></div>':'')+
       `<div class="library-grid"><section>${batchesView()}<div class="card"><div class="card-header"><h2>已建立的内容</h2><span class="tag">${bank.questions.length} 题</span></div><p class="note">原创变式题，不是官方题库。未核对正文的书不会生成文章理解题。</p>${ready.map(l=>`<h3 class="section-label">${lessonLabel(l)}</h3>${bank.points.filter(p=>p.lessonId===l.id).map(p=>`<details><summary>${esc(p.title)} <span class="note">· ${bank.questions.filter(q=>q.pointId===p.id).length} 题</span></summary><p>${esc(p.description)}</p><p><strong>考点依据：</strong>${esc(p.evidence)}</p>${bank.questions.filter(q=>q.pointId===p.id).map(q=>`<div class="question-preview"><span class="tag">${typeNames[q.type]}</span><p>${esc(q.prompt)}</p>${q.passage?'<p>'+esc(q.passage)+'</p>':''}${q.audioText?'<p>朗读稿：'+esc(q.audioText)+'</p>':''}<div>${q.options.map((o,i)=>`${String.fromCharCode(65+i)}. ${esc(o)}`).join('<br>')}</div><b>答案：${esc(q.options[q.answer])}</b><div>${esc(q.explanation)}</div><p class="note">${esc(q.source)}</p></div>`).join('')}</details>`).join('')}`).join('')}</div></section>
       <aside><div class="card"><h3>对话更新题库</h3><div class="step-row"><span class="step-num">1</span><div><h3>转发学习素材</h3><p>注明实际学习日期、书名／级别和正文截图；复读时只需日期与已建库书名。</p></div></div><div class="step-row"><span class="step-num">2</span><div><h3>核对考点，建立学习批次</h3><p>生成变式题，保存来源与稳定编号。</p></div></div><div class="step-row"><span class="step-num">3</span><div><h3>发布到同一个网址</h3><p>打开网页时自动同步题库，保留本地答题记录，无需妈妈导入或配置。</p></div></div><div class="library-tools" style="margin-top:20px"><button class="button" data-action="refresh-bank">检查在线题库更新 ↻</button><button class="button secondary" data-action="import-bank">备用：导入更新包 ↑</button><button class="button secondary" data-action="export-bank">导出当前题库 ↓</button></div></div>
-      ${cloudView()}<div class="card"><h3>学习记录与备份</h3><p class="note">复习进度保存在当前浏览器；正式网址的新作答另存服务器供家长分析。换设备前仍请导出完整备份。</p><div class="library-tools"><button class="button secondary" data-action="export-state">导出完整备份 ↓</button><button class="button secondary" data-action="import-state">恢复完整备份 ↑</button></div></div>
+      ${cloudView()}<div class="card"><h3>学习记录与备份</h3><p class="note">本机随时保存，绑定账号后自动同步到云端。迁移前还会保留一份本机备份。</p><div class="library-tools"><button class="button secondary" data-action="export-state">导出完整备份 ↓</button><button class="button secondary" data-action="import-state">恢复完整备份 ↑</button><button class="button secondary" data-action="export-before-bind">导出最近迁移前备份 ↓</button></div></div>
       <div class="card"><h3>每组题量</h3><div class="field"><label for="size">复习上限</label><select id="size">${[6,10,15,20].map(size=>`<option value="${size}" ${state.settings.size===size?'selected':''}>${size} 题</option>`).join('')}</select></div><p class="note">未完成的到期考点分批复习。无到期内容时可额外练习，答对不会提前推进日程。</p><div class="actions"><button class="button secondary small" data-action="test-audio">试听英文朗读 ♫</button><button class="button secondary small" data-action="test-audio" data-speed="slow">慢速试听</button></div><p class="note" style="margin-top:10px">统一英式合成朗读，句间稍作停顿。可慢速重听，听力重播不计为提示。</p></div></aside></div><input id="bank-file" type="file" accept=".json,application/json" class="hidden"><input id="state-file" type="file" accept=".json,application/json" class="hidden">`;
   }
-  function cloudView(){
-    const c=cloud.view(state.history);
-    if(!c.enabled)return '<div class="card"><h3>服务器学习记录</h3><p class="note">请用正式网址练习，本地预览与离线文件不上传。</p></div>';
-    return `<div class="card"><h3>本设备的服务器记录</h3><p class="note">设备编号</p><p style="overflow-wrap:anywhere"><code>${esc(c.deviceId||'登记中')}</code></p><p>${esc(c.status?.name||'尚未命名')} · ${c.status?.approved?'已确认真实学习设备':'待家长确认，暂不用于出题'}</p><p class="note">服务器累计作答 ${c.status?.answerCount??'—'} 次 · 答错 ${c.status?.wrongCount??'—'} 次<br>待上传 ${c.pending} 条 · ${c.busy?'正在同步':c.syncedAt?'最近同步 '+esc(new Date(c.syncedAt).toLocaleString('zh-CN')):'尚未完成同步'}</p>${c.error?`<p class="note">${esc(c.error)}</p>`:''}<div class="library-tools"><button class="button secondary" data-action="sync-records">同步服务器记录 ↻</button><button class="button secondary" data-action="backfill-records">回补本机旧记录 ↑</button></div><p class="note">回补会单独标记；导入的备份不计为本设备的新作答。把编号告诉家长即可确认主设备。</p></div>`;
+  function cloudView(){return '<div id="account-card">'+cloudPanel()+'</div>';}
+  function cloudPanel(){
+    const c=cloud.view();
+    if(!c.enabled)return '<div class="card"><h3>云端账号</h3><p class="note">请在正式网址绑定账号；本地预览使用本机记录。</p></div>';
+    const sessions=Object.values(state.accountSessions||{});
+    return `<div class="card"><h3>${c.account?esc(c.account.name)+' 的云端账号':'把进度带到其他设备'}</h3><p class="note">绑定后同步复习日程、错题、练习、星星和猫咪图鉴。每次完成练习、重新打开和恢复联网时自动同步。</p><p role="status">${c.busy?'正在同步…':c.syncedAt?'最近同步 '+esc(new Date(c.syncedAt).toLocaleString('zh-CN')):'本机记录已保留'}</p>${c.error?`<p class="banner warning">${esc(c.error)}</p>`:''}<div class="library-tools"><button class="button" data-action="account">${c.account?'切换 / 重新绑定':'绑定云端账号'}</button>${c.account?'<button class="button secondary" data-action="sync-records">立即同步 ↻</button>':''}${c.error?'<button class="button secondary" data-action="export-cloud">导出云端备份 ↓</button><button class="button secondary" data-action="resolve-account">保留作答，采用云端安排</button>':''}</div>${sessions.length?`<h4>其他设备保存的练习</h4>${sessions.map(s=>`<button class="button secondary" data-action="resume-account" data-id="${esc(s.rewardId)}">${esc(s.day)} · 已答 ${s.index}/${s.items.length} · 继续</button>`).join('')}`:''}<p class="note">离线时继续练习，联网后补传。开宝箱需联网，以便各设备使用同一份星星余额。</p></div>`;
   }
   function currentContent(){
     const questions=E.availableQuestions(bank),points=bank.points.filter(p=>questions.some(q=>q.pointId===p.id));
@@ -286,15 +332,14 @@
     next.rewards ||= R.empty();next.session.rewardId ||= uid();
     const result=E.grade(bank,next,q,selected,help,E.day());
     if(!next.session.preview){
-      try{await cloud.prepare(result,bank.questions.find(item=>item.id===q),bank.revision);}
-      catch(err){toast(err.message||'暂未登记服务器记录，本机仍可保存。');}
+      await cloud.prepare(result,bank.questions.find(item=>item.id===q));
     }
     if(next.session.preview){
       delete next.points[result.pointId];
       for(const key of Object.keys(next.units||{}))if(key.startsWith(result.pointId+'::'))delete next.units[key];
     }
     next.session.results.push(result);next.session.index++;R.settle(next);await commit(next);
-    void cloud.sync(state.history);
+    if(next.session.index===next.session.items.length)scheduleSync();
     if(revision!==viewRevision)return;
     feedback=result;renderQuiz();
     scrollAnswerReview();
@@ -348,10 +393,13 @@
     if(!dialog.open)dialog.showModal();else dialog.querySelector('.dialog-close')?.focus?.();
   }
   async function openChest(){
-    const revision=viewRevision,next=clone(),opening=R.open(next,uid());
-    await commit(next);
+    const epoch=navigationEpoch;
+    let opening;
+    if(cloud.view().account)opening=await cloud.open();
+    else {const next=clone();opening=R.open(next,uid());await commit(next);}
+    const next=state;
     // Save the draw before animation: closing or reloading cannot lose the cat.
-    if(revision!==viewRevision){toast('新猫咪已收进图鉴。');return;}
+    if(epoch!==navigationEpoch){toast('新猫咪已收进图鉴。');return;}
     if(document.querySelector('.club-summary'))renderSummary();else render();
     const cat=catalog.find(c=>c.id===opening.catId),dialog=document.getElementById('cat-dialog');
     dialog.className='cat-dialog chest-opening';
@@ -419,11 +467,12 @@
   // under a Web Lock, so another tab can never silently overwrite this session.
   let queue=Promise.resolve();
   function run(task,revision){
-    queue=queue.then(async()=>{
+    const execute=async()=>{
       if(store.changed()){adopt(store.read());storageAvailable=true;render();toast('记录已从另一个页面同步，请再操作一次。');return;}
       if(revision!==undefined&&revision!==viewRevision)return;
       await task();
-    }).catch(err=>{toast(err.message||'操作未保存，请重试。');if(revision===undefined||revision===viewRevision)render();});
+    };
+    queue=queue.then(()=>cloud.view().enabled&&navigator.locks?.request?navigator.locks.request('ella-account-operation',execute):execute()).catch(err=>{toast(err.message||'操作未保存，请重试。');if(revision===undefined||revision===viewRevision)render();});
     return queue;
   }
   app.addEventListener('click',event=>{
@@ -431,7 +480,18 @@
     const el={dataset:{...target.dataset}},revision=viewRevision;
     return run(async()=>{
     const action=el.dataset.action;
-    if(action==='nav')navigate(el.dataset.target);
+    if(action==='account')showAccountDialog();
+    else if(action==='resume-account'){
+      const next=clone(),session=next.accountSessions?.[el.dataset.id];if(!session)return;
+      if(next.session&&next.session.index<next.session.items.length)next.accountSessions[next.session.rewardId]=next.session;
+      next.session=session;delete next.accountSessions[session.rewardId];await commit(next);resume();
+    }
+    else if(action==='export-cloud')download(`温故-云端备份-${E.day()}.json`,await cloud.backup());
+    else if(action==='export-before-bind')download(`温故-迁移前备份-${E.day()}.json`,cloud.localBackup());
+    else if(action==='resolve-account'){
+      if(await ask('保留作答，采用云端安排？','两边的答题历史和猫咪都会保留。冲突的日期、题量和同一组练习进度采用云端版本，本机原始版本另存备份。')){await cloud.resolve();render();}
+    }
+    else if(action==='nav')navigate(el.dataset.target);
     else if(action==='system'){system=el.dataset.system;render();}
     else if(action==='level'){level=Number(el.dataset.level);render();}
     else if(action==='start')await start();
@@ -446,7 +506,7 @@
     else if(action==='select'){selected=Number(el.dataset.option);await submit();}
     else if(action==='submit')await submit();
     else if(action==='next')nextQuestion();
-    else if(action==='pause'){feedback=null;stopAudio();render();}
+    else if(action==='pause'){feedback=null;stopAudio();render();scheduleSync();}
     else if(action==='finish'){const next=clone();next.session=null;await commit(next);feedback=null;render();await refreshBank();}
     else if(action==='end'&&await ask('结束这组练习？','已完成的作答和复习安排都会保留，未答题目不计入结果。')){const next=clone();next.session=null;await commit(next);render();await refreshBank();}
     else if(action==='transcript'){await rememberHelp(true,true);if(revision===viewRevision){showTranscript=true;renderQuiz();}}
@@ -456,11 +516,7 @@
     else if(action==='refresh-bank'){if(location.protocol==='file:')toast('本地单文件无法联网同步；请使用部署网址或导入更新包。');else await refreshBank();}
     else if(action==='export-bank')download('温故-题库.json',bank);
     else if(action==='export-state')download(`温故-完整备份-${E.day()}.json`,{kind:'lesson-loop-backup',version:1,exportedAt:new Date().toISOString(),bank,state});
-    else if(action==='sync-records')await cloud.sync(state.history);
-    else if(action==='backfill-records'){
-      if(!await ask('回补本机旧记录？','将尚未上传的旧作答另存服务器，并标记为历史回补；已导入的记录另作标记。它们不会自动用于衍生出题。'))return;
-      const next=clone();await cloud.backfill(next.history,bank);await commit(next);await cloud.sync(state.history);render();
-    }
+    else if(action==='sync-records')await cloud.sync();
     else if(action==='export-recovery'){
       const raw=store.recovery();
       if(!raw){toast('没有需要恢复的原始记录。');return;}
@@ -469,7 +525,7 @@
     }
     else if(action==='import-bank')document.getElementById('bank-file').click();
     else if(action==='import-state')document.getElementById('state-file').click();
-    },revision);
+    },el.dataset.action==='account'?undefined:revision);
   });
   app.addEventListener('change',event=>{
     const target=event.target,revision=viewRevision;
@@ -499,6 +555,12 @@
         }else{
           if(data.kind!=='lesson-loop-backup'||data.version!==1)throw new Error('请选择由本应用导出的完整备份。');
           E.validateBank(data.bank);E.validateState(data.state,data.bank);
+          if(cloud.view().account){
+            if(!await ask('合并这份账号备份？','保留已有作答和猫咪，补入备份里的记录；日期和题量设置以云端为准。'))return;
+            await cloud.importBundle({bank:data.bank,state:data.state,baseline:JSON.stringify(data.bank)});
+            stopAudio();render();toast('备份已合并并同步。');return;
+          }
+          if(cloud.view().enabled&&data.state.accountId)throw new Error('这是云端账号备份，请先绑定对应账号，再合并恢复。');
           if(!await ask('恢复完整备份？','这会替换当前浏览器中的题库和学习记录。建议先导出当前备份。'))return;
           const restoredBank=E.mergeBank(data.bank,(bank.revision||0)>=(data.bank.revision||0)?bank:data.bank),restoredState=data.state;
           for(const h of restoredState.history){
@@ -554,7 +616,10 @@
       }
     }catch(err){storageAvailable=err.name==='AudioSyncError';toast(err.message||'原始记录已保护，请先导出或恢复备份。');}
     render();
-    if(storageAvailable){try{await cloud.initialize();void cloud.sync(state.history);}catch(err){toast(err.message);}}
+    if(storageAvailable&&cloud.view().enabled){
+      if(cloud.view().account)await cloud.sync();
+      else showAccountDialog();
+    }
     if(catPreview&&state.session?.index===state.session?.items.length)renderSummary();
     if(storageAvailable)await refreshBank();
   }
@@ -563,10 +628,10 @@
     const changed=await syncLearning();
     if(viewKind==='page'&&(changed||renderedDay!==E.day()))render();
     await refreshBank(viewKind==='page');
-    void cloud.sync(state.history);
+    await cloud.sync();
   }
   window.addEventListener('storage',event=>{if(event.key===STORE||event.key===null)run(async()=>{});});
-  window.addEventListener('online',()=>{void cloud.sync(state.history);});
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)run(tick);});
+  window.addEventListener('online',()=>run(()=>cloud.sync()));
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)run(tick);else run(()=>cloud.sync());});
   setInterval(()=>run(tick),120000);
 })();

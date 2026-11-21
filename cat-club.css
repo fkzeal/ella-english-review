@@ -1,4 +1,15 @@
 /* Ella's little album: paper, soft sage, honey stars and real watercolor cats. */
+/* Account binding follows the existing paper-and-peach palette. */
+.account-strip{display:flex;justify-content:flex-end;margin:0 0 12px}
+.account-strip button{font-size:15px;min-height:44px}
+#account-dialog{width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 40px);overflow:auto;padding:28px;border:1px solid #ead8c8;border-radius:24px;background:#fffaf4;color:#584538}
+#account-dialog::backdrop{background:rgb(65 44 29 / 35%);backdrop-filter:blur(4px)}
+#account-dialog h2{font-size:26px;line-height:1.4;margin:12px 0}
+#account-dialog p{line-height:1.7}
+#account-dialog .field{display:flex;flex-direction:column;align-items:stretch;margin:18px 0;gap:8px}
+#account-dialog input[type=password],#account-dialog select{box-sizing:border-box;width:100%;padding:13px;font:inherit;border:1px solid #d9c4b1;border-radius:12px;background:white;min-height:48px}
+#account-dialog .actions{justify-content:flex-end;margin-top:20px}
+#account-error{color:#9c422b}
 .home-heading .page-head{margin-bottom:24px}
 .student-dashboard{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);align-items:stretch;gap:24px}
 .student-dashboard>section{min-width:0}

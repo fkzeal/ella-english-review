@@ -14,6 +14,7 @@ function harness(initial,shared,overrides={}){
     location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(fn){win.interval=fn;},console,URL,Blob,...overrides.context};
   win.CatRewards=require('../rewards');win.CAT_CATALOG=require('../assets/cats/catalog.json');
   win.LearningSync=require('../learning-sync');
+  win.AccountState=require('../account-state');win.AccountSync=require('../account-sync');
   vm.runInNewContext(fs.readFileSync(require.resolve('../app'),'utf8'),ctx);
   return {data,node,win,async ready(){await new Promise(resolve=>setImmediate(resolve));},
     async click(action,props={}){

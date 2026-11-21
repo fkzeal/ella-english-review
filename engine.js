@@ -276,6 +276,19 @@
     a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;
   }
   function plan(b,s,{today=day(),size=s.settings.size,practice=false,lessonId=null,preview=false,rng=Math.random}={}) {
+    const recent=new Map(),questions=new Map(b.questions.map(q=>[q.id,q]));
+    for(const h of s.history){
+      const q=questions.get(h.questionId);if(!q)continue;
+      const key=unitKey(q),rows=recent.get(key)||[];rows.push(h);recent.set(key,rows.slice(-5));
+    }
+    const profile=q=>{
+      const rows=recent.get(unitKey(q))||[],last=rows.slice(-3),u=s.units?.[unitKey(q)]||s.points[q.pointId];
+      const mastered=last.length===3&&last.every(h=>h.correct&&!h.help)&&new Set(last.map(h=>h.day)).size===3&&(u?.stage||0)>=2;
+      // A very overdue unit still gets its turn even after prior mastery.
+      const overdue=u?.due&&plusDay(u.due,14)<=today;
+      return {mastered,tier:overdue?0:mastered?2:rows.slice(-2).some(h=>!h.correct||h.help)?0:1,
+        misses:rows.filter(h=>!h.correct||h.help).length};
+    };
     let points=preview&&practice?b.points:practice?activePoints(b,s,today):duePoints(b,s,today);
     if(lessonId) points=points.filter(p=>p.lessonId===lessonId);
     points=shuffle(points,rng);
@@ -283,7 +296,8 @@
       const ha=s.history.filter(h=>h.questionId===a.id),hc=s.history.filter(h=>h.questionId===c.id);
       const ua=s.units?.[unitKey(a)],uc=s.units?.[unitKey(c)];
       const weak=u=>u?.missDay&&u.missDay===u.lastDay?0:1;
-      return weak(ua)-weak(uc)||(ua?.due||today).localeCompare(uc?.due||today)||ha.length-hc.length || (ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
+      const pa=profile(a),pc=profile(c);
+      return weak(ua)-weak(uc)||pa.tier-pc.tier||(ua?.due||today).localeCompare(uc?.due||today)||pc.misses-pa.misses||ha.length-hc.length || (ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
     })]));
     // Rank groups by the units actually eligible today, not historical aggregate
     // errors. A recovered word must not hide another still-weak word in its group.
@@ -294,7 +308,7 @@
     const weak=u=>u?.missDay&&u.missDay===u.lastDay&&u.due<=today?0:1;
     points=points.filter(p=>candidates.get(p.id).length).sort((a,c)=>{
       const ua=record(a),uc=record(c);
-      return weak(ua)-weak(uc)||(ua?.due||today).localeCompare(uc?.due||today);
+      return weak(ua)-weak(uc)||profile(candidates.get(a.id)[0]).tier-profile(candidates.get(c.id)[0]).tier||(ua?.due||today).localeCompare(uc?.due||today);
     });
     const groups=new Map();
     for(const p of points){if(!groups.has(p.lessonId))groups.set(p.lessonId,[]);groups.get(p.lessonId).push(p);}
@@ -307,12 +321,13 @@
     points=[];
     while(queues.some(g=>g.length))for(const g of queues)if(g.length)points.push(g.shift());
     const items=[];
-    const usedUnits=new Set();
+    const usedUnits=new Set();let masteredCount=0;
     while(items.length<size) {
       let added=false;
       for(const p of points) {
-        const q=candidates.get(p.id).find(q=>!items.includes(q.id)&&(!q.reviewUnit||!usedUnits.has(unitKey(q))));
-        if(q){items.push(q.id);usedUnits.add(unitKey(q));added=true;}
+        const q=candidates.get(p.id).find(q=>!items.includes(q.id)&&(!q.reviewUnit||!usedUnits.has(unitKey(q)))&&
+          (!practice||preview||!profile(q).mastered||masteredCount<Math.max(1,Math.floor(size/4))));
+        if(q){items.push(q.id);usedUnits.add(unitKey(q));if(profile(q).mastered)masteredCount++;added=true;}
         if(items.length>=size) break;
       }
       if(!added) break;
