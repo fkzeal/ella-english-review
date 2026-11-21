@@ -2,6 +2,548 @@
   "version": 1,
   "reports": [
     {
+      "runId": "manual-20261121-count100",
+      "date": "2026-11-21",
+      "createdAt": "2026-11-21T15:30:24.841Z",
+      "status": "published",
+      "summary": "手动试运行已完成，并核验题库上线。《I Count 100 Things》新增19题；环境恢复、素材读取、反馈处理和发布流程已实际执行。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "11",
+          "note": "吸收《I Count 100 Things》封面及正文第3–12页，完整建立1门RAZ D课程，覆盖15个学习目标。归档日期不代表已确认学习日。"
+        },
+        "questions": {
+          "value": "19",
+          "note": "新增11道词汇题、3道语言用法题、2道阅读题、3道听力题；同一目标的不同题型只计一次。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "现有反馈已核对保存的原文摘录；对应清晰原图和具体错误说明待补充，保留原题。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "本轮未改变旧题或选题策略；已补充音频环境版本要求及反馈异步回读重试。"
+        },
+        "derivatives": {
+          "value": "未生成",
+          "note": "受控生成账本与定向分发尚未完成。"
+        }
+      },
+      "questions": [
+        {
+          "id": "raz-d-i-count-100-things-q01",
+          "change": "added",
+          "reason": "依据第4页原文新增，覆盖“count：数数”。",
+          "lesson": "I Count 100 Things",
+          "target": "count：数数",
+          "reviewUnit": "word-count",
+          "type": "choice",
+          "prompt": "句子 “I count 100 paper clips.” 中，count 表示什么？",
+          "options": [
+            "画画",
+            "数数",
+            "剪纸"
+          ],
+          "answer": 1,
+          "explanation": "count 在这里是动词，表示数数；句子说“我数了100个回形针”。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 paper clips. What can I make?",
+              "source": "I Count 100 Things · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q02",
+          "change": "added",
+          "reason": "依据第4页原文新增，覆盖“one hundred：一百”。",
+          "lesson": "I Count 100 Things",
+          "target": "one hundred：一百",
+          "reviewUnit": "number-one-hundred",
+          "type": "choice",
+          "prompt": "原文中的 100 用英语怎么说？",
+          "options": [
+            "one hundred",
+            "ten",
+            "one"
+          ],
+          "answer": 0,
+          "explanation": "100 是 one hundred（一百）；ten 是十，one 是一。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 paper clips. What can I make?",
+              "source": "I Count 100 Things · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q03",
+          "change": "added",
+          "reason": "依据第3页原文新增，覆盖“things：物品”。",
+          "lesson": "I Count 100 Things",
+          "target": "things：物品",
+          "reviewUnit": "word-things",
+          "type": "choice",
+          "prompt": "“Look at all these things!” 中，things 指什么？",
+          "options": [
+            "颜色",
+            "动物",
+            "物品"
+          ],
+          "answer": 2,
+          "explanation": "things 是 thing 的复数，指物品、东西。这里让我们看看这些东西。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Look at all these things!",
+              "source": "I Count 100 Things · 第3页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q04",
+          "change": "added",
+          "reason": "依据第4页原文新增，覆盖“paper clips：回形针”。",
+          "lesson": "I Count 100 Things",
+          "target": "paper clips：回形针",
+          "reviewUnit": "word-paper-clips",
+          "type": "choice",
+          "prompt": "paper clips 是什么？",
+          "options": [
+            "回形针",
+            "积木",
+            "棉花糖"
+          ],
+          "answer": 0,
+          "explanation": "paper clips 表示回形针，原文说 I count 100 paper clips.。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 paper clips. What can I make?",
+              "source": "I Count 100 Things · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q05",
+          "change": "added",
+          "reason": "依据第6页原文新增，覆盖“gumdrops：软糖”。",
+          "lesson": "I Count 100 Things",
+          "target": "gumdrops：软糖",
+          "reviewUnit": "word-gumdrops",
+          "type": "choice",
+          "prompt": "gumdrops 是什么？",
+          "options": [
+            "回形针",
+            "软糖",
+            "房屋"
+          ],
+          "answer": 1,
+          "explanation": "gumdrops 表示软糖；第6页数的是100颗软糖。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 gumdrops. What can I make?",
+              "source": "I Count 100 Things · 第6页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q06",
+          "change": "added",
+          "reason": "依据第8页原文新增，覆盖“marshmallows：棉花糖”。",
+          "lesson": "I Count 100 Things",
+          "target": "marshmallows：棉花糖",
+          "reviewUnit": "word-marshmallows",
+          "type": "choice",
+          "prompt": "marshmallows 是什么？",
+          "options": [
+            "积木",
+            "迷宫",
+            "棉花糖"
+          ],
+          "answer": 2,
+          "explanation": "marshmallows 表示棉花糖；第8页数的是100颗棉花糖。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 marshmallows. What can I make?",
+              "source": "I Count 100 Things · 第8页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q07",
+          "change": "added",
+          "reason": "依据第10页原文新增，覆盖“blocks：积木”。",
+          "lesson": "I Count 100 Things",
+          "target": "blocks：积木",
+          "reviewUnit": "word-blocks",
+          "type": "choice",
+          "prompt": "书里用来搭房屋的 blocks 是什么？",
+          "options": [
+            "积木",
+            "软糖",
+            "彩虹"
+          ],
+          "answer": 0,
+          "explanation": "blocks 在这本书里指积木，第10页数了100块积木。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 blocks. What can I make?",
+              "source": "I Count 100 Things · 第10页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q08",
+          "change": "added",
+          "reason": "依据第5页原文新增，覆盖“maze：迷宫”。",
+          "lesson": "I Count 100 Things",
+          "target": "maze：迷宫",
+          "reviewUnit": "word-maze",
+          "type": "choice",
+          "prompt": "“I can make a maze!” 中，maze 是什么？",
+          "options": [
+            "房屋",
+            "迷宫",
+            "冰屋"
+          ],
+          "answer": 1,
+          "explanation": "maze 表示迷宫；第5页说可以做出一个迷宫。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make a maze!",
+              "source": "I Count 100 Things · 第5页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q09",
+          "change": "added",
+          "reason": "依据第7页原文新增，覆盖“rainbow：彩虹”。",
+          "lesson": "I Count 100 Things",
+          "target": "rainbow：彩虹",
+          "reviewUnit": "word-rainbow",
+          "type": "choice",
+          "prompt": "rainbow 是什么？",
+          "options": [
+            "冰屋",
+            "迷宫",
+            "彩虹"
+          ],
+          "answer": 2,
+          "explanation": "rainbow 表示彩虹；第7页说 I can make a rainbow!。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make a rainbow!",
+              "source": "I Count 100 Things · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q10",
+          "change": "added",
+          "reason": "依据第9页原文新增，覆盖“igloo：冰屋”。",
+          "lesson": "I Count 100 Things",
+          "target": "igloo：冰屋",
+          "reviewUnit": "word-igloo",
+          "type": "choice",
+          "prompt": "“I can make an igloo!” 中，igloo 是什么？",
+          "options": [
+            "冰屋",
+            "彩虹",
+            "房屋"
+          ],
+          "answer": 0,
+          "explanation": "igloo 表示冰屋；书中的棉花糖作品模仿冰屋的形状。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make an igloo!",
+              "source": "I Count 100 Things · 第9页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q11",
+          "change": "added",
+          "reason": "依据第11页原文新增，覆盖“house：房屋”。",
+          "lesson": "I Count 100 Things",
+          "target": "house：房屋",
+          "reviewUnit": "word-house",
+          "type": "choice",
+          "prompt": "house 是什么？",
+          "options": [
+            "迷宫",
+            "房屋",
+            "彩虹"
+          ],
+          "answer": 1,
+          "explanation": "house 表示房屋；第11页说可以做出一座房屋。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make a house!",
+              "source": "I Count 100 Things · 第11页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q12",
+          "change": "added",
+          "reason": "依据第5页原文新增，覆盖“can 后接动词原形”。",
+          "lesson": "I Count 100 Things",
+          "target": "can 后接动词原形",
+          "reviewUnit": "grammar-can-make",
+          "type": "choice",
+          "prompt": "选词填空：I can ___ a maze!",
+          "options": [
+            "makes",
+            "making",
+            "make"
+          ],
+          "answer": 2,
+          "explanation": "can 后接动词原形，因此用 make。原句是 I can make a maze!。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make a maze!",
+              "source": "I Count 100 Things · 第5页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q13",
+          "change": "added",
+          "reason": "依据第9页原文新增，覆盖“a / an 根据后面词语的首音选择”。",
+          "lesson": "I Count 100 Things",
+          "target": "a / an 根据后面词语的首音选择",
+          "reviewUnit": "grammar-an-igloo",
+          "type": "choice",
+          "prompt": "选词填空：I can make ___ igloo!",
+          "options": [
+            "an",
+            "a",
+            "some"
+          ],
+          "answer": 0,
+          "explanation": "igloo 的第一个音是元音 /ɪ/，所以用 an。a / an 的选择看后面词语的首音，不只看字母。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make an igloo!",
+              "source": "I Count 100 Things · 第9页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q14",
+          "change": "added",
+          "reason": "依据第12页原文新增，覆盖“with：用某种材料”。",
+          "lesson": "I Count 100 Things",
+          "target": "with：用某种材料",
+          "reviewUnit": "meaning-with-materials",
+          "type": "choice",
+          "prompt": "“What can you make with 100 things?” 中，with 表示什么？",
+          "options": [
+            "在……下面",
+            "用",
+            "在……之前"
+          ],
+          "answer": 1,
+          "explanation": "with 在这里表示“用”，询问能用100件东西做出什么。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What can you make with 100 things?",
+              "source": "I Count 100 Things · 第12页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q15",
+          "change": "added",
+          "reason": "依据第4、5、6、7页原文新增，覆盖“根据原文匹配材料与作品”。",
+          "lesson": "I Count 100 Things",
+          "target": "根据原文匹配材料与作品",
+          "reviewUnit": "read-clips-gumdrops",
+          "type": "reading",
+          "prompt": "根据下面的原文节选，哪组材料与作品的搭配正确？",
+          "options": [
+            "paper clips → rainbow",
+            "gumdrops → maze",
+            "paper clips → maze"
+          ],
+          "answer": 2,
+          "explanation": "第4–5页把 paper clips 与 maze 连在一起；第6–7页把 gumdrops 与 rainbow 连在一起。因此正确搭配是 paper clips → maze。",
+          "passage": "I count 100 paper clips. What can I make?\nI can make a maze!\nI count 100 gumdrops. What can I make?\nI can make a rainbow!",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 paper clips. What can I make?",
+              "source": "I Count 100 Things · 第4页"
+            },
+            {
+              "kind": "original",
+              "text": "I can make a maze!",
+              "source": "I Count 100 Things · 第5页"
+            },
+            {
+              "kind": "original",
+              "text": "I count 100 gumdrops. What can I make?",
+              "source": "I Count 100 Things · 第6页"
+            },
+            {
+              "kind": "original",
+              "text": "I can make a rainbow!",
+              "source": "I Count 100 Things · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q16",
+          "change": "added",
+          "reason": "依据第8、9、10、11页原文新增，覆盖“根据原文匹配材料与作品”。",
+          "lesson": "I Count 100 Things",
+          "target": "根据原文匹配材料与作品",
+          "reviewUnit": "read-marshmallows-blocks",
+          "type": "reading",
+          "prompt": "根据下面的原文节选，哪组材料与作品的搭配正确？",
+          "options": [
+            "marshmallows → igloo",
+            "blocks → rainbow",
+            "marshmallows → maze"
+          ],
+          "answer": 0,
+          "explanation": "第8–9页数了 marshmallows，接着做出 igloo；第10–11页的 blocks 对应 house。正确搭配是 marshmallows → igloo。",
+          "passage": "I count 100 marshmallows. What can I make?\nI can make an igloo!\nI count 100 blocks. What can I make?\nI can make a house!",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 marshmallows. What can I make?",
+              "source": "I Count 100 Things · 第8页"
+            },
+            {
+              "kind": "original",
+              "text": "I can make an igloo!",
+              "source": "I Count 100 Things · 第9页"
+            },
+            {
+              "kind": "original",
+              "text": "I count 100 blocks. What can I make?",
+              "source": "I Count 100 Things · 第10页"
+            },
+            {
+              "kind": "original",
+              "text": "I can make a house!",
+              "source": "I Count 100 Things · 第11页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q17",
+          "change": "added",
+          "reason": "依据第4页原文新增，覆盖“one hundred：一百”。",
+          "lesson": "I Count 100 Things",
+          "target": "one hundred：一百",
+          "reviewUnit": "listen-hundred-clips",
+          "type": "listening",
+          "prompt": "听一听，说话者数了多少个回形针？",
+          "options": [
+            "10个",
+            "100个",
+            "1个"
+          ],
+          "answer": 1,
+          "explanation": "原句节选朗读说 I count 100 paper clips.，100 读作 one hundred，表示一百。",
+          "audioText": "I count 100 paper clips. What can I make?",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 paper clips. What can I make?",
+              "source": "I Count 100 Things · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q18",
+          "change": "added",
+          "reason": "依据第6、7页原文新增，覆盖“gumdrops：软糖”。",
+          "lesson": "I Count 100 Things",
+          "target": "gumdrops：软糖",
+          "reviewUnit": "listen-gumdrops-rainbow",
+          "type": "listening",
+          "prompt": "听一听，说话者用什么做彩虹？",
+          "options": [
+            "回形针",
+            "积木",
+            "软糖"
+          ],
+          "answer": 2,
+          "explanation": "原句节选朗读先说 I count 100 gumdrops.，再说 I can make a rainbow!，用的是软糖。两句分别来自第6页和第7页。",
+          "audioText": "I count 100 gumdrops. I can make a rainbow!",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 gumdrops. What can I make?",
+              "source": "I Count 100 Things · 第6页"
+            },
+            {
+              "kind": "original",
+              "text": "I can make a rainbow!",
+              "source": "I Count 100 Things · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-i-count-100-things-q19",
+          "change": "added",
+          "reason": "依据第8、9页原文新增，覆盖“根据原文匹配材料与作品”。",
+          "lesson": "I Count 100 Things",
+          "target": "根据原文匹配材料与作品",
+          "reviewUnit": "listen-marshmallows-igloo",
+          "type": "listening",
+          "prompt": "听一听，说话者可以用棉花糖做出什么？",
+          "options": [
+            "冰屋",
+            "迷宫",
+            "房屋"
+          ],
+          "answer": 0,
+          "explanation": "原句节选朗读先数100颗 marshmallows，再说 I can make an igloo!，做出的是冰屋。两句分别来自第8页和第9页。",
+          "audioText": "I count 100 marshmallows. I can make an igloo!",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 marshmallows. What can I make?",
+              "source": "I Count 100 Things · 第8页"
+            },
+            {
+              "kind": "original",
+              "text": "I can make an igloo!",
+              "source": "I Count 100 Things · 第9页"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "Animal Tongues 第7页清晰原图或题干选项的具体核查说明待补齐。",
+        "定时任务仍需完成启动指令更新与独立运行验收；本条记录为手动维护结果。"
+      ],
+      "verification": {
+        "commit": "3ae961e25fc456c9c088b914dccc610214ad1549",
+        "actionsRun": "44919312700",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "framework-20261121",
       "date": "2026-11-21",
       "createdAt": "2026-11-21T13:41:23.310554Z",
