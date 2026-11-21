@@ -10,137 +10,152 @@
   "clips": {
     "There are four onions.": {
       "file": "audio/e2d232d0112e4b486c8b9264.mp3",
-      "duration": 1.557,
+      "duration": 1.608,
       "sha256": "12967772ade6abfa768b5a9c319809117dd74b0d7ecec7b89a33539b5381e996"
     },
     "Five is greater than two.": {
       "file": "audio/8ca92015b1cae2a756f067b9.mp3",
-      "duration": 1.856,
+      "duration": 1.92,
       "sha256": "91f5bc9b5a0a69bc7b8c2f3aebd361bb92e9f0d9d5b9cd9dbb6bc8791a4d2a0a"
     },
     "There is one pepper.": {
       "file": "audio/f392438ff15cf2a29812869a.mp3",
-      "duration": 1.451,
+      "duration": 1.512,
       "sha256": "7b246744f80579dd2bb7cc344fea8adc7ba7fed900e4ecb9264a49a655ffcdd6"
     },
     "There are five carrots.": {
       "file": "audio/1262a6503443d17dea8e53e5.mp3",
-      "duration": 1.579,
+      "duration": 1.632,
       "sha256": "f26aa1abc5aee92df6a0ab6601d5c4956fcdb658846733b713e11bda73b05d07"
     },
     "This anteater has a long, thin tongue.": {
       "file": "audio/e190b0553f372d6bac75fff0.mp3",
-      "duration": 2.325,
+      "duration": 2.376,
       "sha256": "e60c65e1e9e54c13d8be11e7e161eb557fc596c2e5c19c3564ed04a2bd89077d"
     },
     "This frog has a long, sticky tongue.": {
       "file": "audio/3cc5c1b20ff4e713c0ff0a78.mp3",
-      "duration": 2.176,
+      "duration": 2.232,
       "sha256": "228dd44a93ea7e371c1fcc30412a3c29d419f7388761dc824c55c863b95f5624"
     },
     "This cat has a tongue like a brush.": {
       "file": "audio/90cc083ce3d5305854460d06.mp3",
-      "duration": 2.112,
+      "duration": 2.16,
       "sha256": "78f0b1d899e7776d2601ccbc69be34ed2c74e015e65e78a0dd29884aa4fc9ab0"
     },
     "Hi, I'm Tom. I always go swimming on Tuesdays.": {
       "file": "audio/cce8a5d587ddbdd9b8931600.mp3",
-      "duration": 3.977,
+      "duration": 4.032,
       "sha256": "fa45c8facfc6b10efba74e350ed6ceb6cf9ac84070e41b8c1295d24092c3b9cd"
     },
     "Hi, I'm Anna. I always read books on Fridays.": {
       "file": "audio/45f8bbf4f9f18c16d0083851.mp3",
-      "duration": 3.827,
+      "duration": 3.888,
       "sha256": "4003dfd09f7aeade338090889fd23606cf61f8c8c19f4fbd5b8f8dca2459c23b"
     },
     "Hi, I'm Ben. I always play the piano on Wednesdays.": {
       "file": "audio/d65960f23928fc9621c6b7a5.mp3",
-      "duration": 4.126,
+      "duration": 4.176,
       "sha256": "09dae9dfb957a3f75c1dee4b88efd4dd756bbbcc863b8ae8a8a9db3d0583488b"
     },
     "Hi, I'm Lucy. I always go swimming on Sundays.": {
       "file": "audio/ffde25c6b539fe516cca03f3.mp3",
-      "duration": 3.914,
+      "duration": 3.984,
       "sha256": "44937ef8245a0d800356228870a0b4ec9b58cf2171dc9caa6c539337d80bce97"
     },
     "Hi, I'm Sam. I always read books on Mondays.": {
       "file": "audio/f1a44dd7c61940e3bb3c984f.mp3",
-      "duration": 3.763,
+      "duration": 3.816,
       "sha256": "ef3c297354dd36a6a439b447c42bc2d049be91b100edb42229a7bc2263567611"
     },
     "Hi, I'm Amy. I always play the piano on Saturdays.": {
       "file": "audio/6fc4ac91dd2331815ff158ad.mp3",
-      "duration": 4.062,
+      "duration": 4.128,
       "sha256": "55892603bed2f30709dcfa0702a85984c10c922f0bdb4e23020297dd4a8e9562"
     },
     "I always go swimming on Tuesdays.": {
       "file": "audio/0f768874c167962ac43051bd.mp3",
-      "duration": 2.261,
+      "duration": 2.328,
       "sha256": "69ec01819c8afa8db3571ffff522c096fbf8ded7911075e8e3e99cd7de064cc6"
     },
     "I never go swimming on Mondays.": {
       "file": "audio/fee1c4851ea00eb31b26fc77.mp3",
-      "duration": 2.112,
+      "duration": 2.16,
       "sha256": "71a0e53f4a07393e75924ccb70d5bc16afd9f793291d80a35194cd4cf67ab36d"
     },
     "An octopus has eight arms.": {
       "file": "audio/8f5d07bf8473bf6f3d50ba92.mp3",
-      "duration": 2.005,
+      "duration": 2.064,
       "sha256": "884de2108e1f59099fc81b70ca2aacb9d25f35a01b9f989c297af8b2c47cf8f1"
     },
     "The first arm is for brushing her teeth.": {
       "file": "audio/869ce4cda65e27b6d2259f2f.mp3",
-      "duration": 2.24,
+      "duration": 2.304,
       "sha256": "150682e7cefcea8a7c798fef67e286e88150ef6a7a9b4e503317cd9222f57e55"
     },
     "The second arm is for combing her hair.": {
       "file": "audio/409629e56f324b9ff9fe2531.mp3",
-      "duration": 2.325,
+      "duration": 2.376,
       "sha256": "f6a86e85956cc18569d953c8f3917291222272813c56312d72af7d418b487e28"
     },
     "The fourth arm is for giving high fives.": {
       "file": "audio/43a4d19754bff45fd23f2e0e.mp3",
-      "duration": 2.432,
+      "duration": 2.496,
       "sha256": "359797adaebf52770870db2548feab159fb71efedfbc3cbec1f441cb86fbbd34"
     },
     "Anna wants to read a comic.": {
       "file": "audio/eb33bc1433544d77498a0fd2.mp3",
-      "duration": 1.856,
+      "duration": 1.92,
       "sha256": "ca6c2dccd4521d648c0bda3ab4012c6c50ebba4caeb5b1f97981fe4b97f4f00e"
     },
     "Ben must write an email.": {
       "file": "audio/d46b367bbd1bc3b3ec18e431.mp3",
-      "duration": 1.771,
+      "duration": 1.824,
       "sha256": "af261efe99e843b8e350cce8bb6bd6ddd5ff4bbae4b70ea383cba41b21139d3f"
     },
     "We go skiing.": {
       "file": "audio/c58bb4b2ac85b8277e0dc98b.mp3",
-      "duration": 1.259,
+      "duration": 1.32,
       "sha256": "01c67cd615dd0d8d77209c884af461c215061c987655a1c0251e6e26e87e984c"
     },
     "You mustn't listen to music.": {
       "file": "audio/21263850ca173fe91369c858.mp3",
-      "duration": 1.835,
+      "duration": 1.896,
       "sha256": "6cc9665d2646b26a65a7e21922bbf6e9af252cf66370306002f21db78b72a14a"
     },
     "The fifth arm is for holding an umbrella.": {
       "file": "audio/f02d22985876b716bef211d4.mp3",
-      "duration": 2.347,
+      "duration": 2.4,
       "sha256": "09ff0937451a6b87109e7302ef58ac1bd899fcad04d55a7d59ea0f3295013074"
     },
     "The sixth arm is for carrying a bag.": {
       "file": "audio/4b58b69af3cdf549780e6e59.mp3",
-      "duration": 2.155,
+      "duration": 2.208,
       "sha256": "63b1288836dd84abf469ff9b31c81fa586ea3dc879c3692c73a5fe5f5c04f127"
     },
     "The seventh and eighth arms are for giving hugs.": {
       "file": "audio/ed262931034ac5da79b4fbb6.mp3",
-      "duration": 2.603,
+      "duration": 2.664,
       "sha256": "357284e136a6bde56aab940f0c450deaee6ee4238c6003489f3c3d84ca6bd073"
+    },
+    "I count 100 paper clips. What can I make?": {
+      "file": "audio/f2cffaeca07cc4f0edcb8060.mp3",
+      "duration": 4.104,
+      "sha256": "051234487df871070959894b6bc7f021a55acccb14887ef275ea75c5e01a2169"
+    },
+    "I count 100 gumdrops. I can make a rainbow!": {
+      "file": "audio/cd4c9e9c73a6402c4b93badc.mp3",
+      "duration": 4.152,
+      "sha256": "ce4c7180b32ec6cb0b63f29de999beb87d61aa0d9ceb2af27749728fbf630bd7"
+    },
+    "I count 100 marshmallows. I can make an igloo!": {
+      "file": "audio/cbe6abfec61aec9aa08e2504.mp3",
+      "duration": 4.248,
+      "sha256": "6fd5ea4a9921d39584f4a0ad3e027d3d1d7e54dbdf7dded75f8322459cc5c7b8"
     },
     "Hello! Let us review English together. I always go swimming on Tuesdays.": {
       "file": "audio/ead508667dd0aca4bf2ceabc.mp3",
-      "duration": 5.948,
+      "duration": 6.0,
       "sha256": "e7a973a8816700be58319031b53694ca3ed099afca153d190d44b4970796b1a1"
     }
   }

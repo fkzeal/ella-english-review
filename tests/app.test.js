@@ -401,7 +401,9 @@ test('home due counts refresh at midnight without storage changes, including a p
     clock.set('2026-11-21');app.win.interval();await app.ready();
     assert.equal(app.data.get(S.KEY),raw,'crossing midnight alone must not rewrite learner records');
     assert.match(app.node('app').innerHTML,/今天到期的课程/);
-    assert.match(app.node('app').innerHTML,/1 个考点待复习/);
+    const due=E.dueUnits(bank,app.saved().state,'2026-11-21');
+    assert(due.some(item=>E.unitKey(item)===E.unitKey(q)));
+    assert.match(app.node('app').innerHTML,new RegExp(`${due.length} 个考点待复习`));
   }
 });
 test('a midnight refresh preserves the visible quiz, answer feedback, and settlement',async()=>{
@@ -423,11 +425,13 @@ test('an independent correct answer removes its due unit while sibling groups re
   const q=bank.questions.find(q=>q.id==='gt-veg-q02');
   state.session={items:[q.id],index:0,results:[],day:'2026-11-21'};
   const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{ReviewEngine:clock.engine,context:{Date:clock.Date}});
-  await app.ready();assert.match(app.node('app').innerHTML,/114 个考点待复习/);
+  const before=E.dueUnits(bank,state,'2026-11-21').length;
+  const groups=E.duePoints(bank,state,'2026-11-21').length;
+  await app.ready();assert.match(app.node('app').innerHTML,new RegExp(`${before} 个考点待复习`));
   await app.click('resume');await app.click('select',{option:String(q.answer)});await app.click('next');await app.click('finish');
-  assert.match(app.node('app').innerHTML,/113 个考点待复习/);
+  assert.match(app.node('app').innerHTML,new RegExp(`${before-1} 个考点待复习`));
   assert.equal(app.saved().state.units[E.unitKey(q)].due,'2026-11-24');
-  assert.equal(E.duePoints(bank,app.saved().state,'2026-11-21').length,26);
+  assert.equal(E.duePoints(bank,app.saved().state,'2026-11-21').length,groups);
   const next=E.plan(bank,app.saved().state,{today:'2026-11-21',size:1000});
   assert(!next.some(id=>E.unitKey(bank.questions.find(q=>q.id===id))===E.unitKey(q)));
 });

@@ -8,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import time
 from datetime import datetime
 from urllib.request import Request, urlopen
 
@@ -139,6 +140,22 @@ def published_receipt(path, directory):
     return receipt
 
 
+def confirm_updates(config, directory, updates, status, note):
+    # Base accepts updates before its read projection catches up. Retry reads
+    # only: repeating the write would obscure whether the original succeeded.
+    for attempt, delay in enumerate([0, 2, 5, 10, 15]):
+        if delay:
+            time.sleep(delay)
+        artifact = directory / ("after" if attempt == 0 else f"after-retry-{attempt}")
+        artifact.mkdir()
+        confirmed = {row["record_id"]: row for row in fetch_records(config, artifact)}
+        if all((confirmed.get(record_id) or {}).get("处理状态") == [status] and
+               (confirmed.get(record_id) or {}).get("修复说明") == note
+               for record_id in updates):
+            return
+    raise ValueError("状态写入回读未确认，请保留本次回执并重新核查；未重复写入")
+
+
 def mark(args):
     config = load(args.config)
     allowed = config["pendingStatuses"] + config["closedStatuses"]
@@ -182,12 +199,7 @@ def mark(args):
     save(directory / "request.json", payload)
     command(["lark-cli", "base", "+record-batch-update", "--base-token", config["baseToken"],
              "--table-id", config["tableId"], "--json", json.dumps(payload, ensure_ascii=False)], directory, "update")
-    (directory / "after").mkdir()
-    confirmed = {row["record_id"]: row for row in fetch_records(config, directory / "after")}
-    for record_id in args.record:
-        row = confirmed.get(record_id) or {}
-        if row.get("处理状态") != [args.status] or row.get("修复说明") != args.note:
-            raise ValueError("状态写入回读未确认，请保留本次回执并重新核查")
+    confirm_updates(config, directory, updates, args.status, args.note)
     print(json.dumps({"records": len(updates), "status": args.status, "receipt": str(directory)}, ensure_ascii=False))
 
 

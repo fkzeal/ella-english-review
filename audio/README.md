@@ -8,7 +8,7 @@
 
 先修改 question-bank.json，再为新增 audioText 生成音频。原题文本相同时复用音频。改变文本或生成配置时文件名随内容摘要改变，避免缓存播错。manifest.json 按完整原文匹配并记录文件SHA-256。构建检查全部有效听力题及试听稿；缺失或损坏直接失败，不发布缺音频的新版。
 
-生成环境需 Python 3.11+、kokoro-onnx（本轮版本见下方）、ffmpeg；不加入网站运行依赖。模型和临时文件放在仓库之外，不能提交。
+生成环境需 Python 3.11–3.13、kokoro-onnx（本轮版本见下方）、ffmpeg；不加入网站运行依赖。固定版 kokoro-onnx==0.4.9 不支持 Python 3.14，云端新建 venv 前须选择兼容解释器（本次空环境用 Python 3.12 验证）。模型和临时文件放在仓库之外，不能提交。
 
 模型来源：
 - https://github.com/thewh1teagle/kokoro-onnx
