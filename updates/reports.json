@@ -2,6 +2,40 @@
   "version": 1,
   "reports": [
     {
+      "runId": "026a4993-bdad-433d-8227-41730d9bd1c8",
+      "date": "2026-11-22",
+      "createdAt": "2026-11-21T18:00:49.554Z",
+      "status": "partial",
+      "summary": "云端维护与私有巩固链路已修复；本轮无新教材图片。定时任务完整指令仍待应用。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "0",
+          "note": "完整扫描现有24张已发布素材，无新图或补页。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "共享题库保持现有168题。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "待核查内容仍缺Animal Tongues第7页清晰原图，保留待资料状态。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "本轮修复维护程序与私有发布链路，未改共享题目。"
+        },
+        "derivatives": {
+          "value": "5",
+          "note": "私有巩固练习已核验；仅展示本轮发布数量。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "原定时任务配置更新被取消，仍需恢复完整维护指令并完成独立试运行。"
+      ]
+    },
+    {
       "runId": "manual-20261121-count100",
       "date": "2026-11-21",
       "createdAt": "2026-11-21T15:30:24.841Z",

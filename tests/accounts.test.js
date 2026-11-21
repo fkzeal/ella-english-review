@@ -266,26 +266,32 @@ test('private publication preserves state, distributes only to learner, retries 
     const auth=await h.login(),other=await h.login('test-1'),bundle=await normalized();
     const base=bank.questions.find(q=>q.id==='l2-02-q04');
     answer(bundle,base.id,1);
+    const base2=bank.questions.find(q=>q.id==='l2-02-q07');answer(bundle,base2.id,1);
     assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:0,bundle,migrate:true},auth)).status,200);
     const admin={token:h.secret},runId=crypto.randomUUID();
     const q={...copy(base),prompt:'想说“我读漫画”，选哪个句子？',options:['I read a comic.','I write an email.','I listen to music.'],answer:0,
       explanation:'read a comic 表示读漫画。',practiceFor:'ella',baseQuestionId:base.id,baseFingerprint:sha(P.identity(base)),learningTargetId:'comic',
       references:[...base.references,{kind:'practice',text:'I read a comic.',source:'原创练习'}]};
     q.id='practice-'+sha(JSON.stringify([q.baseQuestionId,q.type,q.prompt,q.passage||null,q.audioText||null,q.options,q.answer])).slice(0,24);
-    const payload={accountId:'ella',runId,expectedRevision:1,publicBank:bank,reviewed:true,questions:[q]};
+    const q2={...copy(base2),prompt:'想说“去滑冰”，应该选哪一个活动？',options:['go skiing','go skating','go shopping'],answer:1,
+      practiceFor:'ella',baseQuestionId:base2.id,baseFingerprint:sha(P.identity(base2)),learningTargetId:'skating',
+      references:[...base2.references,{kind:'practice',text:'go skating',source:'原创练习'}]};
+    q2.id='practice-'+sha(JSON.stringify([q2.baseQuestionId,q2.type,q2.prompt,null,null,q2.options,q2.answer])).slice(0,24);
+    const payload={accountId:'ella',runId,expectedRevision:1,publicBank:bank,reviewed:true,questions:[q,q2].sort((a,b)=>b.id.localeCompare(a.id))};
     assert.equal((await h.call('admin/practice/source?accountId=ella')).status,401);
     assert.equal((await h.call('admin/practice/publish',payload,other)).status,401);
     assert.equal((await h.call('admin/practice/publish',{...payload,expectedRevision:0},admin)).status,409);
     assert.equal((await h.call('admin/practice/publish',{...payload,questions:[{...q,practiceFor:'test-1'}]},admin)).status,400);
     const published=await h.call('admin/practice/publish',payload,admin);
-    assert.equal(published.status,200,JSON.stringify(published.data));assert.equal(published.data.count,1);
+    assert.equal(published.status,200,JSON.stringify(published.data));assert.equal(published.data.count,2);
     assert.deepEqual((await h.call('admin/practice/publish',payload,admin)).data,published.data);
     assert.equal((await h.call('admin/practice/publish',{...payload,reviewed:false},admin)).status,400);
     const synced=(await h.call('accounts/state',null,auth)).data;
     assert.deepEqual(synced.bundle.state,bundle.state);assert.equal(synced.revision,2);
     assert(synced.bundle.bank.questions.some(x=>x.id===q.id));
     const readback=(await h.call('admin/practice/publish?accountId=ella&runId='+runId,null,admin)).data;
-    assert.equal(readback.visible,true);assert.equal(readback.questions.length,1);
+    assert.equal(readback.visible,true);assert.equal(readback.questions.length,2);
+    assert.equal(sha(JSON.stringify(readback.questions)),readback.receipt.checksum,'readback keeps receipt order for multi-question checksums');
     assert.equal((await h.call('accounts/state',null,other)).data.bundle,null);
     const malicious=await S.normalize({...copy(synced.bundle),state:{...copy(synced.bundle.state),accountId:'test-1',history:[]}},{
       accountId:'test-1',deviceId:other.deviceId,crypto,migrate:true});
@@ -294,6 +300,6 @@ test('private publication preserves state, distributes only to learner, retries 
     assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:2,bundle:refresh},auth)).status,200);
     const deletion=copy(refresh);deletion.bank=copy(bank);
     assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:3,bundle:deletion},auth)).status,409);
-    assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM account_practice_questions').first()).n,1);
+    assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM account_practice_questions').first()).n,2);
   }finally{global.fetch=realFetch;await h.mf.dispose();}
 });

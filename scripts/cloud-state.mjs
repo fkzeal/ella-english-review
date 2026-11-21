@@ -3,6 +3,7 @@ import path from 'node:path';
 import {randomUUID,randomBytes,hkdfSync,createCipheriv,createDecipheriv,createHash} from 'node:crypto';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
+import {fetchJson} from './http-json.mjs';
 const base='https://ella-english-review.pages.dev';
 const prefixes=['.course-imports/','.error-feedback/','operations/'];
 const names=['path-map.json','local-task-disabled.confirmed','handoff/Ella-22点30自动化任务-云端交接.md'];
@@ -84,11 +85,20 @@ export function unpack(archive,directory){
 export async function api(route,data){
   const token=process.env.LEARNING_ADMIN_TOKEN;
   if(!token)throw new Error('LEARNING_ADMIN_TOKEN missing');
-  const r=await fetch(base+'/api/admin/maintenance/'+route,{
+  const r=await fetchJson(base+'/api/admin/maintenance/'+route,{
     method:data?'POST':'GET',headers:{Authorization:'Bearer '+token,Origin:base,'Content-Type':'application/json'},
     ...(data?{body:JSON.stringify(data)}:{})});
+  // A response lost after persistence may be retried safely with identical data.
+  if(r.status===409&&data&&route==='chunk'){
+    const previous=await api('chunk?revision='+data.revision+'&part='+data.part);
+    if(previous.content===data.content)return {saved:true};
+  }
+  if(r.status===409&&data&&route==='commit'){
+    const head=await api('state');
+    if(head.revision===data.revision&&JSON.stringify(head.manifest)===JSON.stringify(data.manifest))return {committed:true};
+  }
   if(!r.ok)throw new Error('Private state '+route.split('?')[0]+': HTTP '+r.status);
-  return r.json();
+  return r.body;
 }
 export async function save(directory,expected,owner){
   const content=encrypt(pack(directory),process.env.LEARNING_ADMIN_TOKEN),revision=randomUUID();

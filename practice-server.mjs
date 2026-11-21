@@ -21,7 +21,8 @@ export async function handlePractice(request,env){
         const run=await db.prepare('SELECT receipt FROM account_practice_runs WHERE account_id=? AND run_id=?').bind(accountId,url.searchParams.get('runId')).first();
         if(!run)fail(404,'Receipt not found');
         const receipt=JSON.parse(run.receipt),bundle=JSON.parse(account.bundle);
-        return json({receipt,questions:ledger.filter(q=>q.run_id===receipt.runId).map(q=>JSON.parse(q.snapshot)),visible:receipt.questionIds.every(id=>bundle.bank.questions.some(q=>q.id===id&&q.practiceFor===accountId)),revision:account.revision});
+        const questions=receipt.questionIds.map(id=>JSON.parse(ledger.find(q=>q.question_id===id&&q.run_id===receipt.runId).snapshot));
+        return json({receipt,questions,visible:receipt.questionIds.every(id=>bundle.bank.questions.some(q=>q.id===id&&q.practiceFor===accountId)),revision:account.revision});
       }
       fail(404,'Not found');
     }

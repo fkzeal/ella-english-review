@@ -8,6 +8,7 @@ import E from '../engine.js';
 import {recoverCredentials} from './cloud-credentials.mjs';
 import {api,save} from './cloud-state.mjs';
 import Report from './update-nightly-report.js';
+import {fetchJson} from './http-json.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const boot=path.join(root,'.cloud-bootstrap'),state=path.resolve(process.env.ELLA_STATE_DIR||'/workspace/.ella-automation');
 const base='https://ella-english-review.pages.dev',sha=x=>createHash('sha256').update(x).digest('hex');
@@ -20,11 +21,11 @@ function run(args){
   return r.stdout.trim();
 }
 async function privateApi(route,data){
-  const response=await fetch(base+'/api/admin/practice/'+route,{method:data?'POST':'GET',
+  const response=await fetchJson(base+'/api/admin/practice/'+route,{method:data?'POST':'GET',
     headers:{Authorization:'Bearer '+process.env.LEARNING_ADMIN_TOKEN,Origin:base,'Content-Type':'application/json'},
     ...(data?{body:JSON.stringify(data)}:{})});
   if(!response.ok)throw new Error('Private practice HTTP '+response.status);
-  return response.json();
+  return response.body;
 }
 async function checkpoint(journal){
   write(journalFile,journal);write(path.join(state,'operations',journal.runId+'.json'),journal);
@@ -41,6 +42,7 @@ async function source(){
 async function verifyPrivate(journal){
   if(!journal.publication)return {verified:true,count:0};
   const readback=await privateApi('publish?accountId=ella&runId='+journal.runId);
+  readback.questions=readback.receipt.questionIds.map(id=>readback.questions.find(q=>q.id===id));
   if(!readback.visible||readback.receipt.checksum!==sha(JSON.stringify(readback.questions))||readback.receipt.count!==readback.questions.length||
     JSON.stringify(readback.receipt)!==JSON.stringify(journal.publication))throw new Error('Private readback mismatch');
   return {verified:true,count:readback.receipt.count,runId:journal.runId,checksum:readback.receipt.checksum};
