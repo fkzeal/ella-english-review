@@ -253,6 +253,25 @@
     return s;
   }
   function unitKey(q){return `${q.pointId}::${q.reviewUnit||'all'}`;}
+  function targetKeys(b){
+    const keys=new Map();
+    for(const l of b.lessons)for(const t of l.learningTargets||[])
+      for(const id of t.questionIds)keys.set(id,`${l.id}::${t.id}`);
+    for(const q of b.questions)if(!keys.has(q.id))keys.set(q.id,unitKey(q));
+    return keys;
+  }
+  function targetDailyCounts(b,s,today=day(),keys=targetKeys(b)){
+    const counts=new Map();
+    for(const h of s.history)if(h.day===today&&keys.has(h.questionId)){
+      const key=keys.get(h.questionId);counts.set(key,(counts.get(key)||0)+1);
+    }
+    return counts;
+  }
+  function reviewAvailability(b,s,today=day()){
+    const due=dueUnits(b,s,today),keys=targetKeys(b),counts=targetDailyCounts(b,s,today,keys);
+    const ready=due.filter(q=>(counts.get(keys.get(q.id))||0)<2);
+    return {due:due.length,ready:ready.length,deferred:due.length-ready.length};
+  }
   function syncUnits(b,s,today=day()){
     s.units ||= {};
     for(const q of availableQuestions(b).filter(q=>q.reviewUnit)){
@@ -277,6 +296,8 @@
   }
   function plan(b,s,{today=day(),size=s.settings.size,practice=false,lessonId=null,preview=false,rng=Math.random}={}) {
     const recent=new Map(),questions=new Map(b.questions.map(q=>[q.id,q]));
+    const targets=targetKeys(b),daily=targetDailyCounts(b,s,today,targets);
+    const count=q=>daily.get(targets.get(q.id))||0;
     for(const h of s.history){
       const q=questions.get(h.questionId);if(!q)continue;
       const key=unitKey(q),rows=recent.get(key)||[];rows.push(h);recent.set(key,rows.slice(-5));
@@ -292,12 +313,12 @@
     let points=preview&&practice?b.points:practice?activePoints(b,s,today):duePoints(b,s,today);
     if(lessonId) points=points.filter(p=>p.lessonId===lessonId);
     points=shuffle(points,rng);
-    const candidates=new Map(points.map(p=>[p.id,shuffle(availableQuestions(b).filter(q=>q.pointId===p.id&&(practice||!q.reviewUnit||!s.units?.[unitKey(q)]||s.units[unitKey(q)].due<=today)),rng).sort((a,c)=>{
+    const candidates=new Map(points.map(p=>[p.id,shuffle(availableQuestions(b).filter(q=>q.pointId===p.id&&(preview||count(q)<2)&&(practice||!q.reviewUnit||!s.units?.[unitKey(q)]||s.units[unitKey(q)].due<=today)),rng).sort((a,c)=>{
       const ha=s.history.filter(h=>h.questionId===a.id),hc=s.history.filter(h=>h.questionId===c.id);
       const ua=s.units?.[unitKey(a)],uc=s.units?.[unitKey(c)];
       const weak=u=>u?.missDay&&u.missDay===u.lastDay?0:1;
       const pa=profile(a),pc=profile(c);
-      return weak(ua)-weak(uc)||pa.tier-pc.tier||(ua?.due||today).localeCompare(uc?.due||today)||pc.misses-pa.misses||ha.length-hc.length || (ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
+      return weak(ua)-weak(uc)||pa.tier-pc.tier||count(a)-count(c)||(ua?.due||today).localeCompare(uc?.due||today)||pc.misses-pa.misses||ha.length-hc.length || (ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
     })]));
     // Rank groups by the units actually eligible today, not historical aggregate
     // errors. A recovered word must not hide another still-weak word in its group.
@@ -308,7 +329,7 @@
     const weak=u=>u?.missDay&&u.missDay===u.lastDay&&u.due<=today?0:1;
     points=points.filter(p=>candidates.get(p.id).length).sort((a,c)=>{
       const ua=record(a),uc=record(c);
-      return weak(ua)-weak(uc)||profile(candidates.get(a.id)[0]).tier-profile(candidates.get(c.id)[0]).tier||(ua?.due||today).localeCompare(uc?.due||today);
+      return weak(ua)-weak(uc)||profile(candidates.get(a.id)[0]).tier-profile(candidates.get(c.id)[0]).tier||count(candidates.get(a.id)[0])-count(candidates.get(c.id)[0])||(ua?.due||today).localeCompare(uc?.due||today);
     });
     const groups=new Map();
     for(const p of points){if(!groups.has(p.lessonId))groups.set(p.lessonId,[]);groups.get(p.lessonId).push(p);}
@@ -321,13 +342,13 @@
     points=[];
     while(queues.some(g=>g.length))for(const g of queues)if(g.length)points.push(g.shift());
     const items=[];
-    const usedUnits=new Set();let masteredCount=0;
+    const usedUnits=new Set(),usedTargets=new Set();let masteredCount=0;
     while(items.length<size) {
       let added=false;
       for(const p of points) {
-        const q=candidates.get(p.id).find(q=>!items.includes(q.id)&&(!q.reviewUnit||!usedUnits.has(unitKey(q)))&&
+        const q=candidates.get(p.id).find(q=>!items.includes(q.id)&&(!q.reviewUnit||!usedUnits.has(unitKey(q)))&&(preview||!usedTargets.has(targets.get(q.id)))&&
           (!practice||preview||!profile(q).mastered||masteredCount<Math.max(1,Math.floor(size/4))));
-        if(q){items.push(q.id);usedUnits.add(unitKey(q));if(profile(q).mastered)masteredCount++;added=true;}
+        if(q){items.push(q.id);usedUnits.add(unitKey(q));usedTargets.add(targets.get(q.id));if(profile(q).mastered)masteredCount++;added=true;}
         if(items.length>=size) break;
       }
       if(!added) break;
@@ -382,5 +403,5 @@
     }
     return validateBank(merged);
   }
-  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,dueUnits,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
+  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,dueUnits,reviewAvailability,targetKeys,targetDailyCounts,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
 });

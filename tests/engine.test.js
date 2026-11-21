@@ -25,7 +25,7 @@ test('student starter practice works without pretending a lesson has been learne
 });
 test('new points are due today and plan spreads across due points within cap',()=>{
   const s=enrolled(),ids=E.plan(bank,s,{today:'2026-11-16',size:6,rng:()=>.5});
-  assert.equal(ids.length,6);assert.equal(new Set(ids).size,6);
+  assert.equal(ids.length,5);assert.equal(new Set(ids).size,5);
   assert.equal(new Set(ids.map(id=>bank.questions.find(q=>q.id===id).pointId)).size,5);
 });
 test('correct answers extend intervals on distinct due days, never twice the same day',()=>{
@@ -88,7 +88,7 @@ test('published batches enroll automatically, with learning day +1 rather than p
   assert.equal(E.plan(b,s,{today:'2026-11-16'}).length,0);
   E.syncBatches(b,s,'2026-11-20');
   assert.equal(s.points[b.points[0].id].due,'2026-11-17');
-  assert.equal(E.plan(b,s,{today:'2026-11-20',size:6}).length,6);
+  assert.equal(E.plan(b,s,{today:'2026-11-20',size:6}).length,5);
 });
 test('calendar follows +1,+3,+7,+14,+30 while answers stay on schedule',()=>{
   const {b,s}=dated(),q=b.questions[0];

@@ -24,5 +24,7 @@ test('a new error or assistance restores practice priority; repeated same-day su
   assert(plan.some(id=>E.unitKey(bank.questions.find(q=>q.id===id))===E.unitKey(other)));
   const raw=E.emptyState();E.syncBatches(bank,raw,'2026-11-21');
   for(const q of questions)for(let n=0;n<3;n++)E.grade(bank,raw,q.id,q.answer,false,'2026-11-21');
-  assert.equal(E.plan(bank,raw,{practice:true,size:6,today:'2026-11-21'}).length,6);
+  const keys=E.targetKeys(bank),counts=E.targetDailyCounts(bank,raw,'2026-11-21');
+  assert(E.plan(bank,raw,{practice:true,size:6,today:'2026-11-21'}).every(id=>(counts.get(keys.get(id))||0)<2));
+  assert.equal(E.plan(bank,raw,{practice:true,size:6,today:'2026-11-22'}).length,6);
 });

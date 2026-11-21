@@ -204,6 +204,8 @@
   function todayView(){
     const unfinished=state.session&&state.session.index<state.session.items.length;
     const today=E.day(),active=E.activePoints(bank,state,today),due=E.duePoints(bank,state,today),units=E.dueUnits(bank,state,today);
+    const availability=E.reviewAvailability(bank,state,today);
+    const extra=active.length&&E.plan(bank,state,{today,practice:true}).length>0;
     const points=due.length?due:active;
     const starter=starterLesson();
     const registered=Object.keys(state.batchReceipts||{}).length;
@@ -217,7 +219,7 @@
       reasons[!record?.lastDay?'first':record.missDay===record.lastDay?'weak':'interval']++;
     }
     return `<div class="home-heading">${head('LITTLE PAWS, HAPPY LEARNING',esc(cloud.view().account?.name||'Ella')+'，欢迎来到猫咪小屋。','小猫咪们已经准备好啦。今天也一起收获一个小进步吧！')}</div>`+
-      `<div class="student-home"><div class="student-dashboard"><section class="hero home-welcome" aria-label="小猫欢迎与开始练习"><div class="hero-copy"><div class="winter-badge">♡ 猫咪陪伴的英语时光</div><h2>每天一点点，<br>和小猫一起学。</h2><p>慢慢想，大胆试。<br>今天也和小猫击个掌吧！</p></div><div class="winter-scene"><span class="scene-spark spark-one" aria-hidden="true">✧</span><span class="scene-spark spark-two" aria-hidden="true">♡</span><div class="cat-orbit">${snowCat()}</div><div class="cat-hello">Hi, Ella! <span aria-hidden="true">♡</span></div><div class="kitten-friends" aria-label="还有奶牛猫和三花猫陪你练习">${snowCat('friend-cat',kittens[1])}${snowCat('friend-cat',kittens[2])}</div></div><div class="welcome-actions">${unfinished?`<p class="resume-note">上次已完成 ${state.session.index} / ${state.session.items.length} 题，接着来吧。</p>`:`<div class="hero-meta"><span>🐾 每组 ${state.settings.size} 题以内</span><span>♡ 不计时，慢慢想</span></div>`}<div class="actions"><button class="button start-button" data-action="${unfinished?'resume':'start'}" ${!unfinished&&!lessons.length?'disabled':''}>${unfinished?'继续上次练习':'和小猫开始练习'} <span aria-hidden="true">→</span></button>${unfinished?'<button class="link-button" data-action="end">结束本组</button>':''}</div></div></section>${rewardView(false)}</div><div class="adventure-steps" aria-label="练习步骤"><span><b>01</b> 看一看，听一听</span><span><b>02</b> 选出你的答案</span><span><b>03</b> 小猫来为你加油 ♡</span></div>
+      `<div class="student-home"><div class="student-dashboard"><section class="hero home-welcome" aria-label="小猫欢迎与开始练习"><div class="hero-copy"><div class="winter-badge">♡ 猫咪陪伴的英语时光</div><h2>每天一点点，<br>和小猫一起学。</h2><p>慢慢想，大胆试。<br>今天也和小猫击个掌吧！</p></div><div class="winter-scene"><span class="scene-spark spark-one" aria-hidden="true">✧</span><span class="scene-spark spark-two" aria-hidden="true">♡</span><div class="cat-orbit">${snowCat()}</div><div class="cat-hello">Hi, Ella! <span aria-hidden="true">♡</span></div><div class="kitten-friends" aria-label="还有奶牛猫和三花猫陪你练习">${snowCat('friend-cat',kittens[1])}${snowCat('friend-cat',kittens[2])}</div></div><div class="welcome-actions">${unfinished?`<p class="resume-note">上次已完成 ${state.session.index} / ${state.session.items.length} 题，接着来吧。</p>`:`<div class="hero-meta"><span>🐾 每组 ${state.settings.size} 题以内</span><span>♡ 不计时，慢慢想</span></div>`}<div class="actions"><button class="button start-button" data-action="${unfinished?'resume':'start'}" ${!unfinished&&(!lessons.length||(registered&&!availability.ready))?'disabled':''}>${unfinished?'继续上次练习':registered&&!availability.ready?'今天可以休息啦':'和小猫开始练习'} <span aria-hidden="true">→</span></button>${unfinished?'<button class="link-button" data-action="end">结束本组</button>':extra?'<button class="button secondary" data-action="practice">自选额外练习</button>':''}</div>${availability.deferred?'<p class="note">有些考点今天已练过两次，剩余变式留到之后；原复习日期保留。</p>':''}</div></section>${rewardView(false)}</div><div class="adventure-steps" aria-label="练习步骤"><span><b>01</b> 看一看，听一听</span><span><b>02</b> 选出你的答案</span><span><b>03</b> 小猫来为你加油 ♡</span></div>
       <div class="card due-courses"><div class="card-header"><h3>${due.length?'今天到期的课程':registered?'已学内容 · 可额外练习':'体验练习'}</h3></div>${lessons.length?lessons.map(l=>`<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${lessonLabel(l)}</strong><small>${esc(l.subtitle)}</small></div>${units.length?`<span class="due-unit-count">待复习 ${counts.get(l.id)||0} 项</span>`:''}</div>`).join(''):'<p class="note">暂时没有可练习题目，请家长补充题库。</p>'}${registered?`<p class="note due-total">${units.length} 个考点待复习${!due.length&&nextDue?' · 下次 '+dateLabel(nextDue):''}</p><p class="note">${units.length?`每次最多 ${state.settings.size} 题，慢慢来；答对的考点会安排到之后。`:'今天的到期复习已完成，可以休息，也可以额外练习。'}</p>${units.length?`<details class="due-explanation"><summary>为什么有这些复习？</summary><p class="note">首次回顾 ${reasons.first} 项 · 错题或提示后巩固 ${reasons.weak} 项 · 间隔复习 ${reasons.interval} 项</p><p class="note">已登记学习的内容，尚未在这里独立完成回顾，也会加入到期复习。${due.length} 个练习分组包含这些考点，组内各项分别安排；一个考点答对，不会推迟其他考点。</p>${['localhost','127.0.0.1'].includes(location.hostname)?'<p class="note">记录保存在当前浏览器中，本地预览与正式网址分别保存。</p>':''}</details>`:''}`:'<p class="note">尚未发布学习日期。可以先体验，体验不会代替正式学习登记。</p>'}</div></div>`;
   }
   function pointRow(p){const l=bank.lessons.find(l=>l.id===p.lessonId),sp=state.points[p.id];return `<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${esc(p.title)}</strong><small>${lessonLabel(l)}</small></div><span class="tag">${sp?.errors?'需要巩固':sp?.stage?'间隔复习':'首次回顾'}</span></div>`;}
@@ -307,9 +309,12 @@
       if(!starter){toast('内容将在记录的学习日期启用，请先等待学习日或补充学习批次。');return;}
       practice=true;lessonId=starter.id;
     }
-    else if(!E.duePoints(bank,state).length)practice=true;
     const items=E.plan(bank,state,{practice,lessonId,preview});
-    if(!items.length){toast('暂时没有可复习内容，请检查学习日期或补充题库。');return;}
+    if(!items.length){
+      const availability=E.reviewAvailability(bank,state);
+      toast(availability.deferred?'这些考点今天已经练过两次，剩余变式留到之后，先休息吧。':practice?'今天可选的额外练习已完成，先休息吧。':'今天的到期复习已完成，可以休息啦。');
+      return;
+    }
     const next=clone();next.rewards ||= R.empty();next.session={items,index:0,results:[],hints:{},day:E.day(),practice,lessonId,preview,rewardId:uid()};await commit(next);
     if(revision!==viewRevision)return;
     selected=null;help=false;feedback=null;showTranscript=false;page='today';setNav();renderQuiz();
@@ -398,7 +403,9 @@
     const receipt=state.rewards?.settlements.find(s=>s.id===t.rewardId);
     const fresh=receipt&&!animatedRewards.has(receipt.id);
     if(receipt)animatedRewards.add(receipt.id);
-    setApp(layoutWarning()+`<div class="quiz"><div class="card summary club-summary"><div class="eyebrow">A LITTLE EFFORT, A LITTLE MAGIC</div><h1>小探险完成啦！</h1><div class="summary-score"><span class="score">${t.results.filter(r=>r.correct).length}<small> / ${total}</small></span><div>题答对了<br><span class="muted">${ind} 题独立答对</span></div></div>${rewardView(true,fresh)}<div class="actions summary-actions"><button class="button" data-action="start">再练一组 →</button><button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`,'summary');
+    const availability=E.reviewAvailability(bank,state),extra=E.plan(bank,state,{practice:true}).length>0;
+    const message=availability.ready?'还有其他考点可以复习，每组同一考点只练一道。':availability.deferred?'今天已练过的考点先休息，剩余变式留到之后。':'今天的到期复习已完成，可以休息啦。';
+    setApp(layoutWarning()+`<div class="quiz"><div class="card summary club-summary"><div class="eyebrow">A LITTLE EFFORT, A LITTLE MAGIC</div><h1>小探险完成啦！</h1><div class="summary-score"><span class="score">${t.results.filter(r=>r.correct).length}<small> / ${total}</small></span><div>题答对了<br><span class="muted">${ind} 题独立答对</span></div></div>${rewardView(true,fresh)}<p class="note">${message}</p><div class="actions summary-actions">${availability.ready?'<button class="button" data-action="start">继续到期复习 →</button>':''}${extra?'<button class="button secondary" data-action="practice">自选额外练习</button>':''}<button class="button secondary" data-action="finish">回到今日复习</button></div></div></div>`,'summary');
   }
   function star(fill,i,animate=false){
     const path='M25 3 31.8 17.1 47.4 19.4 36.2 30.4 38.8 46 25 38.7 11.2 46 13.8 30.4 2.6 19.4 18.2 17.1Z';

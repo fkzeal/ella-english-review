@@ -15,8 +15,10 @@ test('new group sizes persist and planning reaches the cap without repeating uni
   }
   const s=state();s.settings.size=20;
   const ids=E.plan(bank,s,{today:date,lessonId:'raz-d-animal-tongues',rng:()=>.5});
-  const available=new Set(bank.questions.filter(q=>lesson(q.id)==='raz-d-animal-tongues').map(E.unitKey));
+  const targets=E.targetKeys(bank);
+  const available=new Set(bank.questions.filter(q=>lesson(q.id)==='raz-d-animal-tongues').map(q=>targets.get(q.id)));
   assert.equal(ids.length,Math.min(20,available.size));
+  assert.equal(new Set(ids.map(id=>targets.get(id))).size,ids.length);
 });
 test('legacy eight-question settings upgrade without changing history or the active set',()=>{
   const s=state(),q=question('gt-veg-q01');
