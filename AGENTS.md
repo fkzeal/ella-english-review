@@ -1,5 +1,11 @@
 ## 接手顺序与记忆维护
 
+2026-11-21定时任务空环境修复：先读`云端定时任务启动.md`。
+旧`/workspace/.ella-automation/cloud-env.sh`并不会跨Schedule会话存在。
+启动程序与规则从GitHub最新main同步；私有账本从现有D1加密快照恢复，
+本次GitHub/飞书授权需实际检查。使用云端租约与revision CAS，不能只靠flock。
+bootstrap/trigger/父会话测试不等于Schedule独立执行成功，以私有receipt为准。
+
 2026-11-21用户授权分析Ella账号重复练习并优化出题，0.7.2规则见复习策略文档顶部：
 正常开始/继续只做到期题，结束提示休息，额外练习显式选择。
 主要learningTarget每组最多1题、同日history累计最多2次；保留原due/grade/旧进行中练习。

@@ -23,3 +23,7 @@ __pycache__/
 /.learning-server/
 /wrangler.learning.toml
 /functions/api/_middleware.js
+/.ella-automation/
+/.ella-cloud-runtime/
+/.cloud-bootstrap/
+maintenance-access.encrypted.json

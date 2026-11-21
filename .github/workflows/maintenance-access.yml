@@ -1,0 +1,33 @@
+name: Export encrypted maintenance access
+run-name: Maintenance bootstrap ${{ inputs.request_id }}
+on:
+  workflow_dispatch:
+    inputs:
+      recipient_public_key:
+        description: Base64 DER SPKI RSA public key
+        required: true
+        type: string
+      request_id:
+        description: Ephemeral runtime UUID
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/export-maintenance-access.mjs
+        env:
+          LEARNING_ADMIN_TOKEN: ${{ secrets.LEARNING_ADMIN_TOKEN }}
+          RECIPIENT_PUBLIC_KEY: ${{ inputs.recipient_public_key }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: encrypted-maintenance-access
+          path: maintenance-access.encrypted.json
+          retention-days: 1

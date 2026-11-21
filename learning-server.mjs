@@ -1,4 +1,5 @@
 import {handleAccounts} from './account-server.mjs';
+import {handleMaintenance} from './maintenance-server.mjs';
 // Only /api/* is routed here. Learning records never enter the static build.
 const encoder=new TextEncoder();
 export async function digest(value){
@@ -23,6 +24,7 @@ async function signedToken(secret,id,enrollment){
 }
 function validDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&new Date(value+'T12:00:00Z').toISOString().slice(0,10)===value;}
 export async function handle(request,env){
+  if(new URL(request.url).pathname.startsWith('/api/admin/maintenance/'))return handleMaintenance(request,env);
   if(/^\/api\/accounts(?:\/|$)/.test(new URL(request.url).pathname)||/^\/api\/admin\/account/.test(new URL(request.url).pathname))return handleAccounts(request,env);
   try{
     const url=new URL(request.url),path=url.pathname.replace(/\/$/,'');
