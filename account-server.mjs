@@ -127,6 +127,23 @@ export async function handleAccounts(request,env){
       const records=(bundle?.state.history||[]).filter(h=>!approved||(account.kind==='learner'&&h.recordSource==='live'&&h.accountId===account.id));
       return json({account:publicAccount(account),revision:account.revision,records});
     }
+    if(route==='/api/admin/account-inspect'){
+      if(auth!=='Bearer '+env.LEARNING_ADMIN_TOKEN)fail(401,'管理凭据无效');
+      if(request.method!=='GET')fail(405,'方法无效');
+      const id=url.searchParams.get('accountId');
+      if(!ACCOUNTS.some(a=>a.id===id))fail(400,'请明确指定有效账号');
+      const account=await db.prepare('SELECT * FROM accounts WHERE id=?').bind(id).first();
+      if(!account)fail(404,'账号不存在');
+      // Browser installations, not inferred physical models. Never expose session
+      // tokens, credential hashes, or records from other accounts.
+      const devices=(await db.prepare(`SELECT s.device_id AS deviceId,
+        MIN(s.created_at) AS firstBoundAt,MAX(s.created_at) AS lastBoundAt,
+        MAX(s.expires_at) AS expiresAt,COUNT(*) AS sessionCount,d.name AS name
+        FROM account_sessions s LEFT JOIN devices d ON d.id=s.device_id
+        WHERE s.account_id=? AND s.expires_at>?
+        GROUP BY s.device_id,d.name ORDER BY firstBoundAt,s.device_id`).bind(id,now).all()).results;
+      return json({...snapshot(account),devices});
+    }
     if(route==='/api/accounts/login'&&request.method==='POST'){
       const data=await read(request);
       const accountId=typeof data.accountId==='string'?data.accountId:'';

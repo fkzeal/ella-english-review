@@ -67,6 +67,27 @@ async function serverHarness(){
   }
   return {mf,db,call,login,secret,accountCode,migrate};
 }
+test('private account inspection lists active bindings and state without credentials or other accounts',async()=>{
+  const h=await serverHarness();
+  try{
+    const a=await h.login(),b=await h.login(),other=await h.login('test-1');
+    const bundle=await normalized();answer(bundle,bank.questions[0].id);
+    await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:0,bundle,migrate:true},a);
+    await h.db.prepare('UPDATE account_sessions SET expires_at=? WHERE device_id=?').bind('2020-01-01T00:00:00Z',b.deviceId).run();
+    const route='admin/account-inspect?accountId=ella',admin={token:h.secret};
+    assert.equal((await h.call(route)).status,401);
+    assert.equal((await h.call(route,null,other)).status,401);
+    assert.equal((await h.call('admin/account-inspect',null,admin)).status,400);
+    assert.equal((await h.call(route,{},admin)).status,405);
+    const result=await h.call(route,null,admin);
+    assert.equal(result.status,200);assert.equal(result.data.account.id,'ella');
+    assert.equal(result.data.bundle.state.history.length,1);
+    assert.deepEqual(result.data.devices.map(d=>d.deviceId),[a.deviceId]);
+    assert(!JSON.stringify(result.data).includes(a.token));
+    assert(!JSON.stringify(result.data).includes('password_hash'));
+    assert(!JSON.stringify(result.data).includes(other.deviceId));
+  }finally{await h.mf.dispose();}
+});
 test('cloud accounts isolate data, authenticate, enforce compare-and-swap, and settle chest operations once',async()=>{
   const h=await serverHarness();
   try{

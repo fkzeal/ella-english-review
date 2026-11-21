@@ -17,6 +17,13 @@ async function query(route,body){
 }
 if(command==='accounts'){
   const data=await query('accounts');console.table(data.accounts);
+}else if(command==='account-inspect'){
+  if(!deviceId)throw new Error('account-inspect 需要明确账号编号');
+  const data=await query('account-inspect?'+new URLSearchParams({accountId:deviceId}));
+  const dir=path.join(root,'.learning-server');fs.mkdirSync(dir,{recursive:true,mode:0o700});
+  const file=path.join(dir,'inspect-'+deviceId+'.json');
+  fs.writeFileSync(file,JSON.stringify(data,null,2),{mode:0o600});
+  console.log('账号设备与复习状态已保存到私有文件（不输出详细作答或设备编号）。');
 }else if(command==='account-code'){
   if(!deviceId)throw new Error('account-code 需要账号编号，例如 ella');
   const data=await query('account-code',{accountId:deviceId});
@@ -56,4 +63,4 @@ if(command==='accounts'){
     }
     cursor=data.nextCursor;
   }while(cursor);
-}else throw new Error('使用 accounts | account-code <id> | account-records <id> | account-approved [ella] | devices | records <id> | approved | approve <id> <名称> | exclude <id> <名称>');
+}else throw new Error('使用 accounts | account-inspect <id> | account-code <id> | account-records <id> | account-approved [ella] | devices | records <id> | approved | approve <id> <名称> | exclude <id> <名称>');
