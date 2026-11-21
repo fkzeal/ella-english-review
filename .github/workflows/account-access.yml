@@ -1,0 +1,32 @@
+name: Export encrypted account access
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipient_public_key:
+        description: Base64 DER SPKI RSA public key (private key stays with recipient)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify initialized accounts and encrypt login codes
+        run: node scripts/export-account-access.mjs
+        env:
+          LEARNING_ADMIN_TOKEN: ${{ secrets.LEARNING_ADMIN_TOKEN }}
+          RECIPIENT_PUBLIC_KEY: ${{ inputs.recipient_public_key }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: encrypted-account-access
+          path: account-access.encrypted.json
+          retention-days: 1
