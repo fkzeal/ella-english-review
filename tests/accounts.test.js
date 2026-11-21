@@ -81,7 +81,9 @@ test('private account inspection lists active bindings and state without credent
     assert.equal((await h.call(route,{},admin)).status,405);
     const result=await h.call(route,null,admin);
     assert.equal(result.status,200);assert.equal(result.data.account.id,'ella');
-    assert.equal(result.data.bundle.state.history.length,1);
+    assert.equal(result.data.state.history.length,1);
+    assert.equal(result.data.bankRevision,bank.revision);
+    assert.equal(result.data.bundle,undefined);
     assert.deepEqual(result.data.devices.map(d=>d.deviceId),[a.deviceId]);
     assert(!JSON.stringify(result.data).includes(a.token));
     assert(!JSON.stringify(result.data).includes('password_hash'));

@@ -142,7 +142,11 @@ export async function handleAccounts(request,env){
         FROM account_sessions s LEFT JOIN devices d ON d.id=s.device_id
         WHERE s.account_id=? AND s.expires_at>?
         GROUP BY s.device_id,d.name ORDER BY firstBoundAt,s.device_id`).bind(id,now).all()).results;
-      return json({...snapshot(account),devices});
+      const bundle=account.bundle?JSON.parse(account.bundle):null;
+      // The public bank is already available separately; do not send multiple
+      // copies of it (including the sync baseline) in a private diagnosis.
+      return json({account:publicAccount(account),revision:account.revision,updatedAt:account.updated_at,
+        bankRevision:bundle?.bank.revision??null,state:bundle?.state??null,devices});
     }
     if(route==='/api/accounts/login'&&request.method==='POST'){
       const data=await read(request);
