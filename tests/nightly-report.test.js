@@ -34,6 +34,14 @@ test('new shared question is recorded once after verified publication',()=>{
   assert.equal(project(body,next,bank).questions[0].id,q.id);
   body.questions.push(body.questions[0]);assert.throws(()=>project(body,next,bank),/Duplicate/);
 });
+test('explanation repair may keep question ID, but changed answers may not',()=>{
+  const next=structuredClone(bank),q=next.questions.find(q=>q.id==='gt-veg-q01');
+  q.explanation+=' 这是已核对的词义。';
+  const body=input();body.status='published';body.questions=[{id:q.id,change:'fixed',reason:'修正解析，保留题号与评价身份。'}];body.sections.fixes.value='1';
+  body.verification={commit:'c'.repeat(40),actionsRun:'789',bankVerified:true};
+  assert.equal(project(body,next,bank).questions[0].change,'fixed');
+  q.answer=1;assert.throws(()=>project(body,next,bank),/new question identity/);
+});
 test('archive preserves history, run replay is idempotent, stale overwrite and corruption fail closed',()=>{
   const report=project(input(),bank);
   const archive=merge({version:1,reports:[]},report);

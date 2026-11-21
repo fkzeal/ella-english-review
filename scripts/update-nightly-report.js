@@ -41,8 +41,14 @@ function project(input,bank,base){
     if(item.change!=='sample'&&!verification)throw new Error('Question changes must already be production verified');
     if(item.change!=='sample'&&!base)throw new Error('Need pre-run bank to verify changes');
     const prior=base?.questions.find(old=>old.id===q.id);
-    if(['added','fixed'].includes(item.change)&&prior)throw new Error('Existing question is not new');
-    if(item.change==='optimized'&&(!prior||JSON.stringify(prior)===JSON.stringify(q)))throw new Error('Optimization must change an existing question');
+    if(item.change==='added'&&prior)throw new Error('Existing question is not new');
+    if(item.change==='optimized'&&!prior)throw new Error('Optimization must change an existing question');
+    if(prior&&item.change!=='sample'){
+      if(JSON.stringify(prior)===JSON.stringify(q))throw new Error('Reported correction or optimization must change an existing question');
+      for(const key of ['pointId','reviewUnit','type','prompt','options','answer','audioText','passage']){
+        if(JSON.stringify(prior[key])!==JSON.stringify(q[key]))throw new Error('Evaluation change requires a new question identity');
+      }
+    }
     const lesson=bank.lessons.find(l=>l.learningTargets?.some(t=>t.questionIds.includes(q.id)));
     const target=lesson?.learningTargets.find(t=>t.questionIds.includes(q.id));
     if(!lesson||!target)throw new Error('Missing precise learning target');
