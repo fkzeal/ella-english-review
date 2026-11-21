@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ec">
+  <title>每日题目更新 · Ella</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="topbar"><a class="brand" href="/">ella<span>ENGLISH CLUB</span></a><a class="back" href="/">回到练习 ↗</a></header>
+    <section class="intro">
+      <div><p class="eyebrow">THE DAILY NOTE · 每晚 22:30 更新</p><h1>今天，题库有什么新变化？</h1><p class="subtitle">新素材、新题和小修正，放在这里慢慢看。</p></div>
+      <div class="date-box"><label for="report-date">查看哪一天</label><select id="report-date" disabled><option>正在读取…</option></select></div>
+    </section>
+    <section class="report-note" aria-live="polite"><span class="status" id="status">读取中</span><p id="summary">正在获取每日更新。</p><span id="revision"></span></section>
+    <section class="overview" id="overview" aria-label="本次维护概况"></section>
+    <section class="questions-section">
+      <div class="section-heading"><div><p class="eyebrow">A FEW QUESTIONS</p><h2>看看这一轮的题目 <span id="question-count"></span></h2></div><span class="small-note">可展开答案与素材依据</span></div>
+      <nav id="filters" aria-label="题目变化类型">
+        <button data-filter="all" aria-pressed="true">全部</button><button data-filter="added" aria-pressed="false">新增</button><button data-filter="fixed" aria-pressed="false">纠错</button><button data-filter="optimized" aria-pressed="false">优化</button><button data-filter="sample" aria-pressed="false">框架示例</button>
+      </nav>
+      <div id="questions" class="question-grid"></div>
+    </section>
+    <section id="follow-up" class="follow-up" hidden><h2>留给下一次</h2><ul id="todos"></ul></section>
+    <footer><p>每一题，都有来处。</p><span id="updated-at"></span><span>仅展示共享题库内容与维护状态</span></footer>
+  </main>
+</body>
+</html>

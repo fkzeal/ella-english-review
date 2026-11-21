@@ -29,7 +29,7 @@ for(const [i,cat] of cats.entries()){
 const catScript='window.CAT_CATALOG = '+JSON.stringify(cats)+';\n';
 fs.writeFileSync(path.join(root,'cat-catalog.js'),catScript);
 const hash=crypto.createHash('sha256');
-for(const name of ['index.html','style.css','cat-club.css','rewards.js','engine.js','storage.js','learning-sync.js','account-state.js','account-sync.js','app.js','audio-player.js','error-feedback.js','audio/manifest.json','question-bank.json','package.json'])hash.update(fs.readFileSync(path.join(root,name)));
+for(const name of ['index.html','style.css','cat-club.css','rewards.js','engine.js','storage.js','learning-sync.js','account-state.js','account-sync.js','app.js','audio-player.js','error-feedback.js','audio/manifest.json','question-bank.json','package.json','updates/index.html','updates/style.css','updates/app.js','updates/reports.json'])hash.update(fs.readFileSync(path.join(root,name)));
 hash.update(catScript);
 hash.update(feedbackScript);
 for(const bytes of audio.files.values())hash.update(bytes);
@@ -55,6 +55,8 @@ for(const name of ['index.html','style.css','cat-club.css','cat-catalog.js','rew
   fs.copyFileSync(path.join(root,name),path.join(dist,name));
 }
 fs.writeFileSync(path.join(dist,'_routes.json'),JSON.stringify({version:1,include:['/api/*'],exclude:[]}));
+fs.mkdirSync(path.join(dist,'updates'));
+for(const name of ['index.html','style.css','app.js','reports.json'])fs.copyFileSync(path.join(root,'updates',name),path.join(dist,'updates',name));
 fs.mkdirSync(path.join(dist,'audio'));
 fs.copyFileSync(path.join(root,'audio/manifest.json'),path.join(dist,'audio-manifest.json'));
 for(const [name,bytes] of audio.files)fs.writeFileSync(path.join(dist,name),bytes);

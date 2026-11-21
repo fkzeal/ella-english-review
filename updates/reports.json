@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "reports": [
+    {
+      "runId": "framework-20261121",
+      "date": "2026-11-21",
+      "createdAt": "2026-11-21T13:41:23.310554Z",
+      "status": "framework",
+      "summary": "每日更新页已搭好。下方3道是已发布的旧题示例，不计入今日新增；后续在这里按日期记录真实题目变化。",
+      "bankRevision": 9,
+      "sections": {
+        "materials": {
+          "value": "未执行",
+          "note": "本次仅搭建网页；每日维护将列出课程、页码与吸收结果。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "3道既有题用来展示卡片，未生成新题。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "后续展示修正题及核对依据。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "后续列明具体考点与题目变化。"
+        },
+        "derivatives": {
+          "value": "未生成",
+          "note": "受控生成账本与定向分发尚未完成。"
+        }
+      },
+      "questions": [
+        {
+          "id": "gt-veg-q01",
+          "change": "sample",
+          "reason": "已发布旧题，页面框架示例。",
+          "lesson": "Greater Than",
+          "target": "carrot / carrots：胡萝卜",
+          "reviewUnit": "carrot",
+          "type": "choice",
+          "prompt": "carrots 是哪一种蔬菜？",
+          "options": [
+            "胡萝卜",
+            "洋葱",
+            "甜菜"
+          ],
+          "answer": 0,
+          "explanation": "carrot 是胡萝卜，carrots 是复数。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "five carrots",
+              "source": "Greater Than · 第5页 · 已核对词句"
+            }
+          ]
+        },
+        {
+          "id": "gt-veg-q02",
+          "change": "sample",
+          "reason": "已发布旧题，页面框架示例。",
+          "lesson": "Greater Than",
+          "target": "beet / beets：甜菜",
+          "reviewUnit": "beet",
+          "type": "choice",
+          "prompt": "beets 对应什么？",
+          "options": [
+            "胡萝卜",
+            "甜菜",
+            "洋葱"
+          ],
+          "answer": 1,
+          "explanation": "beets 是甜菜，书中第4页写有 two beets。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "two beets",
+              "source": "Greater Than · 第4页 · 已核对词句"
+            }
+          ]
+        },
+        {
+          "id": "gt-veg-q03",
+          "change": "sample",
+          "reason": "已发布旧题，页面框架示例。",
+          "lesson": "Greater Than",
+          "target": "onion / onions：洋葱",
+          "reviewUnit": "onion",
+          "type": "choice",
+          "prompt": "“洋葱”的英文单词是哪个？",
+          "options": [
+            "pepper",
+            "carrot",
+            "onion"
+          ],
+          "answer": 2,
+          "explanation": "onion 表示洋葱，onions 是复数。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "four onions",
+              "source": "Greater Than · 第8页 · 已核对词句"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "课程补页仍按原维护流程核对；页面不会把缺资料或读取失败写成没有新增。"
+      ]
+    }
+  ]
+}
