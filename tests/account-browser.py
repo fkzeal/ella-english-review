@@ -38,8 +38,17 @@ with sync_playwright() as p:
 
         def bind(page, id, import_local=True):
             expect(page.locator("#account-dialog")).to_be_visible()
+            expect(page.locator("#account-form [type=submit]")).to_be_enabled()
             page.locator("#account-choice").select_option(id)
             page.locator("#account-code").fill(fixture["codes"][id])
+            if page.locator("#account-confirm").is_visible():
+                expect(page.locator("#account-mode")).to_contain_text("还没有绑定过设备")
+                page.locator("#account-confirm").fill("not-the-same-password")
+                page.locator("#account-form [type=submit]").click()
+                expect(page.locator("#account-error")).to_contain_text("两次输入的密码不一致")
+                page.locator("#account-confirm").fill(fixture["codes"][id])
+            else:
+                expect(page.locator("#account-mode")).to_contain_text("已设置密码")
             if not import_local and page.locator("#account-import").count():
                 page.locator("#account-import").uncheck()
             page.locator("#account-form [type=submit]").click()
@@ -95,6 +104,7 @@ with sync_playwright() as p:
             other.locator('[data-action="next"]').click()
             if final:
                 break
+            other.wait_for_function("(old)=>{const q=document.querySelector('[data-question-id]');return q&&q.dataset.questionId!==old}",arg=qid)
         expect(other.locator(".club-summary")).to_be_visible()
         other.locator('[data-action="open-chest"]').click()
         expect(other.locator("#cat-dialog")).to_be_visible(timeout=15000)
@@ -111,7 +121,7 @@ with sync_playwright() as p:
         assert len(saved(other)["history"]) >= 7
         assert len(saved(other)["rewards"]["openings"]) == 2
         assert not errors, errors
-        print(engine.name + ": migration, mobile, offline, cross-device resume, rewards, account isolation PASS")
+        print(engine.name + ": first password + confirmation, existing password, migration, mobile, offline, cross-device resume, rewards, account isolation PASS")
         first.close()
         second.close()
         browser.close()

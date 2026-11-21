@@ -48,7 +48,11 @@ async function serverHarness(){
   const {accountSeeds,accountCode}=await import('../account-server.mjs');
   const mf=new Miniflare(convertV4MiniflareOptions({name:'accounts',modules:true,script:'export default {fetch(){return new Response("ok")}}',d1Databases:['LEARNING_DB']}));
   const db=await mf.getD1Database('LEARNING_DB'),secret='a'.repeat(64);
-  for(const file of ['0001_learning.sql','0002_accounts.sql'])for(const statement of fs.readFileSync('migrations/'+file,'utf8').split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(statement).run();
+  async function migrate(){
+    for(const file of fs.readdirSync('migrations').filter(f=>f.endsWith('.sql')).sort())
+      for(const statement of fs.readFileSync('migrations/'+file,'utf8').split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(statement).run();
+  }
+  await migrate();
   await db.batch(await Promise.all(bank.questions.map(async q=>db.prepare('INSERT INTO questions VALUES(?,?,?,?)').bind(await digest(questionIdentity(q)),q.id,bank.revision,JSON.stringify(q)))));
   for(const a of await accountSeeds(secret))await db.prepare('INSERT INTO accounts(id,name,kind,code_hash) VALUES(?,?,?,?)').bind(a.id,a.name,a.kind,a.codeHash).run();
   const base='https://ella-english-review.pages.dev',env={LEARNING_DB:db,LEARNING_ADMIN_TOKEN:secret};
@@ -58,10 +62,10 @@ async function serverHarness(){
     return {status:r.status,data:await r.json()};
   }
   async function login(id='ella'){
-    const deviceId=crypto.randomUUID(),r=await call('accounts/login',{accountId:id,code:await accountCode(secret,id),deviceId});
+    const deviceId=crypto.randomUUID(),r=await call('accounts/login',{accountId:id,code:await accountCode(secret,id),deviceId,initialize:true});
     assert.equal(r.status,200);return {deviceId,token:r.data.token};
   }
-  return {mf,db,call,login,secret,accountCode};
+  return {mf,db,call,login,secret,accountCode,migrate};
 }
 test('cloud accounts isolate data, authenticate, enforce compare-and-swap, and settle chest operations once',async()=>{
   const h=await serverHarness();
@@ -107,7 +111,7 @@ test('client migrates once, uploads offline work, restores on a fresh device and
     const old=fresh();answer(old,bank.questions[0].id);delete old.state.history[0].accountId;
     old.state.rewards={version:1,balance:6,settlements:[0,1,2].map(i=>({id:'legacy-earned-'+i,total:6,correct:6,units:2,day:'2026-11-21'})),openings:[]};
     const a=client(old),code=await h.accountCode(h.secret,'ella');
-    await a.client.login('ella',code);
+    await a.client.login('ella',code,{initialize:true});
     assert.equal(a.get().state.history.length,1);assert.equal(a.get().state.history[0].recordSource,'imported');
     a.offline(true);
     const q=bank.questions[1],r=E.grade(bank,a.get().state,q.id,q.answer,false,'2026-11-21');
@@ -116,7 +120,7 @@ test('client migrates once, uploads offline work, restores on a fresh device and
     a.offline(false);assert.equal(await a.client.sync(),true);assert.equal(await a.client.sync(),true);
     const b=client();await b.client.login('ella',code,{importLocal:false});
     assert.equal(b.get().state.history.length,2);
-    await b.client.login('test-1',await h.accountCode(h.secret,'test-1'));
+    await b.client.login('test-1',await h.accountCode(h.secret,'test-1'),{initialize:true});
     assert.equal(b.get().state.history.length,0);assert.equal(b.get().state.accountId,'test-1');
     await b.client.login('ella',code);assert.equal(b.get().state.history.length,2);
     a.get().state.settings.size=10;
@@ -145,5 +149,88 @@ test('client migrates once, uploads offline work, restores on a fresh device and
     assert.equal(approved.data.records.length,1,'migration excluded from generation');
     const excluded=await h.call('admin/account-records?accountId=test-1&generation=true',null,{token:h.secret});
     assert.equal(excluded.data.records.length,0);
+  }finally{await h.mf.dispose();}
+});
+test('first device sets a password; other devices verify it and logout never reopens initialization',async()=>{
+  const h=await serverHarness();
+  try{
+    const status=()=>h.call('accounts/status');
+    assert.equal((await status()).data.accounts.find(a=>a.id==='dad').needsSetup,true);
+    const body={accountId:'dad',code:'739',deviceId:crypto.randomUUID()};
+    assert.equal((await h.call('accounts/login',body)).status,409,'old cached clients cannot silently initialize');
+    assert.equal((await h.call('accounts/login',{...body,initialize:true},null,'https://bad.example')).status,403);
+    assert.equal((await h.call('accounts/login',{...body,code:' ',initialize:true})).status,400);
+    assert.equal((await h.call('accounts/login',{...body,deviceId:'invalid',initialize:true})).status,401);
+    assert.equal((await status()).data.accounts.find(a=>a.id==='dad').needsSetup,true);
+    const first=await h.call('accounts/login',{...body,initialize:true});
+    assert.equal(first.status,200);
+    const credential=await h.db.prepare('SELECT * FROM account_credentials WHERE account_id=?').bind('dad').first();
+    assert.match(credential.password_hash,/^pbkdf2-sha256\$100000\$/);
+    assert.equal((await status()).data.accounts.find(a=>a.id==='dad').needsSetup,false);
+    assert.equal((await h.call('accounts/login',{...body,code:'other',deviceId:crypto.randomUUID(),initialize:true})).status,401);
+    const second=await h.call('accounts/login',{...body,deviceId:crypto.randomUUID()});
+    assert.equal(second.status,200);
+    assert.notEqual(first.data.token,second.data.token);
+    await h.call('accounts/logout',{}, {token:first.data.token,deviceId:body.deviceId});
+    await h.db.prepare('DELETE FROM account_sessions WHERE account_id=?').bind('dad').run();
+    await h.migrate();
+    assert.equal((await status()).data.accounts.find(a=>a.id==='dad').needsSetup,false);
+    assert.equal((await h.call('accounts/login',{...body,code:'reset-attempt',initialize:true})).status,401);
+    assert.equal((await h.call('accounts/login',body)).status,200);
+    assert.equal((await h.call('admin/account-code',{accountId:'dad'},{token:h.secret})).status,409);
+    assert.equal((await h.call('admin/account-code',{accountId:'mom'},{token:h.secret})).status,409);
+  }finally{await h.mf.dispose();}
+});
+test('simultaneous first bindings pick one password atomically and preserve it after repeated deployments',async()=>{
+  const h=await serverHarness();
+  try{
+    const bodies=['739','different'].map(code=>({accountId:'mom',code,deviceId:crypto.randomUUID(),initialize:true}));
+    const results=await Promise.all(bodies.map(b=>h.call('accounts/login',b)));
+    assert.deepEqual(results.map(r=>r.status).sort(),[200,401]);
+    assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM account_sessions WHERE account_id=?').bind('mom').first()).n,1);
+    const winner=bodies[results.findIndex(r=>r.status===200)];
+    await h.migrate();await h.migrate();
+    assert.equal((await h.call('accounts/login',{...winner,deviceId:crypto.randomUUID()})).status,200,'lost response can retry with same password');
+    assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM account_credentials WHERE account_id=?').bind('mom').first()).n,1);
+  }finally{await h.mf.dispose();}
+});
+test('first binding transaction rolls back password claim if creating the device session fails',async()=>{
+  const h=await serverHarness();
+  try{
+    await h.db.prepare("CREATE TRIGGER reject_session BEFORE INSERT ON account_sessions BEGIN SELECT RAISE(ABORT, 'fixture failure'); END").run();
+    const body={accountId:'dad',code:'739',deviceId:crypto.randomUUID(),initialize:true};
+    assert.equal((await h.call('accounts/login',body)).status,503);
+    assert.equal(await h.db.prepare('SELECT * FROM account_credentials WHERE account_id=?').bind('dad').first(),null);
+    await h.db.prepare('DROP TRIGGER reject_session').run();
+    assert.equal((await h.call('accounts/login',body)).status,200);
+  }finally{await h.mf.dispose();}
+});
+test('legacy migration protects bound accounts, saved records and expired sessions but releases unused preset codes',async()=>{
+  const h=await serverHarness();
+  try{
+    const {digest}=await import('../learning-server.mjs');
+    for(const id of ['ella','dad','mom']){
+      await h.db.prepare('UPDATE accounts SET code_hash=? WHERE id=?').bind(await digest(await h.accountCode(h.secret,id)),id).run();
+    }
+    const legacyToken='fixture-legacy-session',deviceId=crypto.randomUUID();
+    await h.db.prepare('INSERT INTO account_sessions VALUES(?,?,?,?,?)').bind(await digest(legacyToken),'ella',deviceId,'2026-01-01','2099-01-01').run();
+    await h.db.prepare('UPDATE accounts SET bundle=?,revision=1 WHERE id=?').bind(JSON.stringify(await normalized()),'dad').run();
+    await h.migrate();
+    const status=(await h.call('accounts/status')).data.accounts;
+    assert.equal(status.find(a=>a.id==='ella').needsSetup,false);
+    assert.equal(status.find(a=>a.id==='dad').needsSetup,false,'saved data never becomes claimable after logout');
+    assert.equal(status.find(a=>a.id==='mom').needsSetup,true,'unused preset is not a password');
+    assert.equal((await h.call('accounts/state',null,{token:legacyToken,deviceId})).status,200);
+    assert.equal((await h.call('accounts/login',{accountId:'ella',code:'739',deviceId:crypto.randomUUID(),initialize:true})).status,401);
+    assert.equal((await h.call('accounts/login',{accountId:'ella',code:await h.accountCode(h.secret,'ella'),deviceId:crypto.randomUUID()})).status,200);
+    assert.equal((await h.call('admin/account-code',{accountId:'ella'},{token:h.secret})).status,200);
+    const before=(await h.db.prepare('SELECT bundle FROM accounts WHERE id=?').bind('dad').first()).bundle;
+    await h.db.prepare('DELETE FROM account_sessions WHERE account_id=?').bind('ella').run();
+    await h.migrate();
+    assert.equal((await h.call('accounts/status')).data.accounts.find(a=>a.id==='ella').needsSetup,false);
+    assert.equal((await h.db.prepare('SELECT bundle FROM accounts WHERE id=?').bind('dad').first()).bundle,before);
+    // A 0.7.0 request may finish after migrations but before the new worker activates.
+    await h.db.prepare('INSERT INTO account_sessions VALUES(?,?,?,?,?)').bind('expired-legacy','mom',crypto.randomUUID(),'2020-01-01','2020-02-01').run();
+    assert.equal((await h.call('accounts/status')).data.accounts.find(a=>a.id==='mom').needsSetup,false);
   }finally{await h.mf.dispose();}
 });

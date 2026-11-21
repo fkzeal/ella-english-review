@@ -7,6 +7,7 @@
 #account-dialog h2{font-size:26px;line-height:1.4;margin:12px 0}
 #account-dialog p{line-height:1.7}
 #account-dialog .field{display:flex;flex-direction:column;align-items:stretch;margin:18px 0;gap:8px}
+#account-dialog [hidden]{display:none}
 #account-dialog input[type=password],#account-dialog select{box-sizing:border-box;width:100%;padding:13px;font:inherit;border:1px solid #d9c4b1;border-radius:12px;background:white;min-height:48px}
 #account-dialog .actions{justify-content:flex-end;margin-top:20px}
 #account-error{color:#9c422b}

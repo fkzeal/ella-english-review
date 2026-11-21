@@ -81,22 +81,64 @@
   }
   function showAccountDialog(){
     const c=cloud.view(),d=document.getElementById('account-dialog');
-    d.innerHTML=`<div class="eyebrow">MY LITTLE HOME</div><h2 id="account-title">${c.account?'切换云端账号':'给这台设备选一个账号'}</h2><p>复习日程、练习记录和猫咪收藏，会跟着账号一起走。</p><form id="account-form"><div class="field"><label for="account-choice">使用者</label><select id="account-choice">${window.AccountSync.ACCOUNTS.map(([id,name])=>`<option value="${id}" ${c.account?.id===id?'selected':''}>${name}</option>`).join('')}</select></div><div class="field"><label for="account-code">私有登录码</label><input id="account-code" type="password" autocomplete="current-password" required placeholder="由家长提供，绑定后无需每次输入"></div>${!state.accountId?'<label class="check"><input id="account-import" type="checkbox" checked> 将本机已有进度迁移到这个账号</label>':'<p class="note">切换前自动保存当前账号。不同账号的进度各自保留。</p>'}<p id="account-error" class="note" role="alert"></p><div class="actions"><button type="button" class="button secondary" id="account-later">稍后</button><button type="submit" class="button">绑定并同步</button></div></form>`;
+    d.innerHTML=`<div class="eyebrow">MY LITTLE HOME</div><h2 id="account-title">${c.account?'切换云端账号':'给这台设备选一个账号'}</h2><p>复习日程、练习记录和猫咪收藏，会跟着账号一起走。</p>
+      <form id="account-form"><div class="field"><label for="account-choice">使用者</label><select id="account-choice">${window.AccountSync.ACCOUNTS.map(([id,name])=>`<option value="${id}" ${c.account?.id===id?'selected':''}>${name}</option>`).join('')}</select></div>
+      <p id="account-mode" class="note" aria-live="polite">正在确认账号状态…</p>
+      <div class="field"><label id="account-password-label" for="account-code">登录密码</label><input id="account-code" type="password" autocomplete="current-password" maxlength="128" required aria-describedby="account-mode"></div>
+      <div id="account-confirm-field" class="field" hidden><label for="account-confirm">确认密码</label><input id="account-confirm" type="password" autocomplete="new-password" maxlength="128" placeholder="再输入一次刚设置的密码"></div>
+      ${!state.accountId?'<label class="check"><input id="account-import" type="checkbox" checked> 将本机已有进度迁移到这个账号</label>':'<p class="note">切换前自动保存当前账号。不同账号的进度各自保留。</p>'}
+      <p id="account-error" class="note" role="alert"></p><button type="button" id="account-retry" class="link-button" hidden>重新获取账号状态</button>
+      <div class="actions"><button type="button" class="button secondary" id="account-later">稍后</button><button type="submit" class="button" disabled>绑定并同步</button></div></form>`;
+    const form=d.querySelector('form'),choice=d.querySelector('#account-choice'),input=d.querySelector('#account-code');
+    const confirm=d.querySelector('#account-confirm'),button=d.querySelector('[type="submit"]'),error=d.querySelector('#account-error');
+    const hint=d.querySelector('#account-mode'),retry=d.querySelector('#account-retry');
+    let accounts=[],needsSetup=null;
+    function updateMode(){
+      const account=accounts.find(a=>a.id===choice.value);
+      needsSetup=account?account.needsSetup:null;
+      d.querySelector('#account-confirm-field').hidden=needsSetup!==true;
+      confirm.required=needsSetup===true;
+      input.autocomplete=needsSetup?'new-password':'current-password';
+      d.querySelector('#account-password-label').textContent=needsSetup?'设置登录密码':'登录密码';
+      input.placeholder=needsSetup?'设置以后绑定这个账号要用的密码':'输入这个账号已有的密码';
+      hint.textContent=needsSetup===null?'暂时无法确认账号状态，请联网重试。':needsSetup?
+        '这个账号还没有绑定过设备。请设置密码，之后其他设备绑定也用这个密码。':
+        '这个账号已设置密码。请输入同一个密码，绑定后无需每次输入。';
+      button.textContent=needsSetup?'设置密码并绑定':'验证密码并绑定';
+      button.disabled=needsSetup===null;
+    }
+    async function loadStatus(){
+      button.disabled=true;retry.hidden=true;
+      try{
+        const result=await cloud.accountStatus();
+        if(d.querySelector('form')!==form)return;
+        accounts=result.accounts;updateMode();
+      }catch(err){
+        if(d.querySelector('form')!==form)return;
+        accounts=[];updateMode();error.textContent=err.message;retry.hidden=false;
+      }
+    }
+    choice.onchange=()=>{input.value='';confirm.value='';error.textContent='';updateMode();};
+    retry.onclick=()=>{error.textContent='';loadStatus();};
     document.getElementById('account-later').onclick=()=>d.close();
-    document.getElementById('account-form').onsubmit=e=>{
+    form.onsubmit=e=>{
       e.preventDefault();
-      const id=document.getElementById('account-choice').value,code=document.getElementById('account-code').value,importLocal=document.getElementById('account-import')?.checked??false;
-      const button=d.querySelector('[type="submit"]');button.disabled=true;
+      if(needsSetup===null||button.disabled)return;
+      const id=choice.value,code=input.value.trim(),initialize=needsSetup,importLocal=d.querySelector('#account-import')?.checked??false;
+      if(!code){error.textContent='请输入密码。';return;}
+      if(initialize&&code!==confirm.value.trim()){error.textContent='两次输入的密码不一致，请重新确认。';return;}
+      button.disabled=true;choice.disabled=true;error.textContent='';
       run(async()=>{
         try{
           const old=cloud.view().account;
           if(old&&old.id!==id&&!await cloud.sync())throw new Error('当前账号尚未同步成功，请联网后再切换。');
-          await cloud.login(id,code,{importLocal});d.close();feedback=null;selected=null;render();toast('账号已绑定，学习进度已同步。');
-        }catch(err){document.getElementById('account-error').textContent=err.message;}
-        finally{button.disabled=false;}
+          await cloud.login(id,code,{importLocal,initialize});d.close();feedback=null;selected=null;render();toast('账号已绑定，学习进度已同步。');
+        }catch(err){error.textContent=err.message;await loadStatus();}
+        finally{button.disabled=needsSetup===null;choice.disabled=false;}
       });
     };
     d.showModal();
+    loadStatus();
   }
   function clone(){return JSON.parse(JSON.stringify(state));}
   function lessonLabel(l){

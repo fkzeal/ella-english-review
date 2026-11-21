@@ -10,12 +10,12 @@ import R from '../rewards.js';
 const root=path.resolve(import.meta.dirname,'..'),bank=JSON.parse(fs.readFileSync(path.join(root,'question-bank.json')));
 const mf=new Miniflare(convertV4MiniflareOptions({name:'browser-accounts',modules:true,script:'export default {fetch(){return new Response("ok")}}',d1Databases:['LEARNING_DB']}));
 const db=await mf.getD1Database('LEARNING_DB'),secret='local-browser-fixture-only-'.repeat(3);
-for(const file of ['0001_learning.sql','0002_accounts.sql'])for(const sql of fs.readFileSync(path.join(root,'migrations',file),'utf8').split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(sql).run();
+for(const file of fs.readdirSync(path.join(root,'migrations')).filter(f=>f.endsWith('.sql')).sort())for(const sql of fs.readFileSync(path.join(root,'migrations',file),'utf8').split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(sql).run();
 await db.batch(await Promise.all(bank.questions.map(async q=>db.prepare('INSERT INTO questions VALUES(?,?,?,?)').bind(await digest(questionIdentity(q)),q.id,bank.revision,JSON.stringify(q)))));
 const codes={};
 for(const a of await accountSeeds(secret)){
   await db.prepare('INSERT INTO accounts(id,name,kind,code_hash) VALUES(?,?,?,?)').bind(a.id,a.name,a.kind,a.codeHash).run();
-  codes[a.id]=await accountCode(secret,a.id);
+  codes[a.id]=['ella','dad'].includes(a.id)?'739':await accountCode(secret,a.id);
 }
 const state=E.emptyState();E.syncBatches(bank,state);
 for(let n=0;n<6;n++){

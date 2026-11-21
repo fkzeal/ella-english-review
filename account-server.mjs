@@ -14,8 +14,28 @@ export async function accountCode(secret,id){
   const key=await crypto.subtle.importKey('raw',encoder.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
   return hex(await crypto.subtle.sign('HMAC',key,encoder.encode('ella-account-v1:'+id))).slice(0,24);
 }
-export async function accountSeeds(secret){
-  return await Promise.all(ACCOUNTS.map(async a=>({...a,codeHash:await digest(await accountCode(secret,a.id))})));
+export async function accountSeeds(){
+  return ACCOUNTS.map(a=>({...a,codeHash:''}));
+}
+const iterations=100000;
+async function passwordHash(password,salt=hex(crypto.getRandomValues(new Uint8Array(16)))){
+  const key=await crypto.subtle.importKey('raw',encoder.encode(password),'PBKDF2',false,['deriveBits']);
+  const bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',iterations,salt:encoder.encode(salt)},key,256);
+  return `pbkdf2-sha256$${iterations}$${salt}$${hex(bits)}`;
+}
+async function matchesPassword(password,stored){
+  if(stored.startsWith('pbkdf2-sha256$')){
+    const parts=stored.split('$');
+    return parts.length===4&&parts[1]===String(iterations)&&await passwordHash(password,parts[2])===stored;
+  }
+  return /^[a-f0-9]{64}$/.test(stored)&&await digest(password)===stored;
+}
+// Also covers a legacy login made between the migration and worker deployment.
+async function preserveLegacyBindings(db){
+  await db.prepare(`INSERT OR IGNORE INTO account_credentials(account_id,password_hash,initialized_at)
+    SELECT a.id,a.code_hash,COALESCE(a.updated_at,strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+    FROM accounts a WHERE a.code_hash<>'' AND (a.bundle IS NOT NULL OR a.revision>0 OR
+    EXISTS(SELECT 1 FROM account_sessions s WHERE s.account_id=a.id))`).run();
 }
 function fail(status,message){throw Object.assign(new Error(message),{status});}
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
@@ -69,10 +89,20 @@ export async function handleAccounts(request,env){
     const db=env.LEARNING_DB,url=new URL(request.url),route=url.pathname.replace(/\/$/,'');
     if(request.method!=='GET'&&request.headers.get('origin')!==url.origin)fail(403,'来源无效');
     const auth=request.headers.get('authorization')||'',now=new Date().toISOString();
+    if(route==='/api/accounts/status'&&request.method==='GET'){
+      await preserveLegacyBindings(db);
+      const accounts=(await db.prepare(`SELECT a.id,a.name,a.kind,c.account_id AS initialized
+        FROM accounts a LEFT JOIN account_credentials c ON c.account_id=a.id`).all()).results;
+      return json({accounts:accounts.map(a=>({...publicAccount(a),needsSetup:!a.initialized}))});
+    }
     if(route==='/api/admin/accounts'){
       if(auth!=='Bearer '+env.LEARNING_ADMIN_TOKEN)fail(401,'管理凭据无效');
       if(request.method!=='GET')fail(405,'方法无效');
-      const accounts=(await db.prepare('SELECT id,name,kind,revision,updated_at FROM accounts').all()).results;
+      await preserveLegacyBindings(db);
+      const accounts=(await db.prepare(`SELECT a.id,a.name,a.kind,a.revision,a.updated_at,
+        CASE WHEN c.account_id IS NULL THEN 'needs_setup'
+          WHEN c.password_hash LIKE 'pbkdf2-%' THEN 'user_password' ELSE 'legacy_code' END AS passwordMode
+        FROM accounts a LEFT JOIN account_credentials c ON c.account_id=a.id`).all()).results;
       return json({accounts});
     }
     if(route==='/api/admin/account-code'){
@@ -80,6 +110,10 @@ export async function handleAccounts(request,env){
       if(request.method!=='POST')fail(405,'方法无效');
       const data=await read(request);
       if(!ACCOUNTS.some(a=>a.id===data.accountId))fail(404,'账号不存在');
+      await preserveLegacyBindings(db);
+      const credential=await db.prepare('SELECT * FROM account_credentials WHERE account_id=?').bind(data.accountId).first();
+      if(!credential)fail(409,'该账号等待首次绑定时设置密码，没有预设登录码');
+      if(credential.password_hash.startsWith('pbkdf2-'))fail(409,'该账号使用自行设置的密码，不能导出明文密码');
       return json({accountId:data.accountId,code:await accountCode(env.LEARNING_ADMIN_TOKEN,data.accountId)});
     }
     if(route==='/api/admin/account-records'){
@@ -104,15 +138,39 @@ export async function handleAccounts(request,env){
         .bind(rateKey,nowMs+900000,nowMs,nowMs).first();
       if(rate.attempts>10)fail(429,'尝试次数较多，请15分钟后再试');
       const account=await db.prepare('SELECT * FROM accounts WHERE id=?').bind(accountId).first();
-      if(!account||typeof data.code!=='string'||account.code_hash!==await digest(data.code.trim())||!uuid.test(data.deviceId||''))fail(401,'账号或登录码不正确');
+      if(!account||typeof data.code!=='string'||!uuid.test(data.deviceId||''))fail(401,'账号或密码不正确');
+      const password=data.code.trim();
+      if(!password||password.length>128)fail(400,'请输入1至128个字符的密码');
+      await preserveLegacyBindings(db);
+      let credential=await db.prepare('SELECT * FROM account_credentials WHERE account_id=?').bind(accountId).first();
       const token=hex(crypto.getRandomValues(new Uint8Array(32)));
+      const tokenHash=await digest(token);
       const expiresAt=new Date(nowMs+180*86400000).toISOString();
+      if(!credential){
+        if(data.initialize!==true)fail(409,'该账号尚未设置密码，请刷新页面后首次设置并绑定');
+        const hash=await passwordHash(password);
+        // One transaction wins the account claim and creates its first session.
+        // A competing request can neither overwrite the password nor obtain a session.
+        const results=await db.batch([
+          db.prepare(`INSERT OR IGNORE INTO account_credentials(account_id,password_hash,initialized_at)
+            SELECT id,?,? FROM accounts WHERE id=? AND bundle IS NULL AND revision=0
+            AND NOT EXISTS(SELECT 1 FROM account_sessions WHERE account_id=?)`)
+            .bind(hash,now,accountId,accountId),
+          db.prepare(`INSERT INTO account_sessions(token_hash,account_id,device_id,created_at,expires_at)
+            SELECT ?,account_id,?,?,? FROM account_credentials WHERE account_id=? AND password_hash=?`)
+            .bind(tokenHash,data.deviceId,now,expiresAt,accountId,hash)
+        ]);
+        if(results[1].meta.changes)return json({...snapshot(account),token,expiresAt});
+        await preserveLegacyBindings(db);
+        credential=await db.prepare('SELECT * FROM account_credentials WHERE account_id=?').bind(accountId).first();
+      }
+      if(!credential||!await matchesPassword(password,credential.password_hash))fail(401,'账号或密码不正确，请使用这个账号首次绑定时设置的密码');
       await db.prepare('INSERT INTO account_sessions(token_hash,account_id,device_id,created_at,expires_at) VALUES(?,?,?,?,?)')
-        .bind(await digest(token),account.id,data.deviceId,now,expiresAt).run();
+        .bind(tokenHash,account.id,data.deviceId,now,expiresAt).run();
       return json({...snapshot(account),token,expiresAt});
     }
     const session=auth.startsWith('Bearer ')?await db.prepare('SELECT * FROM account_sessions WHERE token_hash=? AND expires_at>?').bind(await digest(auth.slice(7)),now).first():null;
-    if(!session||session.device_id!==request.headers.get('x-device-id'))fail(401,'请重新输入账号登录码；本机记录仍保留');
+    if(!session||session.device_id!==request.headers.get('x-device-id'))fail(401,'请重新输入账号密码；本机记录仍保留');
     const account=await db.prepare('SELECT * FROM accounts WHERE id=?').bind(session.account_id).first();
     if(route==='/api/accounts/state'&&request.method==='GET')return json(snapshot(account));
     if(route==='/api/accounts/logout'&&request.method==='POST'){

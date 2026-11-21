@@ -48,13 +48,13 @@
       if(!current.state.accountId&&importLocal)return current;
       return null;
     }
-    async function login(id,code,{importLocal=true}={}){
+    async function login(id,code,{importLocal=true,initialize=false}={}){
       if(!enabled)throw new Error('请在正式网址绑定云端账号');
       if(busy)throw new Error('正在同步，请稍后再试');
       busy=true;error='';onChange();
       try{
         const current=S.copy(getBundle());cache(current);
-        const response=await request('login',{accountId:id,code,deviceId:installation()},null);
+        const response=await request('login',{accountId:id,code,deviceId:installation(),initialize},null);
         const binding={id,name:response.account.name,token:response.token,expiresAt:response.expiresAt};
         const source=sourceFor(id,current,importLocal);
         let bundle=source?await S.normalize(source,{accountId:id,deviceId:installation(),crypto,migrate:true}):response.bundle;
@@ -188,7 +188,8 @@
         await accept(response,binding);
       }finally{busy=false;onChange();}
     }
-    return {view,login,sync,prepare,open,logout,installation,backup,localBackup,resolve,importBundle,markDirty:()=>{dirty=true;}};
+    return {view,login,sync,prepare,open,logout,installation,backup,localBackup,resolve,importBundle,
+      accountStatus:()=>request('status',null,null),markDirty:()=>{dirty=true;}};
   }
   return {KEY,ACCOUNTS,create};
 });

@@ -18,6 +18,11 @@ const expected=['ella','dad','mom','test-1','test-2','test-3'];
 if(!expected.every(id=>accounts.some(a=>a.id===id)))throw new Error('Required accounts not initialized');
 const exported=[];
 for(const id of expected){
+  const account=accounts.find(a=>a.id===id);
+  if(account.passwordMode!=='legacy_code'){
+    exported.push({id,name:account.name,status:account.passwordMode});
+    continue;
+  }
   const {code}=await query('account-code',{accountId:id});
   if(!/^[a-f0-9]{24}$/.test(code))throw new Error('Invalid account code response');
   exported.push({id,name:accounts.find(a=>a.id===id).name,code});
@@ -29,4 +34,4 @@ fs.writeFileSync('account-access.encrypted.json',JSON.stringify({
   key:publicEncrypt({key,oaepHash:'sha256'},secret).toString('base64'),
   iv:iv.toString('base64'),tag:cipher.getAuthTag().toString('base64'),ciphertext:ciphertext.toString('base64')
 }),{mode:0o600});
-console.log('Verified six initialized accounts; encrypted access artifact ready.');
+console.log('Verified six accounts; encrypted legacy access/status artifact ready. User passwords are not exportable.');
