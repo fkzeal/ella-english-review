@@ -1,5 +1,6 @@
 import {handleAccounts} from './account-server.mjs';
 import {handleMaintenance} from './maintenance-server.mjs';
+import {handlePractice} from './practice-server.mjs';
 // Only /api/* is routed here. Learning records never enter the static build.
 const encoder=new TextEncoder();
 export async function digest(value){
@@ -24,6 +25,7 @@ async function signedToken(secret,id,enrollment){
 }
 function validDate(value){return typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&new Date(value+'T12:00:00Z').toISOString().slice(0,10)===value;}
 export async function handle(request,env){
+  if(new URL(request.url).pathname.startsWith('/api/admin/practice/'))return handlePractice(request,env);
   if(new URL(request.url).pathname.startsWith('/api/admin/maintenance/'))return handleMaintenance(request,env);
   if(/^\/api\/accounts(?:\/|$)/.test(new URL(request.url).pathname)||/^\/api\/admin\/account/.test(new URL(request.url).pathname))return handleAccounts(request,env);
   try{
@@ -108,6 +110,7 @@ export async function handle(request,env){
         const question=await db.prepare('SELECT * FROM questions WHERE fingerprint=?').bind(e.fingerprint).first();
         if(!question)fail(422,'题目版本未在服务器登记');
         const q=JSON.parse(question.snapshot);
+        if(q.practiceFor)fail(403,'Private practice requires account sync');
         if(e.questionId!==q.id||e.selected<0||e.selected>=q.options.length)fail(400,'题目或答案无效');
         const canonical=JSON.stringify([e.questionId,e.fingerprint,e.day,e.occurredAt,e.selected,e.help,e.source,e.originDeviceId||null]);
         const payloadHash=await digest(canonical);

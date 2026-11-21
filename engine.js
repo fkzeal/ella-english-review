@@ -54,6 +54,12 @@
       if (b.lessons.find(l=>l.id===p.lessonId).status !== 'ready') fail(`考点 ${p.id} 不能属于待补充课程`);
     }
     for (const q of b.questions) {
+      if(q.practiceFor){
+        const base=b.questions.find(x=>x.id===q.baseQuestionId),point=b.points.find(p=>p.id===q.pointId);
+        const target=b.lessons.find(l=>l.id===point?.lessonId)?.learningTargets?.find(t=>t.id===q.learningTargetId);
+        if(q.practiceFor!==b.practiceAccountId||!base||base.practiceFor||base.pointId!==q.pointId||base.reviewUnit!==q.reviewUnit||
+          (q.active!==false&&(!target||!target.questionIds.includes(q.id))))fail(`专属题 ${q.id} 的来源或目标不一致`);
+      }
       if(q.active!==undefined&&typeof q.active!=='boolean')fail(`题目 ${q.id} 启用标记无效`);
       if(q.reviewUnit!==undefined&&(!q.reviewUnit||!/^[a-zA-Z0-9_-]{1,80}$/.test(q.reviewUnit)))fail(`题目 ${q.id} 复习单元无效`);
       if (!sets.points.has(q.pointId) || !TYPES.includes(q.type) || !text(q.prompt) || !text(q.explanation) || !text(q.source)) fail(`题目 ${q.id} 信息不完整`);
@@ -390,6 +396,7 @@
     else validateBank(incoming);
     if(incoming.revision&&current.revision&&incoming.revision<current.revision)throw new Error('题库版本较旧，已保留当前题库。');
     const merged={...current,...incoming,version:1,updated:incoming.updated||current.updated};
+    if(current.practiceAccountId&&incoming.practiceAccountId&&current.practiceAccountId!==incoming.practiceAccountId)throw new Error('不同账号的专属题不能合并');
     for(const k of ['lessons','points','questions','batches']){
       const m=new Map((current[k]||[]).map(x=>[x.id,k==='questions'&&incoming.mode==='snapshot'?{...x,active:false}:x]));
       (incoming[k]||[]).forEach(x=>{
@@ -400,6 +407,22 @@
         m.set(x.id,x);
       });
       merged[k]=[...m.values()];
+    }
+    merged.lessons=JSON.parse(JSON.stringify(merged.lessons));
+    // Account practice survives shared snapshot refresh, including equal revisions.
+    for(const q of current.questions.filter(q=>q.practiceFor)){
+      if(q.practiceFor!==merged.practiceAccountId)throw new Error('专属题账号不一致');
+      const retained=merged.questions.find(x=>x.id===q.id);
+      const base=merged.questions.find(x=>x.id===q.baseQuestionId);
+      const active=base?.active!==false&&Boolean(base);
+      if(active&&q.active===undefined)delete retained.active;else retained.active=active;
+      if(!active)for(const l of merged.lessons)for(const t of l.learningTargets||[])t.questionIds=t.questionIds.filter(id=>id!==q.id);
+      if(active){
+        const point=merged.points.find(p=>p.id===q.pointId);
+        const target=merged.lessons.find(l=>l.id===point?.lessonId)?.learningTargets?.find(t=>t.id===q.learningTargetId);
+        if(!target)throw new Error('专属题学习目标缺失');
+        if(!target.questionIds.includes(q.id))target.questionIds.push(q.id);
+      }
     }
     return validateBank(merged);
   }

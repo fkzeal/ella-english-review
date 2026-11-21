@@ -51,13 +51,25 @@ function snapshot(a){return {account:publicAccount(a),revision:a.revision,bundle
 async function validateBundle(db,bundle,account,deviceId,previous,migrate){
   try{S.validate(bundle);}catch(e){fail(400,e.message);}
   if(bundle.state.accountId!==account.id)fail(403,'账号与记录不匹配');
-  const trusted=(await db.prepare('SELECT fingerprint,snapshot FROM questions').all()).results;
-  const fingerprints=new Set(trusted.map(q=>q.fingerprint)),qs=new Map();
+  const trusted=(await db.prepare(`SELECT q.fingerprint,q.snapshot FROM questions q
+    WHERE NOT EXISTS(SELECT 1 FROM account_practice_questions p WHERE p.fingerprint=q.fingerprint)
+    OR EXISTS(SELECT 1 FROM account_practice_questions p WHERE p.fingerprint=q.fingerprint AND p.account_id=?)`).bind(account.id).all()).results;
+  const qs=new Map();
   for(const q of bundle.bank.questions){
     const fp=await digest(identity(q));
-    if(!fingerprints.has(fp))fail(422,'题库版本尚未在服务器登记，请先更新正式题库');
+    let registered=trusted.find(x=>x.fingerprint===fp);
+    if(!registered&&q.practiceFor===account.id&&q.active===false&&bundle.bank.questions.find(x=>x.id===q.baseQuestionId)?.active===false){
+      registered=trusted.find(x=>{const old=JSON.parse(x.snapshot),candidate={...q};delete candidate.active;return old.id===q.id&&JSON.stringify(candidate)===JSON.stringify(old);});
+    }
+    if(!registered)fail(422,'题库版本尚未在服务器登记，请先更新正式题库');
+    if(q.practiceFor){
+      const candidate={...q};if(q.active===false)delete candidate.active;
+      if(q.practiceFor!==account.id||bundle.bank.practiceAccountId!==account.id||
+        JSON.stringify(q)!==registered.snapshot&&JSON.stringify(candidate)!==registered.snapshot)fail(403,'专属题归属或内容不一致');
+    }
     qs.set(q.id,{q,fp});
   }
+  for(const q of previous?.bank.questions||[])if(q.practiceFor===account.id&&!qs.has(q.id))fail(409,'同步不能删除专属题，请先合并云端题库');
   const known=new Map((previous?.state.history||[]).map(h=>[h.syncId,h]));
   for(const h of bundle.state.history){
     const prior=known.get(h.syncId),{q,fp}=qs.get(h.questionId)||{};

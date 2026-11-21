@@ -257,3 +257,43 @@ test('legacy migration protects bound accounts, saved records and expired sessio
     assert.equal((await h.call('accounts/status')).data.accounts.find(a=>a.id==='mom').needsSetup,false);
   }finally{await h.mf.dispose();}
 });
+test('private publication preserves state, distributes only to learner, retries once and rejects stale or forged publication',async()=>{
+  const h=await serverHarness(),realFetch=global.fetch;
+  global.fetch=async()=>new Response(JSON.stringify(bank));
+  try{
+    const P=require('../practice'),{createHash}=require('node:crypto');
+    const sha=x=>createHash('sha256').update(x).digest('hex');
+    const auth=await h.login(),other=await h.login('test-1'),bundle=await normalized();
+    const base=bank.questions.find(q=>q.id==='l2-02-q04');
+    answer(bundle,base.id,1);
+    assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:0,bundle,migrate:true},auth)).status,200);
+    const admin={token:h.secret},runId=crypto.randomUUID();
+    const q={...copy(base),prompt:'想说“我读漫画”，选哪个句子？',options:['I read a comic.','I write an email.','I listen to music.'],answer:0,
+      explanation:'read a comic 表示读漫画。',practiceFor:'ella',baseQuestionId:base.id,baseFingerprint:sha(P.identity(base)),learningTargetId:'comic',
+      references:[...base.references,{kind:'practice',text:'I read a comic.',source:'原创练习'}]};
+    q.id='practice-'+sha(JSON.stringify([q.baseQuestionId,q.type,q.prompt,q.passage||null,q.audioText||null,q.options,q.answer])).slice(0,24);
+    const payload={accountId:'ella',runId,expectedRevision:1,publicBank:bank,reviewed:true,questions:[q]};
+    assert.equal((await h.call('admin/practice/source?accountId=ella')).status,401);
+    assert.equal((await h.call('admin/practice/publish',payload,other)).status,401);
+    assert.equal((await h.call('admin/practice/publish',{...payload,expectedRevision:0},admin)).status,409);
+    assert.equal((await h.call('admin/practice/publish',{...payload,questions:[{...q,practiceFor:'test-1'}]},admin)).status,400);
+    const published=await h.call('admin/practice/publish',payload,admin);
+    assert.equal(published.status,200,JSON.stringify(published.data));assert.equal(published.data.count,1);
+    assert.deepEqual((await h.call('admin/practice/publish',payload,admin)).data,published.data);
+    assert.equal((await h.call('admin/practice/publish',{...payload,reviewed:false},admin)).status,400);
+    const synced=(await h.call('accounts/state',null,auth)).data;
+    assert.deepEqual(synced.bundle.state,bundle.state);assert.equal(synced.revision,2);
+    assert(synced.bundle.bank.questions.some(x=>x.id===q.id));
+    const readback=(await h.call('admin/practice/publish?accountId=ella&runId='+runId,null,admin)).data;
+    assert.equal(readback.visible,true);assert.equal(readback.questions.length,1);
+    assert.equal((await h.call('accounts/state',null,other)).data.bundle,null);
+    const malicious=await S.normalize({...copy(synced.bundle),state:{...copy(synced.bundle.state),accountId:'test-1',history:[]}},{
+      accountId:'test-1',deviceId:other.deviceId,crypto,migrate:true});
+    assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:0,bundle:malicious,migrate:true},other)).status,422);
+    const refresh={...synced.bundle,bank:E.mergeBank(synced.bundle.bank,bank)};
+    assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:2,bundle:refresh},auth)).status,200);
+    const deletion=copy(refresh);deletion.bank=copy(bank);
+    assert.equal((await h.call('accounts/state',{operationId:crypto.randomUUID(),revision:3,bundle:deletion},auth)).status,409);
+    assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM account_practice_questions').first()).n,1);
+  }finally{global.fetch=realFetch;await h.mf.dispose();}
+});

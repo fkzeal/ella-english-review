@@ -1,5 +1,13 @@
 ## 接手顺序与记忆维护
 
+2026-11-22用户重新明确授权修复完整维护并确保原22:30任务执行，包含使用此前
+保存的凭据与Ella迁移历史。覆盖下方“取消更新不得重试”“衍生关闭”等旧状态。
+0.7.3实现私有practice/source、publish、账本、幂等CAS与账号定向同步；不公开专属题。
+先读设备错题与衍生练习.md和云端定时任务启动.md最新入口，完整运行nightly-maintenance
+的start/candidates/按需publish-private/report/finish。bootstrap PASS不能结束任务。
+原共享库保持r10/168题，专属题不递增共享revision；保留账号历史、奖励与日期。
+完成必须以独立运行的schedule-maintenance-complete私有回执及生产回读为准。
+
 2026-11-21手动维护真实发布：0.7.2/r10/168题，题库提交3ae961e25fc456c9c088b914dccc610214ad1549，
 原Actions44919312700成功，生产题库及新增3个MP3摘要已逐项核对。
 修订57的《I Count 100 Things》11图（封面、正文第3–12页）新增15目标19题，

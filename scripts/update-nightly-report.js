@@ -12,7 +12,7 @@ function text(value,max=500){
   return value;
 }
 function project(input,bank,base){
-  only(input,['runId','date','createdAt','status','summary','sections','questions','todos','verification']);
+  only(input,['runId','date','createdAt','status','summary','sections','questions','todos','verification','privateVerification']);
   if(!/^[a-zA-Z0-9_-]{1,80}$/.test(input.runId)||!/^\d{4}-\d{2}-\d{2}$/.test(input.date)||!Number.isFinite(Date.parse(input.createdAt)))throw new Error('Invalid run identity');
   const localDate=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(input.createdAt));
   if(localDate!==input.date)throw new Error('Date must match Shanghai execution time');
@@ -21,7 +21,11 @@ function project(input,bank,base){
   const sections={};
   for(const key of keys){const section=input.sections[key];only(section,['value','note']);sections[key]={value:text(section.value,40),note:text(section.note)};}
   // Public reports reveal no learner answer counts, mistakes, devices, or event data.
-  if(sections.derivatives.value!=='未生成'||sections.derivatives.note!=='受控生成账本与定向分发尚未完成。')throw new Error('Private derivative reporting is not enabled');
+  if(sections.derivatives.value!=='未生成'||sections.derivatives.note!=='受控生成账本与定向分发尚未完成。'){
+    const receipt=input.privateVerification;
+    if(!receipt||receipt.verified!==true||!Number.isSafeInteger(receipt.count)||receipt.count<0||
+      sections.derivatives.value!==String(receipt.count)||sections.derivatives.note!=='私有巩固练习已核验；仅展示本轮发布数量。')throw new Error('Private derivative receipt required');
+  }
   const verification=input.verification;
   if(verification){
     only(verification,['commit','actionsRun','bankVerified']);
@@ -78,6 +82,10 @@ if(require.main===module){
   if(!file||reviewed!=='--public-reviewed')throw new Error('Usage: node scripts/update-nightly-report.js PRIVATE_INPUT BASE_BANK --public-reviewed (BASE_BANK may be - for no changes)');
   const root=path.resolve(__dirname,'..'),destination=path.join(root,'updates/reports.json');
   const input=JSON.parse(fs.readFileSync(file,'utf8')),bank=JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'),'utf8'));
+  if(input.privateVerification){
+    const result=require('node:child_process').spawnSync(process.execPath,['--import',path.join(root,'scripts/proxy-fetch.mjs'),path.join(root,'scripts/verify-private-report.mjs'),file],{cwd:root,env:process.env,encoding:'utf8'});
+    if(result.status!==0||result.stdout.trim()!=='verified')throw new Error('Private publication not verified online');
+  }
   const base=baseFile&&baseFile!=='-'?JSON.parse(fs.readFileSync(baseFile,'utf8')):undefined;
   const archive=JSON.parse(fs.readFileSync(destination,'utf8'));
   const next=merge(archive,project(input,bank,base));

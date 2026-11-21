@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync,spawn} from 'node:child_process';
 import {randomUUID} from 'node:crypto';
 import {api,restore,pack} from './cloud-state.mjs';
+import {recoverCredentials} from './cloud-credentials.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const state=path.resolve(process.env.ELLA_STATE_DIR||'/workspace/.ella-automation');
 const boot=path.join(root,'.cloud-bootstrap');
@@ -15,6 +16,7 @@ function run(command,args){
 }
 function available(command){return spawnSync(command,['--version'],{stdio:'ignore'}).status===0;}
 async function main(){
+  recoverCredentials();
   if(Number(process.versions.node.split('.')[0])<22)throw new Error('Node 22 or newer required');
   const commit=run('git',['rev-parse','HEAD']).trim();
   if(commit!==run('git',['rev-parse','refs/remotes/origin/main']).trim())throw new Error('Run from latest origin/main snapshot');

@@ -120,6 +120,20 @@ with sync_playwright() as p:
         bind(other, account)
         assert len(saved(other)["history"]) >= 7
         assert len(saved(other)["rewards"]["openings"]) == 2
+        if account == "ella":
+            with urllib.request.urlopen(LOCAL + "/__test__/practice") as response:
+                publication = json.load(response)
+            other.locator('[data-action="sync-records"]').click()
+            expect(other.locator('#account-status')).to_contain_text("云端已同步", timeout=15000)
+            private_id = publication["questionIds"][0]
+            other.wait_for_function("(id)=>JSON.parse(localStorage.getItem('lesson-loop-data-v1')).bank.questions.some(q=>q.id===id)",arg=private_id)
+            other.reload()
+            other.wait_for_load_state("networkidle")
+            private_bank = other.evaluate("JSON.parse(localStorage.getItem('lesson-loop-data-v1')).bank")
+            assert any(q["id"] == private_id and q.get("active") is not False for q in private_bank["questions"])
+            target = next(t for l in private_bank["lessons"] if l["id"] == "l2-02" for t in l["learningTargets"] if t["id"] == "comic")
+            assert private_id in target["questionIds"]
+            assert private_id not in [q["id"] for q in fixture["seed"]["bank"]["questions"]]
         assert not errors, errors
         print(engine.name + ": first password + confirmation, existing password, migration, mobile, offline, cross-device resume, rewards, account isolation PASS")
         first.close()

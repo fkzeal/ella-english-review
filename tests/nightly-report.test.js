@@ -57,3 +57,13 @@ test('empty successful run differs from failed branches; samples never inflate n
   const sample=input();sample.sections.questions.value='1';assert.throws(()=>project(sample,bank),/count mismatch/);
   sample.sections.questions.value='0';sample.date='2026-11-20';assert.throws(()=>project(sample,bank),/Shanghai/);
 });
+test('private publication reports only receipt count, never exports private verification or question bodies',()=>{
+  const body=input();body.status='no-change';body.questions=[];
+  body.sections.derivatives={value:'5',note:'私有巩固练习已核验；仅展示本轮发布数量。'};
+  assert.throws(()=>project(body,bank),/receipt/);
+  body.privateVerification={verified:true,count:5,runId:'private-run',checksum:'private'};
+  const result=project(body,bank);
+  assert.equal(result.sections.derivatives.value,'5');assert.equal(result.privateVerification,undefined);
+  assert(!JSON.stringify(result).includes('private-run'));
+  body.privateVerification.count=4;assert.throws(()=>project(body,bank),/receipt/);
+});

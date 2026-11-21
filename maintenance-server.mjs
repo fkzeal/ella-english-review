@@ -9,6 +9,10 @@ export async function handleMaintenance(request,env){
     const url=new URL(request.url),route=url.pathname.split('/').at(-1),db=env.LEARNING_DB;
     const now=Date.now();
     if(request.method==='GET'){
+      if(route==='receipts'){
+        const rows=(await db.prepare('SELECT rowid,receipt FROM maintenance_receipts ORDER BY rowid DESC LIMIT 40').all()).results;
+        return json({receipts:rows.map(r=>({sequence:r.rowid,...JSON.parse(r.receipt)}))});
+      }
       if(route==='state'){
         const row=await db.prepare('SELECT revision,manifest FROM maintenance_head WHERE id=1').first();
         return json({revision:row.revision,manifest:row.manifest?JSON.parse(row.manifest):null});

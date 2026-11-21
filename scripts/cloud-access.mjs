@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {generateKeyPairSync,privateDecrypt,createDecipheriv,randomUUID} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
+import {recoverCredentials} from './cloud-credentials.mjs';
 const directory=path.resolve(process.argv[2]||'.cloud-bootstrap');
 process.umask(0o077);fs.mkdirSync(directory,{recursive:true,mode:0o700});
 function gh(args){
@@ -12,6 +13,7 @@ function gh(args){
   return r.stdout;
 }
 try{
+  recoverCredentials();
   let token=process.env.LEARNING_ADMIN_TOKEN,source='runtime-environment';
   if(!token){
     if(gh(['api','repos/fkzeal/ella-english-review','--jq','.permissions.push']).trim()!=='true')
@@ -43,6 +45,6 @@ try{
   fs.writeFileSync(path.join(directory,'env.sh'),"export LEARNING_ADMIN_TOKEN='"+token+"'\n",{mode:0o600});
   console.log(JSON.stringify({credentialReady:true,source}));
 }catch{
-  console.error('Credential recovery failed: authenticated GitHub Actions access or runtime admin credential is required. No inherited local file is used.');
+  console.error('Credential recovery failed: runtime, authorized private backup and encrypted Actions recovery unavailable. Credential values suppressed.');
   process.exitCode=1;
 }
