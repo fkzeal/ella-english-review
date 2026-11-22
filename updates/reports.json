@@ -2,6 +2,40 @@
   "version": 1,
   "reports": [
     {
+      "runId": "39a0b4c3-1f35-44fd-8e80-594677162281",
+      "date": "2026-11-22",
+      "createdAt": "2026-11-22T04:47:43.526Z",
+      "status": "no-change",
+      "summary": "本轮完整核查后没有新增共享题目，题库保持 r10；维护报告已更新。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "0",
+          "note": "已全量扫描固定素材文档的24张图片，均已登记；无新图、晚到图或补页。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "本轮没有需要上线的新课程或补页题目，已发布题号与学习日期保持。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "已完整核查反馈；Animal Tongues 第7页仍缺清晰原图，保留需补充素材。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "本轮未修改共享题目的评价内容、考点或参考依据。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "私有巩固练习已核验；仅展示本轮发布数量。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "请补充 Animal Tongues 第7页清晰原图，以继续核查该页题目。"
+      ]
+    },
+    {
       "runId": "f5c23865-f3bd-44c0-9c6e-e1c0547a2a51",
       "date": "2026-11-22",
       "createdAt": "2026-11-22T03:55:03.141Z",
