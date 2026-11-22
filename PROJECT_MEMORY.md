@@ -1,5 +1,12 @@
 # Ella 英语复习站：长期项目记忆
 
+最终发布核验（2026-11-22）：0.7.4功能提交f37a075，Actions44981662995成功，
+原站点生产0.7.4/r10/0559434a1ede；app.js、engine.js、168题JSON和音频清单与构建一致。
+合入远端维护修复后136项测试全部通过。生产Chromium/WebKit手机390×844和Pad1024×768
+四场均完成六題、保存历史/星星并再开组，主入口可提前练习，无溢出/脚本错误。
+三场选中听力实际播放通过；测试独立未绑定浏览器，API写入为0，未改真实账号记录。
+下文“待发布/本地候选”为此前过程状态；本机旧主工作区代码需以此worktree/最新main接手。
+
 2026-11-22用户要求取消“完成今日到期后休息、另选加练”，允许自由提前练习未来考点。
 在origin/main ce6e689同仓库隔离worktree实现E.plan flexible三阶段与统一主入口，
 先可选到期、再未来、再自愿重复，组内目标/分项去重、较少练与较近due优先。
@@ -9,7 +16,7 @@
 三场抽到听力并实际播放通过；另一场未抽到听力，不冒称该场播放核验。
 实现文件engine.js/app.js，测试flexible-practice.test.js和app.test.js。
 用户随后明确授权“发布上线”：准备0.7.4，已合入origin/main 10f4f13维护脚本修复。
-候选保存在Vibe Coding/.ella-worktrees/flexible-practice，最终发布状态待Actions及生产核验，
+发布代码保存在Vibe Coding/.ella-worktrees/flexible-practice，已完成Actions及生产核验，
 用户Mac主工作区与私有状态不变，不将云端最新maintenance配置改成旧说明。
 
 2026-11-22：0.7.3功能提交a791fa723c17bb334561885c20b65de66aebb77b，
