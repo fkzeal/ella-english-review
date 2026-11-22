@@ -27,6 +27,7 @@
   const animatedRewards=new Set();
   const uid=()=>window.crypto?.randomUUID?.()||`reward-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   const listening=window.ReviewAudio.create(window,audioManifest);
+  const answerSounds=window.AnswerSounds.create(window);
   function setApp(html,kind='page'){viewRevision++;viewKind=kind;renderedDay=E.day();app.innerHTML=html;}
   async function prepareAudio(nextBank){
     try{return window.ReviewAudio.validateManifest(audioManifest,nextBank);}catch(err){
@@ -171,7 +172,7 @@
     }catch(err){toast('在线题库暂未同步，继续使用已保存的内容。');}
     finally{clearTimeout(timeout);}
   }
-  function stopAudio(){listening.stop();}
+  function stopAudio(){listening.stop();answerSounds.stop();}
   function dateLabel(d){return new Date(d+'T12:00:00').toLocaleDateString('zh-CN',{month:'long',day:'numeric'});}
   function head(label,title,description){
     return `<div class="page-head"><div><div class="eyebrow">${label}</div><h1>${title}</h1><p class="subtitle">${description}</p></div><div class="date-pill">${new Date().toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'})}</div></div>`;
@@ -387,7 +388,7 @@
     next.session.results.push(result);next.session.index++;R.settle(next);await commit(next);
     if(next.session.index===next.session.items.length)scheduleSync();
     if(revision!==viewRevision)return;
-    feedback=result;renderQuiz();
+    feedback=result;renderQuiz();answerSounds.play(result.correct);
     scrollAnswerReview();
   }
   function nextQuestion(){
@@ -526,6 +527,16 @@
   app.addEventListener('click',event=>{
     const target=event.target.closest('[data-action]');if(!target||target.disabled)return;
     const el={dataset:{...target.dataset}},revision=viewRevision;
+    const action=el.dataset.action;
+    if(['start','practice','lesson-practice','resume','resume-account','select','submit'].includes(action))answerSounds.prime();
+    const pending=['start','practice','lesson-practice','select'].includes(action);
+    const controls=pending?Array.from(target.closest('.options')?.querySelectorAll?.('.option')||[target]):[];
+    const enabled=controls.filter(control=>!control.disabled),label=target.innerHTML;
+    if(pending){
+      for(const control of enabled)control.disabled=true;
+      target.classList?.add('is-pending');target.setAttribute?.('aria-busy','true');
+      if(action!=='select')target.textContent='正在准备题目…';
+    }
     return run(async()=>{
     const action=el.dataset.action;
     if(action==='account')showAccountDialog();
@@ -573,7 +584,18 @@
     }
     else if(action==='import-bank')document.getElementById('bank-file').click();
     else if(action==='import-state')document.getElementById('state-file').click();
-    },el.dataset.action==='account'?undefined:revision);
+    },action==='account'?undefined:revision).finally(()=>{
+      for(const control of enabled)control.disabled=false;
+      if(pending){
+        target.classList?.remove('is-pending');target.removeAttribute?.('aria-busy');
+        if(action!=='select')target.innerHTML=label;
+      }
+      if(event.detail===0&&revision!==viewRevision){
+        const focus=action==='select'?document.querySelector('[data-action="next"]'):
+          ['start','practice','lesson-practice','resume','resume-account'].includes(action)?document.querySelector('.question h2'):null;
+        if(focus){if(focus.tagName==='H2')focus.setAttribute('tabindex','-1');focus.focus?.({preventScroll:true});}
+      }
+    });
   });
   app.addEventListener('change',event=>{
     const target=event.target,revision=viewRevision;

@@ -8,7 +8,7 @@ function harness(initial,shared,overrides={}){
     return nodes.get(id);
   }
   const nav=Object.assign(node('nav-library'),{dataset:{page:'library'},hasAttribute:()=>false});
-  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:A,ReviewErrorFeedback:require('../error-feedback'),REVIEW_FEEDBACK:{formUrl:require('../feedback-store.json').formUrl},setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),LESSON_AUDIO:structuredClone(manifest),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
+  const win={ReviewEngine:E,ReviewStorage:S,ReviewAudio:A,AnswerSounds:require('../answer-sounds'),ReviewErrorFeedback:require('../error-feedback'),REVIEW_FEEDBACK:{formUrl:require('../feedback-store.json').formUrl},setTimeout:()=>0,clearTimeout(){},LESSON_BANK:structuredClone(bank),LESSON_AUDIO:structuredClone(manifest),scrollTo(){},addEventListener(k,fn){this[k]=fn;},...overrides};
   const ctx={window:win,document:{getElementById:node,querySelectorAll:()=>[nav],querySelector:()=>node('brand'),addEventListener(){}},
     navigator:{locks:{request:async(k,fn)=>fn()}},localStorage:{getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)},
     location:{protocol:'file:',host:''},setTimeout:()=>0,clearTimeout(){},setInterval(fn){win.interval=fn;},console,URL,Blob,...overrides.context};
@@ -100,6 +100,32 @@ function sessionRaw(qs){
   state.session={items:qs.map(q=>q.id),index:0,results:[],hints:{},day:E.day()};
   return JSON.stringify({bank,state,baseline:JSON.stringify(bank)});
 }
+test('answer sounds follow committed results, do not replay on duplicate clicks, and never replay on resume',async()=>{
+  const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2),played=[];
+  let primes=0;
+  const app=harness(sessionRaw(qs),undefined,{AnswerSounds:{create:()=>({
+    prime(){primes++;},stop(){},play(correct){played.push({correct,history:app.saved().state.history.length});}
+  })}});
+  await app.ready();await app.click('resume');assert.equal(played.length,0);
+  await app.click('select',{option:String(qs[0].answer)});
+  assert.deepEqual(played,[{correct:true,history:1}]);
+  await app.click('select',{option:String(qs[0].answer)});assert.equal(played.length,1);
+  await app.click('next');
+  await app.click('select',{option:String((qs[1].answer+1)%qs[1].options.length)});
+  assert.deepEqual(played,[{correct:true,history:1},{correct:false,history:2}]);
+  assert(primes>=3);
+});
+test('failed answer persistence has no sound and restores the clicked control',async()=>{
+  const q=bank.questions.find(q=>q.type==='choice'),played=[];
+  const app=harness(sessionRaw([q]),undefined,{AnswerSounds:{create:()=>({prime(){},stop(){},play:x=>played.push(x)})}});
+  await app.ready();await app.click('resume');
+  const before=app.data.get(S.KEY);
+  // The storage wrapper delegates to Map.set; fail the actual persistent write.
+  app.data.set=()=>{throw new Error('storage full');};
+  const target={dataset:{action:'select',option:String(q.answer)},disabled:false,closest:()=>target};
+  await app.node('app').listeners.click({target:{closest:()=>target}});
+  assert.equal(target.disabled,false);assert.equal(app.data.get(S.KEY),before);assert.equal(played.length,0);
+});
 test('error report always identifies the visible question even after the answer cursor advances',async()=>{
   const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2),app=harness(sessionRaw(qs));
   await app.ready();await app.click('resume');
