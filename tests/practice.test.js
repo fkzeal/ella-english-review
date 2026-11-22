@@ -123,3 +123,11 @@ test('option reorder and personal-name-only changes are not effective variants',
   assert(P.trivialVariant({...base,prompt:'Alice reads a comic. What does he read?',options:[...base.options].reverse()},base));
   assert(!P.trivialVariant({...base,prompt:'Choose the activity that matches: 读漫画。'},base));
 });
+test('unknown historical help information cannot prove independent recovery',()=>{
+  const src=source(),q=src.bundle.bank.questions.find(q=>q.id==='l2-02-q04');
+  for(const d of ['2026-11-22','2026-11-23']){
+    response(src,q,d);const h=src.bundle.state.history.at(-1);h.recordSource='imported';delete h.help;
+  }
+  assert.equal(P.select(src,bank,[],'2026-11-23').excluded.corrected,0);
+  assert.equal(P.select(src,bank,[],'2026-11-23').candidates.length,1);
+});

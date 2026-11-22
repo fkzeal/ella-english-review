@@ -101,9 +101,9 @@ function project(input,bank,base){
   let generationSummary;
   if(input.generationSummary){
     const g=input.generationSummary;
-    only(g,['generated','reuse','recovered','needsExplanation','cooldown','invalidRecords','needsFamilyReview','needsMaterial','dailyLimit','coverage']);
+    only(g,['generated','reuse','recovered','needsExplanation','cooldown','invalidRecords','needsFamilyReview','needsMaterial','dailyLimit','targetLimit','coverage']);
     generationSummary={};
-    for(const key of ['generated','reuse','recovered','needsExplanation','cooldown','invalidRecords','needsFamilyReview','needsMaterial','dailyLimit']){
+    for(const key of ['generated','reuse','recovered','needsExplanation','cooldown','invalidRecords','needsFamilyReview','needsMaterial','dailyLimit','targetLimit']){
       if(!Number.isSafeInteger(g[key])||g[key]<0)throw new Error('Invalid generation aggregate');
       generationSummary[key]=g[key];
     }

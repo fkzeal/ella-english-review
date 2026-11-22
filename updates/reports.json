@@ -2,6 +2,105 @@
   "version": 1,
   "reports": [
     {
+      "runId": "6d297ebd-1353-4932-ab5e-d470a234a921",
+      "date": "2026-11-22",
+      "createdAt": "2026-11-22T07:24:00.835Z",
+      "status": "no-change",
+      "summary": "第二版按需衍生策略已部署：本轮新目标0、衍生题0；复用3项、暂停扩题3项、冷却2项。今日六题额度已由此前运行用完，另有8项目标与能力需求等待额度。暂停扩题不等于稳定掌握。旧报告5题和1题的真实详情已补回原列表。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "0",
+          "note": "全量扫描24张素材图，无新图；保留已发布素材与学习日期。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "真实新增或启用主要目标0；同目标衍生题不增加主要目标。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "Animal Tongues第7页清晰原图仍缺，相关反馈继续需补充素材。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "更新候选和发布端共同生成策略，未改题目评价身份或实时组题。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "补充Animal Tongues第7页清晰原图后再核查原反馈，当前不冒称修复。",
+        "核查Rules旧题l2-02-q22的能力归属：给定规则后回答不能直接证明独立问句词序应用，相关供给暂不扩题。",
+        "已学且可练范围今日开始未初筛U=16，今日首次有效检查C=16，目前未初筛0；错误或使用帮助也可计初筛，不等于掌握。",
+        "复测积压R、稳定掌握、七日平均C和平均I缺完整逐目标窗口及日期目录证据，均未知；不能判断长期覆盖压力或承诺全部稳定掌握。",
+        "本次为手动实施与生产核验，尚未验证新策略的一次独立定时执行。",
+        "原main已出现另一会话的实时选题提交，本轮保留该提交；本回执只验收衍生生成策略，实时功能以另一会话的验收回执为准。"
+      ],
+      "targetCounts": {
+        "newTargets": 0,
+        "derivativeQuestions": 0,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 0,
+        "reuse": 3,
+        "recovered": 3,
+        "needsExplanation": 0,
+        "cooldown": 2,
+        "invalidRecords": 0,
+        "needsFamilyReview": 0,
+        "needsMaterial": 1,
+        "dailyLimit": 8,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 16,
+          "remainingU": 0,
+          "C": 16,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-22",
+              "count": 16
+            },
+            {
+              "date": "2026-11-21",
+              "count": 67
+            },
+            {
+              "date": "2026-11-20",
+              "count": null
+            },
+            {
+              "date": "2026-11-19",
+              "count": null
+            },
+            {
+              "date": "2026-11-18",
+              "count": null
+            },
+            {
+              "date": "2026-11-17",
+              "count": null
+            },
+            {
+              "date": "2026-11-16",
+              "count": null
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      },
+      "verification": {
+        "commit": "e2f4e11d5fffef923a9ead92b1244fb7435d785b",
+        "actionsRun": "44997335928",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "39a0b4c3-1f35-44fd-8e80-594677162281",
       "date": "2026-11-22",
       "createdAt": "2026-11-22T04:47:43.526Z",
@@ -95,13 +194,48 @@
         },
         "derivatives": {
           "value": "1",
-          "note": "私有巩固练习已核验；仅展示本轮发布数量。"
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
         }
       },
-      "questions": [],
+      "questions": [
+        {
+          "id": "practice-afab64d37d2011dbbe0409e1",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "I Count 100 Things",
+          "target": "a / an 根据后面词语的首音选择",
+          "reviewUnit": "grammar-an-igloo",
+          "type": "choice",
+          "prompt": "想说“这是一个冰屋”，选哪个句子？",
+          "options": [
+            "This is a igloo.",
+            "This is an igloo.",
+            "This is some igloo."
+          ],
+          "answer": 1,
+          "explanation": "igloo 的第一个音是元音 /ɪ/，表示“一个冰屋”要用 an igloo。a 用在辅音开头的单数名词前；some 不能在这里表示“一个”。a / an 看后面词语的首音。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I can make an igloo!",
+              "source": "I Count 100 Things · 第9页"
+            },
+            {
+              "kind": "practice",
+              "text": "This is an igloo.",
+              "source": "原创场景迁移练习"
+            }
+          ]
+        }
+      ],
       "todos": [
         "补充Animal Tongues第7页清晰原图，或明确题干、选项的具体问题。"
-      ]
+      ],
+      "targetCounts": {
+        "newTargets": null,
+        "derivativeQuestions": 1,
+        "derivativeNewTargets": 0
+      }
     },
     {
       "runId": "026a4993-bdad-433d-8227-41730d9bd1c8",
@@ -129,13 +263,171 @@
         },
         "derivatives": {
           "value": "5",
-          "note": "私有巩固练习已核验；仅展示本轮发布数量。"
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
         }
       },
-      "questions": [],
+      "questions": [
+        {
+          "id": "practice-b49bfd8784b4ff0811386636",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Rules",
+          "target": "go skiing：去滑雪",
+          "reviewUnit": "listen-skiing",
+          "type": "listening",
+          "prompt": "听录音，补全句子：We go ___.",
+          "options": [
+            "shopping",
+            "skiing",
+            "skating"
+          ],
+          "answer": 1,
+          "explanation": "录音是 We go skiing.，所以空格填 skiing；go skiing 表示去滑雪。shopping 是购物，skating 是滑冰。",
+          "audioText": "We go skiing.",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "ski\ngo skiing",
+              "source": "Rules · 素材图10 · 已核对词句"
+            },
+            {
+              "kind": "practice",
+              "text": "We go skiing.",
+              "source": "本题朗读稿 · 原创听辨"
+            }
+          ]
+        },
+        {
+          "id": "practice-af56814f140589f48f864d79",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Why Does an Octopus Need Eight Arms?",
+          "target": "根据故事找到每条手臂对应的用途",
+          "reviewUnit": "read-purpose-first",
+          "type": "reading",
+          "prompt": "Which sentence matches the story?",
+          "options": [
+            "She brushes her teeth with her third arm.",
+            "She brushes her teeth with her fourth arm.",
+            "She brushes her teeth with her first arm."
+          ],
+          "answer": 2,
+          "explanation": "第一句明确说 first arm 用于 brushing her teeth，所以“用第一条手臂刷牙”与故事一致。第三条用于 playing catch，第四条用于 giving high fives。",
+          "passage": "The first arm is for brushing her teeth.\nThe second arm is for combing her hair.\nThe third arm is for playing catch.\nThe fourth arm is for giving high fives.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "The first arm is for brushing her teeth.",
+              "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+            },
+            {
+              "kind": "practice",
+              "text": "She brushes her teeth with her first arm.",
+              "source": "根据第4页信息改写的原创练习，非绘本原句"
+            }
+          ]
+        },
+        {
+          "id": "practice-41e5a142c9852edf276a9b25",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Why Does an Octopus Need Eight Arms?",
+          "target": "单数 arm is 与复数 arms are 的主谓一致",
+          "reviewUnit": "arm-is-arms-are",
+          "type": "cloze",
+          "prompt": "The fifth arm ___ for holding an umbrella.",
+          "options": [
+            "are",
+            "am",
+            "is"
+          ],
+          "answer": 2,
+          "explanation": "The fifth arm 指一条手臂，是单数，应该用 is。原题的 seventh and eighth arms 指两条手臂，用 are；根据主语单复数选择，不根据 for 后的活动选择。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "The fifth arm is for holding an umbrella.",
+              "source": "Why Does an Octopus Need Eight Arms? · 第8页"
+            },
+            {
+              "kind": "original",
+              "text": "The seventh and eighth arms are for giving hugs.",
+              "source": "Why Does an Octopus Need Eight Arms? · 第10页"
+            },
+            {
+              "kind": "practice",
+              "text": "The fifth arm ___ for holding an umbrella.",
+              "source": "依据第8页原句编写的原创填空"
+            }
+          ]
+        },
+        {
+          "id": "practice-9710454fc3d1a1b503ec6dd0",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Rules",
+          "target": "read a comic：读漫画",
+          "reviewUnit": "comic",
+          "type": "choice",
+          "prompt": "Tom 想说“我读漫画”。哪句话符合他的意思？",
+          "options": [
+            "I write an email.",
+            "I read a comic.",
+            "I listen to music."
+          ],
+          "answer": 1,
+          "explanation": "读漫画用 read a comic，所以选 I read a comic.。write an email 是写邮件，listen to music 是听音乐。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "read a comic",
+              "source": "Rules · 素材图9 · 已核对词句"
+            },
+            {
+              "kind": "practice",
+              "text": "I read a comic.",
+              "source": "本题情境 · 原创活动表达练习"
+            }
+          ]
+        },
+        {
+          "id": "practice-e86f94f2bc18479e30444d2a",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Rules",
+          "target": "go skating：去滑冰",
+          "reviewUnit": "skating",
+          "type": "choice",
+          "prompt": "Lily 想邀请朋友“去滑冰”。她应该怎么说？",
+          "options": [
+            "Let's go skiing.",
+            "Let's go skateboarding.",
+            "Let's go skating."
+          ],
+          "answer": 2,
+          "explanation": "去滑冰用 go skating，因此选 Let's go skating.。go skiing 是去滑雪，go skateboarding 是去玩滑板。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "go skating",
+              "source": "Rules · 素材图9 · 已核对词句"
+            },
+            {
+              "kind": "practice",
+              "text": "Let's go skating.",
+              "source": "本题情境 · 原创邀请练习"
+            }
+          ]
+        }
+      ],
       "todos": [
         "原定时任务配置更新被取消，仍需恢复完整维护指令并完成独立试运行。"
-      ]
+      ],
+      "targetCounts": {
+        "newTargets": null,
+        "derivativeQuestions": 5,
+        "derivativeNewTargets": 0
+      }
     },
     {
       "runId": "manual-20261121-count100",

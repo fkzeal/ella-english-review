@@ -7,6 +7,7 @@
   const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   const day=h=>/^\d{4}-\d{2}-\d{2}$/.test(h.day||'')&&Number.isFinite(Date.parse(h.day))?h.day:null;
   const weak=h=>h.correct===false||h.help===true;
+  const independent=h=>h.correct===true&&h.help===false;
   const sentenceWords=new Set(['What','Which','Who','Where','When','Why','How','The','A','An','I','We','You','He','She','It','They','This','That','These','Those','Is','Are','Am','Do','Does','Did','Can','Must','For','In','On','At','There','Let']);
   const normalized=text=>String(text||'').replace(/\b[A-Z][a-z]+\b/g,w=>sentenceWords.has(w)?w:'{name}').replace(/\s+/g,' ').trim();
   const template=q=>JSON.stringify([q.type,normalized(q.prompt),normalized(q.passage),normalized(q.audioText),q.options.map(normalized).sort()]);
@@ -40,7 +41,7 @@
   }
   function select(source,bank,ledger=[],date=today()){
     const {current,targets,rows,invalid}=evidence(source,bank,ledger,date);
-    const excluded={invalid,corrected:0,reuse:0,needsExplanation:0,needsFamilyReview:0,needsMaterial:0,cooldown:0,dailyLimit:0};
+    const excluded={invalid,corrected:0,reuse:0,needsExplanation:0,needsFamilyReview:0,needsMaterial:0,cooldown:0,dailyLimit:0,targetLimit:0};
     const groups=new Map(),decisions=[],accepted=[];
     for(const h of rows){
       const key=JSON.stringify([h.targetKey,h.unitKey]);
@@ -74,7 +75,7 @@
           const timed=attempts.every(h=>h.recordSource==='live'&&Number.isFinite(Date.parse(h.occurredAt)))&&
             new Set(attempts.map(h=>h.occurredAt)).size===attempts.length;
           const first=timed?[...attempts].sort((a,b)=>Date.parse(a.occurredAt)-Date.parse(b.occurredAt))[0]:null;
-          const passed=first?!weak(first):attempts.every(h=>!weak(h));
+          const passed=first?independent(first):attempts.every(independent);
           if(!passed)continue;
           if(!weakFamilies.has(f))transferred=true;
           if(questions.length===1&&attempts[0].questionId===originals[0]?.id)passedDays.add(d);
@@ -101,7 +102,7 @@
       const target=lesson?.learningTargets.find(t=>t.questionIds.includes(q.id));
       accepted.push({question:q,lessonId:lesson.id,learningTargetId:target.id,targetKey,unitKey,sourceKinds:decision.sourceKinds,
         neededVariants:Math.max(0,policy.minimumEffectiveFamilies-families.length),effectiveFamilies:families,
-        priority:errorDays>=2?0:helpDays>=2&&!history.some(h=>!weak(h))?1:2,latestWeakDay:latest.day,
+        priority:errorDays>=2?0:helpDays>=2&&!history.some(independent)?1:2,latestWeakDay:latest.day,
         lastGeneratedDay:ledger.filter(x=>x.target_key===targetKey).map(x=>x.generated_day).sort().at(-1)||'',decision});
     }
     accepted.sort((a,b)=>a.priority-b.priority||b.latestWeakDay.localeCompare(a.latestWeakDay)||a.lastGeneratedDay.localeCompare(b.lastGeneratedDay)||a.lessonId.localeCompare(b.lessonId));
@@ -109,7 +110,7 @@
     let budget=remaining;
     for(const c of accepted){
       const count=Math.min(c.neededVariants,policy.maxPerTarget-(counts.get(c.targetKey)||0),budget);
-      if(!count){c.decision.reason='dailyLimit';excluded.dailyLimit++;continue;}
+      if(!count){const reason=budget>0?'targetLimit':'dailyLimit';c.decision.reason=reason;excluded[reason]++;continue;}
       counts.set(c.targetKey,(counts.get(c.targetKey)||0)+count);budget-=count;c.neededVariants=count;
       const {decision,...candidate}=c;candidates.push(candidate);
     }

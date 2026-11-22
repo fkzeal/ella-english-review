@@ -126,7 +126,7 @@ async function main(){
     input.sections.derivatives={value:String(input.privateVerification.count),note:derivativeNote};
     const x=journal.selection.excluded;
     input.generationSummary={generated:input.privateVerification.count,reuse:x.reuse,recovered:x.corrected,needsExplanation:x.needsExplanation,
-      cooldown:x.cooldown,invalidRecords:x.invalid,needsFamilyReview:x.needsFamilyReview,needsMaterial:x.needsMaterial,dailyLimit:x.dailyLimit,
+      cooldown:x.cooldown,invalidRecords:x.invalid,needsFamilyReview:x.needsFamilyReview,needsMaterial:x.needsMaterial,dailyLimit:x.dailyLimit,targetLimit:x.targetLimit,
       coverage:journal.selection.coverage};
     journal.reportDerivatives={count:input.privateVerification.count,checksum:sha(JSON.stringify(input.privateVerification.questions))};
     const bank=JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))),prior=JSON.parse(fs.readFileSync(path.join(boot,'base-bank.private.json')));
