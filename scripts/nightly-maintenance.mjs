@@ -9,7 +9,7 @@ import {recoverCredentials} from './cloud-credentials.mjs';
 import {api,save} from './cloud-state.mjs';
 import Report from './update-nightly-report.js';
 import {fetchJson} from './http-json.mjs';
-import {verifyProductionState} from './verify-production-state.mjs';
+import {verifyProductionState,maintenanceOutcome} from './verify-production-state.mjs';
 import {readReportDerivatives,derivativeNote} from './report-derivatives.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const boot=path.join(root,'.cloud-bootstrap'),state=path.resolve(process.env.ELLA_STATE_DIR||'/workspace/.ella-automation');
@@ -155,13 +155,14 @@ async function main(){
         throw new Error('Published derivative report changed; regenerate report');
     }
     journal.evidence=evidence;journal.finishedAt ||= new Date().toISOString();
-    journal.mode=['schedule','schedule-maintenance-complete'].includes(journal.mode)?'schedule-maintenance-complete':'manual-maintenance-complete';journal.overall='PASS';
+    const publishedReport=reportResponse.body.reports.find(r=>r.runId===journal.runId);
+    Object.assign(journal,maintenanceOutcome(journal.mode,publishedReport.status));
     await checkpoint(journal);await api('receipt',journal);
     const receipt=await api('receipt?run='+journal.runId);
     if(JSON.stringify(receipt)!==JSON.stringify(journal))throw new Error('Completion receipt mismatch');
     run([process.execPath,'--import','./scripts/proxy-fetch.mjs','scripts/cloud-state.mjs','release',path.join(boot,'session.json')]);
     fs.rmSync(path.join(boot,'env.sh'),{force:true});
-    console.log(JSON.stringify({runId:journal.runId,mode:journal.mode,overall:'PASS',privatePublished:journal.privateVerification.count}));return;
+    console.log(JSON.stringify({runId:journal.runId,mode:journal.mode,overall:journal.overall,privatePublished:journal.privateVerification.count}));return;
   }
   throw new Error('Expected start/candidates/review-families/publish-private/report/finish');
 }

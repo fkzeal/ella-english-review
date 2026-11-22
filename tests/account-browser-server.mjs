@@ -47,7 +47,9 @@ const server=http.createServer(async(req,res)=>{
       privateQ.id='practice-'+sha(JSON.stringify([q.id,privateQ.type,privateQ.prompt,null,null,privateQ.options,privateQ.answer])).slice(0,24);
       const response=await handle(new Request(url.origin+'/api/admin/practice/publish',{method:'POST',
         headers:{Authorization:'Bearer '+secret,Origin:url.origin,'Content-Type':'application/json'},
-        body:JSON.stringify({accountId:'ella',runId:randomUUID(),expectedRevision:a.revision,publicBank:bank,reviewed:true,questions:[privateQ]})}),{LEARNING_DB:db,LEARNING_ADMIN_TOKEN:secret});
+        body:JSON.stringify({accountId:'ella',runId:randomUUID(),expectedRevision:a.revision,expectedVariantRevision:0,
+          publicBank:bank,reviewed:true,questions:[privateQ],
+          variantFamilies:[{questionId:privateQ.id,variantFamily:'comic-expression-context'}]})}),{LEARNING_DB:db,LEARNING_ADMIN_TOKEN:secret});
       res.writeHead(response.status,{'Content-Type':'application/json'});res.end(await response.text());return;
     }
     if(url.pathname.startsWith('/api/')){

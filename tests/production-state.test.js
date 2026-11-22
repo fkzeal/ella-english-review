@@ -8,3 +8,12 @@ test('completion requires actual matching run on both local and production archi
   assert.throws(()=>verifyProductionState(bank,bank,archive,{reports:[{...report,status:'partial'}]},'this-run'),/mismatched/);
   assert.throws(()=>verifyProductionState(bank,{revision:9},archive,archive,'this-run'),/bank mismatch/);
 });
+test('published partial or failed maintenance never receives a complete receipt',async()=>{
+  const {maintenanceOutcome}=await import('../scripts/verify-production-state.mjs');
+  assert.deepEqual(maintenanceOutcome('schedule','partial'),{mode:'schedule-maintenance-partial',overall:'PARTIAL'});
+  assert.deepEqual(maintenanceOutcome('schedule','failed'),{mode:'schedule-maintenance-failed',overall:'FAIL'});
+  assert.deepEqual(maintenanceOutcome('schedule','no-change'),{mode:'schedule-maintenance-complete',overall:'PASS'});
+  assert.deepEqual(maintenanceOutcome('manual','published'),{mode:'manual-maintenance-complete',overall:'PASS'});
+  assert.deepEqual(maintenanceOutcome('schedule-maintenance-partial','partial'),{mode:'schedule-maintenance-partial',overall:'PARTIAL'});
+  assert.throws(()=>maintenanceOutcome('schedule','framework'),/status required/);
+});

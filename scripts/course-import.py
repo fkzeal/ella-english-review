@@ -142,7 +142,7 @@ def scan(args):
         inventory["knownImages"] = sum(token in known for token in seen)
         inventory["unresolvedImages"] = [
             {"fileToken": token, **m} for token, m in known.items()
-            if m.get("status") in ["needs-material", "staged", "pushed"]]
+            if m.get("status") in ["needs-material", "pending-integration", "staged", "pushed"]]
         inventory["note"] = "扫描全量未处理素材，包含晚到/补图；归档标题不是确认学习日。扫描不改变发布状态。"
         atomic_json(state / "scan.json", inventory)
         print(json.dumps({"output": str(state / "scan.json"), "revision": inventory["revision"],
