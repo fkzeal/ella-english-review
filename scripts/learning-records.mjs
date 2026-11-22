@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {digest,questionIdentity} from '../learning-server.mjs';
+import {fetchJson} from './http-json.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const tokenFile=path.join(root,'.learning-server/admin-token');
 const token=process.env.LEARNING_ADMIN_TOKEN||(fs.existsSync(tokenFile)?fs.readFileSync(tokenFile,'utf8').trim():'');
@@ -10,10 +11,10 @@ if(!token)throw new Error('私有查询缺少 LEARNING_ADMIN_TOKEN；不得改�
 const base='https://ella-english-review.pages.dev';
 const [command='devices',deviceId,name]=process.argv.slice(2);
 async function query(route,body){
-  const r=await fetch(base+'/api/admin/'+route,{method:body?'POST':'GET',
+  const r=await fetchJson(base+'/api/admin/'+route,{method:body?'POST':'GET',
     headers:{Authorization:'Bearer '+token,...(body?{'Content-Type':'application/json',Origin:base}:{})},
     ...(body?{body:JSON.stringify(body)}:{})});
-  const data=await r.json();if(!r.ok)throw new Error(data.error||`HTTP ${r.status}`);return data;
+  const data=r.body;if(!r.ok)throw new Error(`Private source HTTP ${r.status}`);return data;
 }
 if(command==='accounts'){
   const data=await query('accounts');console.table(data.accounts);

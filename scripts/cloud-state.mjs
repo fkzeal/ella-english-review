@@ -4,6 +4,7 @@ import {randomUUID,randomBytes,hkdfSync,createCipheriv,createDecipheriv,createHa
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {fileURLToPath} from 'node:url';
 import {fetchJson} from './http-json.mjs';
+import {orderedTransfer} from './ordered-transfer.mjs';
 const base='https://ella-english-review.pages.dev';
 const prefixes=['.course-imports/','.error-feedback/','operations/'];
 const names=['path-map.json','local-task-disabled.confirmed','handoff/Ella-22点30自动化任务-云端交接.md'];
@@ -104,15 +105,18 @@ export async function save(directory,expected,owner){
   const content=encrypt(pack(directory),process.env.LEARNING_ADMIN_TOKEN),revision=randomUUID();
   const chunks=content.match(/.{1,64000}/g);
   if(chunks.length>512)throw new Error('State archive exceeds size limit');
-  for(const [part,value] of chunks.entries())await api('chunk',{owner,revision,part,content:value});
+  await api('lease',{owner});
+  await orderedTransfer(chunks,async(value,part)=>api('chunk',{owner,revision,part,content:value}));
+  await api('lease',{owner});
   await api('commit',{owner,revision,expected,manifest:{version:1,chunks:chunks.length,bytes:content.length,sha256:sha(content)}});
   return revision;
 }
 export async function restore(directory){
   const {revision,manifest}=await api('state');
   if(!revision||!manifest)throw new Error('Authoritative cloud state missing; refuse empty initialization');
-  let content='';
-  for(let part=0;part<manifest.chunks;part++)content+=(await api('chunk?revision='+revision+'&part='+part)).content;
+  const parts=await orderedTransfer(Array.from({length:manifest.chunks},(_,part)=>part),
+    async part=>(await api('chunk?revision='+revision+'&part='+part)).content);
+  const content=parts.join('');
   if(content.length!==manifest.bytes||sha(content)!==manifest.sha256)throw new Error('Remote archive corrupt');
   const files=unpack(decrypt(content,process.env.LEARNING_ADMIN_TOKEN),directory);
   return {revision,files};

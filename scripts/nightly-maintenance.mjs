@@ -9,15 +9,19 @@ import {recoverCredentials} from './cloud-credentials.mjs';
 import {api,save} from './cloud-state.mjs';
 import Report from './update-nightly-report.js';
 import {fetchJson} from './http-json.mjs';
+import {verifyProductionState} from './verify-production-state.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const boot=path.join(root,'.cloud-bootstrap'),state=path.resolve(process.env.ELLA_STATE_DIR||'/workspace/.ella-automation');
 const base='https://ella-english-review.pages.dev',sha=x=>createHash('sha256').update(x).digest('hex');
 const journalFile=path.join(boot,'maintenance.private.json');
 process.umask(0o077);
 function write(file,value){fs.mkdirSync(path.dirname(file),{recursive:true,mode:0o700});fs.writeFileSync(file,JSON.stringify(value,null,2),{mode:0o600});}
-function run(args){
-  const r=spawnSync(args[0],args.slice(1),{cwd:root,env:process.env,encoding:'utf8',maxBuffer:2000000,timeout:180000});
-  if(r.status!==0)throw new Error('Required command failed; private output suppressed');
+function run(args,timeout=180000){
+  const r=spawnSync(args[0],args.slice(1),{cwd:root,env:process.env,encoding:'utf8',maxBuffer:2000000,timeout});
+  if(r.status!==0){
+    write(path.join(boot,'command-failure.private.json'),{command:args[0],status:r.status,code:r.error?.code,stderr:r.stderr});
+    throw new Error('Required command failed ('+(r.error?.code||'exit '+r.status)+'); inspect .cloud-bootstrap/command-failure.private.json privately');
+  }
   return r.stdout.trim();
 }
 async function privateApi(route,data){
@@ -52,7 +56,8 @@ async function main(){
   process.env.GH_DEBUG='';
   const [command,file]=process.argv.slice(2);
   if(command==='start'){
-    if(!fs.existsSync(path.join(boot,'session.json')))run([process.execPath,'--import','./scripts/proxy-fetch.mjs','scripts/cloud-bootstrap.mjs']);
+    if(!fs.existsSync(path.join(boot,'session.json')))run([process.execPath,'--import','./scripts/proxy-fetch.mjs','scripts/cloud-bootstrap.mjs'],900000);
+    if(!fs.existsSync(path.join(boot,'result.json')))throw new Error('Bootstrap interrupted: inspect progress receipt before resuming; never reuse an incomplete session');
     if(fs.existsSync(journalFile))throw new Error('Run already started; preserve and resume journal');
     const journal={runId:randomUUID(),mode:process.env.ELLA_RUN_MODE||'manual',startedAt:new Date().toISOString(),commit:run(['git','rev-parse','HEAD'])};
     write(path.join(boot,'base-bank.private.json'),JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))));
@@ -108,14 +113,14 @@ async function main(){
     if(journal.selection.candidateCount>0&&!journal.publication)throw new Error('Eligible derivative branch not completed');
     const workflow=JSON.parse(run(['gh','run','view',String(evidence.actionsRun),'--repo','fkzeal/ella-english-review','--json','conclusion,headSha,workflowName']));
     if(workflow.conclusion!=='success'||workflow.headSha!==evidence.reportCommit||workflow.workflowName!=='Publish fixed Cloudflare Pages site')throw new Error('Production Actions not verified');
-    const bankResponse=await fetch(base+'/question-bank.json',{headers:{'Cache-Control':'no-cache'}});
-    if(!bankResponse.ok||JSON.stringify(await bankResponse.json())!==JSON.stringify(JSON.parse(fs.readFileSync(path.join(root,'question-bank.json')))))throw new Error('Production bank mismatch');
-    const reportResponse=await fetch(base+'/updates/reports.json',{headers:{'Cache-Control':'no-cache'}});
-    const remote=await reportResponse.json(),local=JSON.parse(fs.readFileSync(path.join(root,'updates/reports.json')));
-    if(!reportResponse.ok||JSON.stringify(remote.reports.find(r=>r.runId===journal.runId))!==JSON.stringify(local.reports.find(r=>r.runId===journal.runId)))throw new Error('Production report mismatch');
+    const bankResponse=await fetchJson(base+'/question-bank.json',{headers:{'Cache-Control':'no-cache'}});
+    const reportResponse=await fetchJson(base+'/updates/reports.json',{headers:{'Cache-Control':'no-cache'}});
+    if(!bankResponse.ok||!reportResponse.ok||journal.reportRunId!==journal.runId)throw new Error('Production publication unavailable');
+    verifyProductionState(JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))),bankResponse.body,
+      JSON.parse(fs.readFileSync(path.join(root,'updates/reports.json'))),reportResponse.body,journal.runId);
     journal.privateVerification=await verifyPrivate(journal);
-    journal.evidence=evidence;journal.finishedAt=new Date().toISOString();
-    journal.mode=journal.mode==='schedule'?'schedule-maintenance-complete':'manual-maintenance-complete';journal.overall='PASS';
+    journal.evidence=evidence;journal.finishedAt ||= new Date().toISOString();
+    journal.mode=['schedule','schedule-maintenance-complete'].includes(journal.mode)?'schedule-maintenance-complete':'manual-maintenance-complete';journal.overall='PASS';
     await checkpoint(journal);await api('receipt',journal);
     const receipt=await api('receipt?run='+journal.runId);
     if(JSON.stringify(receipt)!==JSON.stringify(journal))throw new Error('Completion receipt mismatch');
