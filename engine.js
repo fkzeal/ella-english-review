@@ -300,7 +300,20 @@
   function shuffle(a,rng=Math.random) {
     a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;
   }
-  function plan(b,s,{today=day(),size=s.settings.size,practice=false,lessonId=null,preview=false,rng=Math.random}={}) {
+  function plan(b,s,{today=day(),size=s.settings.size,practice=false,lessonId=null,preview=false,rng=Math.random,
+    flexible=false,openPractice=false,repeat=false,excludeTargets=new Set()}={}) {
+    if(flexible&&!preview){
+      const items=[],used=new Set(),keys=targetKeys(b);
+      // Finish available scheduled work first, then look ahead, then allow
+      // voluntary repetition. The calendar remains the source of due dates.
+      for(const phase of [{practice:false},{practice:true},{practice:true,repeat:true}]){
+        const next=plan(b,s,{today,size:size-items.length,lessonId,rng,openPractice:true,
+          excludeTargets:used,...phase});
+        for(const id of next){items.push(id);used.add(keys.get(id));}
+        if(items.length>=size)break;
+      }
+      return items;
+    }
     const recent=new Map(),questions=new Map(b.questions.map(q=>[q.id,q]));
     const targets=targetKeys(b),daily=targetDailyCounts(b,s,today,targets);
     const count=q=>daily.get(targets.get(q.id))||0;
@@ -319,11 +332,13 @@
     let points=preview&&practice?b.points:practice?activePoints(b,s,today):duePoints(b,s,today);
     if(lessonId) points=points.filter(p=>p.lessonId===lessonId);
     points=shuffle(points,rng);
-    const candidates=new Map(points.map(p=>[p.id,shuffle(availableQuestions(b).filter(q=>q.pointId===p.id&&(preview||count(q)<2)&&(practice||!q.reviewUnit||!s.units?.[unitKey(q)]||s.units[unitKey(q)].due<=today)),rng).sort((a,c)=>{
+    const candidates=new Map(points.map(p=>[p.id,shuffle(availableQuestions(b).filter(q=>q.pointId===p.id&&!excludeTargets.has(targets.get(q.id))&&(preview||repeat||count(q)<2)&&(practice||!q.reviewUnit||!s.units?.[unitKey(q)]||s.units[unitKey(q)].due<=today)),rng).sort((a,c)=>{
       const ha=s.history.filter(h=>h.questionId===a.id),hc=s.history.filter(h=>h.questionId===c.id);
       const ua=s.units?.[unitKey(a)],uc=s.units?.[unitKey(c)];
       const weak=u=>u?.missDay&&u.missDay===u.lastDay?0:1;
       const pa=profile(a),pc=profile(c);
+      if(openPractice&&practice)return count(a)-count(c)||(ua?.due||today).localeCompare(uc?.due||today)||
+        pa.tier-pc.tier||ha.length-hc.length||(ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
       return weak(ua)-weak(uc)||pa.tier-pc.tier||count(a)-count(c)||(ua?.due||today).localeCompare(uc?.due||today)||pc.misses-pa.misses||ha.length-hc.length || (ha.at(-1)?.day||'').localeCompare(hc.at(-1)?.day||'');
     })]));
     // Rank groups by the units actually eligible today, not historical aggregate
@@ -335,6 +350,8 @@
     const weak=u=>u?.missDay&&u.missDay===u.lastDay&&u.due<=today?0:1;
     points=points.filter(p=>candidates.get(p.id).length).sort((a,c)=>{
       const ua=record(a),uc=record(c);
+      if(openPractice&&practice)return count(candidates.get(a.id)[0])-count(candidates.get(c.id)[0])||
+        (ua?.due||today).localeCompare(uc?.due||today);
       return weak(ua)-weak(uc)||profile(candidates.get(a.id)[0]).tier-profile(candidates.get(c.id)[0]).tier||count(candidates.get(a.id)[0])-count(candidates.get(c.id)[0])||(ua?.due||today).localeCompare(uc?.due||today);
     });
     const groups=new Map();
@@ -344,7 +361,10 @@
     const pointLessons=new Map(b.points.map(p=>[p.id,p.lessonId])),lastPractised=new Map();
     s.history.forEach((h,index)=>lastPractised.set(pointLessons.get(h.pointId),index));
     const lastPractice=id=>lastPractised.get(id)??-1;
-    const queues=[...groups].sort(([a],[c])=>lastPractice(a)-lastPractice(c)).map(([,ps])=>ps);
+    const queues=[...groups].sort(([a,ap],[c,cp])=>openPractice&&practice?
+      count(candidates.get(ap[0].id)[0])-count(candidates.get(cp[0].id)[0])||
+      (record(ap[0])?.due||today).localeCompare(record(cp[0])?.due||today)||lastPractice(a)-lastPractice(c):
+      lastPractice(a)-lastPractice(c)).map(([,ps])=>ps);
     points=[];
     while(queues.some(g=>g.length))for(const g of queues)if(g.length)points.push(g.shift());
     const items=[];
@@ -353,7 +373,7 @@
       let added=false;
       for(const p of points) {
         const q=candidates.get(p.id).find(q=>!items.includes(q.id)&&(!q.reviewUnit||!usedUnits.has(unitKey(q)))&&(preview||!usedTargets.has(targets.get(q.id)))&&
-          (!practice||preview||!profile(q).mastered||masteredCount<Math.max(1,Math.floor(size/4))));
+          (!practice||preview||openPractice||!profile(q).mastered||masteredCount<Math.max(1,Math.floor(size/4))));
         if(q){items.push(q.id);usedUnits.add(unitKey(q));usedTargets.add(targets.get(q.id));if(profile(q).mastered)masteredCount++;added=true;}
         if(items.length>=size) break;
       }

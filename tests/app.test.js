@@ -71,6 +71,30 @@ test('slow listening repeats neither reveal the transcript nor mark help, and le
   const count=stops;await app.click('pause');assert(stops>count);
 });
 function deferred(){let resolve;const promise=new Promise(r=>resolve=r);return {promise,resolve};}
+test('home and settlement primary buttons continue into future reviews',async()=>{
+  const state=E.emptyState();E.syncBatches(bank,state);
+  for(const unit of Object.values(state.units))unit.due=E.plusDay(E.day(),3);
+  for(const point of Object.values(state.points))point.due=E.plusDay(E.day(),3);
+  state.settings.size=6;
+  const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}));
+  await app.ready();
+  const html=app.node('app').innerHTML;
+  assert.match(html,/继续和小猫练习/);
+  assert.doesNotMatch(html,/今天可以休息啦|自选额外练习/);
+  assert.doesNotMatch(html,/data-action="start" disabled/);
+  await app.click('start');
+  const items=app.saved().state.session.items;
+  assert.equal(items.length,6);
+  for(const id of items){
+    const q=bank.questions.find(q=>q.id===id);
+    await app.click('select',{option:String(q.answer)});
+    await app.click('next');
+  }
+  assert.match(app.node('app').innerHTML,/data-action="start">再练一组/);
+  await app.click('start');
+  assert.equal(app.saved().state.session.index,0);
+  assert.equal(app.saved().state.session.items.length,6);
+});
 function sessionRaw(qs){
   const state=E.emptyState();E.syncBatches(bank,state);
   state.session={items:qs.map(q=>q.id),index:0,results:[],hints:{},day:E.day()};
