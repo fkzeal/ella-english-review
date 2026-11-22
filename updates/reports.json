@@ -2,6 +2,74 @@
   "version": 1,
   "reports": [
     {
+      "runId": "f5c23865-f3bd-44c0-9c6e-e1c0547a2a51",
+      "date": "2026-11-22",
+      "createdAt": "2026-11-22T03:55:03.141Z",
+      "status": "no-change",
+      "summary": "完整核查课程素材与题目反馈，共享题库无需变更；已恢复核验先前发布回执并补齐维护记录。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "0",
+          "note": "完整扫描修订57的24张素材图，均已发布；未发现新图、晚到图或补页。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "没有需要新增的共享课程题目，保留原题号与首次学习日期。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "完整核查反馈；Animal Tongues第7页缺清晰原图，保留待补素材，未改答案。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "现有共享题目与目标归属保持，题库仍为r10、168题。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "私有巩固练习已核验；仅展示本轮发布数量。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "补充Animal Tongues第7页清晰原图，或明确题干、选项的具体问题。"
+      ]
+    },
+    {
+      "runId": "34279cdc-9f00-495c-a6e4-debc9a84bfaf",
+      "date": "2026-11-22",
+      "createdAt": "2026-11-22T03:55:02.141Z",
+      "status": "partial",
+      "summary": "已恢复并核验本轮先前发布回执，补记维护报告；本记录不代表原执行已独立完成全部验收。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "已复核",
+          "note": "恢复时重新完整扫描24张素材图，未发现新增或补页。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "没有需要新增的共享课程题目，保留原题号与首次学习日期。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "完整核查反馈；Animal Tongues第7页缺清晰原图，保留待补素材，未改答案。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "现有共享题目与目标归属保持，题库仍为r10、168题。"
+        },
+        "derivatives": {
+          "value": "1",
+          "note": "私有巩固练习已核验；仅展示本轮发布数量。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "补充Animal Tongues第7页清晰原图，或明确题干、选项的具体问题。"
+      ]
+    },
+    {
       "runId": "026a4993-bdad-433d-8227-41730d9bd1c8",
       "date": "2026-11-22",
       "createdAt": "2026-11-21T18:00:49.554Z",
