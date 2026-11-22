@@ -21,7 +21,7 @@
       return {enabled,busy,error,dirty,account:account?{id:account.id,name:account.name}:null,syncedAt};
     }
     async function request(route,data,binding=auth()){
-      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),7000);
+      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),30000);
       try{
         const response=await fetch('/api/accounts/'+route,{method:data?'POST':'GET',cache:'no-store',signal:controller.signal,
           headers:{'Content-Type':'application/json',...(binding?{Authorization:'Bearer '+binding.token,'X-Device-Id':installation()}:{})},
@@ -29,6 +29,11 @@
         const result=await response.json();
         if(!response.ok)throw Object.assign(new Error(result.error||'云端暂时无法连接'),{status:response.status});
         return result;
+      }catch(e){
+        if(controller.signal.aborted||e.name==='AbortError'){
+          throw Object.assign(new Error('连接超时，请稍后重试'),{name:'AbortError'});
+        }
+        throw e;
       }finally{clearTimeout(timeout);}
     }
     function cache(bundle){
