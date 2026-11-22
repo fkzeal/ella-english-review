@@ -20,12 +20,13 @@
     <section class="questions-section">
       <div class="section-heading"><div><p class="eyebrow">A FEW QUESTIONS</p><h2>看看这一轮的题目 <span id="question-count"></span></h2></div><span class="small-note">可展开答案与素材依据</span></div>
       <nav id="filters" aria-label="题目变化类型">
-        <button data-filter="all" aria-pressed="true">全部</button><button data-filter="added" aria-pressed="false">新增</button><button data-filter="fixed" aria-pressed="false">纠错</button><button data-filter="optimized" aria-pressed="false">优化</button><button data-filter="sample" aria-pressed="false">框架示例</button>
+        <button data-filter="all" aria-pressed="true">全部</button><button data-filter="added" aria-pressed="false">新增</button><button data-filter="fixed" aria-pressed="false">纠错</button><button data-filter="optimized" aria-pressed="false">优化</button><button data-filter="derived" aria-pressed="false">衍生</button><button data-filter="sample" aria-pressed="false">框架示例</button>
       </nav>
+      <p id="derivative-note" hidden>这条历史报告只记录了衍生题数量；后续报告会统一展示已发布衍生题的详情。</p>
       <div id="questions" class="question-grid"></div>
     </section>
     <section id="follow-up" class="follow-up" hidden><h2>留给下一次</h2><ul id="todos"></ul></section>
-    <footer><p>每一题，都有来处。</p><span id="updated-at"></span><span>仅展示共享题库内容与维护状态</span></footer>
+    <footer><p>每一题，都有来处。</p><span id="updated-at"></span><span>展示共享题库变化、已发布衍生题与维护状态</span></footer>
   </main>
 </body>
 </html>

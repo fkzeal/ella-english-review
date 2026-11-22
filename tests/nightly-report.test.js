@@ -67,3 +67,18 @@ test('private publication reports only receipt count, never exports private veri
   assert(!JSON.stringify(result).includes('private-run'));
   body.privateVerification.count=4;assert.throws(()=>project(body,bank),/receipt/);
 });
+test('published derivative details join the report without account metadata and match the count',()=>{
+  const q={...structuredClone(bank.questions.find(q=>q.id==='l2-02-q04')),
+    id:'practice-'+'a'.repeat(24),learningTargetId:'comic'};
+  delete q.source;
+  const body=input();body.status='no-change';body.questions=[];
+  body.sections.derivatives={value:'1',note:'已发布衍生题的详情统一展示，不区分账号。'};
+  body.privateVerification={verified:true,count:1,questions:[q]};
+  const report=project(body,bank);
+  assert.equal(report.questions.length,1);assert.equal(report.questions[0].change,'derived');
+  assert.deepEqual(report.questions[0].options,q.options);
+  assert.equal(report.questions[0].target,'read a comic：读漫画');
+  assert.equal(report.privateVerification,undefined);
+  q.practiceFor='ella';assert.throws(()=>project(body,bank),/Unsupported/);delete q.practiceFor;
+  body.privateVerification.questions=[];assert.throws(()=>project(body,bank),/Complete/);
+});

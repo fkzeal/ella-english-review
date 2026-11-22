@@ -1,6 +1,6 @@
 'use strict';
-const labels={framework:'框架已就绪',published:'题库已上线','no-change':'本次无新增',partial:'部分完成',failed:'执行受阻'};
-const changes={sample:'既有题 · 示例',added:'新增题',fixed:'修正题',optimized:'优化题'};
+const labels={framework:'框架已就绪',published:'题库已上线','no-change':'共享题库无新增',partial:'部分完成',failed:'执行受阻'};
+const changes={sample:'既有题 · 示例',added:'新增题',fixed:'修正题',optimized:'优化题',derived:'衍生题'};
 const sectionNames={materials:'新素材',questions:'新增题',fixes:'题目纠错',optimizations:'考点优化',derivatives:'错题衍生'};
 let reports=[],current,filter='all';
 function el(tag,text,className){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;}
@@ -27,6 +27,8 @@ function renderReport(){
   document.querySelector('#status').textContent=labels[current.status];
   document.querySelector('#summary').textContent=current.summary;
   document.querySelector('#revision').textContent=`题库 r${current.bankRevision}`;
+  const legacyCount=Number(current.sections.derivatives.value);
+  document.querySelector('#derivative-note').hidden=!(legacyCount>0&&!current.questions.some(q=>q.change==='derived'));
   const overview=document.querySelector('#overview');overview.replaceChildren();
   for(const [key,name] of Object.entries(sectionNames)){const info=current.sections[key];const metric=el('div',undefined,'metric');metric.append(el('h3',name),el('strong',info.value),el('p',info.note));overview.append(metric);}
   document.querySelector('#updated-at').textContent=`记录于 ${new Date(current.createdAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})}`;

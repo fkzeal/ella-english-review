@@ -12,6 +12,27 @@ export async function handlePractice(request,env){
     if(request.method!=='GET'&&request.headers.get('origin')!==url.origin)fail(403,'Invalid origin');
     const accountId=request.method==='GET'?url.searchParams.get('accountId'):null;
     if(request.method==='GET'){
+      // Reporting reads published snapshots from every account in this run.
+      // It never changes the learner-only eligibility rules for generation.
+      if(route==='report'){
+        const runId=url.searchParams.get('runId');
+        if(!/^[0-9a-f-]{36}$/.test(runId||''))fail(400,'Explicit report run required');
+        const runs=(await db.prepare('SELECT account_id,receipt FROM account_practice_runs WHERE run_id=? ORDER BY account_id').bind(runId).all()).results;
+        const publications=[];
+        for(const run of runs){
+          const receipt=JSON.parse(run.receipt);
+          const rows=(await db.prepare('SELECT question_id,snapshot FROM account_practice_questions WHERE account_id=? AND run_id=?').bind(run.account_id,runId).all()).results;
+          const questions=receipt.questionIds.map(id=>{
+            const row=rows.find(q=>q.question_id===id);
+            if(!row)fail(503,'Published snapshot unavailable');
+            return JSON.parse(row.snapshot);
+          });
+          if(receipt.accountId!==run.account_id||receipt.runId!==runId||receipt.count!==questions.length||
+            receipt.checksum!==await sha(JSON.stringify(questions)))fail(503,'Publication receipt mismatch');
+          publications.push({receipt,questions});
+        }
+        return json({runId,publications});
+      }
       if(accountId!=='ella')fail(400,'Explicit learner required');
       const account=await db.prepare('SELECT * FROM accounts WHERE id=?').bind(accountId).first();
       if(!account?.bundle||account.kind!=='learner')fail(409,'Learner state unavailable');

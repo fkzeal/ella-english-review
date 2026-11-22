@@ -1,4 +1,4 @@
-// Public projector: never accepts question bodies or private learning records.
+// Shared bodies come from the bank; derivative bodies from verified publications.
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const keys=['materials','questions','fixes','optimizations','derivatives'];
@@ -20,11 +20,13 @@ function project(input,bank,base){
   only(input.sections,keys);
   const sections={};
   for(const key of keys){const section=input.sections[key];only(section,['value','note']);sections[key]={value:text(section.value,40),note:text(section.note)};}
-  // Public reports reveal no learner answer counts, mistakes, devices, or event data.
+  const detailedDerivatives=sections.derivatives.note==='已发布衍生题的详情统一展示，不区分账号。';
+  // Legacy archived summaries remain readable. New detailed reports require bodies.
   if(sections.derivatives.value!=='未生成'||sections.derivatives.note!=='受控生成账本与定向分发尚未完成。'){
     const receipt=input.privateVerification;
     if(!receipt||receipt.verified!==true||!Number.isSafeInteger(receipt.count)||receipt.count<0||
-      sections.derivatives.value!==String(receipt.count)||sections.derivatives.note!=='私有巩固练习已核验；仅展示本轮发布数量。')throw new Error('Private derivative receipt required');
+      sections.derivatives.value!==String(receipt.count)||(!detailedDerivatives&&sections.derivatives.note!=='私有巩固练习已核验；仅展示本轮发布数量。'))throw new Error('Private derivative receipt required');
+    if(detailedDerivatives&&(!Array.isArray(receipt.questions)||receipt.questions.length!==receipt.count))throw new Error('Complete derivative question details required');
   }
   const verification=input.verification;
   if(verification){
@@ -61,7 +63,30 @@ function project(input,bank,base){
     output.references=(q.references||[]).map(ref=>({kind:ref.kind,text:ref.text,source:ref.source}));
     return output;
   });
-  if(input.status==='no-change'&&questions.length)throw new Error('No-change report cannot claim changed questions');
+  if(detailedDerivatives){
+    for(const q of input.privateVerification.questions){
+      only(q,['id','pointId','reviewUnit','learningTargetId','type','prompt','options','answer','explanation','passage','audioText','references']);
+      if(typeof q.id!=='string'||!/^practice-[a-f\d]{24}$/.test(q.id)||seen.has(q.id))throw new Error('Duplicate or invalid derivative question');
+      seen.add(q.id);
+      const point=bank.points.find(p=>p.id===q.pointId),lesson=bank.lessons.find(l=>l.id===point?.lessonId);
+      const target=lesson?.learningTargets.find(t=>t.id===q.learningTargetId);
+      if(!target||typeof q.reviewUnit!=='string'||!q.reviewUnit||!['choice','cloze','reading','listening'].includes(q.type)||
+        !Array.isArray(q.options)||q.options.length<2||q.options.some(o=>typeof o!=='string'||!o.trim())||
+        !Number.isInteger(q.answer)||q.answer<0||q.answer>=q.options.length||!Array.isArray(q.references)||!q.references.length)
+        throw new Error('Invalid published derivative details');
+      const output={id:q.id,change:'derived',reason:'已发布的衍生巩固练习。',lesson:lesson.title,target:target.title,
+        reviewUnit:q.reviewUnit,type:q.type,prompt:text(q.prompt,5000),options:q.options.map(o=>text(o,5000)),
+        answer:q.answer,explanation:text(q.explanation,5000)};
+      for(const key of ['passage','audioText'])if(q[key]!==undefined)output[key]=text(q[key],20000);
+      output.references=q.references.map(ref=>{
+        only(ref,['kind','text','source']);
+        if(!['original','excerpt','note','practice'].includes(ref.kind))throw new Error('Invalid derivative reference');
+        return {kind:ref.kind,text:text(ref.text,20000),source:text(ref.source)};
+      });
+      questions.push(output);
+    }
+  }
+  if(input.status==='no-change'&&questions.some(q=>q.change!=='derived'))throw new Error('No-change report cannot claim changed shared questions');
   const count=questions.filter(q=>q.change==='added').length;
   if(sections.questions.value!==String(count))throw new Error('New question count mismatch (samples and replacements excluded)');
   for(const [key,change] of [['fixes','fixed'],['optimizations','optimized']]){
@@ -84,7 +109,9 @@ if(require.main===module){
   const input=JSON.parse(fs.readFileSync(file,'utf8')),bank=JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'),'utf8'));
   if(input.privateVerification){
     const result=require('node:child_process').spawnSync(process.execPath,['--import',path.join(root,'scripts/proxy-fetch.mjs'),path.join(root,'scripts/verify-private-report.mjs'),file],{cwd:root,env:process.env,encoding:'utf8'});
-    if(result.status!==0||result.stdout.trim()!=='verified')throw new Error('Private publication not verified online');
+    if(result.status!==0)throw new Error('Private publication not verified online');
+    input.privateVerification=JSON.parse(result.stdout);
+    input.sections.derivatives={value:String(input.privateVerification.count),note:'已发布衍生题的详情统一展示，不区分账号。'};
   }
   const base=baseFile&&baseFile!=='-'?JSON.parse(fs.readFileSync(baseFile,'utf8')):undefined;
   const archive=JSON.parse(fs.readFileSync(destination,'utf8'));

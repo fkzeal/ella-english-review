@@ -10,6 +10,7 @@ import {api,save} from './cloud-state.mjs';
 import Report from './update-nightly-report.js';
 import {fetchJson} from './http-json.mjs';
 import {verifyProductionState} from './verify-production-state.mjs';
+import {readReportDerivatives,derivativeNote} from './report-derivatives.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const boot=path.join(root,'.cloud-bootstrap'),state=path.resolve(process.env.ELLA_STATE_DIR||'/workspace/.ella-automation');
 const base='https://ella-english-review.pages.dev',sha=x=>createHash('sha256').update(x).digest('hex');
@@ -97,8 +98,11 @@ async function main(){
   if(command==='report'){
     if(!journal.selection?.read)throw new Error('Read source before reporting');
     const input=JSON.parse(fs.readFileSync(file));
-    input.runId=journal.runId;input.privateVerification=await verifyPrivate(journal);
-    input.sections.derivatives={value:String(input.privateVerification.count),note:'私有巩固练习已核验；仅展示本轮发布数量。'};
+    input.runId=journal.runId;
+    await verifyPrivate(journal);
+    input.privateVerification=await readReportDerivatives(journal.runId);
+    input.sections.derivatives={value:String(input.privateVerification.count),note:derivativeNote};
+    journal.reportDerivatives={count:input.privateVerification.count,checksum:sha(JSON.stringify(input.privateVerification.questions))};
     const bank=JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))),prior=JSON.parse(fs.readFileSync(path.join(boot,'base-bank.private.json')));
     const destination=path.join(root,'updates/reports.json');
     const report=Report.project(input,bank,prior),archive=JSON.parse(fs.readFileSync(destination));
@@ -119,6 +123,11 @@ async function main(){
     verifyProductionState(JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))),bankResponse.body,
       JSON.parse(fs.readFileSync(path.join(root,'updates/reports.json'))),reportResponse.body,journal.runId);
     journal.privateVerification=await verifyPrivate(journal);
+    if(journal.reportDerivatives){
+      const derivatives=await readReportDerivatives(journal.runId);
+      if(derivatives.count!==journal.reportDerivatives.count||sha(JSON.stringify(derivatives.questions))!==journal.reportDerivatives.checksum)
+        throw new Error('Published derivative report changed; regenerate report');
+    }
     journal.evidence=evidence;journal.finishedAt ||= new Date().toISOString();
     journal.mode=['schedule','schedule-maintenance-complete'].includes(journal.mode)?'schedule-maintenance-complete':'manual-maintenance-complete';journal.overall='PASS';
     await checkpoint(journal);await api('receipt',journal);
