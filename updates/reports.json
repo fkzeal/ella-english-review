@@ -2,6 +2,106 @@
   "version": 1,
   "reports": [
     {
+      "runId": "c4fe74c5-5c90-49af-a12a-6dafad1678f0",
+      "date": "2026-11-22",
+      "createdAt": "2026-11-22T14:45:36.043Z",
+      "status": "partial",
+      "summary": "本轮独立维护部分完成：全量扫描素材修订60的26张图及4条反馈。新审读 Scholastic《Is This a Real Animal?》两页，形成9个主要目标、9道代表性候选；真实教材体系尚未接入，均未上线。共享库保持 r10／168题，本轮新增衍生0题。维护修正已部署，169项测试和本轮独立浏览器验证通过；保留现有实时覆盖实现。",
+      "bankRevision": 10,
+      "sections": {
+        "materials": {
+          "value": "2",
+          "note": "Scholastic Guided Reading Programme，Level 3，Non-fiction Card 7：两页完整，主页面47/48。9目标9题已审读待接入；不误归类为RAZ、剑桥或KET，不计已上线新增目标。归档日不是已确认学习日。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "本轮没有新增已上线共享题；原168题、目标、学习日期与音频保持。9道新教材候选仅保存在私有状态。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "全量核查4条反馈，1条仍需 Animal Tongues 第7页清晰原图或具体错误说明。现有摘录不足以完成原图复核，未冒称修复或重复回写。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "未改题目评价身份、默认题量、奖励或学习历史。维护修正涉及 course-import.py、nightly-maintenance.mjs、verify-production-state.mjs、3个测试文件和2份维护文档；修正后续扫描待接入素材、部分完成回执及账号浏览器夹具。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "待接入：Scholastic《Is This a Real Animal?》2页、9个主要目标、9道已审阅候选。现有题库结构仅接受RAZ、剑桥和KET；本任务要求engine.js只读，因此保留真实分类并暂缓发布。不是缺页，也不是已上线题。",
+        "Animal Tongues 第7页清晰原图仍缺；补齐后继续核查题目反馈。",
+        "按需衍生决策：实际生成0，复用3，暂停扩题3，待讲解0，冷却2，待题族核验0，待原题或能力核验1，日额度等待8，目标额度等待0，来源不合格0。每日额度按现有账本累计，本轮未突破额度或生成重复题。",
+        "本轮真正新增或启用主要目标I=0，原目标新增变式0题。初筛按唯一主要目标计，错误或帮助也能计初筛，复测不重复增加覆盖；待接入9目标尚未计入I。",
+        "完整最近七个自然日的逐目标目录增长及复测窗口数据不足，平均C/I、复测积压R和稳定掌握未知；不能把无记录日期写为0或承诺全部覆盖。初筛完成不表示薄弱已解决。",
+        "variantFamily、targetKey、unitKey、status和note保留在指纹绑定的私有目录；question白名单与评价identity未改，不向题目或前端加入未知字段。未将历史手动生成或其他会话实时功能计为本轮成果。",
+        "维护代码提交 e9ec943f204148071cf8fb24c5c87b7656822141，原发布Actions 45034251387。报告提交与最终Actions、生产回读另存私有执行回执；本轮状态为部分完成。"
+      ],
+      "targetCounts": {
+        "newTargets": 0,
+        "derivativeQuestions": 0,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 0,
+        "reuse": 3,
+        "recovered": 3,
+        "needsExplanation": 0,
+        "cooldown": 2,
+        "invalidRecords": 0,
+        "needsFamilyReview": 0,
+        "needsMaterial": 1,
+        "dailyLimit": 8,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 16,
+          "remainingU": 0,
+          "C": 16,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-22",
+              "count": 16
+            },
+            {
+              "date": "2026-11-21",
+              "count": 67
+            },
+            {
+              "date": "2026-11-20",
+              "count": null
+            },
+            {
+              "date": "2026-11-19",
+              "count": null
+            },
+            {
+              "date": "2026-11-18",
+              "count": null
+            },
+            {
+              "date": "2026-11-17",
+              "count": null
+            },
+            {
+              "date": "2026-11-16",
+              "count": null
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      },
+      "verification": {
+        "commit": "e9ec943f204148071cf8fb24c5c87b7656822141",
+        "actionsRun": "45034251387",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "6d297ebd-1353-4932-ab5e-d470a234a921",
       "date": "2026-11-22",
       "createdAt": "2026-11-22T07:24:00.835Z",
