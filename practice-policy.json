@@ -1,1 +1,1 @@
-{"version":1,"accountId":"ella","maxPerDay":6,"maxPerTarget":2,"cooldownDays":7,"minimumUnitVariants":2,"allowVerifiedImported":true}
+{"version":2,"accountId":"ella","maxPerDay":6,"maxPerTarget":2,"cooldownDays":7,"minimumEffectiveFamilies":2,"allowVerifiedImported":true}

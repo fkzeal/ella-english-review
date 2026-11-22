@@ -82,3 +82,15 @@ test('published derivative details join the report without account metadata and 
   q.practiceFor='ella';assert.throws(()=>project(body,bank),/Unsupported/);delete q.practiceFor;
   body.privateVerification.questions=[];assert.throws(()=>project(body,bank),/Complete/);
 });
+test('three same-target derivatives add zero main targets and new question IDs do not inflate coverage workload',()=>{
+  const body=input();body.status='no-change';body.questions=[];
+  body.sections.derivatives={value:'3',note:'已发布衍生题的详情统一展示，不区分账号。'};
+  body.privateVerification={verified:true,count:3,questions:Array.from({length:3},(_,i)=>{
+    const q={...structuredClone(bank.questions.find(q=>q.id==='l2-02-q04')),id:'practice-'+String(i).repeat(24),learningTargetId:'comic'};
+    delete q.source;return q;
+  })};
+  assert.deepEqual(project(body,bank,bank).targetCounts,{newTargets:0,derivativeQuestions:3,derivativeNewTargets:0});
+  const next=structuredClone(bank),q=structuredClone(next.questions[0]);q.id='same-target-new-question';
+  next.questions.push(q);next.lessons[0].learningTargets[0].questionIds.push(q.id);
+  assert.equal(project(input(),next,bank).targetCounts.newTargets,0);
+});

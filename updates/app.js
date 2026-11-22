@@ -31,6 +31,17 @@ function renderReport(){
   document.querySelector('#derivative-note').hidden=!(legacyCount>0&&!current.questions.some(q=>q.change==='derived'));
   const overview=document.querySelector('#overview');overview.replaceChildren();
   for(const [key,name] of Object.entries(sectionNames)){const info=current.sections[key];const metric=el('div',undefined,'metric');metric.append(el('h3',name),el('strong',info.value),el('p',info.note));overview.append(metric);}
+  if(current.targetCounts){
+    const t=current.targetCounts,metric=el('div',undefined,'metric');
+    metric.append(el('h3','知识目标'),el('strong',t.newTargets===null?'未知':String(t.newTargets)),
+      el('p',`真实新增或启用目标；原目标新增变式 ${t.derivativeQuestions} 题，主要目标净新增为 0。`));overview.append(metric);
+  }
+  if(current.generationSummary){
+    const g=current.generationSummary,c=g.coverage,metric=el('div',undefined,'metric');
+    metric.append(el('h3','按需巩固'),el('strong',`${g.generated} 题`),
+      el('p',`复用 ${g.reuse}；暂停扩题 ${g.recovered}；待讲解 ${g.needsExplanation}；冷却 ${g.cooldown}；待核验题族 ${g.needsFamilyReview}。`),
+      el('p',`已学且可练范围：今日开始未初筛 ${c.U}，今日首次检查 ${c.C}，目前未初筛 ${c.remainingU}。复测积压、稳定掌握和七日目标增长暂无可靠数据。`));overview.append(metric);
+  }
   document.querySelector('#updated-at').textContent=`记录于 ${new Date(current.createdAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})}`;
   const todos=document.querySelector('#todos');todos.replaceChildren(...current.todos.map(t=>el('li',t)));
   document.querySelector('#follow-up').hidden=!current.todos.length;

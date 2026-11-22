@@ -1,6 +1,7 @@
 // Shared bodies come from the bank; derivative bodies from verified publications.
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
+const E=require('../engine');
 const keys=['materials','questions','fixes','optimizations','derivatives'];
 function only(object,allowed){
   if(!object||typeof object!=='object'||Array.isArray(object))throw new Error('Expected object');
@@ -12,7 +13,7 @@ function text(value,max=500){
   return value;
 }
 function project(input,bank,base){
-  only(input,['runId','date','createdAt','status','summary','sections','questions','todos','verification','privateVerification']);
+  only(input,['runId','date','createdAt','status','summary','sections','questions','todos','verification','privateVerification','generationSummary']);
   if(!/^[a-zA-Z0-9_-]{1,80}$/.test(input.runId)||!/^\d{4}-\d{2}-\d{2}$/.test(input.date)||!Number.isFinite(Date.parse(input.createdAt)))throw new Error('Invalid run identity');
   const localDate=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(input.createdAt));
   if(localDate!==input.date)throw new Error('Date must match Shanghai execution time');
@@ -93,7 +94,27 @@ function project(input,bank,base){
     const value=sections[key].value;
     if(/^\d+$/.test(value)&&Number(value)!==questions.filter(q=>q.change===change).length)throw new Error(`${key} count mismatch`);
   }
-  return {runId:input.runId,date:input.date,createdAt:new Date(input.createdAt).toISOString(),status:input.status,summary:text(input.summary),bankRevision:bank.revision,sections,questions,todos:input.todos.map(t=>text(t)),...(verification?{verification}: {})};
+  const activeTargets=b=>new Set(b.questions.filter(q=>q.active!==false&&!q.practiceFor).map(q=>E.targetKeys(b).get(q.id)));
+  const priorTargets=base?activeTargets(base):null;
+  const targetCounts={newTargets:priorTargets?[...activeTargets(bank)].filter(k=>!priorTargets.has(k)).length:null,
+    derivativeQuestions:input.privateVerification?.count??0,derivativeNewTargets:0};
+  let generationSummary;
+  if(input.generationSummary){
+    const g=input.generationSummary;
+    only(g,['generated','reuse','recovered','needsExplanation','cooldown','invalidRecords','needsFamilyReview','needsMaterial','dailyLimit','coverage']);
+    generationSummary={};
+    for(const key of ['generated','reuse','recovered','needsExplanation','cooldown','invalidRecords','needsFamilyReview','needsMaterial','dailyLimit']){
+      if(!Number.isSafeInteger(g[key])||g[key]<0)throw new Error('Invalid generation aggregate');
+      generationSummary[key]=g[key];
+    }
+    if(g.generated!==targetCounts.derivativeQuestions)throw new Error('Generation count receipt mismatch');
+    const c=g.coverage;only(c,['U','remainingU','C','R','sevenDayC','sevenDayI','stableMastery']);
+    for(const key of ['U','remainingU','C','R','stableMastery'])if(c[key]!==null&&(!Number.isSafeInteger(c[key])||c[key]<0))throw new Error('Invalid coverage aggregate');
+    if(c.sevenDayI!==null||!Array.isArray(c.sevenDayC)||c.sevenDayC.length!==7)throw new Error('Historical target growth unavailable');
+    for(const row of c.sevenDayC){only(row,['date','count']);if(!/^\d{4}-\d{2}-\d{2}$/.test(row.date)||(row.count!==null&&(!Number.isSafeInteger(row.count)||row.count<0)))throw new Error('Invalid daily coverage');}
+    generationSummary.coverage=c;
+  }
+  return {runId:input.runId,date:input.date,createdAt:new Date(input.createdAt).toISOString(),status:input.status,summary:text(input.summary),bankRevision:bank.revision,sections,questions,todos:input.todos.map(t=>text(t)),targetCounts,...(generationSummary?{generationSummary}:{}),...(verification?{verification}: {})};
 }
 function merge(archive,report){
   only(archive,['version','reports']);

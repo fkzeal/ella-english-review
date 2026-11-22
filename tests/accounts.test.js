@@ -277,7 +277,9 @@ test('private publication preserves state, distributes only to learner, retries 
       practiceFor:'ella',baseQuestionId:base2.id,baseFingerprint:sha(P.identity(base2)),learningTargetId:'skating',
       references:[...base2.references,{kind:'practice',text:'go skating',source:'原创练习'}]};
     q2.id='practice-'+sha(JSON.stringify([q2.baseQuestionId,q2.type,q2.prompt,null,null,q2.options,q2.answer])).slice(0,24);
-    const payload={accountId:'ella',runId,expectedRevision:1,publicBank:bank,reviewed:true,questions:[q,q2].sort((a,b)=>b.id.localeCompare(a.id))};
+    const payload={accountId:'ella',runId,expectedRevision:1,expectedVariantRevision:0,publicBank:bank,reviewed:true,
+      variantFamilies:[{questionId:q.id,variantFamily:'comic-context'},{questionId:q2.id,variantFamily:'skating-context'}],
+      questions:[q,q2].sort((a,b)=>b.id.localeCompare(a.id))};
     assert.equal((await h.call('admin/practice/source?accountId=ella')).status,401);
     assert.equal((await h.call('admin/practice/publish',payload,other)).status,401);
     assert.equal((await h.call('admin/practice/publish',{...payload,expectedRevision:0},admin)).status,409);
@@ -292,6 +294,17 @@ test('private publication preserves state, distributes only to learner, retries 
     const readback=(await h.call('admin/practice/publish?accountId=ella&runId='+runId,null,admin)).data;
     assert.equal(readback.visible,true);assert.equal(readback.questions.length,2);
     assert.equal(sha(JSON.stringify(readback.questions)),readback.receipt.checksum,'readback keeps receipt order for multi-question checksums');
+    const familySource=(await h.call('admin/practice/source?accountId=ella',null,admin)).data;
+    assert.equal(familySource.variantRevision,1);
+    assert.equal(familySource.variantReviews.length,2);
+    assert(!Object.hasOwn(synced.bundle.bank.questions.find(x=>x.id===q.id),'variantFamily'));
+    const reviewPayload={accountId:'ella',reviewed:true,expectedRevision:2,expectedVariantRevision:1,publicBank:bank,
+      reviews:[{questionId:base.id,fingerprint:sha(P.identity(base)),variantFamily:'original:'+base.id,status:'reviewed',note:'Original activity recognition'}]};
+    assert.equal((await h.call('admin/practice/variants',{...reviewPayload,reviews:[{...reviewPayload.reviews[0],fingerprint:'forged'}]},admin)).status,400);
+    assert.equal((await h.call('admin/practice/variants',reviewPayload,admin)).status,200);
+    assert.equal((await h.call('admin/practice/variants',reviewPayload,admin)).status,409);
+    assert.deepEqual((await h.call('accounts/state',null,auth)).data,synced,'catalog changes neither learning state nor account revision');
+    assert.deepEqual((await h.call('admin/practice/publish',payload,admin)).data,published.data,'receipt retry bypasses changed eligibility and catalog');
     assert.equal((await h.call('accounts/state',null,other)).data.bundle,null);
     const malicious=await S.normalize({...copy(synced.bundle),state:{...copy(synced.bundle.state),accountId:'test-1',history:[]}},{
       accountId:'test-1',deviceId:other.deviceId,crypto,migrate:true});

@@ -68,7 +68,9 @@ async function main(){
   if(command==='candidates'){
     const {source:src,selection}=await source();
     write(path.join(boot,'source.private.json'),src);write(path.join(boot,'candidates.private.json'),selection);
-    journal.selection={read:true,revision:src.revision,candidateCount:selection.candidates.length,excluded:selection.excluded,date:selection.date};
+    write(path.join(state,'operations',journal.runId+'-selection.private.json'),selection);
+    journal.selection={read:true,revision:src.revision,candidateCount:selection.candidates.length,excluded:selection.excluded,date:selection.date,
+      coverage:P.coverage(src,JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))),src.ledger,selection.date)};
     await checkpoint(journal);
     console.log(JSON.stringify({candidates:selection.candidates.length,file:path.join(boot,'candidates.private.json')}));return;
   }
@@ -78,14 +80,18 @@ async function main(){
     if(!fs.existsSync(payloadFile)){
       const {source:src,bank,selection}=await source(),input=JSON.parse(fs.readFileSync(file));
       if(input.reviewed!==true)throw new Error('Content review required');
-      const questions=input.questions.map(q=>{
+      const families=[];
+      const questions=input.questions.map(item=>{
+        const {variantFamily,...q}=item;
         const candidate=selection.candidates.find(c=>c.question.id===q.baseQuestionId);
         if(!candidate)throw new Error('Candidate changed');
         const content=JSON.stringify([q.baseQuestionId,q.type,q.prompt,q.passage||null,q.audioText||null,q.options,q.answer]);
-        return {...q,id:'practice-'+sha(content).slice(0,24),practiceFor:'ella',pointId:candidate.question.pointId,
+        const id='practice-'+sha(content).slice(0,24);families.push({questionId:id,variantFamily});
+        return {...q,id,practiceFor:'ella',pointId:candidate.question.pointId,
           reviewUnit:candidate.question.reviewUnit,learningTargetId:candidate.learningTargetId,baseFingerprint:sha(P.identity(candidate.question))};
       });
-      write(payloadFile,{accountId:'ella',runId:journal.runId,expectedRevision:src.revision,publicBank:bank,reviewed:true,questions});
+      write(payloadFile,{accountId:'ella',runId:journal.runId,expectedRevision:src.revision,expectedVariantRevision:src.variantRevision||0,
+        publicBank:bank,reviewed:true,questions,variantFamilies:families});
       journal.beforeStateHash=sha(JSON.stringify(src.bundle.state));await checkpoint(journal);
     }
     journal.publication=await privateApi('publish',JSON.parse(fs.readFileSync(payloadFile)));
@@ -95,6 +101,22 @@ async function main(){
     journal.statePreserved=true;await checkpoint(journal);
     console.log(JSON.stringify({published:journal.publication.count,verified:true,statePreserved:true}));return;
   }
+  if(command==='review-families'){
+    const payloadFile=path.join(boot,'family-review-payload.private.json');
+    if(!fs.existsSync(payloadFile)){
+      const {source:src,bank}=await source(),input=JSON.parse(fs.readFileSync(file));
+      if(input.reviewed!==true)throw new Error('Family review required');
+      write(payloadFile,{accountId:'ella',expectedRevision:src.revision,expectedVariantRevision:src.variantRevision||0,publicBank:bank,reviewed:true,reviews:input.reviews});
+      journal.familyBeforeStateHash=sha(JSON.stringify(src.bundle.state));await checkpoint(journal);
+    }
+    const payload=JSON.parse(fs.readFileSync(payloadFile)),before=await privateApi('source?accountId=ella');
+    const contains=src=>payload.reviews.every(r=>src.variantReviews?.some(x=>x.questionId===r.questionId&&x.fingerprint===r.fingerprint&&x.variantFamily===r.variantFamily&&x.status===r.status&&x.note===r.note));
+    if(!contains(before))await privateApi('variants',payload);
+    const after=await privateApi('source?accountId=ella');
+    if(!contains(after)||sha(JSON.stringify(after.bundle.state))!==journal.familyBeforeStateHash)throw new Error('Family review readback/state mismatch');
+    journal.familyReview={verified:true,count:payload.reviews.length,variantRevision:after.variantRevision,statePreserved:true};await checkpoint(journal);
+    console.log(JSON.stringify(journal.familyReview));return;
+  }
   if(command==='report'){
     if(!journal.selection?.read)throw new Error('Read source before reporting');
     const input=JSON.parse(fs.readFileSync(file));
@@ -102,6 +124,10 @@ async function main(){
     await verifyPrivate(journal);
     input.privateVerification=await readReportDerivatives(journal.runId);
     input.sections.derivatives={value:String(input.privateVerification.count),note:derivativeNote};
+    const x=journal.selection.excluded;
+    input.generationSummary={generated:input.privateVerification.count,reuse:x.reuse,recovered:x.corrected,needsExplanation:x.needsExplanation,
+      cooldown:x.cooldown,invalidRecords:x.invalid,needsFamilyReview:x.needsFamilyReview,needsMaterial:x.needsMaterial,dailyLimit:x.dailyLimit,
+      coverage:journal.selection.coverage};
     journal.reportDerivatives={count:input.privateVerification.count,checksum:sha(JSON.stringify(input.privateVerification.questions))};
     const bank=JSON.parse(fs.readFileSync(path.join(root,'question-bank.json'))),prior=JSON.parse(fs.readFileSync(path.join(boot,'base-bank.private.json')));
     const destination=path.join(root,'updates/reports.json');
@@ -137,6 +163,6 @@ async function main(){
     fs.rmSync(path.join(boot,'env.sh'),{force:true});
     console.log(JSON.stringify({runId:journal.runId,mode:journal.mode,overall:'PASS',privatePublished:journal.privateVerification.count}));return;
   }
-  throw new Error('Expected start/candidates/publish-private/report/finish');
+  throw new Error('Expected start/candidates/review-families/publish-private/report/finish');
 }
 main().catch(error=>{console.error(error.message);process.exitCode=1;});
