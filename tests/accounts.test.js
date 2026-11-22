@@ -24,7 +24,7 @@ test('account merge deduplicates migration, combines devices, retains pending se
   right.state.session={rewardId:'session-b',items,index:0,results:[],hints:{},day:'2026-11-21'};
   const sessions=S.merge(base,left,right);
   assert.equal(sessions.state.session.rewardId,'session-a');assert.ok(sessions.state.accountSessions['session-b']);
-  const changed=copy(base);changed.state.settings.size=10;
+  const changed=copy(base);changed.state.settings.size=6;
   const changedAgain=copy(base);changedAgain.state.settings.size=15;
   assert.throws(()=>S.merge(base,changed,changedAgain),/两个设备/);
 });
@@ -146,13 +146,13 @@ test('client migrates once, uploads offline work, restores on a fresh device and
     await b.client.login('test-1',await h.accountCode(h.secret,'test-1'),{initialize:true});
     assert.equal(b.get().state.history.length,0);assert.equal(b.get().state.accountId,'test-1');
     await b.client.login('ella',code);assert.equal(b.get().state.history.length,2);
-    a.get().state.settings.size=10;
+    a.get().state.settings.size=6;
     b.get().state.settings.size=15;
     assert.equal(await a.client.sync(),true);
     assert.equal(await b.client.sync(),false);
     assert.match(b.client.view().error,/两个设备/);
     await b.client.resolve();
-    assert.equal(b.get().state.settings.size,10);
+    assert.equal(b.get().state.settings.size,6);
     assert.equal(b.client.localBackup().state.settings.size,15,'conflict original is exportable');
     const before=copy(b.get());
     await b.client.importBundle(before);

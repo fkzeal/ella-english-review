@@ -21,7 +21,7 @@
     return day(d);
   }
   function emptyState() {
-    return {version:1, learned:{}, points:{}, history:[], session:null, settings:{size:6},batchReceipts:{},paused:{},learningDates:{},moduleDates:{},defaultDates:{},localBatches:[]};
+    return {version:1, learned:{}, points:{}, history:[], session:null, settings:{size:10},batchReceipts:{},paused:{},learningDates:{},moduleDates:{},defaultDates:{},localBatches:[]};
   }
   function validateBankShape(b) {
     const fail = s => { throw new Error(`题库格式错误：${s}`); };
@@ -300,30 +300,169 @@
   function shuffle(a,rng=Math.random) {
     a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;
   }
+  const daysBetween=(a,b)=>Math.max(0,Math.round((new Date(`${b}T12:00:00Z`)-new Date(`${a}T12:00:00Z`))/86400000));
+  function cleanReviewDays(rows){
+    const days=new Map();
+    for(const row of rows){
+      const d=days.get(row.day)||{correct:true,scheduled:false};
+      d.correct &&= row.correct&&!row.help;d.scheduled ||= row.scheduled===true;
+      days.set(row.day,d);
+    }
+    return [...days].sort(([a],[b])=>a.localeCompare(b)).slice(-3);
+  }
+  // Profiles are derived from immutable attempts, not a second mutable mastery score.
+  // A legacy unit shared by two targets cannot transfer evidence between those targets.
+  function learningProfile(b,s,today=day()){
+    const keys=targetKeys(b),all=new Map(b.questions.map(q=>[q.id,q])),points=new Map(b.points.map(p=>[p.id,p]));
+    const active=new Set(activePoints(b,s,today).map(p=>p.id)),targets=new Map(),skills=new Map(),questionStats=new Map();
+    const skillKey=q=>`${keys.get(q.id)}\u001f${unitKey(q)}`;
+    for(const q of availableQuestions(b).filter(q=>active.has(q.pointId))){
+      const key=keys.get(q.id);
+      if(!targets.has(key))targets.set(key,{key,lessonId:points.get(q.pointId).lessonId,questions:[],rows:[],skills:new Set()});
+      const t=targets.get(key);t.questions.push(q);t.skills.add(skillKey(q));
+      if(!skills.has(skillKey(q)))skills.set(skillKey(q),{key:skillKey(q),questions:[],rows:[]});
+      skills.get(skillKey(q)).questions.push(q);
+    }
+    const seen=new Set(),attempts=[];
+    const history=s.history.map((row,index)=>({row,index})).filter(({row})=>{
+      const q=all.get(row.questionId);
+      if(!q||row.pointId!==q.pointId||!validDay(row.day)||row.day>today||row.preview||row.qa||
+        (s.accountId&&row.accountId&&row.accountId!==s.accountId)||
+        row.correct!==(row.selected===q.answer)||typeof row.help!=='boolean')return false;
+      if(row.syncId){if(seen.has(row.syncId))return false;seen.add(row.syncId);}
+      return true;
+    }).sort((a,c)=>a.row.day.localeCompare(c.row.day)||
+      (a.row.occurredAt&&c.row.occurredAt?a.row.occurredAt.localeCompare(c.row.occurredAt):a.index-c.index));
+    const lastLesson=new Map();
+    for(const {row} of history){
+      const q=all.get(row.questionId),targetKey=keys.get(q.id),entry={...row,index:attempts.length,targetKey};
+      attempts.push(entry);
+      if(targets.has(targetKey))targets.get(targetKey).rows.push(entry);
+      if(skills.has(skillKey(q)))skills.get(skillKey(q)).rows.push(entry);
+      const p=points.get(q.pointId);if(p)lastLesson.set(p.lessonId,entry.index);
+      const stats=questionStats.get(q.id)||{count:0,last:-1};stats.count++;stats.last=entry.index;questionStats.set(q.id,stats);
+    }
+    for(const skill of skills.values()){
+      skill.last=skill.rows.at(-1);
+      const days=cleanReviewDays(skill.rows);
+      // Multiple available variants need multiple successful examples. With one
+      // question, stability remains explicitly limited to single-question evidence.
+      const families=new Set(skill.questions.map(q=>q.variantFamily||JSON.stringify([q.type,q.prompt,q.passage||'',q.audioText||''])));
+      const successful=new Set(skill.rows.filter(h=>h.correct&&!h.help).map(h=>{
+        const q=all.get(h.questionId);return q.variantFamily||JSON.stringify([q.type,q.prompt,q.passage||'',q.audioText||'']);
+      }));
+      skill.singleQuestionEvidence=families.size===1;
+      skill.stable=days.length===3&&days.every(([,d])=>d.correct)&&days.some(([,d])=>d.scheduled)&&
+        (skill.singleQuestionEvidence||successful.size>=2);
+      skill.weak=Boolean(skill.last&&(!skill.last.correct||skill.last.help));
+    }
+    for(const t of targets.values()){
+      t.last=t.rows.at(-1);t.todayCount=t.rows.filter(h=>h.day===today).length;
+      t.checked=Boolean(t.rows.length);
+      t.passedToday=Boolean(t.last?.day===today&&t.last.correct&&!t.last.help);
+      t.stable=[...t.skills].every(key=>skills.get(key).stable);
+    }
+    return {keys,targets,skills,attempts,questionStats,lastLesson,skillKey};
+  }
+  function coverageSummary(b,s,today=day()){
+    const p=learningProfile(b,s,today),targets=[...p.targets.values()];
+    return {total:targets.length,checked:targets.filter(t=>t.checked).length,
+      unseen:targets.filter(t=>!t.checked).length,weak:targets.filter(t=>[...t.skills].some(k=>p.skills.get(k).weak)).length,
+      stable:targets.filter(t=>t.stable).length};
+  }
+  function coveragePlan(b,s,{today=day(),size=s.settings.size,lessonId=null,rng=Math.random}={}){
+    const p=learningProfile(b,s,today),targets=[...p.targets.values()].filter(t=>!lessonId||t.lessonId===lessonId);
+    const unseen=targets.filter(t=>!t.checked).length;
+    const recent=p.attempts.slice(-Math.max(1,size)),firstIndexes=new Set(targets.map(t=>t.rows[0]?.index));
+    const repeatPressure=recent.length?1-recent.filter(h=>firstIndexes.has(h.index)).length/recent.length:0;
+    const points=new Map(b.points.map(v=>[v.id,v])),items=[],entries=[],usedTargets=new Set(),usedUnits=new Set(),usedMaterial=new Set();
+    const lessonPicked=new Map(),chosenFirst=new Set();
+    const material=q=>q.type==='reading'?q.passage?.trim():q.type==='listening'?q.audioText?.trim():null;
+    const record=q=>q.reviewUnit?s.units?.[unitKey(q)]:s.points[q.pointId];
+    const isBlocked=q=>usedUnits.has(unitKey(q))||Boolean(material(q)&&usedMaterial.has(`${q.type}:${material(q)}`));
+    function candidate(t,q,allowWarmup){
+      if(usedTargets.has(t.key)||isBlocked(q))return null;
+      const skill=p.skills.get(p.skillKey(q)),r=record(q),last=skill.last;
+      const due=r?.due||s.learningDates?.[q.pointId]||today,overdue=due<=today?daysBetween(due,today):0;
+      const learned=s.learningDates?.[q.pointId]||today,wait=daysBetween(learned,today);
+      const stats=p.questionStats.get(q.id)||{count:0,last:-1};
+      let reason,score;
+      if(!t.checked){
+        reason='first';score=100+Math.min(60,wait*3)+20*unseen/Math.max(1,targets.length)+25*repeatPressure;
+      }else if(t.passedToday){
+        if(!allowWarmup)return null;reason='warmup';score=-100-t.todayCount*8;
+      }else if(skill.weak){
+        const sameDay=last.day===today;
+        const intervening=new Set(p.attempts.slice(last.index+1).filter(h=>h.targetKey!==t.key).map(h=>h.targetKey));
+        for(const key of usedTargets)if(key!==t.key)intervening.add(key);
+        const lastGroup=s.session;
+        // A failed item is never inserted back into its own unfinished group.
+        const unfinishedSame=lastGroup&&lastGroup.index<lastGroup.items.length&&lastGroup.items.some(id=>p.keys.get(id)===t.key);
+        if(sameDay&&(intervening.size<4||t.todayCount>=3||unfinishedSame)){
+          if(!allowWarmup)return null;reason='warmup';score=-150-t.todayCount*8;
+        }else{
+          reason='reinforce';
+          score=sameDay?140+Math.min(20,intervening.size)-Math.min(100,unseen)*.2:
+            180+Math.min(80,daysBetween(plusDay(last.day,1),today)*4);
+        }
+      }else if(!last){
+        reason='skill';score=80+Math.min(60,wait*3);
+      }else if(due<=today&&last.day!==today){
+        reason='review';score=70+Math.min(120,overdue*6)-(skill.stable?20:0);
+      }else if(last.day!==today&&!skill.stable){
+        reason='lookahead';score=35+Math.min(30,daysBetween(last.day,today));
+      }else{
+        if(!allowWarmup)return null;reason='warmup';score=-80-t.todayCount*8;
+      }
+      // Prefer less-used, older variants within the required target/skill;
+      // a different skill is not a substitute for the skill that was failed.
+      const sameAsLast=last?.questionId===q.id;
+      return {q,t,reason,score,stats,sameAsLast,overdue};
+    }
+    while(items.length<size){
+      let candidates=[];
+      for(const t of targets)for(const q of shuffle(t.questions,rng)){
+        const c=candidate(t,q,false);if(c)candidates.push(c);
+      }
+      if(!candidates.length){
+        for(const t of targets)for(const q of shuffle(t.questions,rng)){
+          const c=candidate(t,q,true);if(c)candidates.push(c);
+        }
+      }
+      if(!candidates.length)break;
+      // No sequence of urgent reviews may silently starve the first-check queue.
+      if(items.length===size-1&&!chosenFirst.size&&candidates.some(c=>c.reason==='first')){
+        candidates=candidates.filter(c=>c.reason==='first');
+      }
+      candidates.sort((a,c)=>c.score-a.score||
+        (lessonPicked.get(a.t.lessonId)||0)-(lessonPicked.get(c.t.lessonId)||0)||
+        (p.lastLesson.get(a.t.lessonId)??-1)-(p.lastLesson.get(c.t.lessonId)??-1)||
+        Number(a.sameAsLast)-Number(c.sameAsLast)||a.stats.count-c.stats.count||a.stats.last-c.stats.last||
+        a.q.id.localeCompare(c.q.id));
+      const {q,t,reason}=candidates[0];
+      items.push(q.id);usedTargets.add(t.key);usedUnits.add(unitKey(q));
+      if(material(q))usedMaterial.add(`${q.type}:${material(q)}`);
+      if(reason==='first')chosenFirst.add(t.key);
+      lessonPicked.set(t.lessonId,(lessonPicked.get(t.lessonId)||0)+1);
+      entries.push({questionId:q.id,targetKey:t.key,reason});
+    }
+    return {version:1,items,entries};
+  }
   function plan(b,s,{today=day(),size=s.settings.size,practice=false,lessonId=null,preview=false,rng=Math.random,
     flexible=false,openPractice=false,repeat=false,excludeTargets=new Set()}={}) {
     if(flexible&&!preview){
-      const items=[],used=new Set(),keys=targetKeys(b);
-      // Finish available scheduled work first, then look ahead, then allow
-      // voluntary repetition. The calendar remains the source of due dates.
-      for(const phase of [{practice:false},{practice:true},{practice:true,repeat:true}]){
-        const next=plan(b,s,{today,size:size-items.length,lessonId,rng,openPractice:true,
-          excludeTargets:used,...phase});
-        for(const id of next){items.push(id);used.add(keys.get(id));}
-        if(items.length>=size)break;
-      }
-      return items;
+      return coveragePlan(b,s,{today,size,lessonId,rng}).items;
     }
     const recent=new Map(),questions=new Map(b.questions.map(q=>[q.id,q]));
     const targets=targetKeys(b),daily=targetDailyCounts(b,s,today,targets);
     const count=q=>daily.get(targets.get(q.id))||0;
     for(const h of s.history){
       const q=questions.get(h.questionId);if(!q)continue;
-      const key=unitKey(q),rows=recent.get(key)||[];rows.push(h);recent.set(key,rows.slice(-5));
+      const key=unitKey(q),rows=recent.get(key)||[];rows.push(h);recent.set(key,rows);
     }
     const profile=q=>{
-      const rows=recent.get(unitKey(q))||[],last=rows.slice(-3),u=s.units?.[unitKey(q)]||s.points[q.pointId];
-      const mastered=last.length===3&&last.every(h=>h.correct&&!h.help)&&new Set(last.map(h=>h.day)).size===3&&(u?.stage||0)>=2;
+      const rows=recent.get(unitKey(q))||[],days=cleanReviewDays(rows),u=s.units?.[unitKey(q)]||s.points[q.pointId];
+      const mastered=days.length===3&&days.every(([,d])=>d.correct)&&(u?.stage||0)>=2;
       // A very overdue unit still gets its turn even after prior mastery.
       const overdue=u?.due&&plusDay(u.due,14)<=today;
       return {mastered,tier:overdue?0:mastered?2:rows.slice(-2).some(h=>!h.correct||h.help)?0:1,
@@ -389,6 +528,7 @@
     if(q.reviewUnit)syncUnits(b,s,today);
     const p=(q.reviewUnit?s.units[unitKey(q)]:s.points[q.pointId])||{stage:0,due:today,lastDay:null,missDay:null,errors:0};
     const already=p.lastDay===today;
+    const scheduled=p.due<=today&&!already;
     if(!correct) {p.stage=0;p.errors++;p.due=plusDay(today,1);p.missDay=today;}
     else if(help){p.stage=0;p.due=plusDay(today,1);p.missDay=today;}
       else if(!already&&p.missDay!==today&&p.due<=today){
@@ -407,7 +547,7 @@
       if(!correct)s.points[q.pointId].errors++;
       syncUnits(b,s,today);
     }else s.points[q.pointId]=p;
-    const result={questionId:id,pointId:q.pointId,selected,correct,help,day:today};
+    const result={questionId:id,pointId:q.pointId,selected,correct,help,day:today,scheduled};
     s.history.push(result);
     return result;
   }
@@ -446,5 +586,5 @@
     }
     return validateBank(merged);
   }
-  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,dueUnits,reviewAvailability,targetKeys,targetDailyCounts,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,plan,grade,mergeBank};
+  return {INTERVALS,MODULES,TYPES,day,validDay,plusDay,emptyState,validateBank,validateState,availableQuestions,activePoints,duePoints,dueUnits,reviewAvailability,targetKeys,targetDailyCounts,setLearned,moduleKey,moduleDate,setModuleDate,addRepeat,addBookRepeat,syncBatches,syncUnits,unitKey,shuffle,learningProfile,coverageSummary,coveragePlan,plan,grade,mergeBank};
 });

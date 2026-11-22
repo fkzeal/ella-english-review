@@ -100,6 +100,21 @@ function sessionRaw(qs){
   state.session={items:qs.map(q=>q.id),index:0,results:[],hints:{},day:E.day()};
   return JSON.stringify({bank,state,baseline:JSON.stringify(bank)});
 }
+test('default ten-question groups preserve coverage across continuation and reload',async()=>{
+  const app=harness();await app.ready();await app.click('start');
+  const first=app.saved().state.session;assert.equal(first.items.length,10);assert.equal(first.planVersion,1);
+  assert(first.plan.every(item=>item.reason==='first'));
+  for(const id of first.items){
+    const q=bank.questions.find(q=>q.id===id);await app.click('select',{option:String(q.answer)});await app.click('next');
+  }
+  assert.match(app.node('app').innerHTML,/本组新检查 10 个考点/);
+  await app.click('start');const second=app.saved().state.session;
+  assert.equal(second.items.length,10);
+  assert.equal(new Set([...first.plan,...second.plan].map(item=>item.targetKey)).size,20);
+  const reloaded=harness(undefined,app.data);await reloaded.ready();await reloaded.click('resume');
+  assert.deepEqual(reloaded.saved().state.session.items,second.items);
+  assert.equal(reloaded.saved().state.history.length,10);
+});
 test('answer sounds follow committed results, do not replay on duplicate clicks, and never replay on resume',async()=>{
   const qs=bank.questions.filter(q=>q.type==='choice').slice(0,2),played=[];
   let primes=0;
@@ -337,10 +352,10 @@ test('app rejects a stale tab action and adopts the other tab answer without dat
   await a.click('start');
   const q=bank.questions.find(q=>q.id===a.saved().state.session.items[0]);
   await a.click('select',{option:String(q.answer)});
-  await b.change({id:'size',dataset:{},value:'10'});
-  assert.equal(b.saved().state.history.length,1);assert.equal(b.saved().state.settings.size,6);
-  await b.change({id:'size',dataset:{},value:'10'});
+  await b.change({id:'size',dataset:{},value:'15'});
   assert.equal(b.saved().state.history.length,1);assert.equal(b.saved().state.settings.size,10);
+  await b.change({id:'size',dataset:{},value:'15'});
+  assert.equal(b.saved().state.history.length,1);assert.equal(b.saved().state.settings.size,15);
 });
 test('local file applies a deferred bundled update after ending an old session',async()=>{
   const old=structuredClone(bank);old.revision=3;for(const q of old.questions)delete q.reviewUnit;
@@ -453,7 +468,7 @@ test('home due counts refresh at midnight without storage changes, including a p
     assert.match(app.node('app').innerHTML,/今天到期的课程/);
     const due=E.dueUnits(bank,app.saved().state,'2026-11-21');
     assert(due.some(item=>E.unitKey(item)===E.unitKey(q)));
-    assert.match(app.node('app').innerHTML,new RegExp(`${due.length} 个考点待复习`));
+    assert.match(app.node('app').innerHTML,new RegExp(`${due.length} 个复习分项已到期`));
   }
 });
 test('a midnight refresh preserves the visible quiz, answer feedback, and settlement',async()=>{
@@ -477,9 +492,9 @@ test('an independent correct answer removes its due unit while sibling groups re
   const app=harness(JSON.stringify({bank,state,baseline:JSON.stringify(bank)}),undefined,{ReviewEngine:clock.engine,context:{Date:clock.Date}});
   const before=E.dueUnits(bank,state,'2026-11-21').length;
   const groups=E.duePoints(bank,state,'2026-11-21').length;
-  await app.ready();assert.match(app.node('app').innerHTML,new RegExp(`${before} 个考点待复习`));
+  await app.ready();assert.match(app.node('app').innerHTML,new RegExp(`${before} 个复习分项已到期`));
   await app.click('resume');await app.click('select',{option:String(q.answer)});await app.click('next');await app.click('finish');
-  assert.match(app.node('app').innerHTML,new RegExp(`${before-1} 个考点待复习`));
+  assert.match(app.node('app').innerHTML,new RegExp(`${before-1} 个复习分项已到期`));
   assert.equal(app.saved().state.units[E.unitKey(q)].due,'2026-11-24');
   assert.equal(E.duePoints(bank,app.saved().state,'2026-11-21').length,groups);
   const next=E.plan(bank,app.saved().state,{today:'2026-11-21',size:1000});

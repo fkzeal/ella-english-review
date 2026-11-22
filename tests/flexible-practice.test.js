@@ -15,7 +15,7 @@ test('one primary plan continues into future work without changing the schedule'
   assert.equal(new Set(ids.map(id=>keys.get(id))).size,ids.length);
   assert.deepEqual(state,before);
 });
-test('scheduled work is first and tomorrow is offered before later work',()=>{
+test('unseen targets are screened even when only one sibling unit is due today',()=>{
   const state=futureState();
   const qs=E.availableQuestions(bank).filter(q=>E.activePoints(bank,state,today).some(p=>p.id===q.pointId));
   const seen=new Set(),unique=qs.filter(q=>!seen.has(keys.get(q.id))&&seen.add(keys.get(q.id)));
@@ -24,8 +24,9 @@ test('scheduled work is first and tomorrow is offered before later work',()=>{
   state.units[E.unitKey(tomorrow)].due=E.plusDay(today,1);
   E.syncUnits(bank,state,today);
   const ids=E.plan(bank,state,{today,flexible:true,size:2,rng:()=>.5});
-  assert.equal(E.unitKey(bank.questions.find(q=>q.id===ids[0])),E.unitKey(due));
-  assert.equal(E.unitKey(bank.questions.find(q=>q.id===ids[1])),E.unitKey(tomorrow));
+  assert.equal(ids.length,2);
+  assert.equal(new Set(ids.map(id=>keys.get(id))).size,2);
+  assert(E.coveragePlan(bank,state,{today,size:2}).entries.every(item=>item.reason==='first'));
 });
 test('willing learners can continue after every target has been practised twice',()=>{
   const state=futureState();
