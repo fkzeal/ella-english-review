@@ -153,6 +153,16 @@
       "duration": 4.248,
       "sha256": "6fd5ea4a9921d39584f4a0ad3e027d3d1d7e54dbdf7dded75f8322459cc5c7b8"
     },
+    "What is this place? It is a pond. Ducks swim in the pond.": {
+      "file": "audio/ff6e5255a9c20cbec374d160.mp3",
+      "duration": 5.16,
+      "sha256": "d91c583abefa797dfe287f5a9f25fe4aba439c3a024269a7ed38b596113ba959"
+    },
+    "You can listen to music at a fall fair.": {
+      "file": "audio/f9f8509ff4eabcc6dbb179dc.mp3",
+      "duration": 2.448,
+      "sha256": "f8d381c284c8c55d857e8106934f6e451be63922f0c11b129f85aad0b1706245"
+    },
     "Hello! Let us review English together. I always go swimming on Tuesdays.": {
       "file": "audio/ead508667dd0aca4bf2ceabc.mp3",
       "duration": 6.0,
