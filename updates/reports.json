@@ -2,6 +2,968 @@
   "version": 1,
   "reports": [
     {
+      "runId": "0b47680d-a7ae-4de5-b299-abb8e334c533",
+      "date": "2026-11-23",
+      "createdAt": "2026-11-23T14:52:35.738Z",
+      "status": "partial",
+      "summary": "两本RAZ新教材已上线28道代表性覆盖题、26个主要目标和2段新听力；6道衍生变式已定向发布。缺页反馈及Scholastic体系接入仍待解决。",
+      "bankRevision": 11,
+      "sections": {
+        "materials": {
+          "value": "23",
+          "note": "全量扫描49张图，逐图阅读23张新增原图；两本RAZ正文第3–12页齐全。另有2张已核对Scholastic卡片仍待接入。"
+        },
+        "questions": {
+          "value": "28",
+          "note": "真正新增并启用主要目标I=26；共享代表性题28道。衍生6道沿用原目标，主要目标净新增0；不重置初筛。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "全量读取4条反馈：3条验证记录，1条Animal Tongues反馈仍缺第7页清晰原图及具体错误描述，未冒称修复。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "生成策略及实时引擎保持最新main；原168题、学习批次与学习历史保留。题族目录新增1条待素材标记，其余沿用已核验指纹。"
+        },
+        "derivatives": {
+          "value": "6",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [
+        {
+          "id": "raz-d-country-places-q01",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "barn：谷仓",
+          "reviewUnit": "barn",
+          "type": "choice",
+          "prompt": "这本书中 barn 是什么意思？",
+          "options": [
+            "谷仓",
+            "河流",
+            "道路"
+          ],
+          "answer": 0,
+          "explanation": "barn 是谷仓，原文说动物住在里面。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a barn. Animals live in the barn.",
+              "source": "Country Places · 第3页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q02",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "garden：菜园",
+          "reviewUnit": "garden",
+          "type": "choice",
+          "prompt": "这本书中 garden 是什么意思？",
+          "options": [
+            "山丘",
+            "菜园",
+            "果园"
+          ],
+          "answer": 1,
+          "explanation": "garden 在本页指种蔬菜的菜园。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a garden. Vegetables grow in a garden.",
+              "source": "Country Places · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q03",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "farmhouse：农舍",
+          "reviewUnit": "farmhouse",
+          "type": "choice",
+          "prompt": "这本书中 farmhouse 是什么意思？",
+          "options": [
+            "整个农场",
+            "田地",
+            "农舍"
+          ],
+          "answer": 2,
+          "explanation": "farmhouse 是农场里的房屋；原文说一家人住在那里。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a farmhouse. A family lives in the farmhouse.",
+              "source": "Country Places · 第5页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q04",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "field：田地",
+          "reviewUnit": "field",
+          "type": "choice",
+          "prompt": "这本书中 field 是什么意思？",
+          "options": [
+            "田地",
+            "池塘",
+            "房屋"
+          ],
+          "answer": 0,
+          "explanation": "field 是田地；本页说玉米在田里生长。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a field. Corn grows in a field.",
+              "source": "Country Places · 第6页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q05",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "pond：池塘",
+          "reviewUnit": "pond",
+          "type": "choice",
+          "prompt": "这本书中 pond 是什么意思？",
+          "options": [
+            "公路",
+            "池塘",
+            "谷仓"
+          ],
+          "answer": 1,
+          "explanation": "pond 是池塘；本页鸭子在池塘中游泳。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a pond. Ducks swim in the pond.",
+              "source": "Country Places · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q06",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "river：河流",
+          "reviewUnit": "river",
+          "type": "choice",
+          "prompt": "这本书中 river 是什么意思？",
+          "options": [
+            "菜园",
+            "山丘",
+            "河流"
+          ],
+          "answer": 2,
+          "explanation": "river 是河流；本页说鱼在河里游泳。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a river. Fish swim in the river.",
+              "source": "Country Places · 第8页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q07",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "road：道路",
+          "reviewUnit": "road",
+          "type": "choice",
+          "prompt": "这本书中 road 是什么意思？",
+          "options": [
+            "道路",
+            "果园",
+            "池塘"
+          ],
+          "answer": 0,
+          "explanation": "road 是道路；拖拉机沿着道路行驶。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a road. A tractor goes down the road.",
+              "source": "Country Places · 第9页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q08",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "hill：山丘",
+          "reviewUnit": "hill",
+          "type": "choice",
+          "prompt": "这本书中 hill 是什么意思？",
+          "options": [
+            "河流",
+            "山丘",
+            "农舍"
+          ],
+          "answer": 1,
+          "explanation": "hill 是山丘；本页马在山丘上跑。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a hill. A horse runs on the hill.",
+              "source": "Country Places · 第10页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q09",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "orchard：果园",
+          "reviewUnit": "orchard",
+          "type": "choice",
+          "prompt": "这本书中 orchard 是什么意思？",
+          "options": [
+            "谷仓",
+            "菜园",
+            "果园"
+          ],
+          "answer": 2,
+          "explanation": "orchard 是果园；本页说苹果在果园里生长。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is an orchard. Apples grow in the orchard.",
+              "source": "Country Places · 第11页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q10",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "farm：农场",
+          "reviewUnit": "farm",
+          "type": "choice",
+          "prompt": "这本书中 farm 是什么意思？",
+          "options": [
+            "农场",
+            "房屋",
+            "河流"
+          ],
+          "answer": 0,
+          "explanation": "farm 指整个农场，farmhouse 是农舍。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a farm. It is in the country.",
+              "source": "Country Places · 第12页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q11",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "country：乡村",
+          "reviewUnit": "country",
+          "type": "choice",
+          "prompt": "这本书中 country 是什么意思？",
+          "options": [
+            "国家",
+            "乡村",
+            "城市"
+          ],
+          "answer": 1,
+          "explanation": "结合农场语境，in the country 指在乡村；本页不是在问国家。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a farm. It is in the country.",
+              "source": "Country Places · 第12页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q12",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "It is a + 地点：介绍一个地点",
+          "reviewUnit": "place-is",
+          "type": "cloze",
+          "prompt": "What is this place? It ___ a garden.",
+          "options": [
+            "are",
+            "is",
+            "am"
+          ],
+          "answer": 1,
+          "explanation": "It 是单数，用 is。保持原文介绍地点的句型，换一个已核对地点应用。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a barn. Animals live in the barn.",
+              "source": "Country Places · 第3页"
+            },
+            {
+              "kind": "practice",
+              "text": "What is this place? It ___ a garden.",
+              "source": "本题原创应用练习"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q13",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "阅读：匹配地点与原文信息",
+          "reviewUnit": "place-match",
+          "type": "reading",
+          "prompt": "Where do vegetables grow?",
+          "options": [
+            "In a barn.",
+            "In a river.",
+            "In a garden."
+          ],
+          "answer": 2,
+          "explanation": "garden 句说明蔬菜在菜园里生长。",
+          "passage": "It is a barn. Animals live in the barn.\nIt is a garden. Vegetables grow in a garden.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a garden. Vegetables grow in a garden.",
+              "source": "Country Places · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q14",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "Country Places",
+          "target": "阅读：匹配地点与原文信息",
+          "reviewUnit": "place-match-listening",
+          "type": "listening",
+          "prompt": "听录音：鸭子在哪里游泳？",
+          "options": [
+            "池塘",
+            "道路",
+            "谷仓"
+          ],
+          "answer": 0,
+          "explanation": "录音说 Ducks swim in the pond，鸭子在池塘中游泳。",
+          "audioText": "What is this place? It is a pond. Ducks swim in the pond.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a pond. Ducks swim in the pond.",
+              "source": "Country Places · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q01",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "fall：秋天",
+          "reviewUnit": "fall",
+          "type": "choice",
+          "prompt": "书中 fall 表示哪项？",
+          "options": [
+            "春天",
+            "秋天",
+            "冬天"
+          ],
+          "answer": 1,
+          "explanation": "fall 在这里表示秋天，和 autumn 同义。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Many places have a fair in the fall.",
+              "source": "At a Fall Fair · 第3页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q02",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "fair：集市游乐会",
+          "reviewUnit": "fair",
+          "type": "choice",
+          "prompt": "书中 fair 表示哪项？",
+          "options": [
+            "公平",
+            "农舍",
+            "集市游乐会"
+          ],
+          "answer": 2,
+          "explanation": "这里的 fair 是有游戏、食物等活动的集市游乐会，不是“公平”的形容词。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Many places have a fair in the fall.",
+              "source": "At a Fall Fair · 第3页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q03",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "bob for apples：用嘴叼水中的苹果",
+          "reviewUnit": "bob-apples",
+          "type": "choice",
+          "prompt": "书中 bob for apples 表示哪项？",
+          "options": [
+            "用嘴叼水中的苹果",
+            "给苹果涂色",
+            "用苹果建房子"
+          ],
+          "answer": 0,
+          "explanation": "图文共同说明这是苹果放在水中、用嘴叼苹果的游戏。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can bob for apples at a fall fair.",
+              "source": "At a Fall Fair · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q04",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "pick pumpkins：挑选南瓜",
+          "reviewUnit": "pick-pumpkins",
+          "type": "choice",
+          "prompt": "书中 pick pumpkins 表示哪项？",
+          "options": [
+            "听音乐",
+            "挑选南瓜",
+            "吃派"
+          ],
+          "answer": 1,
+          "explanation": "pick pumpkins 是挑选南瓜；本页图里孩子在南瓜旁挑选。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can pick pumpkins at a fall fair.",
+              "source": "At a Fall Fair · 第5页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q05",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "hay：干草",
+          "reviewUnit": "hay",
+          "type": "choice",
+          "prompt": "书中 hay 表示哪项？",
+          "options": [
+            "积木",
+            "鸭子",
+            "干草"
+          ],
+          "answer": 2,
+          "explanation": "hay 是干草；本页活动是 jump on hay，在干草上跳。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can jump on hay at a fall fair.",
+              "source": "At a Fall Fair · 第6页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q06",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "explore a maze：探索迷宫",
+          "reviewUnit": "explore-maze",
+          "type": "choice",
+          "prompt": "书中 explore a maze 表示哪项？",
+          "options": [
+            "探索迷宫",
+            "在河里游泳",
+            "撑伞"
+          ],
+          "answer": 0,
+          "explanation": "maze 是迷宫，explore a maze 是探索迷宫。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can explore a maze at a fall fair.",
+              "source": "At a Fall Fair · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q07",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "play games：玩游戏",
+          "reviewUnit": "play-games",
+          "type": "choice",
+          "prompt": "书中 play games 表示哪项？",
+          "options": [
+            "种蔬菜",
+            "玩游戏",
+            "梳头"
+          ],
+          "answer": 1,
+          "explanation": "play games 表示玩游戏。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can play games at a fall fair.",
+              "source": "At a Fall Fair · 第8页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q08",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "race ducks：让玩具鸭竞速",
+          "reviewUnit": "race-ducks",
+          "type": "choice",
+          "prompt": "书中 race ducks 表示哪项？",
+          "options": [
+            "喂真鸭子",
+            "数苹果",
+            "让玩具鸭竞速"
+          ],
+          "answer": 2,
+          "explanation": "本页照片是水槽中的玩具鸭，race ducks 指让它们竞速；不编造真鸭赛跑。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can race ducks at a fall fair.",
+              "source": "At a Fall Fair · 第9页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q09",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "listen to music：听音乐",
+          "reviewUnit": "listen-music",
+          "type": "choice",
+          "prompt": "书中 listen to music 表示哪项？",
+          "options": [
+            "听音乐",
+            "摘南瓜",
+            "玩抛接球"
+          ],
+          "answer": 0,
+          "explanation": "listen to music 是听音乐；保留 to。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can listen to music at a fall fair.",
+              "source": "At a Fall Fair · 第10页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q10",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "eat pie：吃派",
+          "reviewUnit": "eat-pie",
+          "type": "choice",
+          "prompt": "书中 eat pie 表示哪项？",
+          "options": [
+            "跳干草",
+            "吃派",
+            "赛玩具鸭"
+          ],
+          "answer": 1,
+          "explanation": "pie 是派，这里 eat pie 表示吃派。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can eat pie at a fall fair.",
+              "source": "At a Fall Fair · 第11页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q11",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "have fun：玩得开心",
+          "reviewUnit": "have-fun",
+          "type": "choice",
+          "prompt": "书中 have fun 表示哪项？",
+          "options": [
+            "做作业",
+            "种玉米",
+            "玩得开心"
+          ],
+          "answer": 2,
+          "explanation": "have fun 表示玩得开心，结尾鼓励参与者尽兴。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Whatever you do, have fun!",
+              "source": "At a Fall Fair · 第12页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q12",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "can 后接动词原形",
+          "reviewUnit": "can-base",
+          "type": "cloze",
+          "prompt": "You can ___ to music at a fall fair.",
+          "options": [
+            "listen",
+            "listens",
+            "listening"
+          ],
+          "answer": 0,
+          "explanation": "can 后接动词原形 listen；listen to music 中的 to 保留。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can listen to music at a fall fair.",
+              "source": "At a Fall Fair · 第10页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q13",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "阅读：匹配秋季游乐会活动",
+          "reviewUnit": "fair-activity",
+          "type": "reading",
+          "prompt": "Which food can you pick in the passage?",
+          "options": [
+            "Apples.",
+            "Pumpkins.",
+            "Pie."
+          ],
+          "answer": 1,
+          "explanation": "原句明确说 pick pumpkins，不能把其他活动里的食物当成被挑选的对象。",
+          "passage": "You can pick pumpkins at a fall fair.\nYou can listen to music at a fall fair.\nYou can eat pie at a fall fair.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can pick pumpkins at a fall fair.",
+              "source": "At a Fall Fair · 第5页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-at-a-fall-fair-q14",
+          "change": "added",
+          "reason": "逐页核对新教材后建立必要代表性覆盖题；同一目标不按题号重复计数。",
+          "lesson": "At a Fall Fair",
+          "target": "阅读：匹配秋季游乐会活动",
+          "reviewUnit": "fair-activity-listening",
+          "type": "listening",
+          "prompt": "听录音：说到了哪项活动？",
+          "options": [
+            "跳干草",
+            "赛玩具鸭",
+            "听音乐"
+          ],
+          "answer": 2,
+          "explanation": "录音说 listen to music，表示听音乐。",
+          "audioText": "You can listen to music at a fall fair.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can listen to music at a fall fair.",
+              "source": "At a Fall Fair · 第10页"
+            }
+          ]
+        },
+        {
+          "id": "practice-d37327655956170c00b74140",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Rules",
+          "target": "go + 动词-ing：活动表达",
+          "reviewUnit": "go-ing",
+          "type": "cloze",
+          "prompt": "请选择整句都正确的周末活动安排。",
+          "options": [
+            "On Saturday we go skating.",
+            "On Saturday we go skate.",
+            "On Saturday we go skates."
+          ],
+          "answer": 0,
+          "explanation": "go 后接活动的 -ing 形式：go skating。选择完整安排句，需要检查 go 后的形式。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "go skating\ngo shopping\ngo skateboarding\ngo skiing",
+              "source": "Rules · 素材图9–10 · 课件活动表达"
+            },
+            {
+              "kind": "practice",
+              "text": "请选择整句都正确的周末活动安排。",
+              "source": "本轮原创变式；保持原目标与能力，非教材原句"
+            }
+          ]
+        },
+        {
+          "id": "practice-a04db790f884da47d3d3128e",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Animal Tongues",
+          "target": "读懂 with two parts：一条舌头有两个部分",
+          "reviewUnit": "two-parts",
+          "type": "reading",
+          "prompt": "Which sentence matches the passage?",
+          "options": [
+            "The lizard has two tongues.",
+            "One lizard tongue has two parts.",
+            "The cat has two tongues."
+          ],
+          "answer": 1,
+          "explanation": "two parts 说的是同一条舌头的两个部分，不能理解成两条舌头。",
+          "passage": "A lizard has one tongue with two parts. A cat has a tongue like a brush. The two animals have different kinds of tongues.",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "lizard\nwith two parts",
+              "source": "Animal Tongues · 第5页 · 已核对词句"
+            },
+            {
+              "kind": "practice",
+              "text": "This lizard has a tongue with two parts.",
+              "source": "本题阅读材料 · 原创练习"
+            },
+            {
+              "kind": "practice",
+              "text": "A lizard has one tongue with two parts. A cat has a tongue like a brush. The two animals have different kinds of tongues.",
+              "source": "本轮原创变式；保持原目标与能力，非教材原句"
+            }
+          ]
+        },
+        {
+          "id": "practice-8aefc4d1eec9fecb98aa981a",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Animal Tongues",
+          "target": "根据主语单复数选择 has / have",
+          "reviewUnit": "plural-have",
+          "type": "cloze",
+          "prompt": "One animal has a tongue. Two animals ___ tongues.",
+          "options": [
+            "has",
+            "is",
+            "have"
+          ],
+          "answer": 2,
+          "explanation": "先比较单数 one animal 和复数 two animals；复数主语用 have。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Animals have",
+              "source": "Animal Tongues · 第3页 · 已核对句子片段"
+            },
+            {
+              "kind": "practice",
+              "text": "One animal has a tongue. Two animals ___ tongues.",
+              "source": "本轮原创变式；保持原目标与能力，非教材原句"
+            }
+          ]
+        },
+        {
+          "id": "practice-d7fc35c4f0694ec7e0112a31",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "I Count 100 Things",
+          "target": "things：物品",
+          "reviewUnit": "word-things",
+          "type": "choice",
+          "prompt": "A box has pencils, blocks, and paper clips. “These things are in the box.” things 指的是哪一组？",
+          "options": [
+            "铅笔、积木和回形针这些物品",
+            "盒子的颜色",
+            "盒子里的动物"
+          ],
+          "answer": 0,
+          "explanation": "things 指东西、物品；这里回指前一句列出的 pencils、blocks 和 paper clips。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Look at all these things!",
+              "source": "I Count 100 Things · 第3页"
+            },
+            {
+              "kind": "practice",
+              "text": "A box has pencils, blocks, and paper clips. “These things are in the box.” things 指的是哪一组？",
+              "source": "本轮原创变式；保持原目标与能力，非教材原句"
+            }
+          ]
+        },
+        {
+          "id": "practice-ef484913edb7fe95a9def08a",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "I Count 100 Things",
+          "target": "one hundred：一百",
+          "reviewUnit": "number-one-hundred",
+          "type": "choice",
+          "prompt": "有两袋积木：一袋标着 10，另一袋标着 100。标签 one hundred 应放在哪一袋？",
+          "options": [
+            "10 那袋",
+            "100 那袋",
+            "两袋都可以"
+          ],
+          "answer": 1,
+          "explanation": "one hundred 表示100；ten才是10。比较两个标签仍是在辨认 one hundred 的数量含义。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I count 100 paper clips. What can I make?",
+              "source": "I Count 100 Things · 第4页"
+            },
+            {
+              "kind": "practice",
+              "text": "有两袋积木：一袋标着 10，另一袋标着 100。标签 one hundred 应放在哪一袋？",
+              "source": "本轮原创变式；保持原目标与能力，非教材原句"
+            }
+          ]
+        },
+        {
+          "id": "practice-d735d5ba9f3f846c490bbf17",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Why Does an Octopus Need Eight Arms?",
+          "target": "is for + 动词-ing：表达用途",
+          "reviewUnit": "for-ing",
+          "type": "cloze",
+          "prompt": "这只手臂用来撑伞。请选择正确的用途句。",
+          "options": [
+            "The arm is for hold an umbrella.",
+            "The arm is for holds an umbrella.",
+            "The arm is for holding an umbrella."
+          ],
+          "answer": 2,
+          "explanation": "for 是介词，这里表达用途时后接 holding。检查完整句子，不是只替换原题的人名或选项顺序。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "The first arm is for brushing her teeth.",
+              "source": "Why Does an Octopus Need Eight Arms? · 第4页"
+            },
+            {
+              "kind": "practice",
+              "text": "这只手臂用来撑伞。请选择正确的用途句。",
+              "source": "本轮原创变式；保持原目标与能力，非教材原句"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "Animal Tongues第7页缺清晰原图：保留需补素材；不围绕未核对原题复制衍生。",
+        "2张Scholastic Card 7已核对，9个目标及9题候选等待正式体系接入；当前引擎只接受既有三体系，未伪装归类。",
+        "U=0、C=0为本次发布前权威记录口径；I=26，未发生停用或日期修改时下一日未测约26，后续真实初筛会改变该数。初筛完成不表示错误解决。",
+        "复测积压R、稳定掌握和完整近七日平均C/I未知：日期记录不完整，不能判断积压趋势或承诺全部稳定掌握。",
+        "本轮按targetKey和unitKey核验原题、同能力与题族；新增变式使用包外variantFamilies及独立目录revision，评价identity与题目包白名单保持兼容。",
+        "本轮通过169项测试、构建及新建Chromium/WebKit环境验证手机、Pad、练习、离线恢复、账号同步和MP3正常/慢速播放；生产只读回读与隔离账号测试分别记录。",
+        "修改文件为question-bank.json、audio/manifest.json、2个MP3和本轮报告；共享题部署Actions成功并回读题库、音频，报告部署在最终回执单独核验。"
+      ],
+      "targetCounts": {
+        "newTargets": 26,
+        "derivativeQuestions": 6,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 6,
+        "reuse": 3,
+        "recovered": 3,
+        "needsExplanation": 0,
+        "cooldown": 2,
+        "invalidRecords": 0,
+        "needsFamilyReview": 0,
+        "needsMaterial": 2,
+        "dailyLimit": 1,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 0,
+          "remainingU": 0,
+          "C": 0,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-23",
+              "count": null
+            },
+            {
+              "date": "2026-11-22",
+              "count": 16
+            },
+            {
+              "date": "2026-11-21",
+              "count": 67
+            },
+            {
+              "date": "2026-11-20",
+              "count": null
+            },
+            {
+              "date": "2026-11-19",
+              "count": null
+            },
+            {
+              "date": "2026-11-18",
+              "count": null
+            },
+            {
+              "date": "2026-11-17",
+              "count": null
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      },
+      "verification": {
+        "commit": "ce2c4cf28f48ba09be2e52d46b3a3dd528baad68",
+        "actionsRun": "45198314184",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "c4fe74c5-5c90-49af-a12a-6dafad1678f0",
       "date": "2026-11-22",
       "createdAt": "2026-11-22T14:45:36.043Z",
