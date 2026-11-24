@@ -2,6 +2,361 @@
   "version": 1,
   "reports": [
     {
+      "runId": "4c6ffa9e-d1a5-4ab9-bfbd-48ceeec6ecec",
+      "date": "2026-11-24",
+      "createdAt": "2026-11-24T15:00:09.124Z",
+      "status": "partial",
+      "summary": "本轮独立维护已上线 Country Places 来源纠正、3道真实目标覆盖题及2道按需衍生题。保留全部旧题历史，停用5道无原图依据题。55张素材与4条反馈全量读取；家庭词汇6图、Scholastic 2图待接入，Animal Tongues第7页仍缺清晰原图。",
+      "bankRevision": 12,
+      "sections": {
+        "materials": {
+          "value": "6",
+          "note": "修订67共55图，全量扫描；新家庭词汇6图逐图审阅，15词合为11语义目标及11道私有候选，课程体系与级别不明，尚未上线。复核两本RAZ共23图并纠正原审阅。"
+        },
+        "questions": {
+          "value": "3",
+          "note": "按原图补足 shed、pen、corral 三个真实主要目标，各一题代表性覆盖。没有批次或学习日期变更，不为未测目标预生成衍生题。"
+        },
+        "fixes": {
+          "value": "4",
+          "note": "q01、q02、q12、q13保留评价身份，仅纠正页码或引用；作者更正为 Katalina Page。另停用q05、q06、q07、q08、q14五道无原图依据题，旧题内容与历史保留，原目标映射存权威私有审计。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "保留现行实时覆盖、10题组、自由续练、日期、due、奖励、账号与历史。169测试通过；覆盖断言按有效题集合精确核对，停用题不计当前覆盖。"
+        },
+        "derivatives": {
+          "value": "2",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [
+        {
+          "id": "raz-d-country-places-q15",
+          "change": "added",
+          "reason": "正文第7页为shed及Tools are kept in a shed；补足真实工具棚词义的一题代表性覆盖。",
+          "lesson": "Country Places",
+          "target": "shed：工具棚",
+          "reviewUnit": "shed",
+          "type": "choice",
+          "prompt": "这本书中 shed 指什么地方？",
+          "options": [
+            "存放工具的小棚屋",
+            "种苹果的果园",
+            "一家人住的农舍"
+          ],
+          "answer": 0,
+          "explanation": "shed 是小棚屋、工具棚。原文说 Tools are kept in a shed，工具放在棚屋里。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a shed. Tools are kept in a shed.",
+              "source": "Country Places · 第7页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q16",
+          "change": "added",
+          "reason": "正文第8页为pen及Pigs live in a pen；结合该页语境检查猪圈词义。",
+          "lesson": "Country Places",
+          "target": "pen：猪圈",
+          "reviewUnit": "pen",
+          "type": "choice",
+          "prompt": "这本书中 pen 是什么意思？",
+          "options": [
+            "写字用的钢笔",
+            "猪圈",
+            "菜园"
+          ],
+          "answer": 1,
+          "explanation": "本页 pen 指圈养动物的围栏或圈舍；Pigs live in a pen 表明这里是猪圈，不是钢笔。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a pen. Pigs live in a pen.",
+              "source": "Country Places · 第8页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q17",
+          "change": "added",
+          "reason": "正文第9页为corral及Horses run in the corral；补足围养马的围场词义。",
+          "lesson": "Country Places",
+          "target": "corral：围养马的围栏",
+          "reviewUnit": "corral",
+          "type": "choice",
+          "prompt": "这本书中 corral 指哪种地方？",
+          "options": [
+            "存放工具的棚屋",
+            "种玉米的田地",
+            "围养马的围栏"
+          ],
+          "answer": 2,
+          "explanation": "corral 是围养牲畜的围栏或围场；本页 Horses run in the corral，说马在围场里跑。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a corral. Horses run in the corral.",
+              "source": "Country Places · 第9页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q01",
+          "change": "fixed",
+          "reason": "barn实际在第4页；逐字引用改为Animals live in a barn。题号、选项、答案及评价身份保持。",
+          "lesson": "Country Places",
+          "target": "barn：谷仓",
+          "reviewUnit": "barn",
+          "type": "choice",
+          "prompt": "这本书中 barn 是什么意思？",
+          "options": [
+            "谷仓",
+            "河流",
+            "道路"
+          ],
+          "answer": 0,
+          "explanation": "barn 是谷仓，原文说动物住在里面。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a barn. Animals live in a barn.",
+              "source": "Country Places · 第4页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q02",
+          "change": "fixed",
+          "reason": "garden实际在第10页；逐字引用改为Vegetables grow in the garden。题号、选项、答案及评价身份保持。",
+          "lesson": "Country Places",
+          "target": "garden：菜园",
+          "reviewUnit": "garden",
+          "type": "choice",
+          "prompt": "这本书中 garden 是什么意思？",
+          "options": [
+            "山丘",
+            "菜园",
+            "果园"
+          ],
+          "answer": 1,
+          "explanation": "garden 在本页指种蔬菜的菜园。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a garden. Vegetables grow in the garden.",
+              "source": "Country Places · 第10页"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q12",
+          "change": "fixed",
+          "reason": "It is a地点句型依据修正为第4页；题干保持为原创语法应用，评价身份保持。",
+          "lesson": "Country Places",
+          "target": "It is a + 地点：介绍一个地点",
+          "reviewUnit": "place-is",
+          "type": "cloze",
+          "prompt": "What is this place? It ___ a garden.",
+          "options": [
+            "are",
+            "is",
+            "am"
+          ],
+          "answer": 1,
+          "explanation": "It 是单数，用 is。保持原文介绍地点的句型，换一个已核对地点应用。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a barn. Animals live in a barn.",
+              "source": "Country Places · 第4页"
+            },
+            {
+              "kind": "practice",
+              "text": "What is this place? It ___ a garden.",
+              "source": "本题原创语法应用练习"
+            }
+          ]
+        },
+        {
+          "id": "raz-d-country-places-q13",
+          "change": "fixed",
+          "reason": "地点用途依据修正为第4、10页；既有阅读材料明确标practice改写，不冒称教材逐字原文；评价身份保持。",
+          "lesson": "Country Places",
+          "target": "阅读：匹配地点与原文信息",
+          "reviewUnit": "place-match",
+          "type": "reading",
+          "prompt": "Where do vegetables grow?",
+          "options": [
+            "In a barn.",
+            "In a river.",
+            "In a garden."
+          ],
+          "answer": 2,
+          "explanation": "garden 句说明蔬菜在菜园里生长。",
+          "passage": "It is a barn. Animals live in the barn.\nIt is a garden. Vegetables grow in a garden.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a garden. Vegetables grow in the garden.",
+              "source": "Country Places · 第10页"
+            },
+            {
+              "kind": "original",
+              "text": "What is this place? It is a barn. Animals live in a barn.",
+              "source": "Country Places · 第4页"
+            },
+            {
+              "kind": "practice",
+              "text": "It is a barn. Animals live in the barn.\nIt is a garden. Vegetables grow in a garden.",
+              "source": "本题原创阅读材料；按已核对第4、10页改写，非逐字教材引文"
+            }
+          ]
+        },
+        {
+          "id": "practice-81003520a72ef5ea57d3ddbd",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "At a Fall Fair",
+          "target": "can 后接动词原形",
+          "reviewUnit": "can-base",
+          "type": "choice",
+          "prompt": "活动牌要写“我们可以玩游戏”。哪一句中的 can 后面用了正确的动词形式？",
+          "options": [
+            "We can playing games.",
+            "We can play games.",
+            "We can plays games."
+          ],
+          "answer": 1,
+          "explanation": "can 后面用动词原形 play。这里比较完整句子的动词形式，playing 和 plays 都不能直接放在 can 后。原文 You can play games at a fall fair 也用了 can play。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "You can play games at a fall fair.",
+              "source": "At a Fall Fair · 第8页"
+            },
+            {
+              "kind": "original",
+              "text": "You can listen to music at a fall fair.",
+              "source": "At a Fall Fair · 第10页"
+            },
+            {
+              "kind": "practice",
+              "text": "We can play games.",
+              "source": "本题原创整句语法应用；保持 can 后用动词原形的能力"
+            }
+          ]
+        },
+        {
+          "id": "practice-b2f5ef3691b1c6d6a5e7daf4",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Country Places",
+          "target": "阅读：匹配地点与原文信息",
+          "reviewUnit": "place-match",
+          "type": "reading",
+          "prompt": "Which sentence is true about Mia?",
+          "options": [
+            "Mia grows vegetables in the shed.",
+            "Mia keeps tools in the barn.",
+            "Mia grows vegetables in the garden."
+          ],
+          "answer": 2,
+          "explanation": "第一句说明 Mia 在 garden 种蔬菜，所以第三项符合短文。shed 是 Ben 存放工具的地方，短文没有说 Mia 在 barn 存放工具。本题保持阅读中把人物活动与地点对应的能力，原创语境不是教材事实。",
+          "passage": "Mia grows vegetables in the garden. Ben keeps tools in the shed. Mia picks vegetables for lunch.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a garden. Vegetables grow in the garden.",
+              "source": "Country Places · 第10页"
+            },
+            {
+              "kind": "original",
+              "text": "What is this place? It is a shed. Tools are kept in a shed.",
+              "source": "Country Places · 第7页"
+            },
+            {
+              "kind": "practice",
+              "text": "Mia grows vegetables in the garden. Ben keeps tools in the shed. Mia picks vegetables for lunch.",
+              "source": "本题原创阅读材料；人物及午餐情境为练习创作，保持地点与活动匹配能力"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "共享来源核查停用完整列表：raz-d-country-places-q05（pond）、q06（river）、q07（road）、q08（hill）、q14（pond听力）。这些地点及对应所谓原句没有原图支持；不围绕它们扩题。原题正文仅作为已停用历史保留，不是现行教材证据。",
+        "Animal Tongues第7页仍缺清晰原图；4条共享反馈中3条为QA验证、1条保留需补充素材。缺图反馈没有冒称修复，也没有无依据改答案。",
+        "待接入：Scholastic Card 7两图已有9目标/9题候选；家庭词汇六图已有11目标/11题候选。当前课程类型只接受cambridge/raz/ket，本任务保持引擎只读，不能猜课程、出版社或级别绕过验证。",
+        "本轮真正新增主要目标I=3；停用4个无原图依据旧目标。修正后可练范围U=25、C=22、剩余未初筛3，其中U已经包含本轮新增3目标。因发生目标停用及统计目录修正，本轮不直接用未经调整的U+I-C推算下一日。",
+        "复测积压R、稳定掌握及完整七个自然日C/I比较未知；已有日期的首次检查按唯一主要目标计，错误或帮助也可计初筛，复测不重复计覆盖。初筛完成不表示薄弱已解决，不能宣称全部稳定掌握。",
+        "生成决策：本轮两处可信live薄弱证据各缺一种有效题族，实际各补1题，总2题、净新增主要目标0。暂停扩题9、待讲解3、冷却3、待原题素材核验2、停用来源排除5；既有供给复用0、待题族核验0、日额度等待0、目标额度等待0。全部决策已私有保存，未为未测目标凑数。",
+        "新增变式保持原learningTargetId、baseQuestionId及reviewUnit；整句can语法选择与人物活动地点阅读分别维持原能力。variantFamily在私有目录和包外variantFamilies中记录，expectedVariantRevision控制并发，不向题目包塞未知字段或改评价identity。",
+        "本轮修改question-bank.json、tests/review-policy.test.js、AGENTS.md及updates/reports.json。共享提交与Actions在发布核验中列出；最终报告提交、Actions、私有回执和租约释放结果以本轮最终执行回执为准。历史报告及音频清单保留。"
+      ],
+      "targetCounts": {
+        "newTargets": 3,
+        "derivativeQuestions": 2,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 2,
+        "reuse": 0,
+        "recovered": 9,
+        "needsExplanation": 3,
+        "cooldown": 3,
+        "invalidRecords": 5,
+        "needsFamilyReview": 0,
+        "needsMaterial": 2,
+        "dailyLimit": 0,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 25,
+          "remainingU": 3,
+          "C": 22,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-24",
+              "count": 22
+            },
+            {
+              "date": "2026-11-23",
+              "count": null
+            },
+            {
+              "date": "2026-11-22",
+              "count": 16
+            },
+            {
+              "date": "2026-11-21",
+              "count": 67
+            },
+            {
+              "date": "2026-11-20",
+              "count": null
+            },
+            {
+              "date": "2026-11-19",
+              "count": null
+            },
+            {
+              "date": "2026-11-18",
+              "count": null
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      },
+      "verification": {
+        "commit": "965fb58b4d9e70cf71a562a052aa7c7e4b0cc73b",
+        "actionsRun": "45418966810",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "0b47680d-a7ae-4de5-b299-abb8e334c533",
       "date": "2026-11-23",
       "createdAt": "2026-11-23T14:52:35.738Z",

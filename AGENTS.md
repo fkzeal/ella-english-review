@@ -1,5 +1,26 @@
 ## 接手顺序与记忆维护
 
+2026-11-24本轮独立维护 run=4c6ffa9e-d1a5-4ab9-bfbd-48ceeec6ecec：
+权威快照恢复后，全量扫描素材修订67/55图、共享反馈4条。逐图复核发现11月23日
+Country Places审阅中的作者、页码及pond/river/road/hill正文不符合原图；
+真实作者Katalina Page、插画Chris Baldwin，第7–10页为shed/pen/corral/garden。
+共享r12保留全部旧题内容及历史，停用q05/q06/q07/q08/q14共5题；原目标定义与映射
+另存权威私有纠正审计，当前learningTargets遵守现行有效题精确覆盖验证器。
+q01/q02/q12/q13仅修正引用及页码，评价身份不变；新增shed/pen/corral三目标三题，
+保持原课程、moduleGeneratedOn及全部batches，不改引擎、账号状态或奖励。
+共享提交965fb58b4d9e70cf71a562a052aa7c7e4b0cc73b、Actions45418966810成功。
+At a Fall Fair全部12图逐图核对，正文与现有题一致。新家庭词汇六图已审阅，
+15词合为11语义目标/11题私有候选；无明确课程/级别，不能猜归类或公开计新增，
+保留pending-integration。此前Scholastic两图待接入、Animal Tongues第7页缺清晰原图
+继续保留。169测试及构建通过；目标覆盖测试现在按有效题集合精确核验，
+不会把停用题混入当前目标数量。本轮私有按v2两处真实缺口各补1题，共2题，
+发布回执与可见性回读通过，账号state摘要保持；新增主要目标0。生产32段MP3摘要一致，
+应用0.7.6保持。当前范围U25/C22/未初筛3，U已含本轮I3；有4个无依据目标停用，
+不套用未调整目录的次日公式。R、稳定掌握与完整七日C/I未知。
+新建Chromium/WebKit本地手机/Pad练习、正常慢速音频、账号隔离及跨设备同步通过。
+最终报告及finish回执以operations为准；素材待接入与缺页尚在，报告为partial，
+不能把共享部署或私有发布事实直接当作全部素材已完成或schedule-maintenance-complete。
+
 2026-11-23本轮独立维护 run=0b47680d-a7ae-4de5-b299-abb8e334c533：
 恢复现有D1权威快照与原租约；全量扫描素材修订64/49图、反馈4条。
 逐图核对23张新图，两本RAZ D《Country Places》《At a Fall Fair》正文第3–12页齐全，
