@@ -86,7 +86,11 @@ test('target audit changes neither published question identity nor existing prog
   for(const l of bank.lessons.filter(l=>l.learningTargets)){
     const ids=l.learningTargets.flatMap(t=>t.questionIds);
     assert.equal(new Set(ids).size,ids.length);
-    assert.equal(ids.length,bank.questions.filter(q=>lesson(q.id)===l.id).length);
+    const lessonQuestions=bank.questions.filter(q=>lesson(q.id)===l.id);
+    const activeQuestions=lessonQuestions.filter(q=>q.active!==false);
+    const coveredQuestions=activeQuestions.length?activeQuestions:lessonQuestions;
+    assert.equal(ids.length,coveredQuestions.length);
+    assert.deepEqual(new Set(ids),new Set(coveredQuestions.map(q=>q.id)));
   }
   const duplicate=structuredClone(bank),targets=duplicate.lessons.find(l=>l.learningTargets).learningTargets;
   targets[1].questionIds.push(targets[0].questionIds[0]);

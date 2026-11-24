@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "revision": 11,
+  "revision": 12,
   "mode": "snapshot",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "batches": [],
   "lessons": [
     {
@@ -250,7 +250,7 @@
         {
           "id": "barn",
           "title": "barn：谷仓",
-          "evidence": "正文第3页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第4页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q01"
           ]
@@ -258,7 +258,7 @@
         {
           "id": "garden",
           "title": "garden：菜园",
-          "evidence": "正文第4页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第10页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q02"
           ]
@@ -266,7 +266,7 @@
         {
           "id": "farmhouse",
           "title": "farmhouse：农舍",
-          "evidence": "正文第5页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第5页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q03"
           ]
@@ -274,47 +274,15 @@
         {
           "id": "field",
           "title": "field：田地",
-          "evidence": "正文第6页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第6页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q04"
           ]
         },
         {
-          "id": "pond",
-          "title": "pond：池塘",
-          "evidence": "正文第7页；代表性覆盖，同目标跨能力不重复计数。",
-          "questionIds": [
-            "raz-d-country-places-q05"
-          ]
-        },
-        {
-          "id": "river",
-          "title": "river：河流",
-          "evidence": "正文第8页；代表性覆盖，同目标跨能力不重复计数。",
-          "questionIds": [
-            "raz-d-country-places-q06"
-          ]
-        },
-        {
-          "id": "road",
-          "title": "road：道路",
-          "evidence": "正文第9页；代表性覆盖，同目标跨能力不重复计数。",
-          "questionIds": [
-            "raz-d-country-places-q07"
-          ]
-        },
-        {
-          "id": "hill",
-          "title": "hill：山丘",
-          "evidence": "正文第10页；代表性覆盖，同目标跨能力不重复计数。",
-          "questionIds": [
-            "raz-d-country-places-q08"
-          ]
-        },
-        {
           "id": "orchard",
           "title": "orchard：果园",
-          "evidence": "正文第11页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第11页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q09"
           ]
@@ -322,7 +290,7 @@
         {
           "id": "farm",
           "title": "farm：农场",
-          "evidence": "正文第12页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第12页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q10"
           ]
@@ -330,7 +298,7 @@
         {
           "id": "country",
           "title": "country：乡村",
-          "evidence": "正文第12页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第12页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q11"
           ]
@@ -338,7 +306,7 @@
         {
           "id": "place-is",
           "title": "It is a + 地点：介绍一个地点",
-          "evidence": "正文第3页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第4页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
             "raz-d-country-places-q12"
           ]
@@ -346,14 +314,37 @@
         {
           "id": "place-match",
           "title": "阅读：匹配地点与原文信息",
-          "evidence": "正文第4页；代表性覆盖，同目标跨能力不重复计数。",
+          "evidence": "正文第10页；本轮逐图复核；代表性覆盖，同目标跨能力不重复计数。",
           "questionIds": [
-            "raz-d-country-places-q13",
-            "raz-d-country-places-q14"
+            "raz-d-country-places-q13"
+          ]
+        },
+        {
+          "id": "shed",
+          "title": "shed：工具棚",
+          "evidence": "正文第7页；原图明确地点词义，本轮补足一题必要代表性覆盖。",
+          "questionIds": [
+            "raz-d-country-places-q15"
+          ]
+        },
+        {
+          "id": "pen",
+          "title": "pen：猪圈",
+          "evidence": "正文第8页；原图明确地点词义，本轮补足一题必要代表性覆盖。",
+          "questionIds": [
+            "raz-d-country-places-q16"
+          ]
+        },
+        {
+          "id": "corral",
+          "title": "corral：围养马的围栏",
+          "evidence": "正文第9页；原图明确地点词义，本轮补足一题必要代表性覆盖。",
+          "questionIds": [
+            "raz-d-country-places-q17"
           ]
         }
       ],
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订64；正文第3–12页及封面。作者 Cheryl Ryan。逐图核对；归档时间不是确认学习日，不新增学习batch。"
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67复核；正文第3–12页及封面。作者 Katalina Page，插画 Chris Baldwin。原图核对；归档时间不是确认学习日，不新增学习batch。"
     },
     {
       "id": "l2-01",
@@ -1417,8 +1408,8 @@
       "lessonId": "raz-d-country-places",
       "module": "lv",
       "title": "词义与活动表达",
-      "description": "依据逐页核对的原文编写代表性覆盖题。",
-      "evidence": "修订64，正文第3–12页。"
+      "description": "已核对乡村地点词义与 It is a + 地点句型；shed、pen、corral各一题代表性覆盖。",
+      "evidence": "Country Places 正文第3–12页；修订67逐图复核。此前不在原图中的地点题已停用，历史题号保留。"
     },
     {
       "id": "raz-d-country-places-grammar",
@@ -1426,7 +1417,7 @@
       "module": "rg",
       "title": "原文句型应用",
       "description": "依据逐页核对的原文编写代表性覆盖题。",
-      "evidence": "修订64，正文第3–12页。"
+      "evidence": "Country Places 正文第3–12页；修订67逐图复核。此前不在原图中的地点题已停用，历史题号保留。"
     },
     {
       "id": "raz-d-country-places-read",
@@ -1434,7 +1425,7 @@
       "module": "skills",
       "title": "从原文匹配信息",
       "description": "依据逐页核对的原文编写代表性覆盖题。",
-      "evidence": "修订64，正文第3–12页。"
+      "evidence": "Country Places 正文第3–12页；修订67逐图复核。此前不在原图中的地点题已停用，历史题号保留。"
     },
     {
       "id": "raz-d-country-places-listen",
@@ -1442,7 +1433,7 @@
       "module": "skills",
       "title": "听懂原句节选",
       "description": "依据逐页核对的原文编写代表性覆盖题。",
-      "evidence": "修订64，正文第3–12页。"
+      "evidence": "Country Places 正文第3–12页；修订67逐图复核。此前不在原图中的地点题已停用，历史题号保留。"
     },
     {
       "id": "raz-d-at-a-fall-fair-words",
@@ -5495,12 +5486,12 @@
       ],
       "answer": 0,
       "explanation": "barn 是谷仓，原文说动物住在里面。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订64；Country Places 第3页；根据原图编写的原创练习，非官方原题",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67复核；Country Places 第4页；原创练习，非官方原题",
       "references": [
         {
           "kind": "original",
-          "text": "What is this place? It is a barn. Animals live in the barn.",
-          "source": "Country Places · 第3页"
+          "text": "What is this place? It is a barn. Animals live in a barn.",
+          "source": "Country Places · 第4页"
         }
       ]
     },
@@ -5517,12 +5508,12 @@
       ],
       "answer": 1,
       "explanation": "garden 在本页指种蔬菜的菜园。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订64；Country Places 第4页；根据原图编写的原创练习，非官方原题",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67复核；Country Places 第10页；原创练习，非官方原题",
       "references": [
         {
           "kind": "original",
-          "text": "What is this place? It is a garden. Vegetables grow in a garden.",
-          "source": "Country Places · 第4页"
+          "text": "What is this place? It is a garden. Vegetables grow in the garden.",
+          "source": "Country Places · 第10页"
         }
       ]
     },
@@ -5590,7 +5581,8 @@
           "text": "What is this place? It is a pond. Ducks swim in the pond.",
           "source": "Country Places · 第7页"
         }
-      ]
+      ],
+      "active": false
     },
     {
       "id": "raz-d-country-places-q06",
@@ -5612,7 +5604,8 @@
           "text": "What is this place? It is a river. Fish swim in the river.",
           "source": "Country Places · 第8页"
         }
-      ]
+      ],
+      "active": false
     },
     {
       "id": "raz-d-country-places-q07",
@@ -5634,7 +5627,8 @@
           "text": "What is this place? It is a road. A tractor goes down the road.",
           "source": "Country Places · 第9页"
         }
-      ]
+      ],
+      "active": false
     },
     {
       "id": "raz-d-country-places-q08",
@@ -5656,7 +5650,8 @@
           "text": "What is this place? It is a hill. A horse runs on the hill.",
           "source": "Country Places · 第10页"
         }
-      ]
+      ],
+      "active": false
     },
     {
       "id": "raz-d-country-places-q09",
@@ -5737,17 +5732,17 @@
       ],
       "answer": 1,
       "explanation": "It 是单数，用 is。保持原文介绍地点的句型，换一个已核对地点应用。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订64；Country Places 第3页；根据原图编写的原创练习，非官方原题",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67复核；Country Places 第4页；原创练习，非官方原题",
       "references": [
         {
           "kind": "original",
-          "text": "What is this place? It is a barn. Animals live in the barn.",
-          "source": "Country Places · 第3页"
+          "text": "What is this place? It is a barn. Animals live in a barn.",
+          "source": "Country Places · 第4页"
         },
         {
           "kind": "practice",
           "text": "What is this place? It ___ a garden.",
-          "source": "本题原创应用练习"
+          "source": "本题原创语法应用练习"
         }
       ]
     },
@@ -5764,12 +5759,22 @@
       ],
       "answer": 2,
       "explanation": "garden 句说明蔬菜在菜园里生长。",
-      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订64；Country Places 第4页；根据原图编写的原创练习，非官方原题",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67复核；Country Places 第10页；原创练习，非官方原题",
       "references": [
         {
           "kind": "original",
-          "text": "What is this place? It is a garden. Vegetables grow in a garden.",
+          "text": "What is this place? It is a garden. Vegetables grow in the garden.",
+          "source": "Country Places · 第10页"
+        },
+        {
+          "kind": "original",
+          "text": "What is this place? It is a barn. Animals live in a barn.",
           "source": "Country Places · 第4页"
+        },
+        {
+          "kind": "practice",
+          "text": "It is a barn. Animals live in the barn.\nIt is a garden. Vegetables grow in a garden.",
+          "source": "本题原创阅读材料；按已核对第4、10页改写，非逐字教材引文"
         }
       ],
       "passage": "It is a barn. Animals live in the barn.\nIt is a garden. Vegetables grow in a garden."
@@ -5795,7 +5800,8 @@
           "source": "Country Places · 第7页"
         }
       ],
-      "audioText": "What is this place? It is a pond. Ducks swim in the pond."
+      "audioText": "What is this place? It is a pond. Ducks swim in the pond.",
+      "active": false
     },
     {
       "id": "raz-d-at-a-fall-fair-q01",
@@ -6106,6 +6112,72 @@
         }
       ],
       "audioText": "You can listen to music at a fall fair."
+    },
+    {
+      "id": "raz-d-country-places-q15",
+      "pointId": "raz-d-country-places-words",
+      "reviewUnit": "shed",
+      "type": "choice",
+      "prompt": "这本书中 shed 指什么地方？",
+      "options": [
+        "存放工具的小棚屋",
+        "种苹果的果园",
+        "一家人住的农舍"
+      ],
+      "answer": 0,
+      "explanation": "shed 是小棚屋、工具棚。原文说 Tools are kept in a shed，工具放在棚屋里。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67；Country Places 第7页；按原图补足真实目标的原创练习",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What is this place? It is a shed. Tools are kept in a shed.",
+          "source": "Country Places · 第7页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-country-places-q16",
+      "pointId": "raz-d-country-places-words",
+      "reviewUnit": "pen",
+      "type": "choice",
+      "prompt": "这本书中 pen 是什么意思？",
+      "options": [
+        "写字用的钢笔",
+        "猪圈",
+        "菜园"
+      ],
+      "answer": 1,
+      "explanation": "本页 pen 指圈养动物的围栏或圈舍；Pigs live in a pen 表明这里是猪圈，不是钢笔。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67；Country Places 第8页；按原图补足真实目标的原创练习",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What is this place? It is a pen. Pigs live in a pen.",
+          "source": "Country Places · 第8页"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-country-places-q17",
+      "pointId": "raz-d-country-places-words",
+      "reviewUnit": "corral",
+      "type": "choice",
+      "prompt": "这本书中 corral 指哪种地方？",
+      "options": [
+        "存放工具的棚屋",
+        "种玉米的田地",
+        "围养马的围栏"
+      ],
+      "answer": 2,
+      "explanation": "corral 是围养牲畜的围栏或围场；本页 Horses run in the corral，说马在围场里跑。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订67；Country Places 第9页；按原图补足真实目标的原创练习",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What is this place? It is a corral. Horses run in the corral.",
+          "source": "Country Places · 第9页"
+        }
+      ]
     }
   ]
 }
