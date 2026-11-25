@@ -1,5 +1,17 @@
 ## 接手顺序与记忆维护
 
+2026-11-25用户明确纠正：2026-11-24六张家庭词汇练习图属于「KET 词汇」，
+必须在已有KET分类下建库，不继续因截图未标出版社/级别而pending-integration。
+现行app.js已有KET词汇入口、engine.js支持system=ket与vocabulary模块，
+本轮只新增ket-family-vocabulary课程：15词、11个主要词义目标、22道共享题，
+包括11道词义练习及11道考试形式的原创语境选词，非官方考试真题。
+同义father/dad、mother/mum、grandfather/grandpa、grandmother/grandma各合为一个目标，
+不同应用题不重复计主要目标；每题明确引用原图，原创短句标practice。
+原六图和旧待接入审计保留；通过生产回读后更新权威账本为published。
+保留旧199题身份、全部batch及已有课程日期，应用0.7.6、奖励和账号代码不改。
+本次是用户纠正后的手动素材补发，不冒称另一轮独立定时维护或私有错题衍生。
+实际提交、Actions与最终回读以本轮operations回执及updates报告为准。
+
 2026-11-24本轮独立维护 run=4c6ffa9e-d1a5-4ab9-bfbd-48ceeec6ecec：
 权威快照恢复后，全量扫描素材修订67/55图、共享反馈4条。逐图复核发现11月23日
 Country Places审阅中的作者、页码及pond/river/road/hill正文不符合原图；

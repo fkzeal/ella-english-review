@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "revision": 12,
+  "revision": 13,
   "mode": "snapshot",
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "batches": [],
   "lessons": [
     {
@@ -1152,6 +1152,120 @@
         }
       ],
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订64；正文第3–12页及封面。作者 Nigel Pepperhouse。逐图核对；归档时间不是确认学习日，不新增学习batch。"
+    },
+    {
+      "id": "ket-family-vocabulary",
+      "system": "ket",
+      "level": "A2",
+      "number": 1,
+      "title": "Family · 家庭与亲属",
+      "subtitle": "15个已核对词汇 · 词义练习与考试形式的原创语境选词",
+      "status": "ready",
+      "moduleGeneratedOn": {
+        "vocabulary": "2026-11-25"
+      },
+      "learningTargets": [
+        {
+          "id": "family",
+          "title": "family：家庭、家人",
+          "evidence": "家庭词汇素材图1；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q01",
+            "ket-family-vocabulary-q02"
+          ]
+        },
+        {
+          "id": "family-tree",
+          "title": "family tree：家谱",
+          "evidence": "家庭词汇素材图1；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q03",
+            "ket-family-vocabulary-q04"
+          ]
+        },
+        {
+          "id": "grandparent",
+          "title": "grandparent：祖父或祖母",
+          "evidence": "家庭词汇素材图1；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q05",
+            "ket-family-vocabulary-q06"
+          ]
+        },
+        {
+          "id": "grandfather",
+          "title": "grandfather / grandpa：祖父、外祖父",
+          "evidence": "家庭词汇素材图2；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q07",
+            "ket-family-vocabulary-q08"
+          ]
+        },
+        {
+          "id": "grandmother",
+          "title": "grandmother / grandma：祖母、外祖母",
+          "evidence": "家庭词汇素材图2；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q09",
+            "ket-family-vocabulary-q10"
+          ]
+        },
+        {
+          "id": "father",
+          "title": "father / dad：父亲",
+          "evidence": "家庭词汇素材图3；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q11",
+            "ket-family-vocabulary-q12"
+          ]
+        },
+        {
+          "id": "mother",
+          "title": "mother / mum：母亲",
+          "evidence": "家庭词汇素材图4；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q13",
+            "ket-family-vocabulary-q14"
+          ]
+        },
+        {
+          "id": "parent",
+          "title": "parent：父亲或母亲",
+          "evidence": "家庭词汇素材图4；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q15",
+            "ket-family-vocabulary-q16"
+          ]
+        },
+        {
+          "id": "uncle",
+          "title": "uncle：叔父、伯父、舅父等",
+          "evidence": "家庭词汇素材图4；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q17",
+            "ket-family-vocabulary-q18"
+          ]
+        },
+        {
+          "id": "aunt",
+          "title": "aunt：阿姨、姨妈等",
+          "evidence": "家庭词汇素材图4；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q19",
+            "ket-family-vocabulary-q20"
+          ]
+        },
+        {
+          "id": "son",
+          "title": "son：儿子",
+          "evidence": "家庭词汇素材图5；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "questionIds": [
+            "ket-family-vocabulary-q21",
+            "ket-family-vocabulary-q22"
+          ]
+        }
+      ],
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；2026-11-24家庭词汇六图逐图复核；用户2026-11-25明确确认归入KET词汇。课程归属由用户确认，非截图猜测；题目为原创练习，非官方试题；未提供确认学习日，沿用新模块日期默认规则。"
     }
   ],
   "points": [
@@ -1466,6 +1580,14 @@
       "title": "听懂原句节选",
       "description": "依据逐页核对的原文编写代表性覆盖题。",
       "evidence": "修订64，正文第3–12页。"
+    },
+    {
+      "id": "ket-family-vocabulary-words",
+      "lessonId": "ket-family-vocabulary",
+      "module": "vocabulary",
+      "title": "Family · 家庭词汇",
+      "description": "覆盖家庭、家谱及亲属称谓；11个主要词义目标，15种词汇表达；词义与语境应用分别练习，不重复计主要目标。",
+      "evidence": "用户确认KET词汇归属；家庭词汇素材图1–6逐图核对；不根据截图得分生成错题证据。"
     }
   ],
   "questions": [
@@ -6176,6 +6298,575 @@
           "kind": "original",
           "text": "What is this place? It is a corral. Horses run in the corral.",
           "source": "Country Places · 第9页"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q01",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "family-meaning",
+      "type": "choice",
+      "prompt": "family 在家庭词汇中是什么意思？",
+      "options": [
+        "家庭、家人",
+        "学校、同学",
+        "花园、植物"
+      ],
+      "answer": 0,
+      "explanation": "family：家庭、家人。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图1；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "family n.家庭，家人，家族",
+          "source": "家庭词汇截图 · 素材图1 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q02",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "family-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nMy mother, father and I live together. We are a ___.",
+      "options": [
+        "family",
+        "school",
+        "garden"
+      ],
+      "answer": 0,
+      "explanation": "mother、father 和 I 共同组成一个家庭，应用名词 family。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图1；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "family n.家庭，家人，家族",
+          "source": "家庭词汇截图 · 素材图1 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "My mother, father and I live together. We are a ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q03",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "family-tree-meaning",
+      "type": "choice",
+      "prompt": "family tree 表示什么？",
+      "options": [
+        "果树",
+        "家谱",
+        "圣诞树"
+      ],
+      "answer": 1,
+      "explanation": "family tree：家谱。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图1；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "family tree n.系谱",
+          "source": "家庭词汇截图 · 素材图1 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q04",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "family-tree-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nThis chart shows my parents, grandparents and me. It is my ___.",
+      "options": [
+        "family tree",
+        "school timetable",
+        "shopping list"
+      ],
+      "answer": 0,
+      "explanation": "图表展示父母、祖父母与自己的家庭关系，叫 family tree（家谱）。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图1；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "family tree n.系谱",
+          "source": "家庭词汇截图 · 素材图1 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "This chart shows my parents, grandparents and me. It is my ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q05",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "grandparent-meaning",
+      "type": "choice",
+      "prompt": "grandparent 可以指哪位家人？",
+      "options": [
+        "父亲或母亲",
+        "叔叔或姨妈",
+        "祖父或祖母"
+      ],
+      "answer": 2,
+      "explanation": "grandparent：祖父或祖母。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图1；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandparent n.祖父母，祖父或祖母",
+          "source": "家庭词汇截图 · 素材图1 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q06",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "grandparent-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nMy grandmother is one of my ___.",
+      "options": [
+        "parents",
+        "grandparents",
+        "sons"
+      ],
+      "answer": 1,
+      "explanation": "grandmother 属于祖父母这一代；grandparent 的复数 grandparents 包括祖父和祖母。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图1；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandparent n.祖父母，祖父或祖母",
+          "source": "家庭词汇截图 · 素材图1 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "My grandmother is one of my ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q07",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "grandfather-meaning",
+      "type": "choice",
+      "prompt": "grandfather 和 grandpa 在称呼家人时都指什么？",
+      "options": [
+        "祖父、外祖父",
+        "父亲",
+        "叔叔"
+      ],
+      "answer": 0,
+      "explanation": "grandfather / grandpa：祖父、外祖父。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图2；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandfather n.祖父，始祖（更偏向书面语）；grandpa n.（口语）（外）祖父，爷爷，外公",
+          "source": "家庭词汇截图 · 素材图2 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "note",
+          "text": "grandfather 可指祖父或外祖父；grandpa 是常见口语称呼。",
+          "source": "家庭亲属称谓说明；用于解释原创练习的明确关系"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q08",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "grandfather-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nMy dad calls his father “Dad”. I call the same man “___”.",
+      "options": [
+        "Mum",
+        "Grandpa",
+        "Son"
+      ],
+      "answer": 1,
+      "explanation": "爸爸的父亲是自己的祖父；Grandpa 是 grandfather 的口语称呼。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图2；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandfather n.祖父，始祖（更偏向书面语）；grandpa n.（口语）（外）祖父，爷爷，外公",
+          "source": "家庭词汇截图 · 素材图2 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "My dad calls his father “Dad”. I call the same man “___”.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        },
+        {
+          "kind": "note",
+          "text": "grandfather 可指祖父或外祖父；grandpa 是常见口语称呼。",
+          "source": "家庭亲属称谓说明；用于解释原创练习的明确关系"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q09",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "grandmother-meaning",
+      "type": "choice",
+      "prompt": "grandmother 和 grandma 都可用于称呼哪位家人？",
+      "options": [
+        "姨妈",
+        "祖母、外祖母",
+        "母亲"
+      ],
+      "answer": 1,
+      "explanation": "grandmother / grandma：祖母、外祖母。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图2；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandmother n.（外）祖母，奶奶，外婆（更偏向书面语）；grandma n.（口语化的）（外）祖母，奶奶",
+          "source": "家庭词汇截图 · 素材图2 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q10",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "grandmother-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nMy mum is visiting her mother. I am visiting my ___.",
+      "options": [
+        "grandma",
+        "aunt",
+        "father"
+      ],
+      "answer": 0,
+      "explanation": "妈妈的母亲是自己的外祖母，可称 grandma；这个词也可以称奶奶。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图2；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandmother n.（外）祖母，奶奶，外婆（更偏向书面语）；grandma n.（口语化的）（外）祖母，奶奶",
+          "source": "家庭词汇截图 · 素材图2 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "My mum is visiting her mother. I am visiting my ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q11",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "father-meaning",
+      "type": "choice",
+      "prompt": "father 和 dad 在家庭称谓中是什么意思？",
+      "options": [
+        "儿子",
+        "祖父",
+        "父亲"
+      ],
+      "answer": 2,
+      "explanation": "father / dad：父亲。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图3；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "dad n.爸爸，爹爹；father n.父亲，爸爸",
+          "source": "家庭词汇截图 · 素材图3 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q12",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "father-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\n“Dad, can you help me?” Tom asks his ___.",
+      "options": [
+        "uncle",
+        "father",
+        "grandmother"
+      ],
+      "answer": 1,
+      "explanation": "Dad 是爸爸的口语称呼，与家庭称谓中的 father 对应。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图3；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "dad n.爸爸，爹爹；father n.父亲，爸爸",
+          "source": "家庭词汇截图 · 素材图3 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "“Dad, can you help me?” Tom asks his ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q13",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "mother-meaning",
+      "type": "choice",
+      "prompt": "mother 和 mum 在家庭称谓中都指什么？",
+      "options": [
+        "母亲",
+        "祖母",
+        "姨妈"
+      ],
+      "answer": 0,
+      "explanation": "mother / mum：母亲。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "mum n.妈妈，妈（素材图3）；mother n.母亲（素材图4）",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q14",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "mother-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\n“Mum, here is a card for you!” Lily gives the card to her ___.",
+      "options": [
+        "grandfather",
+        "son",
+        "mother"
+      ],
+      "answer": 2,
+      "explanation": "Mum 是妈妈的口语称呼，对应 mother。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "mum n.妈妈，妈（素材图3）；mother n.母亲（素材图4）",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "“Mum, here is a card for you!” Lily gives the card to her ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q15",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "parent-meaning",
+      "type": "choice",
+      "prompt": "parent 可以表示哪一项？",
+      "options": [
+        "仅祖父",
+        "父亲或母亲",
+        "仅儿子"
+      ],
+      "answer": 1,
+      "explanation": "parent：父亲或母亲。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "parent n.父亲（或母亲），家长",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q16",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "parent-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nPlease ask one ___ to sign the form. Your mother or father can do it.",
+      "options": [
+        "parent",
+        "son",
+        "uncle"
+      ],
+      "answer": 0,
+      "explanation": "后句明确说 mother 或 father 均可，所以前面用 parent。one 后用单数。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "parent n.父亲（或母亲），家长",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "Please ask one ___ to sign the form. Your mother or father can do it.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q17",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "uncle-meaning",
+      "type": "choice",
+      "prompt": "uncle 在家庭称谓中可表示什么？",
+      "options": [
+        "母亲",
+        "儿子",
+        "叔父、伯父等男性长辈"
+      ],
+      "answer": 2,
+      "explanation": "uncle：叔父、伯父、舅父等。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "uncle n.叔父，伯父，姨丈",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "note",
+          "text": "uncle 是男性亲属称谓，可对应父母的兄弟或相关姻亲；英文不按中文称谓区分伯父与叔父。",
+          "source": "家庭亲属称谓说明；用于解释原创练习的明确关系"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q18",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "uncle-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nMy father has a brother, Jack. Jack is my ___.",
+      "options": [
+        "grandfather",
+        "uncle",
+        "son"
+      ],
+      "answer": 1,
+      "explanation": "父亲的兄弟是自己的伯父或叔父，英文称 uncle。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "uncle n.叔父，伯父，姨丈",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "My father has a brother, Jack. Jack is my ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        },
+        {
+          "kind": "note",
+          "text": "uncle 是男性亲属称谓，可对应父母的兄弟或相关姻亲；英文不按中文称谓区分伯父与叔父。",
+          "source": "家庭亲属称谓说明；用于解释原创练习的明确关系"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q19",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "aunt-meaning",
+      "type": "choice",
+      "prompt": "aunt 在家庭称谓中是什么意思？",
+      "options": [
+        "阿姨、姨妈等",
+        "祖父",
+        "父亲"
+      ],
+      "answer": 0,
+      "explanation": "aunt：阿姨、姨妈等。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "aunt n.阿姨，姨妈",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "note",
+          "text": "aunt 是女性亲属称谓，可对应父母的姐妹或相关姻亲；本题短句明确为母亲的姐妹。",
+          "source": "家庭亲属称谓说明；用于解释原创练习的明确关系"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q20",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "aunt-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nMy mother has a sister, Lucy. Lucy is my ___.",
+      "options": [
+        "mother",
+        "aunt",
+        "grandma"
+      ],
+      "answer": 1,
+      "explanation": "母亲的姐妹是自己的姨妈，英文称 aunt；不是自己的 mother 或 grandma。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图4；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "aunt n.阿姨，姨妈",
+          "source": "家庭词汇截图 · 素材图4 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "My mother has a sister, Lucy. Lucy is my ___.",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        },
+        {
+          "kind": "note",
+          "text": "aunt 是女性亲属称谓，可对应父母的姐妹或相关姻亲；本题短句明确为母亲的姐妹。",
+          "source": "家庭亲属称谓说明；用于解释原创练习的明确关系"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q21",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "son-meaning",
+      "type": "choice",
+      "prompt": "son 是什么意思？",
+      "options": [
+        "父亲",
+        "儿子",
+        "叔叔"
+      ],
+      "answer": 1,
+      "explanation": "son：儿子。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图5；用户确认KET词汇归属；词义练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "son n.儿子",
+          "source": "家庭词汇截图 · 素材图5 · 已核对词句（标点整理）"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-vocabulary-q22",
+      "pointId": "ket-family-vocabulary-words",
+      "reviewUnit": "son-context",
+      "type": "cloze",
+      "prompt": "词汇应用 · 选词填空：\nTom is a boy. His mother introduces him: “This is my ___, Tom.”",
+      "options": [
+        "father",
+        "uncle",
+        "son"
+      ],
+      "answer": 2,
+      "explanation": "母亲介绍自己的男孩 Tom，用 son（儿子）。",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图5；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "son n.儿子",
+          "source": "家庭词汇截图 · 素材图5 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "practice",
+          "text": "Tom is a boy. His mother introduces him: “This is my ___, Tom.”",
+          "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
         }
       ]
     }
