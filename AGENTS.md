@@ -223,6 +223,25 @@ preview.4修复1400px上限造成的答题区/字号回退：所有701px以上�
 每次接手依次完整阅读 `MIGRATION_START_HERE.md`、`PROJECT_MEMORY.md`、
 `CONVERSATION_DECISIONS.md`、本文件，以及 `复习策略与考点核查.md`。
 这些是长期记忆和决策摘要，不是完整聊天原文。用户新指令优先于历史文档。
+
+2026-11-25 本轮独立 schedule 维护 run `7dfc6a2a-7cfa-41f7-9b0f-6caf5e7dbe2a`：
+权威 D1 恢复、租约续租及修订69全79图扫描成功，新增24图已逐图核对并在生产验证后标published。
+题库r14/271题，新增共享50题、34主要目标：RAZ D《At the Library》《Getting Around the City》
+各10目标/11题，KET People人物词汇15表达/14目标/28题；child/children共一目标。
+历史KET家庭22题/11目标及旧221题保持，不计本轮新增；新模块日期沿用默认规则，非确认学习日。
+共享提交 `fc6317a779576ef4a0cfb906b82ece38eee3c5d4`、Actions `45639598531`成功；
+音频清单退役保留修复 `076e32f8b5363a1dbde036e69661bc7e056c6b3e`、
+Actions `45640589285`成功，生产逐项核对34录音及9代码资源、题库/清单一致，账号state回读不变。
+170项测试通过；真实Chromium/WebKit手机/Pad各作答50新题，KET入口、默认10题、刷新续练及正常/慢速音频通过。
+账号同步隔离测试通过；WebKit同设备反复切换多账号触及localStorage配额，连续切换场景不得写PASS，
+需后续专项处理缓存容量，本轮未改账号代码。单账号、离线、跨设备、奖励与隔离另行验证通过。
+私有来源读取成功，A/B/C候选0、实际私有新增0；复用2、暂停9、待讲解3、冷却3、
+来源排除5、待素材2、待题族0、额度等待0。12历史operations/回执已核验，不重发旧payload。
+4条反馈全读：3验证记录、1 Animal Tongues p7仍缺清晰原图及具体问题；无新依据不改答案。
+Scholastic两图9目标/9候选保持待真实体系接入，不误归RAZ/KET。完整U/R及七日平均C/I未知。
+本轮报告必须标partial，最终以云端schedule-maintenance-partial回执与报告部署证据为准；
+完整50道上线共享题正文入原/updates/，历史报告保留。用户已授权原任务完整维护和自动原main发布，
+旧禁发/待授权/取消说明均为历史，不新增调度；临时凭据完成后删除，凭据不得进入公开文件。
 每次任务结束更新版本事实、决策与待办；首次迁移只核验现有线上版本，不发布。
 
 本仓库实际位置为 `/Users/Ivens/Documents/trae_projects/Vibe Coding/ella-english-review`。
