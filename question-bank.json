@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": 13,
+  "revision": 14,
   "mode": "snapshot",
   "updated": "2026-11-25",
   "batches": [],
@@ -1266,6 +1266,343 @@
         }
       ],
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；2026-11-24家庭词汇六图逐图复核；用户2026-11-25明确确认归入KET词汇。课程归属由用户确认，非截图猜测；题目为原创练习，非官方试题；未提供确认学习日，沿用新模块日期默认规则。"
+    },
+    {
+      "id": "raz-d-at-the-library",
+      "system": "raz",
+      "level": "D",
+      "number": 7,
+      "title": "At the Library",
+      "subtitle": "已核对封面及正文第3–10页",
+      "status": "ready",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-25",
+        "rg": "2026-11-25",
+        "skills": "2026-11-25"
+      },
+      "learningTargets": [
+        {
+          "id": "library",
+          "title": "library：图书馆",
+          "evidence": "At the Library · 第3页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q01"
+          ]
+        },
+        {
+          "id": "read-books",
+          "title": "read books：读书",
+          "evidence": "At the Library · 第4页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q02"
+          ]
+        },
+        {
+          "id": "make-art",
+          "title": "make art：进行艺术创作",
+          "evidence": "At the Library · 第5页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q03"
+          ]
+        },
+        {
+          "id": "listen-stories",
+          "title": "listen to stories：听故事",
+          "evidence": "At the Library · 第6页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q04"
+          ]
+        },
+        {
+          "id": "play-games",
+          "title": "play games：玩游戏",
+          "evidence": "At the Library · 第7页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q05"
+          ]
+        },
+        {
+          "id": "write-stories",
+          "title": "write stories：写故事",
+          "evidence": "At the Library · 第8页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q06"
+          ]
+        },
+        {
+          "id": "make-friends",
+          "title": "make friends：交朋友",
+          "evidence": "At the Library · 第9页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q07"
+          ]
+        },
+        {
+          "id": "fun-place",
+          "title": "a fun place to visit：适合去玩的有趣地方",
+          "evidence": "At the Library · 第10页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q08"
+          ]
+        },
+        {
+          "id": "can-base",
+          "title": "can 后接动词原形",
+          "evidence": "At the Library · 第8页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q09"
+          ]
+        },
+        {
+          "id": "activity-match",
+          "title": "阅读：区分听故事和写故事",
+          "evidence": "At the Library · 第6页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-at-the-library-q10",
+            "raz-d-at-the-library-q11"
+          ]
+        }
+      ],
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图1–9；作者 Keith and Sarah Kortemartin，插画 Ivica Stevanovic；RAZ Level D。；归档日期不是确认学习日；无新增batch，沿用新模块生成日前一天的默认日期。"
+    },
+    {
+      "id": "raz-d-getting-around-the-city",
+      "system": "raz",
+      "level": "D",
+      "number": 8,
+      "title": "Getting Around the City",
+      "subtitle": "已核对封面及正文第3–10页",
+      "status": "ready",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-25",
+        "rg": "2026-11-25",
+        "skills": "2026-11-25"
+      },
+      "learningTargets": [
+        {
+          "id": "skateboard",
+          "title": "skateboard：滑板",
+          "evidence": "Getting Around the City · 第3页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q01"
+          ]
+        },
+        {
+          "id": "bike",
+          "title": "bike：自行车",
+          "evidence": "Getting Around the City · 第4页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q02"
+          ]
+        },
+        {
+          "id": "car",
+          "title": "car：汽车",
+          "evidence": "Getting Around the City · 第5页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q03"
+          ]
+        },
+        {
+          "id": "subway",
+          "title": "subway：地铁",
+          "evidence": "Getting Around the City · 第6页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q04"
+          ]
+        },
+        {
+          "id": "taxi",
+          "title": "taxi：出租车",
+          "evidence": "Getting Around the City · 第7页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q05"
+          ]
+        },
+        {
+          "id": "bus",
+          "title": "bus：公交车",
+          "evidence": "Getting Around the City · 第8页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q06"
+          ]
+        },
+        {
+          "id": "ferry-boat",
+          "title": "ferry boat：渡船",
+          "evidence": "Getting Around the City · 第9页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q07"
+          ]
+        },
+        {
+          "id": "walk",
+          "title": "walk：步行",
+          "evidence": "Getting Around the City · 第10页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q08"
+          ]
+        },
+        {
+          "id": "go-goes",
+          "title": "一般现在时：she/he 用 goes",
+          "evidence": "Getting Around the City · 第4页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q09"
+          ]
+        },
+        {
+          "id": "destination-match",
+          "title": "阅读：匹配人物、目的地与交通方式",
+          "evidence": "Getting Around the City · 第7页 · 原图已核对；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "raz-d-getting-around-the-city-q10",
+            "raz-d-getting-around-the-city-q11"
+          ]
+        }
+      ],
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图10–18；作者 Kira Freed，插画 Fred Volke；RAZ Level D。；归档日期不是确认学习日；无新增batch，沿用新模块生成日前一天的默认日期。"
+    },
+    {
+      "id": "ket-people-vocabulary",
+      "system": "ket",
+      "level": "A2",
+      "number": 2,
+      "title": "People · 人物与称谓",
+      "subtitle": "15种表达 · 14个主要目标 · 词义与原创考试形式语境练习",
+      "status": "ready",
+      "moduleGeneratedOn": {
+        "vocabulary": "2026-11-25"
+      },
+      "learningTargets": [
+        {
+          "id": "daughter",
+          "title": "daughter：女儿",
+          "evidence": "人物词汇素材图19 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q01",
+            "ket-people-vocabulary-q02"
+          ]
+        },
+        {
+          "id": "brother",
+          "title": "brother：兄弟；哥哥或弟弟",
+          "evidence": "人物词汇素材图19 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q03",
+            "ket-people-vocabulary-q04"
+          ]
+        },
+        {
+          "id": "sister",
+          "title": "sister：姐妹；姐姐或妹妹",
+          "evidence": "人物词汇素材图19 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q05",
+            "ket-people-vocabulary-q06"
+          ]
+        },
+        {
+          "id": "cousin",
+          "title": "cousin：堂兄弟姐妹或表兄弟姐妹",
+          "evidence": "人物词汇素材图19 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q07",
+            "ket-people-vocabulary-q08"
+          ]
+        },
+        {
+          "id": "mr",
+          "title": "Mr.：先生；用于男性姓氏等前的称呼",
+          "evidence": "人物词汇素材图20 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q09",
+            "ket-people-vocabulary-q10"
+          ]
+        },
+        {
+          "id": "mrs",
+          "title": "Mrs.：夫人；传统上用于已婚女性的称呼",
+          "evidence": "人物词汇素材图20 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q11",
+            "ket-people-vocabulary-q12"
+          ]
+        },
+        {
+          "id": "ms",
+          "title": "Ms.：女士；不说明女性婚姻状况的称呼",
+          "evidence": "人物词汇素材图20 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q13",
+            "ket-people-vocabulary-q14"
+          ]
+        },
+        {
+          "id": "miss",
+          "title": "Miss：小姐；传统上用于未婚女性的称呼",
+          "evidence": "人物词汇素材图20 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q15",
+            "ket-people-vocabulary-q16"
+          ]
+        },
+        {
+          "id": "boy",
+          "title": "boy：男孩",
+          "evidence": "人物词汇素材图21 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q17",
+            "ket-people-vocabulary-q18"
+          ]
+        },
+        {
+          "id": "girl",
+          "title": "girl：女孩",
+          "evidence": "人物词汇素材图21 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q19",
+            "ket-people-vocabulary-q20"
+          ]
+        },
+        {
+          "id": "teenager",
+          "title": "teenager：青少年；13至19岁的人",
+          "evidence": "人物词汇素材图22 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q21",
+            "ket-people-vocabulary-q22"
+          ]
+        },
+        {
+          "id": "child",
+          "title": "child / children：孩子；children 是 child 的复数",
+          "evidence": "人物词汇素材图22 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q23",
+            "ket-people-vocabulary-q24"
+          ]
+        },
+        {
+          "id": "grandchild",
+          "title": "grandchild：孙辈；孙子、孙女、外孙或外孙女",
+          "evidence": "人物词汇素材图23 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q25",
+            "ket-people-vocabulary-q26"
+          ]
+        },
+        {
+          "id": "grandson",
+          "title": "grandson：孙子或外孙",
+          "evidence": "人物词汇素材图23 · 原图已核对摘录；同目标跨题型不重复计主要目标。",
+          "questionIds": [
+            "ket-people-vocabulary-q27",
+            "ket-people-vocabulary-q28"
+          ]
+        }
+      ],
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图19–24；沿用用户确认的独立词汇回顾图归入KET词汇规则；A2为KET分类对应级别，不是截图标注的出版社或书本级别。；归档日期不是确认学习日；无新增batch，沿用新模块生成日前一天的默认日期。"
     }
   ],
   "points": [
@@ -1588,6 +1925,78 @@
       "title": "Family · 家庭词汇",
       "description": "覆盖家庭、家谱及亲属称谓；11个主要词义目标，15种词汇表达；词义与语境应用分别练习，不重复计主要目标。",
       "evidence": "用户确认KET词汇归属；家庭词汇素材图1–6逐图核对；不根据截图得分生成错题证据。"
+    },
+    {
+      "id": "raz-d-at-the-library-words",
+      "lessonId": "raz-d-at-the-library",
+      "module": "lv",
+      "title": "词义与表达",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图1–9；作者 Keith and Sarah Kortemartin，插画 Ivica Stevanovic；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-at-the-library-grammar",
+      "lessonId": "raz-d-at-the-library",
+      "module": "rg",
+      "title": "原文句型应用",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图1–9；作者 Keith and Sarah Kortemartin，插画 Ivica Stevanovic；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-at-the-library-read",
+      "lessonId": "raz-d-at-the-library",
+      "module": "skills",
+      "title": "从原文匹配信息",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图1–9；作者 Keith and Sarah Kortemartin，插画 Ivica Stevanovic；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-at-the-library-listen",
+      "lessonId": "raz-d-at-the-library",
+      "module": "skills",
+      "title": "听懂原句节选",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图1–9；作者 Keith and Sarah Kortemartin，插画 Ivica Stevanovic；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-getting-around-the-city-words",
+      "lessonId": "raz-d-getting-around-the-city",
+      "module": "lv",
+      "title": "词义与表达",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图10–18；作者 Kira Freed，插画 Fred Volke；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-getting-around-the-city-grammar",
+      "lessonId": "raz-d-getting-around-the-city",
+      "module": "rg",
+      "title": "原文句型应用",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图10–18；作者 Kira Freed，插画 Fred Volke；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-getting-around-the-city-read",
+      "lessonId": "raz-d-getting-around-the-city",
+      "module": "skills",
+      "title": "从原文匹配信息",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图10–18；作者 Kira Freed，插画 Fred Volke；RAZ Level D。"
+    },
+    {
+      "id": "raz-d-getting-around-the-city-listen",
+      "lessonId": "raz-d-getting-around-the-city",
+      "module": "skills",
+      "title": "听懂原句节选",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图10–18；作者 Kira Freed，插画 Fred Volke；RAZ Level D。"
+    },
+    {
+      "id": "ket-people-vocabulary-words",
+      "lessonId": "ket-people-vocabulary",
+      "module": "vocabulary",
+      "title": "词义与原创考试形式应用",
+      "description": "依据逐图核对的素材制作代表性覆盖题。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图19–24；沿用用户确认的独立词汇回顾图归入KET词汇规则；A2为KET分类对应级别，不是截图标注的出版社或书本级别。"
     }
   ],
   "questions": [
@@ -6867,6 +7276,1210 @@
           "kind": "practice",
           "text": "Tom is a boy. His mother introduces him: “This is my ___, Tom.”",
           "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q01",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "library",
+      "type": "choice",
+      "prompt": "library 在这句话中指什么地方？",
+      "options": [
+        "图书馆",
+        "机场",
+        "医院"
+      ],
+      "answer": 0,
+      "explanation": "library 是图书馆；原文说孩子们在那里可以做许多事。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can do a lot at the library.",
+          "source": "At the Library · 第3页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q02",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "read-books",
+      "type": "choice",
+      "prompt": "read books 是做什么？",
+      "options": [
+        "写故事",
+        "读书",
+        "玩游戏"
+      ],
+      "answer": 1,
+      "explanation": "read 是读，books 是书；read books 表示读书。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can read books at the library.",
+          "source": "At the Library · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q03",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "make-art",
+      "type": "choice",
+      "prompt": "make art 在这里指什么活动？",
+      "options": [
+        "赶公交车",
+        "听故事",
+        "进行艺术创作"
+      ],
+      "answer": 2,
+      "explanation": "make art 指进行艺术创作；第5页图中孩子们制作面具等作品。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can make art at the library.",
+          "source": "At the Library · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q04",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "listen-stories",
+      "type": "choice",
+      "prompt": "listen to stories 表示什么？",
+      "options": [
+        "听故事",
+        "写信",
+        "骑车"
+      ],
+      "answer": 0,
+      "explanation": "listen to 是听，stories 是故事；这里是听故事。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can listen to stories at the library.",
+          "source": "At the Library · 第6页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q05",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "play-games",
+      "type": "choice",
+      "prompt": "play games 的意思是什么？",
+      "options": [
+        "整理家谱",
+        "玩游戏",
+        "乘船"
+      ],
+      "answer": 1,
+      "explanation": "play games 表示玩游戏；原图中孩子们在下棋。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can play games at the library.",
+          "source": "At the Library · 第7页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q06",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "write-stories",
+      "type": "choice",
+      "prompt": "write stories 和 listen to stories 不同，它表示什么？",
+      "options": [
+        "听别人讲故事",
+        "读别人写的故事",
+        "写故事"
+      ],
+      "answer": 2,
+      "explanation": "write 是写；write stories 是自己写故事，listen to stories 是听故事。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can write stories at the library.",
+          "source": "At the Library · 第8页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q07",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "make-friends",
+      "type": "choice",
+      "prompt": "make friends 表示什么？",
+      "options": [
+        "交朋友",
+        "制作书架",
+        "购买食物"
+      ],
+      "answer": 0,
+      "explanation": "make friends 是交朋友，不是把朋友制作出来。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can make friends at the library.",
+          "source": "At the Library · 第9页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q08",
+      "pointId": "raz-d-at-the-library-words",
+      "reviewUnit": "fun-place",
+      "type": "choice",
+      "prompt": "原文怎样形容图书馆？",
+      "options": [
+        "一个没人能去的地方",
+        "一个有趣、值得去的地方",
+        "一个只用来停车的地方"
+      ],
+      "answer": 1,
+      "explanation": "fun 表示有趣的，a place to visit 表示可以去参观或到访的地方。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The library is a fun place to visit.",
+          "source": "At the Library · 第10页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q09",
+      "pointId": "raz-d-at-the-library-grammar",
+      "reviewUnit": "can-base",
+      "type": "cloze",
+      "prompt": "原创句型练习：Kids can ___ stories at the library.",
+      "options": [
+        "writes",
+        "writing",
+        "write"
+      ],
+      "answer": 2,
+      "explanation": "can 后接动词原形，因此用 write，不加 -s 或 -ing。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can write stories at the library.",
+          "source": "At the Library · 第8页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Kids can write stories at the library.",
+          "source": "依据原文句型制作的原创填空练习"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-at-the-library-q10",
+      "pointId": "raz-d-at-the-library-read",
+      "reviewUnit": "activity-match",
+      "type": "reading",
+      "prompt": "根据这两句原文，哪项配对正确？",
+      "options": [
+        "listen to stories → 听故事；write stories → 写故事",
+        "listen to stories → 写故事；write stories → 听故事",
+        "两种表达都只表示读书"
+      ],
+      "answer": 0,
+      "explanation": "listen to 表示听，write 表示写；原文分别在第6页和第8页介绍这两项活动。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can listen to stories at the library.",
+          "source": "At the Library · 第6页 · 原图已核对"
+        },
+        {
+          "kind": "original",
+          "text": "Kids can write stories at the library.",
+          "source": "At the Library · 第8页 · 原图已核对"
+        }
+      ],
+      "passage": "Kids can listen to stories at the library.\nKids can write stories at the library."
+    },
+    {
+      "id": "raz-d-at-the-library-q11",
+      "pointId": "raz-d-at-the-library-listen",
+      "reviewUnit": "activity-match",
+      "type": "listening",
+      "prompt": "听录音，第一句和第二句分别说孩子们可以做什么？",
+      "options": [
+        "写故事，然后听故事",
+        "听故事，然后写故事",
+        "玩游戏，然后交朋友"
+      ],
+      "answer": 1,
+      "explanation": "第一句是 listen to stories（听故事），第二句是 write stories（写故事）。",
+      "source": "At the Library；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Kids can listen to stories at the library.",
+          "source": "At the Library · 第6页 · 原图已核对"
+        },
+        {
+          "kind": "original",
+          "text": "Kids can write stories at the library.",
+          "source": "At the Library · 第8页 · 原图已核对"
+        }
+      ],
+      "audioText": "Kids can listen to stories at the library. Kids can write stories at the library."
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q01",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "skateboard",
+      "type": "choice",
+      "prompt": "skateboard 是哪种物品？",
+      "options": [
+        "滑板",
+        "出租车",
+        "渡船"
+      ],
+      "answer": 0,
+      "explanation": "skateboard 是滑板；原文中的“我”踩滑板去朋友家。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "I go to my friend's house.\nI go on my skateboard.",
+          "source": "Getting Around the City · 第3页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q02",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "bike",
+      "type": "choice",
+      "prompt": "bike 是什么交通工具？",
+      "options": [
+        "汽车",
+        "自行车",
+        "地铁"
+      ],
+      "answer": 1,
+      "explanation": "bike 是自行车，原文中的姐姐或妹妹骑自行车去学校。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My sister goes to school.\nShe goes on a bike.",
+          "source": "Getting Around the City · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q03",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "car",
+      "type": "choice",
+      "prompt": "原文中的 car 是什么？",
+      "options": [
+        "公交车",
+        "滑板",
+        "汽车"
+      ],
+      "answer": 2,
+      "explanation": "car 是汽车；原文说妈妈坐汽车去工作。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My mom goes to work.\nShe goes in a car.",
+          "source": "Getting Around the City · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q04",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "subway",
+      "type": "choice",
+      "prompt": "subway 的意思是什么？",
+      "options": [
+        "地铁",
+        "飞机",
+        "渡船"
+      ],
+      "answer": 0,
+      "explanation": "subway 是地铁；原文中的爸爸乘地铁去工作。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My dad goes to work.\nHe goes on the subway.",
+          "source": "Getting Around the City · 第6页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q05",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "taxi",
+      "type": "choice",
+      "prompt": "taxi 是什么交通工具？",
+      "options": [
+        "自行车",
+        "出租车",
+        "公交车"
+      ],
+      "answer": 1,
+      "explanation": "taxi 是出租车；原文中的祖父乘出租车去机场。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My grandpa goes to the airport.\nHe goes in a taxi.",
+          "source": "Getting Around the City · 第7页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q06",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "bus",
+      "type": "choice",
+      "prompt": "bus 的意思是什么？",
+      "options": [
+        "滑板",
+        "地铁",
+        "公交车"
+      ],
+      "answer": 2,
+      "explanation": "bus 是公交车；原文中的阿姨乘公交车去商店。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My aunt goes to the store.\nShe goes on a bus.",
+          "source": "Getting Around the City · 第8页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q07",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "ferry-boat",
+      "type": "choice",
+      "prompt": "ferry boat 是什么？",
+      "options": [
+        "渡船",
+        "出租车",
+        "自行车"
+      ],
+      "answer": 0,
+      "explanation": "ferry boat 是渡船；原文说叔叔乘渡船去办公室。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My uncle goes to his office.\nHe goes on a ferry boat.",
+          "source": "Getting Around the City · 第9页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q08",
+      "pointId": "raz-d-getting-around-the-city-words",
+      "reviewUnit": "walk",
+      "type": "choice",
+      "prompt": "We walk. 说明大家怎样去公园？",
+      "options": [
+        "坐出租车",
+        "步行",
+        "乘地铁"
+      ],
+      "answer": 1,
+      "explanation": "walk 是步行；We walk. 表示我们走路去。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "We all go to the park.\nWe walk.",
+          "source": "Getting Around the City · 第10页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q09",
+      "pointId": "raz-d-getting-around-the-city-grammar",
+      "reviewUnit": "go-goes",
+      "type": "cloze",
+      "prompt": "原创句型练习：My sister ___ to school.",
+      "options": [
+        "go",
+        "going",
+        "goes"
+      ],
+      "answer": 2,
+      "explanation": "My sister 是第三人称单数，一般现在时用 goes。I/We go；She/He goes。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My sister goes to school.\nShe goes on a bike.",
+          "source": "Getting Around the City · 第4页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "My sister goes to school.",
+          "source": "依据原文句型制作的原创填空练习"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q10",
+      "pointId": "raz-d-getting-around-the-city-read",
+      "reviewUnit": "destination-match",
+      "type": "reading",
+      "prompt": "根据两段原文，谁乘出租车去机场？",
+      "options": [
+        "My grandpa.",
+        "My aunt.",
+        "Both of them."
+      ],
+      "answer": 0,
+      "explanation": "第7页说祖父（grandpa）乘出租车（taxi）去机场；第8页说阿姨（aunt）乘公交车（bus）去商店。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My grandpa goes to the airport.\nHe goes in a taxi.",
+          "source": "Getting Around the City · 第7页 · 原图已核对"
+        },
+        {
+          "kind": "original",
+          "text": "My aunt goes to the store.\nShe goes on a bus.",
+          "source": "Getting Around the City · 第8页 · 原图已核对"
+        }
+      ],
+      "passage": "My grandpa goes to the airport.\nHe goes in a taxi.\nMy aunt goes to the store.\nShe goes on a bus."
+    },
+    {
+      "id": "raz-d-getting-around-the-city-q11",
+      "pointId": "raz-d-getting-around-the-city-listen",
+      "reviewUnit": "destination-match",
+      "type": "listening",
+      "prompt": "听录音，谁去机场，谁去商店？",
+      "options": [
+        "阿姨去机场；祖父去商店",
+        "两个人都去学校",
+        "祖父去机场；阿姨去商店"
+      ],
+      "answer": 2,
+      "explanation": "My grandpa goes to the airport. 是祖父去机场；My aunt goes to the store. 是阿姨去商店。",
+      "source": "Getting Around the City；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "My grandpa goes to the airport.\nHe goes in a taxi.",
+          "source": "Getting Around the City · 第7页 · 原图已核对"
+        },
+        {
+          "kind": "original",
+          "text": "My aunt goes to the store.\nShe goes on a bus.",
+          "source": "Getting Around the City · 第8页 · 原图已核对"
+        }
+      ],
+      "audioText": "My grandpa goes to the airport. He goes in a taxi. My aunt goes to the store. She goes on a bus."
+    },
+    {
+      "id": "ket-people-vocabulary-q01",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "daughter",
+      "type": "choice",
+      "prompt": "词义练习：daughter 表示什么？",
+      "options": [
+        "女儿",
+        "儿子",
+        "父亲"
+      ],
+      "answer": 0,
+      "explanation": "daughter 表示“女儿”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "daughter：女儿",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q02",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "daughter",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：Our baby is a girl. She is our ___.",
+      "options": [
+        "daughter",
+        "son",
+        "father"
+      ],
+      "answer": 0,
+      "explanation": "父母的女孩是他们的 daughter（女儿）。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "daughter：女儿",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "Our baby is a girl. She is our ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q03",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "brother",
+      "type": "choice",
+      "prompt": "词义练习：brother 表示什么？",
+      "options": [
+        "姐妹",
+        "兄弟；哥哥或弟弟",
+        "祖父"
+      ],
+      "answer": 1,
+      "explanation": "brother 表示“兄弟；哥哥或弟弟”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "brother：兄弟；哥哥或弟弟",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q04",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "brother",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：Tom and I have the same parents. Tom is a boy. He is my ___.",
+      "options": [
+        "sister",
+        "brother",
+        "mother"
+      ],
+      "answer": 1,
+      "explanation": "同父母的男孩与“我”是兄弟关系；brother 是哥哥或弟弟。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "brother：兄弟；哥哥或弟弟",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "Tom and I have the same parents. Tom is a boy. He is my ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q05",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "sister",
+      "type": "choice",
+      "prompt": "词义练习：sister 表示什么？",
+      "options": [
+        "兄弟",
+        "叔父",
+        "姐妹；姐姐或妹妹"
+      ],
+      "answer": 2,
+      "explanation": "sister 表示“姐妹；姐姐或妹妹”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "sister：姐妹；姐姐或妹妹",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q06",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "sister",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：Anna and I have the same parents. Anna is a girl. She is my ___.",
+      "options": [
+        "uncle",
+        "grandfather",
+        "sister"
+      ],
+      "answer": 2,
+      "explanation": "同父母的女孩与“我”是姐妹关系；sister 是姐姐或妹妹。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "sister：姐妹；姐姐或妹妹",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "Anna and I have the same parents. Anna is a girl. She is my ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q07",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "cousin",
+      "type": "choice",
+      "prompt": "词义练习：cousin 表示什么？",
+      "options": [
+        "堂兄弟姐妹或表兄弟姐妹",
+        "父母",
+        "祖父母"
+      ],
+      "answer": 0,
+      "explanation": "cousin 表示“堂兄弟姐妹或表兄弟姐妹”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "cousin：堂兄弟姐妹或表兄弟姐妹",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q08",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "cousin",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：My aunt's child is my ___.",
+      "options": [
+        "cousin",
+        "parent",
+        "grandparent"
+      ],
+      "answer": 0,
+      "explanation": "阿姨的孩子与“我”是表亲关系，英文用 cousin；cousin 本身不区分性别。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "cousin：堂兄弟姐妹或表兄弟姐妹",
+          "source": "人物词汇素材图19 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "My aunt's child is my ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q09",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "mr",
+      "type": "choice",
+      "prompt": "词义练习：Mr. 表示什么？",
+      "options": [
+        "用于女性且不说明婚姻状况的称呼",
+        "先生；用于男性姓氏等前的称呼",
+        "传统未婚女性称呼"
+      ],
+      "answer": 1,
+      "explanation": "Mr. 表示“先生；用于男性姓氏等前的称呼”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Mr.：先生；用于男性姓氏等前的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q10",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "mr",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：John Green is a man. On his letter, we write “___ Green”.",
+      "options": [
+        "Miss",
+        "Mr.",
+        "Mrs."
+      ],
+      "answer": 1,
+      "explanation": "Mr. 用于男性的姓氏等之前，与婚姻状况无关；这里是 Mr. Green。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Mr.：先生；用于男性姓氏等前的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "John Green is a man. On his letter, we write “___ Green”.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q11",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "mrs",
+      "type": "choice",
+      "prompt": "词义练习：Mrs. 表示什么？",
+      "options": [
+        "传统未婚女性称呼",
+        "男性称呼",
+        "夫人；传统上用于已婚女性的称呼"
+      ],
+      "answer": 2,
+      "explanation": "Mrs. 表示“夫人；传统上用于已婚女性的称呼”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Mrs.：夫人；传统上用于已婚女性的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q12",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "mrs",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：Helen Brown is married. She asks us to call her “___ Brown”, using the traditional married-woman title.",
+      "options": [
+        "Mr.",
+        "Miss",
+        "Mrs."
+      ],
+      "answer": 2,
+      "explanation": "题目明确要求传统的已婚女性称谓，所以用 Mrs.；Ms. 不表示婚姻状况。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Mrs.：夫人；传统上用于已婚女性的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "Helen Brown is married. She asks us to call her “___ Brown”, using the traditional married-woman title.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q13",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "ms",
+      "type": "choice",
+      "prompt": "词义练习：Ms. 表示什么？",
+      "options": [
+        "女士；不说明女性婚姻状况的称呼",
+        "男性称呼",
+        "只用于表示男性孙辈的词"
+      ],
+      "answer": 0,
+      "explanation": "Ms. 表示“女士；不说明女性婚姻状况的称呼”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Ms.：女士；不说明女性婚姻状况的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q14",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "ms",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：A woman asks us to use a title that does not say whether she is married: “___ Lee”.",
+      "options": [
+        "Ms.",
+        "Mrs.",
+        "Mr."
+      ],
+      "answer": 0,
+      "explanation": "Ms. 是女士，使用时不说明是否已婚；Mrs. 传统上表示已婚女性，Mr. 用于男性。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Ms.：女士；不说明女性婚姻状况的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "A woman asks us to use a title that does not say whether she is married: “___ Lee”.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q15",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "miss",
+      "type": "choice",
+      "prompt": "词义练习：Miss 表示什么？",
+      "options": [
+        "男性称呼",
+        "小姐；传统上用于未婚女性的称呼",
+        "传统已婚女性称呼"
+      ],
+      "answer": 1,
+      "explanation": "Miss 表示“小姐；传统上用于未婚女性的称呼”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Miss：小姐；传统上用于未婚女性的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q16",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "miss",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：Jane White is not married. She chooses the traditional unmarried-woman title: “___ White”.",
+      "options": [
+        "Mrs.",
+        "Miss",
+        "Mr."
+      ],
+      "answer": 1,
+      "explanation": "题目明确指定传统的未婚女性称谓，因此用 Miss；不应仅凭女性名字推断婚姻状况。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "Miss：小姐；传统上用于未婚女性的称呼",
+          "source": "人物词汇素材图20 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "Jane White is not married. She chooses the traditional unmarried-woman title: “___ White”.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q17",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "boy",
+      "type": "choice",
+      "prompt": "词义练习：boy 表示什么？",
+      "options": [
+        "女孩",
+        "成年女性",
+        "男孩"
+      ],
+      "answer": 2,
+      "explanation": "boy 表示“男孩”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "boy：男孩",
+          "source": "人物词汇素材图21 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q18",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "boy",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：The child is male. He is a ___.",
+      "options": [
+        "woman",
+        "girl",
+        "boy"
+      ],
+      "answer": 2,
+      "explanation": "male 表示男性的；男性孩子是 boy（男孩）。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "boy：男孩",
+          "source": "人物词汇素材图21 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "The child is male. He is a ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q19",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "girl",
+      "type": "choice",
+      "prompt": "词义练习：girl 表示什么？",
+      "options": [
+        "女孩",
+        "男孩",
+        "成年男性"
+      ],
+      "answer": 0,
+      "explanation": "girl 表示“女孩”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "girl：女孩",
+          "source": "人物词汇素材图21 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q20",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "girl",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：The child is female. She is a ___.",
+      "options": [
+        "girl",
+        "man",
+        "boy"
+      ],
+      "answer": 0,
+      "explanation": "female 表示女性的；女性孩子是 girl（女孩）。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "girl：女孩",
+          "source": "人物词汇素材图21 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "The child is female. She is a ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q21",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "teenager",
+      "type": "choice",
+      "prompt": "词义练习：teenager 表示什么？",
+      "options": [
+        "婴儿",
+        "青少年；13至19岁的人",
+        "任何年龄的成年人"
+      ],
+      "answer": 1,
+      "explanation": "teenager 表示“青少年；13至19岁的人”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "teenager：青少年；13至19岁的人",
+          "source": "人物词汇素材图22 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q22",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "teenager",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：Ben is sixteen years old. He is a ___.",
+      "options": [
+        "baby",
+        "teenager",
+        "grandparent"
+      ],
+      "answer": 1,
+      "explanation": "16岁在13至19岁之间，所以是 teenager。该词可以指男生或女生。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "teenager：青少年；13至19岁的人",
+          "source": "人物词汇素材图22 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "Ben is sixteen years old. He is a ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q23",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "child",
+      "type": "choice",
+      "prompt": "词义练习：child / children 表示什么？",
+      "options": [
+        "只有成年男性",
+        "祖父母",
+        "孩子；children 是 child 的复数"
+      ],
+      "answer": 2,
+      "explanation": "child / children 表示“孩子；children 是 child 的复数”。child 是单数，children 是复数，两者不重复计主要目标。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "child / children：孩子；children 是 child 的复数",
+          "source": "人物词汇素材图22 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q24",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "child",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：There are three ___ playing in the park.",
+      "options": [
+        "child",
+        "childs",
+        "children"
+      ],
+      "answer": 2,
+      "explanation": "三个孩子是复数，应使用 children；child 的复数不是 childs。词形合为一个主要目标。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "child / children：孩子；children 是 child 的复数",
+          "source": "人物词汇素材图22 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "There are three ___ playing in the park.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q25",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "grandchild",
+      "type": "choice",
+      "prompt": "词义练习：grandchild 表示什么？",
+      "options": [
+        "孙辈；孙子、孙女、外孙或外孙女",
+        "父母",
+        "兄弟姐妹"
+      ],
+      "answer": 0,
+      "explanation": "grandchild 表示“孙辈；孙子、孙女、外孙或外孙女”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandchild：孙辈；孙子、孙女、外孙或外孙女",
+          "source": "人物词汇素材图23 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q26",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "grandchild",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：My daughter's child is my ___.",
+      "options": [
+        "grandchild",
+        "parent",
+        "brother"
+      ],
+      "answer": 0,
+      "explanation": "自己的女儿或儿子的孩子是 grandchild（孙辈），该词不限定性别。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandchild：孙辈；孙子、孙女、外孙或外孙女",
+          "source": "人物词汇素材图23 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "My daughter's child is my ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q27",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "grandson",
+      "type": "choice",
+      "prompt": "词义练习：grandson 表示什么？",
+      "options": [
+        "祖母",
+        "孙子或外孙",
+        "女儿"
+      ],
+      "answer": 1,
+      "explanation": "grandson 表示“孙子或外孙”。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandson：孙子或外孙",
+          "source": "人物词汇素材图23 · 原图已核对摘录"
+        }
+      ]
+    },
+    {
+      "id": "ket-people-vocabulary-q28",
+      "pointId": "ket-people-vocabulary-words",
+      "reviewUnit": "grandson",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：My son's child is a boy. He is my ___.",
+      "options": [
+        "grandmother",
+        "grandson",
+        "daughter"
+      ],
+      "answer": 1,
+      "explanation": "自己儿子的男孩是 grandson；grandchild 泛指孙辈，grandson 明确指男性孙辈。",
+      "source": "People · 人物与称谓；依据已核对素材的原创练习，非官方试题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "grandson：孙子或外孙",
+          "source": "人物词汇素材图23 · 原图已核对摘录"
+        },
+        {
+          "kind": "practice",
+          "text": "My son's child is a boy. He is my ___.",
+          "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
         }
       ]
     }

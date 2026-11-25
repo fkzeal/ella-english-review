@@ -153,20 +153,30 @@
       "duration": 4.248,
       "sha256": "6fd5ea4a9921d39584f4a0ad3e027d3d1d7e54dbdf7dded75f8322459cc5c7b8"
     },
-    "What is this place? It is a pond. Ducks swim in the pond.": {
-      "file": "audio/ff6e5255a9c20cbec374d160.mp3",
-      "duration": 5.16,
-      "sha256": "d91c583abefa797dfe287f5a9f25fe4aba439c3a024269a7ed38b596113ba959"
-    },
     "You can listen to music at a fall fair.": {
       "file": "audio/f9f8509ff4eabcc6dbb179dc.mp3",
       "duration": 2.448,
       "sha256": "f8d381c284c8c55d857e8106934f6e451be63922f0c11b129f85aad0b1706245"
     },
+    "Kids can listen to stories at the library. Kids can write stories at the library.": {
+      "file": "audio/a2b100255b88234ad7b4cdc9.mp3",
+      "duration": 5.136,
+      "sha256": "52b01035160cf9da6cabbded07a7465c044e235f0636ae3f778df52441c62520"
+    },
+    "My grandpa goes to the airport. He goes in a taxi. My aunt goes to the store. She goes on a bus.": {
+      "file": "audio/a5c8fea92b9ed8d75e594dd1.mp3",
+      "duration": 8.088,
+      "sha256": "5c4e6b89635c42e7a796be71bc09dec50a0e86627009addecc0c3b11d4ab81d6"
+    },
     "Hello! Let us review English together. I always go swimming on Tuesdays.": {
       "file": "audio/ead508667dd0aca4bf2ceabc.mp3",
       "duration": 6.0,
       "sha256": "e7a973a8816700be58319031b53694ca3ed099afca153d190d44b4970796b1a1"
+    },
+    "What is this place? It is a pond. Ducks swim in the pond.": {
+      "file": "audio/ff6e5255a9c20cbec374d160.mp3",
+      "duration": 5.16,
+      "sha256": "d91c583abefa797dfe287f5a9f25fe4aba439c3a024269a7ed38b596113ba959"
     }
   }
 }
