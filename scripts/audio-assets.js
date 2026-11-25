@@ -2,7 +2,9 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 function prepareAudio(root,bank){
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'audio/manifest.json'),'utf8'));
   if(!manifest.demoText||!manifest.clips)throw new Error('Missing listening manifest');
-  const texts=[manifest.demoText,...bank.questions.filter(q=>q.active!==false&&q.type==='listening').map(q=>q.audioText)];
+  // Retiring a question preserves its history and recorded clip. Keep every
+  // validated manifest entry available, including clips not in the active set.
+  const texts=[...new Set([manifest.demoText,...bank.questions.filter(q=>q.active!==false&&q.type==='listening').map(q=>q.audioText),...Object.keys(manifest.clips)])];
   const files=new Map(),standalone=structuredClone(manifest);
   for(const text of texts){
     const clip=manifest.clips[text];

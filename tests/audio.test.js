@@ -23,12 +23,22 @@ function harness({voices=[],reject,clip=true}={}){
 }
 test('every current listening script has a checksum-verified clip and offline embedding',()=>{
   const audio=prepareAudio(path.resolve(__dirname,'..'),bank);
-  const texts=new Set([manifest.demoText,...bank.questions.filter(q=>q.active!==false&&q.type==='listening').map(q=>q.audioText)]);
+  const texts=new Set([manifest.demoText,...Object.keys(manifest.clips)]);
   assert.equal(audio.files.size,new Set([...texts].map(text=>manifest.clips[text].file)).size);
   for(const q of bank.questions.filter(q=>q.type==='listening')){
     assert(audio.manifest.clips[q.audioText]);
   }
   assert.match(audio.standaloneScript,/data:audio\/mpeg;base64,/);
+});
+test('retiring listening questions retains the recorded manifest clips and offline playback',()=>{
+  const retired=structuredClone(bank);
+  for(const q of retired.questions)if(q.type==='listening')q.active=false;
+  const audio=prepareAudio(path.resolve(__dirname,'..'),retired);
+  const offline=JSON.parse(audio.standaloneScript.replace(/^window.LESSON_AUDIO = /,'').replace(/;\n$/,''));
+  for(const [text,clip] of Object.entries(manifest.clips)){
+    assert(audio.files.has(clip.file),'Retired or retained clip must remain in the deployment');
+    assert.match(offline.clips[text].file,/^data:audio\/mpeg;base64,/);
+  }
 });
 test('live manifest replacement stops old playback and uses the refreshed recorded clip',()=>{
   const h=harness();h.play();const old=h.media[0],late=old.onended;
