@@ -1,12 +1,14 @@
 (function(root,factory){
-  const api=factory(typeof module==='object'&&module.exports?require('./account-state'):root.AccountState);
+  const api=factory(typeof module==='object'&&module.exports?require('./account-state'):root.AccountState,
+    typeof module==='object'&&module.exports?require('./account-cache'):root.AccountCache);
   if(typeof module==='object'&&module.exports)module.exports=api;else root.AccountSync=api;
-})(typeof globalThis!=='undefined'?globalThis:this,function(S){
+})(typeof globalThis!=='undefined'?globalThis:this,function(S,C){
   'use strict';
   const KEY='ella-account-v1',DEVICE='ella-account-installation-v1';
   const ACCOUNTS=[['ella','Ella'],['dad','爸爸'],['mom','妈妈'],['test-1','测试一'],['test-2','测试二'],['test-3','测试三']];
-  function create({storage,crypto,fetch,enabled,getBundle,applyBundle,onChange=()=>{}}){
+  function create({storage,crypto,fetch,enabled,getBundle,applyBundle,onChange=()=>{},indexedDB=globalThis.indexedDB}){
     let busy=false,error='',syncedAt=null,dirty=false;
+    const snapshots=C.create(storage,indexedDB);
     const read=key=>{const text=storage.getItem(key);return text?JSON.parse(text):null;};
     const write=(key,value)=>storage.setItem(key,JSON.stringify(value));
     function installation(){
@@ -36,19 +38,18 @@
         throw e;
       }finally{clearTimeout(timeout);}
     }
-    function cache(bundle){
+    async function cache(bundle){
       const id=bundle.state.accountId||'unbound';
-      write(KEY+'-backup-'+id,bundle);
-      write(KEY+'-last-backup',bundle);
+      await snapshots.put([[KEY+'-backup-'+id,bundle],[KEY+'-last-backup',bundle]]);
     }
     async function accept(response,binding){
       await applyBundle(response.bundle);
-      write(KEY+'-base-'+binding.id,response);
+      await snapshots.put([[KEY+'-base-'+binding.id,response]]);
       syncedAt=response.updatedAt;error='';dirty=false;
     }
-    function sourceFor(id,current,importLocal){
+    async function sourceFor(id,current,importLocal){
       if(current.state.accountId===id)return current;
-      const cached=read(KEY+'-backup-'+id);
+      const cached=await snapshots.get(KEY+'-backup-'+id);
       if(cached)return cached;
       if(!current.state.accountId&&importLocal)return current;
       return null;
@@ -58,13 +59,22 @@
       if(busy)throw new Error('正在同步，请稍后再试');
       busy=true;error='';onChange();
       try{
-        const current=S.copy(getBundle());cache(current);
+        await snapshots.migrate();
+        const current=S.copy(getBundle());await cache(current);
         const response=await request('login',{accountId:id,code,deviceId:installation(),initialize},null);
         const binding={id,name:response.account.name,token:response.token,expiresAt:response.expiresAt};
-        const source=sourceFor(id,current,importLocal);
+        const source=await sourceFor(id,current,importLocal);
         let bundle=source?await S.normalize(source,{accountId:id,deviceId:installation(),crypto,migrate:true}):response.bundle;
         if(!bundle){
-          const empty=S.copy(current);empty.state={version:1,learned:{},points:{},history:[],session:null,settings:{size:6},accountId:id,accountSessions:{}};
+          const empty=S.copy(current);
+          // A new account starts with shared content, never the previous
+          // learner's private variants or progress.
+          empty.bank.questions=empty.bank.questions.filter(q=>!q.practiceFor);
+          delete empty.bank.practiceAccountId;
+          const ids=new Set(empty.bank.questions.map(q=>q.id));
+          for(const lesson of empty.bank.lessons)for(const target of lesson.learningTargets||[])target.questionIds=target.questionIds.filter(q=>ids.has(q));
+          empty.baseline=JSON.stringify(empty.bank);
+          empty.state={version:1,learned:{},points:{},history:[],session:null,settings:{size:10},accountId:id,accountSessions:{}};
           bundle=await S.normalize(empty,{accountId:id,deviceId:installation(),crypto});
         }
         // Existing cloud preferences win the initial merge; local histories/cats survive.
@@ -83,6 +93,7 @@
       if(!enabled||!binding||busy)return false;
       busy=true;error='';onChange();
       try{
+        await snapshots.migrate();
         if(getBundle().state.accountId!==binding.id)throw new Error('本机记录所属账号与登录账号不同，请重新绑定');
         // Recover an acknowledged-but-unseen chest before sending any snapshot.
         const pending=read(KEY+'-open-'+binding.id);
@@ -90,20 +101,20 @@
           try{
             const response=await request('open',pending,binding);
             const local=await S.normalize(getBundle(),{accountId:binding.id,deviceId:installation(),crypto});
-            const merged=S.merge(read(KEY+'-base-'+binding.id)?.bundle,local,response.bundle);
-            await applyBundle(merged);write(KEY+'-base-'+binding.id,response);
+            const merged=S.merge((await snapshots.get(KEY+'-base-'+binding.id))?.bundle,local,response.bundle);
+            await applyBundle(merged);await snapshots.put([[KEY+'-base-'+binding.id,response]]);
             write(KEY+'-open-'+binding.id,null);
           }catch(e){if(e.status===409)write(KEY+'-open-'+binding.id,null);else throw e;}
         }
         for(let attempt=0;attempt<3;attempt++){
           const remote=await request('state',null,binding);
           const local=await S.normalize(getBundle(),{accountId:binding.id,deviceId:installation(),crypto});
-          let base=read(KEY+'-base-'+binding.id)?.bundle;
+          let base=(await snapshots.get(KEY+'-base-'+binding.id))?.bundle;
           if(preferCloud&&remote.bundle){
             // Explicit recovery keeps immutable attempts and cats; only conflicting
             // scheduling preferences and the shared cursor use the cloud version.
-            cache(local);
-            write(KEY+'-conflict-'+binding.id,{local,remote});
+            await cache(local);
+            await snapshots.put([[KEY+'-conflict-'+binding.id,{local,remote}]]);
             base=S.copy(local);
             const pendingSession=local.state.session;
             for(const key of ['settings','moduleDates','session'])local.state[key]=S.copy(remote.bundle.state[key]);
@@ -142,7 +153,7 @@
       if(!await sync())throw new Error(error||'请联网同步后再开宝箱；星星已经保存在本机');
       busy=true;onChange();
       try{
-        const base=read(KEY+'-base-'+binding.id);
+        const base=await snapshots.get(KEY+'-base-'+binding.id);
         const pending={operationId:crypto.randomUUID(),revision:base.revision};
         write(KEY+'-open-'+binding.id,pending);
         const response=await request('open',pending,binding);
@@ -153,15 +164,16 @@
     }
     async function logout(){
       if(!await sync())throw new Error('请先同步成功再退出，避免留下未上传记录');
-      cache(getBundle());await request('logout',{});write(KEY,null);onChange();
+      await cache(getBundle());await request('logout',{});write(KEY,null);onChange();
     }
     async function backup(){
       const response=await request('state');
       if(!response.bundle)throw new Error('云端还没有备份');
       return {kind:'lesson-loop-backup',version:1,exportedAt:new Date().toISOString(),...response.bundle};
     }
-    function localBackup(){
-      const bundle=read(KEY+'-last-backup');
+    async function localBackup(){
+      await snapshots.migrate();
+      const bundle=await snapshots.get(KEY+'-last-backup');
       if(!bundle)throw new Error('还没有迁移前备份；可以导出当前完整备份。');
       return {kind:'lesson-loop-backup',version:1,exportedAt:new Date().toISOString(),...bundle};
     }
@@ -175,7 +187,7 @@
       if(!await sync())throw new Error(error||'请先联网同步再恢复备份');
       busy=true;onChange();
       try{
-        cache(getBundle());
+        await cache(getBundle());
         const source=await S.normalize(bundle,{accountId:binding.id,deviceId:installation(),crypto,migrate:true});
         const remote=await request('state');
         const known=new Map((remote.bundle?.state.history||[]).map(h=>[h.syncId,h]));
@@ -193,7 +205,7 @@
         await accept(response,binding);
       }finally{busy=false;onChange();}
     }
-    return {view,login,sync,prepare,open,logout,installation,backup,localBackup,resolve,importBundle,
+    return {view,login,sync,prepare,open,logout,installation,backup,localBackup,resolve,importBundle,migrateCache:()=>snapshots.migrate(),
       accountStatus:()=>request('status',null,null),markDirty:()=>{dirty=true;}};
   }
   return {KEY,ACCOUNTS,create};

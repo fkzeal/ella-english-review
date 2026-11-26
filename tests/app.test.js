@@ -24,6 +24,17 @@ function harness(initial,shared,overrides={}){
     async change(el){await node('app').listeners.change({target:el});},
     saved(){return JSON.parse(data.get(S.KEY));}};
 }
+test('Scholastic is a separate course category with its own numeric level and complete targets',async()=>{
+  const app=harness();await app.ready();
+  await app.click('nav',{target:'courses'});
+  assert.match(app.node('app').innerHTML,/data-system="scholastic">Scholastic 阅读/);
+  await app.click('system',{system:'scholastic'});
+  const html=app.node('app').innerHTML;
+  assert.match(html,/Scholastic Level 3/);
+  assert.match(html,/Is This a Real Animal/);
+  assert.match(html,/9 个学习目标 · 9 道练习题/);
+  assert.doesNotMatch(html,/People · 人物|Family · 家庭|RAZ D/);
+});
 test('app startup with invalid data renders recovery controls without overwriting data',async()=>{
   const raw=JSON.stringify({bank,state:{...E.emptyState(),settings:{size:999}}}),app=harness(raw);
   await app.ready();

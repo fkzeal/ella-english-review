@@ -29,6 +29,18 @@ with sync_playwright() as p:
             ctx.route(BASE + "/**", intercept)
             if seed:
                 ctx.add_init_script("if(!localStorage.getItem('lesson-loop-data-v1'))localStorage.setItem('lesson-loop-data-v1'," + json.dumps(json.dumps(fixture["seed"])) + ");")
+                ctx.add_init_script("""(()=>{
+                  if(localStorage.getItem('fixture-quota-seeded'))return;
+                  const b=JSON.parse(localStorage.getItem('lesson-loop-data-v1'));
+                  b.bank.revision-=1;b.baseline=JSON.stringify(b.bank);
+                  localStorage.setItem('lesson-loop-data-v1',JSON.stringify(b));
+                  localStorage.setItem('fixture-quota-seeded','true');
+                  for(let n=0;n<32;n++){
+                    try{localStorage.setItem('ella-account-v1-conflict-prefill-'+n,JSON.stringify(b));}
+                    catch(e){window.__legacyQuotaReached=e.name==='QuotaExceededError';break;}
+                  }
+                  window.__legacyQuotaBytes=Object.keys(localStorage).reduce((n,k)=>n+2*(k.length+localStorage.getItem(k).length),0);
+                })();""")
             page = ctx.new_page()
             page.on("pageerror", lambda e: errors.append(str(e)))
             return ctx, page
@@ -58,6 +70,9 @@ with sync_playwright() as p:
         first, page = context(seed=True)
         page.goto(BASE)
         page.wait_for_load_state("networkidle")
+        assert page.evaluate("window.__legacyQuotaReached===true")
+        legacy_bytes=page.evaluate("window.__legacyQuotaBytes")
+        assert page.evaluate("()=>Object.keys(localStorage).every(k=>!k.startsWith('ella-account-v1-conflict-prefill-'))")
         page.set_viewport_size({"width": 390, "height": 844})
         page.screenshot(path=f"/tmp/ella-cloud-evidence/{engine.name}-binding.png")
         assert page.evaluate("document.documentElement.scrollWidth<=innerWidth")
@@ -134,8 +149,42 @@ with sync_playwright() as p:
             target = next(t for l in private_bank["lessons"] if l["id"] == "l2-02" for t in l["learningTargets"] if t["id"] == "comic")
             assert private_id in target["questionIds"]
             assert private_id not in [q["id"] for q in fixture["seed"]["bank"]["questions"]]
+        # Reproduce the old full-snapshot localStorage layout, then repeatedly
+        # switch every supported account in one device without clearing storage.
+        other.evaluate("""()=>{
+          const bundle=JSON.parse(localStorage.getItem('lesson-loop-data-v1'));
+          const id=bundle.state.accountId;
+          localStorage.setItem('ella-account-v1-backup-'+id,JSON.stringify(bundle));
+          localStorage.setItem('ella-account-v1-last-backup',JSON.stringify(bundle));
+        }""")
+        expected={}
+        if other.locator('[data-parent-entry]').is_visible():
+            other.locator('[data-parent-entry]').click()
+        for cycle in range(3):
+            for id in ["ella","dad","mom","test-1","test-2","test-3"]:
+                other.locator('[data-action="account"]').first.click()
+                bind(other,id,import_local=False)
+                snapshot=saved(other)
+                owned_bank=other.evaluate("JSON.parse(localStorage.getItem('lesson-loop-data-v1')).bank")
+                assert all(not q.get("practiceFor") or q["practiceFor"]==id for q in owned_bank["questions"])
+                stable={key:snapshot.get(key) for key in ["history","rewards","settings","moduleDates","session"]}
+                # Fresh accounts may omit optional empty fields until their
+                # first merge; compare records, not absent-vs-empty containers.
+                stable["rewards"]=stable["rewards"] or {"version":1,"balance":0,"settlements":[],"openings":[]}
+                stable["moduleDates"]=stable["moduleDates"] or {}
+                if id in expected:
+                    assert stable==expected[id],(engine.name,id,cycle,{key:{"before":expected[id][key],"after":stable[key]} for key in stable if stable[key]!=expected[id][key]})
+                else:
+                    expected[id]=stable
+                assert other.evaluate("""()=>Object.keys(localStorage).every(k=>
+                  !/^ella-account-v1-(backup-|base-|conflict-|last-backup)/.test(k))""")
+                other.reload()
+                other.wait_for_load_state("networkidle")
+                assert saved(other)["accountId"]==id
+                other.locator('[data-parent-entry]').click()
         assert not errors, errors
-        print(engine.name + ": first password + confirmation, existing password, migration, mobile, offline, cross-device resume, rewards, account isolation PASS")
+        final_bytes=other.evaluate("()=>Object.keys(localStorage).reduce((n,k)=>n+2*(k.length+localStorage.getItem(k).length),0)")
+        print(engine.name + ": quota-filled legacy startup + bank upgrade, first password + confirmation, existing password, legacy cache migration, mobile, offline, cross-device resume, rewards, account isolation, 18 consecutive switches across six accounts + reload PASS; localStorage bytes before="+str(legacy_bytes)+" after="+str(final_bytes))
         first.close()
         second.close()
         browser.close()

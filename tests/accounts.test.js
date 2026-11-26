@@ -120,8 +120,8 @@ test('client migrates once, uploads offline work, restores on a fresh device and
   try{
     function client(initial=fresh()){
       const map=new Map();let bundle=copy(initial),offline=false,loseOpen=false;
-      const storage={getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v)};
-      const client=Sync.create({storage,crypto,enabled:true,getBundle:()=>bundle,applyBundle:async b=>{bundle=copy(b);},fetch:async(url,opts)=>{
+      const storage={get length(){return map.size;},key:i=>[...map.keys()][i],getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)};
+      const client=Sync.create({storage,indexedDB:new (require('fake-indexeddb').IDBFactory)(),crypto,enabled:true,getBundle:()=>bundle,applyBundle:async b=>{bundle=copy(b);},fetch:async(url,opts)=>{
         if(offline)throw new Error('offline');
         const data=opts.body?JSON.parse(opts.body):null;
         const auth=opts.headers.Authorization?{token:opts.headers.Authorization.slice(7),deviceId:opts.headers['X-Device-Id']}:null;
@@ -153,11 +153,20 @@ test('client migrates once, uploads offline work, restores on a fresh device and
     assert.match(b.client.view().error,/两个设备/);
     await b.client.resolve();
     assert.equal(b.get().state.settings.size,6);
-    assert.equal(b.client.localBackup().state.settings.size,15,'conflict original is exportable');
+    assert.equal((await b.client.localBackup()).state.settings.size,15,'conflict original is exportable');
     const before=copy(b.get());
     await b.client.importBundle(before);
     assert.equal(b.get().state.history.length,2,'restoring own backup does not duplicate attempts');
     await assert.rejects(()=>b.client.importBundle({...before,state:{...before.state,accountId:'dad'}}),/另一个账号/);
+    const privateCurrent=copy(a.get()),variant={...privateCurrent.bank.questions[0],id:'fixture-private-previous',practiceFor:'ella'};
+    privateCurrent.bank.questions.push(variant);
+    const initialized=client(privateCurrent);
+    await initialized.client.login('test-2',await h.accountCode(h.secret,'test-2'),{initialize:true,importLocal:false});
+    assert.equal(initialized.get().state.accountId,'test-2');
+    assert.equal(initialized.get().state.history.length,0);
+    assert.equal(initialized.get().state.settings.size,10);
+    assert(!initialized.get().bank.questions.some(q=>q.practiceFor));
+    assert((await initialized.client.localBackup()).bank.questions.some(q=>q.id===variant.id),'previous account backup retained');
     a.loseNextOpen();
     await assert.rejects(()=>a.client.open(),/response lost/);
     assert.equal(a.get().state.rewards.openings.length,0);

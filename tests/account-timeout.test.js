@@ -18,6 +18,7 @@ test('account login waits 30 seconds and reports a Chinese timeout without bindi
   });
   const pending=client.login('ella','fixture-password');
   const rejected=assert.rejects(pending,{name:'AbortError',message:'连接超时，请稍后重试'});
+  await new Promise(resolve=>setImmediate(resolve));
   t.mock.timers.tick(7000);
   assert.equal(signal.aborted,false);
   t.mock.timers.tick(22999);

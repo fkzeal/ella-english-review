@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "revision": 14,
+  "revision": 15,
   "mode": "snapshot",
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "batches": [],
   "lessons": [
     {
@@ -1603,6 +1603,94 @@
         }
       ],
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图19–24；沿用用户确认的独立词汇回顾图归入KET词汇规则；A2为KET分类对应级别，不是截图标注的出版社或书本级别。；归档日期不是确认学习日；无新增batch，沿用新模块生成日前一天的默认日期。"
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal",
+      "system": "scholastic",
+      "level": 3,
+      "number": 7,
+      "title": "Is This a Real Animal?",
+      "subtitle": "Scholastic Guided Reading Programme · Level 3 · Non-fiction · Card 7；两页完整",
+      "status": "ready",
+      "source": "固定素材文档修订60；逐张审读两页原图，主画面页码47/48、卡片1/2和2/2。归档日期不是已确认学习日。 本轮获用户授权新建Scholastic独立分类，2026-11-26实际接入；默认新模块日期规则，不新增确认学习batch。",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-26",
+        "rg": "2026-11-26"
+      },
+      "learningTargets": [
+        {
+          "id": "real",
+          "title": "real 表示真实存在",
+          "evidence": "Is This a Real Animal? · 卡片1/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q01"
+          ]
+        },
+        {
+          "id": "fur",
+          "title": "fur：动物毛",
+          "evidence": "Is This a Real Animal? · 卡片1/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q02"
+          ]
+        },
+        {
+          "id": "tiny",
+          "title": "tiny：很小的",
+          "evidence": "Is This a Real Animal? · 卡片1/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q03"
+          ]
+        },
+        {
+          "id": "sea",
+          "title": "sea：海",
+          "evidence": "Is This a Real Animal? · 卡片1/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q04"
+          ]
+        },
+        {
+          "id": "red-panda",
+          "title": "red panda：小熊猫",
+          "evidence": "Is This a Real Animal? · 卡片2/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q05"
+          ]
+        },
+        {
+          "id": "floppy-ears",
+          "title": "long, floppy ears：长而耷拉的耳朵",
+          "evidence": "Is This a Real Animal? · 卡片2/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q06"
+          ]
+        },
+        {
+          "id": "looks-like",
+          "title": "looks like 表示外观相似",
+          "evidence": "Is This a Real Animal? · 卡片2/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q07"
+          ]
+        },
+        {
+          "id": "with-description",
+          "title": "with 引出拥有的特征",
+          "evidence": "Is This a Real Animal? · 卡片1/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q08"
+          ]
+        },
+        {
+          "id": "is-question",
+          "title": "Is this...? 问句词序",
+          "evidence": "Is This a Real Animal? · 卡片2/2 原图",
+          "questionIds": [
+            "scholastic-l3-card7-real-animal-q09"
+          ]
+        }
+      ]
     }
   ],
   "points": [
@@ -1997,6 +2085,22 @@
       "title": "词义与原创考试形式应用",
       "description": "依据逐图核对的素材制作代表性覆盖题。",
       "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；修订69；2026-11-25图19–24；沿用用户确认的独立词汇回顾图归入KET词汇规则；A2为KET分类对应级别，不是截图标注的出版社或书本级别。"
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-words",
+      "lessonId": "scholastic-l3-card7-real-animal",
+      "module": "lv",
+      "title": "动物与描述词",
+      "description": "理解 real、fur、tiny、sea、red panda 和 floppy ears。",
+      "evidence": "已审读两页原图。"
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-language",
+      "lessonId": "scholastic-l3-card7-real-animal",
+      "module": "rg",
+      "title": "描述与问句",
+      "description": "理解 looks like、with 的描述用法，以及 Is this...? 问句。",
+      "evidence": "两页可见句式，语言应用题为原创。"
     }
   ],
   "questions": [
@@ -8480,6 +8584,223 @@
           "kind": "practice",
           "text": "My son's child is a boy. He is my ___.",
           "source": "原创考试形式语境练习；人物和情境为 practice，非官方试题"
+        }
+      ]
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q01",
+      "pointId": "scholastic-l3-card7-real-animal-words",
+      "reviewUnit": "real",
+      "type": "choice",
+      "prompt": "文中问 Is it real?，这里 real 是什么意思？",
+      "options": [
+        "真实的",
+        "很快的",
+        "寒冷的"
+      ],
+      "answer": 0,
+      "explanation": "real 表示“真实的”。文中用 Yes! 回答动物是真实存在的。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Is it real? Yes!",
+          "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+        }
+      ]
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q02",
+      "pointId": "scholastic-l3-card7-real-animal-words",
+      "reviewUnit": "fur",
+      "type": "reading",
+      "prompt": "根据这段话，这只狗有什么特征？",
+      "options": [
+        "有长耳朵",
+        "生活在海里",
+        "毛很多"
+      ],
+      "answer": 2,
+      "explanation": "a lot of fur 表示毛很多。原文明确说这是一只毛很多的狗。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It is a dog with a lot of fur.",
+          "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+        }
+      ],
+      "passage": "It is a dog with a lot of fur."
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q03",
+      "pointId": "scholastic-l3-card7-real-animal-words",
+      "reviewUnit": "tiny",
+      "type": "choice",
+      "prompt": "a tiny octopus 中，tiny 描述章鱼的什么特点？",
+      "options": [
+        "很长",
+        "很小",
+        "很吵"
+      ],
+      "answer": 1,
+      "explanation": "tiny 的意思是“很小的”，描述大小。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It is a tiny octopus that lives in the sea.",
+          "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+        }
+      ]
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q04",
+      "pointId": "scholastic-l3-card7-real-animal-words",
+      "reviewUnit": "sea",
+      "type": "reading",
+      "prompt": "根据原文，这只小章鱼生活在哪里？",
+      "options": [
+        "海里",
+        "树上",
+        "房子里"
+      ],
+      "answer": 0,
+      "explanation": "lives in the sea 表示生活在海里。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It is a tiny octopus that lives in the sea.",
+          "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+        }
+      ],
+      "passage": "It is a tiny octopus that lives in the sea."
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q05",
+      "pointId": "scholastic-l3-card7-real-animal-words",
+      "reviewUnit": "red-panda",
+      "type": "reading",
+      "prompt": "这段话最后确认它是什么动物？",
+      "options": [
+        "猫",
+        "熊",
+        "小熊猫"
+      ],
+      "answer": 2,
+      "explanation": "cat 和 bear 说明它看起来像什么；最后的 This is a red panda. 才说明它是什么动物。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It looks like a cat, but it also looks like a bear. This is a red panda.",
+          "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+        }
+      ],
+      "passage": "It looks like a cat, but it also looks like a bear. This is a red panda."
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q06",
+      "pointId": "scholastic-l3-card7-real-animal-words",
+      "reviewUnit": "floppy-ears",
+      "type": "reading",
+      "prompt": "根据原文，兔子的耳朵有什么特征？",
+      "options": [
+        "小而圆",
+        "长而耷拉着",
+        "短而竖着"
+      ],
+      "answer": 1,
+      "explanation": "long 表示长，floppy 表示松软、耷拉着。原文明确描述兔子的耳朵。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It is a rabbit with long, floppy ears!",
+          "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+        }
+      ],
+      "passage": "It is a rabbit with long, floppy ears!"
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q07",
+      "pointId": "scholastic-l3-card7-real-animal-language",
+      "reviewUnit": "looks-like",
+      "type": "cloze",
+      "prompt": "你想说一朵云“看起来像一只兔子”，应选哪句？",
+      "options": [
+        "The cloud looks like a rabbit.",
+        "The cloud lives in a rabbit.",
+        "The cloud is with a rabbit."
+      ],
+      "answer": 0,
+      "explanation": "looks like 表示“看起来像”，用于比较外观。云并不因此变成兔子。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It looks like a cat, but it also looks like a bear.",
+          "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+        },
+        {
+          "kind": "practice",
+          "text": "你想说一朵云“看起来像一只兔子”，应选哪句？ The cloud looks like a rabbit.",
+          "source": "原创语言应用练习"
+        }
+      ]
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q08",
+      "pointId": "scholastic-l3-card7-real-animal-language",
+      "reviewUnit": "with-description",
+      "type": "cloze",
+      "prompt": "要表达“一只长耳朵的狗”，选择正确的表达。",
+      "options": [
+        "long ears with a dog",
+        "a dog in long ears",
+        "a dog with long ears"
+      ],
+      "answer": 2,
+      "explanation": "动物名称 + with + 特征表示“有某种特征的动物”。本题是对 with 用法的原创应用。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It is a dog with a lot of fur.",
+          "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+        },
+        {
+          "kind": "practice",
+          "text": "要表达“一只长耳朵的狗”，选择正确的表达。 a dog with long ears",
+          "source": "原创语言应用练习"
+        }
+      ]
+    },
+    {
+      "id": "scholastic-l3-card7-real-animal-q09",
+      "pointId": "scholastic-l3-card7-real-animal-language",
+      "reviewUnit": "is-question",
+      "type": "cloze",
+      "prompt": "你指着一个玩具，想问“这是一只兔子吗？”，应选哪句？",
+      "options": [
+        "This is rabbit a?",
+        "Is this a rabbit?",
+        "Is a this rabbit?"
+      ],
+      "answer": 1,
+      "explanation": "这种问句把 Is 放在 this 前：Is this a rabbit?。本题在新的玩具情境中使用相同句式。",
+      "source": "Is This a Real Animal? · 已核对两页原图；Scholastic Level 3 Non-fiction Card 7；非官方练习题；引用文字经恢复原图OCR与已有逐图审阅摘录交叉核对。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Is this a real animal? Yes!",
+          "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+        },
+        {
+          "kind": "practice",
+          "text": "你指着一个玩具，想问“这是一只兔子吗？”，应选哪句？ Is this a rabbit?",
+          "source": "原创语言应用练习"
         }
       ]
     }

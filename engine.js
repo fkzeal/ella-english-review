@@ -44,8 +44,8 @@
     const sets=validateBankShape(b),fail=s=>{throw new Error(`题库格式错误：${s}`);};
     const text = (s,min=1,max=5000) => typeof s === 'string' && s.length >= min && s.length <= max;
     for (const l of b.lessons) {
-      if (!(l.system==='raz'?/^[A-Z]{1,2}$/.test(l.level):l.system==='ket'?text(l.level):[1,2,3,4].includes(l.level)) || !Number.isInteger(l.number) || l.number < 1 || !text(l.title) || !text(l.subtitle,0) || !text(l.source) || !['ready','pending'].includes(l.status)) fail(`课程 ${l.id} 信息不完整`);
-      if(l.system&&!['cambridge','raz','ket'].includes(l.system))fail(`课程 ${l.id} 类型无效`);
+      if (!(l.system==='raz'?/^[A-Z]{1,2}$/.test(l.level):l.system==='ket'?text(l.level):l.system==='scholastic'?Number.isInteger(l.level)&&l.level>=1:[1,2,3,4].includes(l.level)) || !Number.isInteger(l.number) || l.number < 1 || !text(l.title) || !text(l.subtitle,0) || !text(l.source) || !['ready','pending'].includes(l.status)) fail(`课程 ${l.id} 信息不完整`);
+      if(l.system&&!['cambridge','raz','ket','scholastic'].includes(l.system))fail(`课程 ${l.id} 类型无效`);
       if(l.generatedOn!==undefined&&!validDay(l.generatedOn))fail(`课程 ${l.id} 生成日期无效`);
       if(l.moduleGeneratedOn!==undefined&&(!l.moduleGeneratedOn||typeof l.moduleGeneratedOn!=='object'||Array.isArray(l.moduleGeneratedOn)||Object.entries(l.moduleGeneratedOn).some(([m,d])=>!MODULES.includes(m)||!validDay(d))))fail(`课程 ${l.id} 模块生成日期无效`);
     }

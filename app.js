@@ -143,7 +143,7 @@
   }
   function clone(){return JSON.parse(JSON.stringify(state));}
   function lessonLabel(l){
-    return l.system==='raz'?`RAZ ${l.level} · ${esc(l.title)}`:l.system==='ket'?`KET 词汇 · ${esc(l.title)}`:`Level ${l.level} · Lesson ${l.number} · ${esc(l.title)}`;
+    return l.system==='raz'?`RAZ ${l.level} · ${esc(l.title)}`:l.system==='ket'?`KET 词汇 · ${esc(l.title)}`:l.system==='scholastic'?`Scholastic Level ${l.level} · ${esc(l.title)}`:`Level ${l.level} · Lesson ${l.number} · ${esc(l.title)}`;
   }
   function starterLesson(){return bank.lessons.find(l=>l.status==='ready'&&!(bank.batches||[]).some(b=>b.items.some(i=>i.lessonId===l.id)));}
   async function syncLearning(){const next=clone();E.syncBatches(bank,next);const changed=JSON.stringify(next)!==JSON.stringify(state);if(changed)await commit(next);return changed;}
@@ -243,7 +243,7 @@
     const bank=currentContent();
     const list=bank.lessons.filter(l=>(l.system||'cambridge')===system&&(system!=='cambridge'||l.level===level));
     return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。','调整首次学习日期，复习由系统根据答题表现自动安排。')+
-      '<div class="filter-row">'+[['raz','RAZ 绘本'],['cambridge','猿辅导剑桥'],['ket','KET 词汇']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
+      '<div class="filter-row">'+[['raz','RAZ 绘本'],['cambridge','猿辅导剑桥'],['ket','KET 词汇'],['scholastic','Scholastic 阅读']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
       (system==='cambridge'?'<div class="filter-row">'+[1,2,3,4].map(n=>`<button class="chip ${n===level?'active':''}" data-action="level" data-level="${n}">Level ${n}</button>`).join('')+'</div>':'')+
       (list.length?`<div class="course-grid">${list.map(l=>{
         const ps=bank.points.filter(p=>p.lessonId===l.id),qs=bank.questions.filter(q=>ps.some(p=>p.id===q.pointId));
@@ -562,7 +562,7 @@
       next.session=session;delete next.accountSessions[session.rewardId];await commit(next);resume();
     }
     else if(action==='export-cloud')download(`温故-云端备份-${E.day()}.json`,await cloud.backup());
-    else if(action==='export-before-bind')download(`温故-迁移前备份-${E.day()}.json`,cloud.localBackup());
+    else if(action==='export-before-bind')download(`温故-迁移前备份-${E.day()}.json`,await cloud.localBackup());
     else if(action==='resolve-account'){
       if(await ask('保留作答，采用云端安排？','两边的答题历史和猫咪都会保留。冲突的日期、题量和同一组练习进度采用云端版本，本机原始版本另存备份。')){await cloud.resolve();render();}
     }
@@ -683,6 +683,9 @@
   });
   async function boot(){
     try{
+      // Free legacy account replicas before a new bank creates its protected
+      // pre-update copy, including offline startup on an already-full device.
+      if(cloud.view().enabled)await cloud.migrateCache();
       const saved=store.read();
       if(saved){
         adopt(saved);

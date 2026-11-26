@@ -1,5 +1,17 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const E=require('../engine'),{publishedBank,cambridgeBank}=require('./bank-fixture'),bank=cambridgeBank();
+test('Scholastic validates original numeric level and participates in normal practice without changing existing records',()=>{
+  const b=structuredClone(publishedBank),l=b.lessons.find(l=>l.system==='scholastic');
+  assert(l);assert.equal(l.level,3);assert.equal(l.learningTargets.length,9);
+  E.validateBank(b);
+  const invalid=structuredClone(b);invalid.lessons.find(x=>x.id===l.id).level='D';
+  assert.throws(()=>E.validateBank(invalid),/信息不完整/);
+  const state=E.emptyState();E.syncBatches(b,state,'2026-11-26');
+  assert.equal(state.settings.size,10);
+  const points=E.activePoints(b,state,'2026-11-26').filter(p=>p.lessonId===l.id);
+  assert.equal(points.length,2);
+  assert(!b.batches.some(x=>x.items.some(i=>i.lessonId===l.id)),'no invented confirmed learning batch');
+});
 // Legacy fixtures exercise compatibility with banks that predate review units.
 for(const q of bank.questions)delete q.reviewUnit;
 function enrolled(){

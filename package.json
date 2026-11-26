@@ -1,6 +1,6 @@
 {
   "name": "lesson-loop",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "private": true,
   "scripts": {
     "start": "node server.js",
@@ -13,6 +13,7 @@
     "deploy": "node scripts/deploy.js"
   },
   "devDependencies": {
+    "fake-indexeddb": "^6.2.4",
     "undici": "8.11.2",
     "wrangler": "4.165.0"
   }
