@@ -13,7 +13,7 @@
     "deploy": "node scripts/deploy.js"
   },
   "devDependencies": {
-    "fake-indexeddb": "^6.2.4",
+    "fake-indexeddb": "6.2.4",
     "undici": "8.11.2",
     "wrangler": "4.165.0"
   }
