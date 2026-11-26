@@ -2,6 +2,98 @@
   "version": 1,
   "reports": [
     {
+      "runId": "8b1af140-b2fe-4e15-b487-f39ff6bae72d",
+      "date": "2026-11-26",
+      "createdAt": "2026-11-26T14:40:46.713Z",
+      "status": "partial",
+      "summary": "本轮全量核查固定素材79图、共享反馈4条及真实私有来源；没有新素材、共享修复或符合A/B/C的私有衍生需求，实际新增主要目标0、共享题0、私有变式0。保留未完成的教材体系接入和原图缺页待办。",
+      "bankRevision": 14,
+      "sections": {
+        "materials": {
+          "value": "0",
+          "note": "固定素材修订69，全79图及权威哈希核对，无新图、晚到图或补页。KET家庭15表达/11目标/22题、人物15表达/14目标/28题均为已发布历史，复用并去重；两张Scholastic清晰完整素材的9目标/9候选仍待真实体系接入，不误归KET或RAZ。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "共享题库保持r14/271题，全部旧题身份、学习日期、批次和音频保持；没有题库变化，不递增revision。新增/启用主要目标I=0；原目标新增共享变式0。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "四条反馈完整读取：三条既有验证记录，一条仍缺Animal Tongues第7页清晰原图及具体错误依据。当前答案与保存摘录一致；无新依据，不声称修复，不重写已处理状态。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "沿用现行v2生成及实时10题一组实现；题目白名单、评价identity、包外题族sidecar和接口保持。按指纹复用既有私有目录。本轮生成0、复用2、暂停9、待讲解3、冷却3、待素材2、待题族0、额度等待0、目标额度等待0、来源排除5。170项回归和构建通过；本轮仅更新报告及接手记忆，真实提交/Actions与验收在完成回执。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [],
+      "todos": [
+        "Scholastic《Is This a Real Animal?》Level 3 Non-fiction Card 7两图保留9个已审阅目标与9道候选，等待真实教材体系接入；候选未上线。",
+        "Animal Tongues第7页仍缺清晰原图；没有新证据可以完成原图复核或更改题目评价。",
+        "完整U/R、稳定掌握及最近七个自然日平均C/I缺充分逐目标窗口/目录历史，记未知。可练范围观察U=3、C=0、I=0、剩余3；本日缺已核验日期记录，C=0仅为当前有效历史观察值，不代表完整自然日零作答证据。若没有停用、日期变化或后续作答，次日未测约max(0,3+0-0)=3。初筛不等于解决错误，复测不重复算覆盖；不承诺全部覆盖。",
+        "本轮新建Chromium账号同步、离线、跨设备续练和隔离验证通过；WebKit同设备反复切换多账号时再次出现本地存储配额超限，不能记PASS，需专项处理。"
+      ],
+      "targetCounts": {
+        "newTargets": 0,
+        "derivativeQuestions": 0,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 0,
+        "reuse": 2,
+        "recovered": 9,
+        "needsExplanation": 3,
+        "cooldown": 3,
+        "invalidRecords": 5,
+        "needsFamilyReview": 0,
+        "needsMaterial": 2,
+        "dailyLimit": 0,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 3,
+          "remainingU": 3,
+          "C": 0,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-26",
+              "count": null
+            },
+            {
+              "date": "2026-11-25",
+              "count": null
+            },
+            {
+              "date": "2026-11-24",
+              "count": 22
+            },
+            {
+              "date": "2026-11-23",
+              "count": null
+            },
+            {
+              "date": "2026-11-22",
+              "count": 16
+            },
+            {
+              "date": "2026-11-21",
+              "count": 67
+            },
+            {
+              "date": "2026-11-20",
+              "count": null
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      }
+    },
+    {
       "runId": "7dfc6a2a-7cfa-41f7-9b0f-6caf5e7dbe2a",
       "date": "2026-11-25",
       "createdAt": "2026-11-25T15:05:57.997Z",
