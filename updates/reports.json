@@ -2,6 +2,290 @@
   "version": 1,
   "reports": [
     {
+      "runId": "7b1c29b8-ef42-41de-bf8e-d3d7ca3d89e9",
+      "date": "2026-11-26",
+      "createdAt": "2026-11-26T15:43:15.726Z",
+      "status": "published",
+      "summary": "用户授权的专项修复已上线：解决WebKit连续多账号的localStorage容量问题，新增Scholastic阅读独立分类并发布9个主要目标、9道共享练习。本轮是手动专项实施，不冒称独立定时维护。",
+      "bankRevision": 15,
+      "sections": {
+        "materials": {
+          "value": "2",
+          "note": "权威快照恢复原有Scholastic两张待接入图片，哈希验证且OCR正文与已有逐图审阅摘录一致；不是本轮新上传图片。原书Level 3、Non-fiction Card 7，两页完整。"
+        },
+        "questions": {
+          "value": "9",
+          "note": "新增Scholastic《Is This a Real Animal?》9个主要目标I、9道代表性共享题；词义、阅读与原创语言应用。原创情境标practice，非官方试题。旧271题、全部原课程/目标及学习批次完全保留。新模块实际生成日2026-11-26，沿用默认日期规则，未新增确认学习日。"
+        },
+        "fixes": {
+          "value": "2项代码修复",
+          "note": "完整账号备份、同步基线与冲突快照迁入IndexedDB；先原子保存、再删除旧localStorage副本，失败保留原件。启动先迁移，避免满额设备在题库升级前被阻塞。首次初始化新账号只继承共享题，排除前一账号私有题及历史/奖励；旧账号配置保留，新账号默认10题。"
+        },
+        "optimizations": {
+          "value": "1个新类目",
+          "note": "新增Scholastic阅读入口及独立system=scholastic，保留原书数字Level与现有模块；默认每组10题，本课只有9个有效目标时实际出9题，不重复凑数。迁移前备份异步从IndexedDB导出，离线仍可读。云端接口、评价指纹、既有账号历史与奖励规则不变。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [
+        {
+          "id": "scholastic-l3-card7-real-animal-q01",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "real 表示真实存在",
+          "reviewUnit": "real",
+          "type": "choice",
+          "prompt": "文中问 Is it real?，这里 real 是什么意思？",
+          "options": [
+            "真实的",
+            "很快的",
+            "寒冷的"
+          ],
+          "answer": 0,
+          "explanation": "real 表示“真实的”。文中用 Yes! 回答动物是真实存在的。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Is it real? Yes!",
+              "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q02",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "fur：动物毛",
+          "reviewUnit": "fur",
+          "type": "reading",
+          "prompt": "根据这段话，这只狗有什么特征？",
+          "options": [
+            "有长耳朵",
+            "生活在海里",
+            "毛很多"
+          ],
+          "answer": 2,
+          "explanation": "a lot of fur 表示毛很多。原文明确说这是一只毛很多的狗。",
+          "passage": "It is a dog with a lot of fur.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It is a dog with a lot of fur.",
+              "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q03",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "tiny：很小的",
+          "reviewUnit": "tiny",
+          "type": "choice",
+          "prompt": "a tiny octopus 中，tiny 描述章鱼的什么特点？",
+          "options": [
+            "很长",
+            "很小",
+            "很吵"
+          ],
+          "answer": 1,
+          "explanation": "tiny 的意思是“很小的”，描述大小。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It is a tiny octopus that lives in the sea.",
+              "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q04",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "sea：海",
+          "reviewUnit": "sea",
+          "type": "reading",
+          "prompt": "根据原文，这只小章鱼生活在哪里？",
+          "options": [
+            "海里",
+            "树上",
+            "房子里"
+          ],
+          "answer": 0,
+          "explanation": "lives in the sea 表示生活在海里。",
+          "passage": "It is a tiny octopus that lives in the sea.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It is a tiny octopus that lives in the sea.",
+              "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q05",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "red panda：小熊猫",
+          "reviewUnit": "red-panda",
+          "type": "reading",
+          "prompt": "这段话最后确认它是什么动物？",
+          "options": [
+            "猫",
+            "熊",
+            "小熊猫"
+          ],
+          "answer": 2,
+          "explanation": "cat 和 bear 说明它看起来像什么；最后的 This is a red panda. 才说明它是什么动物。",
+          "passage": "It looks like a cat, but it also looks like a bear. This is a red panda.",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It looks like a cat, but it also looks like a bear. This is a red panda.",
+              "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q06",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "long, floppy ears：长而耷拉的耳朵",
+          "reviewUnit": "floppy-ears",
+          "type": "reading",
+          "prompt": "根据原文，兔子的耳朵有什么特征？",
+          "options": [
+            "小而圆",
+            "长而耷拉着",
+            "短而竖着"
+          ],
+          "answer": 1,
+          "explanation": "long 表示长，floppy 表示松软、耷拉着。原文明确描述兔子的耳朵。",
+          "passage": "It is a rabbit with long, floppy ears!",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It is a rabbit with long, floppy ears!",
+              "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q07",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "looks like 表示外观相似",
+          "reviewUnit": "looks-like",
+          "type": "cloze",
+          "prompt": "你想说一朵云“看起来像一只兔子”，应选哪句？",
+          "options": [
+            "The cloud looks like a rabbit.",
+            "The cloud lives in a rabbit.",
+            "The cloud is with a rabbit."
+          ],
+          "answer": 0,
+          "explanation": "looks like 表示“看起来像”，用于比较外观。云并不因此变成兔子。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It looks like a cat, but it also looks like a bear.",
+              "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+            },
+            {
+              "kind": "practice",
+              "text": "你想说一朵云“看起来像一只兔子”，应选哪句？ The cloud looks like a rabbit.",
+              "source": "原创语言应用练习"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q08",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "with 引出拥有的特征",
+          "reviewUnit": "with-description",
+          "type": "cloze",
+          "prompt": "要表达“一只长耳朵的狗”，选择正确的表达。",
+          "options": [
+            "long ears with a dog",
+            "a dog in long ears",
+            "a dog with long ears"
+          ],
+          "answer": 2,
+          "explanation": "动物名称 + with + 特征表示“有某种特征的动物”。本题是对 with 用法的原创应用。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "It is a dog with a lot of fur.",
+              "source": "Is This a Real Animal? · 素材第1页（卡片1/2）"
+            },
+            {
+              "kind": "practice",
+              "text": "要表达“一只长耳朵的狗”，选择正确的表达。 a dog with long ears",
+              "source": "原创语言应用练习"
+            }
+          ]
+        },
+        {
+          "id": "scholastic-l3-card7-real-animal-q09",
+          "change": "added",
+          "reason": "既有权威Scholastic原图与已审阅候选核对后，按用户新增独立分类授权实际部署并生产回读。",
+          "lesson": "Is This a Real Animal?",
+          "target": "Is this...? 问句词序",
+          "reviewUnit": "is-question",
+          "type": "cloze",
+          "prompt": "你指着一个玩具，想问“这是一只兔子吗？”，应选哪句？",
+          "options": [
+            "This is rabbit a?",
+            "Is this a rabbit?",
+            "Is a this rabbit?"
+          ],
+          "answer": 1,
+          "explanation": "这种问句把 Is 放在 this 前：Is this a rabbit?。本题在新的玩具情境中使用相同句式。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "Is this a real animal? Yes!",
+              "source": "Is This a Real Animal? · 素材第2页（卡片2/2）"
+            },
+            {
+              "kind": "practice",
+              "text": "你指着一个玩具，想问“这是一只兔子吗？”，应选哪句？ Is this a rabbit?",
+              "source": "原创语言应用练习"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "176项回归通过。隔离D1真实Chromium/WebKit均先把旧账号缓存填至额度，再升级题库、六账号连续切换18次及逐次刷新；历史、星星/宝箱、设置、日期、未完成练习和私有题归属核对通过。WebKit实测旧缓存约5072610字节，最终localStorage约1716716字节；Chromium旧缓存约10145204字节，最终约1716718字节。未清空账号记录。",
+        "本轮手机390px和Pad1024px、Chromium及WebKit逐题作答全部9题，保存与刷新续练、参考依据展开、原有录音正常/慢速播放通过。账号测试仅使用本地隔离D1；生产回读不写入真实账号，不拿隔离测试代替真实部署回执。",
+        "修改文件：account-cache.js、account-sync.js、app.js、engine.js、index.html、package.json/package-lock.json、question-bank.json、scripts/build.js，以及账号缓存、账号同步/超时、浏览器、界面与引擎回归测试；docs/账号缓存.md和课程素材自动建库.md更新真实规则。AGENTS及本报告单独提交。",
+        "本轮同目标新增变式0、私有新增0，不重置主要目标初筛或预生成未测目标衍生。完整U/C/R、稳定掌握、最近七个完整自然日平均C/I未在专项中重新计算，记未知，不填零。首次检查、错误后复测和稳定掌握仍按原规则区分。",
+        "Animal Tongues第7页缺清晰原图仍是原维护待办，本专项没有新增该页依据或答案修复。历史Scholastic待分类接入已由本次发布解决，旧报告保留历史语境。"
+      ],
+      "targetCounts": {
+        "newTargets": 9,
+        "derivativeQuestions": 0,
+        "derivativeNewTargets": 0
+      },
+      "verification": {
+        "commit": "742aef8f0dcc8ee3264c7e69a412835af3305978",
+        "actionsRun": "45850917937",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "8b1af140-b2fe-4e15-b487-f39ff6bae72d",
       "date": "2026-11-26",
       "createdAt": "2026-11-26T14:40:46.713Z",
