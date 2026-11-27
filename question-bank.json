@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "revision": 15,
+  "revision": 16,
   "mode": "snapshot",
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "batches": [],
   "lessons": [
     {
@@ -1203,8 +1203,8 @@
         },
         {
           "id": "grandmother",
-          "title": "grandmother / grandma：祖母、外祖母",
-          "evidence": "家庭词汇素材图2；词义及代表性语境应用，同义称谓不另增主要目标。",
+          "title": "grandmother / grandma / granny：祖母、外祖母",
+          "evidence": "家庭词汇素材图2；词义及代表性语境应用，同义称谓不另增主要目标。 新增词汇原图022已核对granny；复用原题及原目标，不新增主要目标。",
           "questionIds": [
             "ket-family-vocabulary-q09",
             "ket-family-vocabulary-q10"
@@ -1691,6 +1691,654 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ket-family-names-vocabulary",
+      "system": "ket",
+      "level": "A2",
+      "number": 3,
+      "title": "Family & Names · 亲属与姓名",
+      "subtitle": "15种表达 · 11个新主要目标 · granny复用既有目标 · 22题",
+      "status": "ready",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图022–027逐张核对。沿用用户确认的独立词汇图归属KET规则；A2是分类对应级别，并非截图明示的出版社或原书级别。15种表达，11个新主要目标；granny复用已有grandmother目标，姓氏三表达及名字两表达各合为一目标。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。",
+      "moduleGeneratedOn": {
+        "vocabulary": "2026-11-27"
+      },
+      "learningTargets": [
+        {
+          "id": "granddaughter",
+          "title": "granddaughter：孙女或外孙女",
+          "evidence": "固定素材亲属与姓名词汇图022–027；granddaughter",
+          "questionIds": [
+            "ket-family-names-vocabulary-q01",
+            "ket-family-names-vocabulary-q02"
+          ]
+        },
+        {
+          "id": "nephew",
+          "title": "nephew：侄子或外甥",
+          "evidence": "固定素材亲属与姓名词汇图022–027；nephew",
+          "questionIds": [
+            "ket-family-names-vocabulary-q03",
+            "ket-family-names-vocabulary-q04"
+          ]
+        },
+        {
+          "id": "niece",
+          "title": "niece：侄女或外甥女",
+          "evidence": "固定素材亲属与姓名词汇图022–027；niece",
+          "questionIds": [
+            "ket-family-names-vocabulary-q05",
+            "ket-family-names-vocabulary-q06"
+          ]
+        },
+        {
+          "id": "husband",
+          "title": "husband：丈夫",
+          "evidence": "固定素材亲属与姓名词汇图022–027；husband",
+          "questionIds": [
+            "ket-family-names-vocabulary-q07",
+            "ket-family-names-vocabulary-q08"
+          ]
+        },
+        {
+          "id": "wife",
+          "title": "wife：妻子",
+          "evidence": "固定素材亲属与姓名词汇图022–027；wife",
+          "questionIds": [
+            "ket-family-names-vocabulary-q09",
+            "ket-family-names-vocabulary-q10"
+          ]
+        },
+        {
+          "id": "married",
+          "title": "married：已婚的",
+          "evidence": "固定素材亲属与姓名词汇图022–027；married",
+          "questionIds": [
+            "ket-family-names-vocabulary-q11",
+            "ket-family-names-vocabulary-q12"
+          ]
+        },
+        {
+          "id": "love",
+          "title": "love：爱；热爱",
+          "evidence": "固定素材亲属与姓名词汇图022–027；love",
+          "questionIds": [
+            "ket-family-names-vocabulary-q13",
+            "ket-family-names-vocabulary-q14"
+          ]
+        },
+        {
+          "id": "surname",
+          "title": "surname / last name / family name：姓氏",
+          "evidence": "固定素材亲属与姓名词汇图022–027；surname / last name / family name",
+          "questionIds": [
+            "ket-family-names-vocabulary-q15",
+            "ket-family-names-vocabulary-q16"
+          ]
+        },
+        {
+          "id": "first-name",
+          "title": "first name / given name：名字（与姓相对）",
+          "evidence": "固定素材亲属与姓名词汇图022–027；first name / given name",
+          "questionIds": [
+            "ket-family-names-vocabulary-q17",
+            "ket-family-names-vocabulary-q18"
+          ]
+        },
+        {
+          "id": "nickname",
+          "title": "nickname：绰号；昵称",
+          "evidence": "固定素材亲属与姓名词汇图022–027；nickname",
+          "questionIds": [
+            "ket-family-names-vocabulary-q19",
+            "ket-family-names-vocabulary-q20"
+          ]
+        },
+        {
+          "id": "neighbour",
+          "title": "neighbour：邻居",
+          "evidence": "固定素材亲属与姓名词汇图022–027；neighbour",
+          "questionIds": [
+            "ket-family-names-vocabulary-q21",
+            "ket-family-names-vocabulary-q22"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary",
+      "system": "ket",
+      "level": "A2",
+      "number": 4,
+      "title": "Home & People · 家居与人际",
+      "subtitle": "15词 · 15主要目标 · 30道词义与原创语境练习",
+      "status": "ready",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图049逐张核对。独立词汇回顾列表沿用用户确认的KET词汇规则；原图只有15个英文词，没有中文释义。采用日常主要词义，中文释义及应用情境均为原创练习；A2为分类级别。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。",
+      "moduleGeneratedOn": {
+        "vocabulary": "2026-11-27"
+      },
+      "learningTargets": [
+        {
+          "id": "chair",
+          "title": "chair：椅子",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；chair",
+          "questionIds": [
+            "ket-home-people-vocabulary-q01",
+            "ket-home-people-vocabulary-q02"
+          ]
+        },
+        {
+          "id": "box",
+          "title": "box：盒子；箱子",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；box",
+          "questionIds": [
+            "ket-home-people-vocabulary-q03",
+            "ket-home-people-vocabulary-q04"
+          ]
+        },
+        {
+          "id": "bed",
+          "title": "bed：床",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；bed",
+          "questionIds": [
+            "ket-home-people-vocabulary-q05",
+            "ket-home-people-vocabulary-q06"
+          ]
+        },
+        {
+          "id": "clock",
+          "title": "clock：钟；时钟",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；clock",
+          "questionIds": [
+            "ket-home-people-vocabulary-q07",
+            "ket-home-people-vocabulary-q08"
+          ]
+        },
+        {
+          "id": "bedroom",
+          "title": "bedroom：卧室",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；bedroom",
+          "questionIds": [
+            "ket-home-people-vocabulary-q09",
+            "ket-home-people-vocabulary-q10"
+          ]
+        },
+        {
+          "id": "home",
+          "title": "home：家；居住的地方",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；home",
+          "questionIds": [
+            "ket-home-people-vocabulary-q11",
+            "ket-home-people-vocabulary-q12"
+          ]
+        },
+        {
+          "id": "friend",
+          "title": "friend：朋友",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；friend",
+          "questionIds": [
+            "ket-home-people-vocabulary-q13",
+            "ket-home-people-vocabulary-q14"
+          ]
+        },
+        {
+          "id": "colleague",
+          "title": "colleague：同事",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；colleague",
+          "questionIds": [
+            "ket-home-people-vocabulary-q15",
+            "ket-home-people-vocabulary-q16"
+          ]
+        },
+        {
+          "id": "group",
+          "title": "group：小组；一群",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；group",
+          "questionIds": [
+            "ket-home-people-vocabulary-q17",
+            "ket-home-people-vocabulary-q18"
+          ]
+        },
+        {
+          "id": "pen-friend",
+          "title": "pen-friend：笔友",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；pen-friend",
+          "questionIds": [
+            "ket-home-people-vocabulary-q19",
+            "ket-home-people-vocabulary-q20"
+          ]
+        },
+        {
+          "id": "guest",
+          "title": "guest：客人",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；guest",
+          "questionIds": [
+            "ket-home-people-vocabulary-q21",
+            "ket-home-people-vocabulary-q22"
+          ]
+        },
+        {
+          "id": "partner",
+          "title": "partner：搭档；合作伙伴",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；partner",
+          "questionIds": [
+            "ket-home-people-vocabulary-q23",
+            "ket-home-people-vocabulary-q24"
+          ]
+        },
+        {
+          "id": "house",
+          "title": "house：房屋；住宅建筑",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；house",
+          "questionIds": [
+            "ket-home-people-vocabulary-q25",
+            "ket-home-people-vocabulary-q26"
+          ]
+        },
+        {
+          "id": "friendly",
+          "title": "friendly：友好的",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；friendly",
+          "questionIds": [
+            "ket-home-people-vocabulary-q27",
+            "ket-home-people-vocabulary-q28"
+          ]
+        },
+        {
+          "id": "desk",
+          "title": "desk：书桌；办公桌",
+          "evidence": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义）；desk",
+          "questionIds": [
+            "ket-home-people-vocabulary-q29",
+            "ket-home-people-vocabulary-q30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back",
+      "system": "raz",
+      "level": "D",
+      "number": 9,
+      "title": "Give Them Back!",
+      "subtitle": "已逐图核对的词汇、阅读及原创语言应用练习",
+      "status": "ready",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图028–038逐张核对。封面reading a-z；正文页3–12完整；作者Harriet Rosenbloom。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-27",
+        "rg": "2026-11-27"
+      },
+      "learningTargets": [
+        {
+          "id": "egg-hunt",
+          "title": "egg hunt：寻找彩蛋的活动",
+          "evidence": "Give Them Back! · 第3页；The Easter egg hunt is starting.",
+          "questionIds": [
+            "raz-d-give-them-back-q01"
+          ]
+        },
+        {
+          "id": "sneaky",
+          "title": "sneaky：偷偷摸摸的",
+          "evidence": "Give Them Back! · 第4页；Jaden has a sneaky plan to win.",
+          "questionIds": [
+            "raz-d-give-them-back-q02"
+          ]
+        },
+        {
+          "id": "win",
+          "title": "win：赢得比赛",
+          "evidence": "Give Them Back! · 第4页；Jaden has a sneaky plan to win.",
+          "questionIds": [
+            "raz-d-give-them-back-q03"
+          ]
+        },
+        {
+          "id": "take-from",
+          "title": "take ... from：从某人那里拿走",
+          "evidence": "Give Them Back! · 第5页；He takes an egg from Mona.",
+          "questionIds": [
+            "raz-d-give-them-back-q04"
+          ]
+        },
+        {
+          "id": "give-back",
+          "title": "give back：归还",
+          "evidence": "Give Them Back! · 第12页；Jaden is sorry and gives back all the eggs.",
+          "questionIds": [
+            "raz-d-give-them-back-q05"
+          ]
+        },
+        {
+          "id": "sorry",
+          "title": "sorry：抱歉的",
+          "evidence": "Give Them Back! · 第12页；Jaden is sorry and gives back all the eggs.",
+          "questionIds": [
+            "raz-d-give-them-back-q06"
+          ]
+        },
+        {
+          "id": "third-person-takes",
+          "title": "一般现在时：he 后用 takes",
+          "evidence": "Give Them Back! · 第5页；He takes an egg from Mona.",
+          "questionIds": [
+            "raz-d-give-them-back-q07"
+          ]
+        },
+        {
+          "id": "story-resolution",
+          "title": "阅读：理解问题如何解决",
+          "evidence": "Give Them Back! · 第11–12页；Jaden is sorry and gives back all the eggs.",
+          "questionIds": [
+            "raz-d-give-them-back-q08"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach",
+      "system": "raz",
+      "level": "D",
+      "number": 10,
+      "title": "Imagine the Beach",
+      "subtitle": "已逐图核对的词汇、阅读及原创语言应用练习",
+      "status": "ready",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图039–048逐张核对。RAZ Level D，作者Racheal Rice；正文页3–10及封底已核对。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-27",
+        "rg": "2026-11-27"
+      },
+      "learningTargets": [
+        {
+          "id": "imagine",
+          "title": "imagine：在脑海中想象",
+          "evidence": "Imagine the Beach · 第4页；Can you imagine the beach in your mind?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q01"
+          ]
+        },
+        {
+          "id": "smell",
+          "title": "smell：用鼻子闻",
+          "evidence": "Imagine the Beach · 第5页；What can you smell? Can you smell the salty air?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q02"
+          ]
+        },
+        {
+          "id": "hear",
+          "title": "hear：听见",
+          "evidence": "Imagine the Beach · 第6页；What can you hear? Can you hear the crashing waves?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q03"
+          ]
+        },
+        {
+          "id": "see",
+          "title": "see：看见",
+          "evidence": "Imagine the Beach · 第7页；What can you see? Can you see the diving birds?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q04"
+          ]
+        },
+        {
+          "id": "feel",
+          "title": "feel：触摸感受",
+          "evidence": "Imagine the Beach · 第8页；What can you feel? Can you feel the rough sand?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q05"
+          ]
+        },
+        {
+          "id": "taste",
+          "title": "taste：尝味道",
+          "evidence": "Imagine the Beach · 第9页；What can you taste? Can you taste the yummy ice cream?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q06"
+          ]
+        },
+        {
+          "id": "rough",
+          "title": "rough：粗糙的",
+          "evidence": "Imagine the Beach · 第8页；What can you feel? Can you feel the rough sand?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q07"
+          ]
+        },
+        {
+          "id": "salty",
+          "title": "salty：咸的",
+          "evidence": "Imagine the Beach · 第5页；What can you smell? Can you smell the salty air?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q08"
+          ]
+        },
+        {
+          "id": "can-question",
+          "title": "Can you...? 问句词序",
+          "evidence": "Imagine the Beach · 第7页；What can you see? Can you see the diving birds?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q09"
+          ]
+        },
+        {
+          "id": "senses-matching",
+          "title": "阅读：匹配感官与具体对象",
+          "evidence": "Imagine the Beach · 第6、9页；What can you hear? Can you hear the crashing waves?\nWhat can you taste? Can you taste the yummy ice cream?",
+          "questionIds": [
+            "raz-d-imagine-the-beach-q10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween",
+      "system": "raz",
+      "level": "D",
+      "number": 11,
+      "title": "Maria's Halloween",
+      "subtitle": "已逐图核对的词汇、阅读及原创语言应用练习",
+      "status": "ready",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图050–060逐张核对。RAZ Level D；作者Dori H. Butler；正文页3–12完整。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-27",
+        "rg": "2026-11-27"
+      },
+      "learningTargets": [
+        {
+          "id": "halloween",
+          "title": "Halloween：万圣节",
+          "evidence": "Maria's Halloween · 第3页；It is Halloween. Maria, Emily, and Luis go trick or treating.",
+          "questionIds": [
+            "raz-d-marias-halloween-q01"
+          ]
+        },
+        {
+          "id": "spider",
+          "title": "spider：蜘蛛",
+          "evidence": "Maria's Halloween · 第4页；Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.",
+          "questionIds": [
+            "raz-d-marias-halloween-q02"
+          ]
+        },
+        {
+          "id": "ghost",
+          "title": "ghost：幽灵",
+          "evidence": "Maria's Halloween · 第6页；Look at Mrs. Florio's ghost. Trick or treat, Mrs. Florio.",
+          "questionIds": [
+            "raz-d-marias-halloween-q03"
+          ]
+        },
+        {
+          "id": "pumpkin",
+          "title": "pumpkin：南瓜",
+          "evidence": "Maria's Halloween · 第8页；Look at Ms. White's pumpkin. Trick or treat, Ms. White.",
+          "questionIds": [
+            "raz-d-marias-halloween-q04"
+          ]
+        },
+        {
+          "id": "black",
+          "title": "black：黑色的",
+          "evidence": "Maria's Halloween · 第10页；Look at our black cat.",
+          "questionIds": [
+            "raz-d-marias-halloween-q05"
+          ]
+        },
+        {
+          "id": "treat",
+          "title": "treat（本故事中）：招待的糖果等小零食",
+          "evidence": "Maria's Halloween · 第5页；Thank you for the treat, Mr. Johnson.",
+          "questionIds": [
+            "raz-d-marias-halloween-q06"
+          ]
+        },
+        {
+          "id": "trick",
+          "title": "play a trick：搞恶作剧；逗人",
+          "evidence": "Maria's Halloween · 第12页；Mama and Papa play a trick!",
+          "questionIds": [
+            "raz-d-marias-halloween-q07"
+          ]
+        },
+        {
+          "id": "possessive-name",
+          "title": "姓名后 ’s 表示所属",
+          "evidence": "Maria's Halloween · 第4页；Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.",
+          "questionIds": [
+            "raz-d-marias-halloween-q08"
+          ]
+        },
+        {
+          "id": "thank-for",
+          "title": "Thank you for...：为某事致谢",
+          "evidence": "Maria's Halloween · 第5页；Thank you for the treat, Mr. Johnson.",
+          "questionIds": [
+            "raz-d-marias-halloween-q09"
+          ]
+        },
+        {
+          "id": "owner-decoration",
+          "title": "阅读：匹配人物与装饰",
+          "evidence": "Maria's Halloween · 第4、6、8页；Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.\nLook at Mrs. Florio's ghost. Trick or treat, Mrs. Florio.\nLook at Ms. White's pumpkin. Trick or treat, Ms. White.",
+          "questionIds": [
+            "raz-d-marias-halloween-q10"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood",
+      "system": "raz",
+      "level": "D",
+      "number": 12,
+      "title": "My Neighborhood",
+      "subtitle": "已逐图核对的词汇、阅读及原创语言应用练习",
+      "status": "ready",
+      "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图061–071逐张核对。RAZ Level D；正文页3–12完整；封面及页脚核对，保留美式原文neighborhood。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。",
+      "moduleGeneratedOn": {
+        "lv": "2026-11-27",
+        "rg": "2026-11-27"
+      },
+      "learningTargets": [
+        {
+          "id": "neighborhood",
+          "title": "neighborhood：社区；住家附近一带",
+          "evidence": "My Neighborhood · 第3页；This is my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q01"
+          ]
+        },
+        {
+          "id": "houses",
+          "title": "houses：房屋",
+          "evidence": "My Neighborhood · 第4页；There are houses in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q02"
+          ]
+        },
+        {
+          "id": "streets",
+          "title": "streets：街道",
+          "evidence": "My Neighborhood · 第5页；There are streets in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q03"
+          ]
+        },
+        {
+          "id": "school",
+          "title": "school：学校",
+          "evidence": "My Neighborhood · 第6页；There is a school in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q04"
+          ]
+        },
+        {
+          "id": "park",
+          "title": "park：公园",
+          "evidence": "My Neighborhood · 第7页；There is a park in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q05"
+          ]
+        },
+        {
+          "id": "library",
+          "title": "library：图书馆",
+          "evidence": "My Neighborhood · 第8页；There is a library in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q06"
+          ]
+        },
+        {
+          "id": "fire-station",
+          "title": "fire station：消防站",
+          "evidence": "My Neighborhood · 第9页；There is a fire station in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q07"
+          ]
+        },
+        {
+          "id": "grocery-store",
+          "title": "grocery store：食品杂货店",
+          "evidence": "My Neighborhood · 第10页；There is a grocery store in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q08"
+          ]
+        },
+        {
+          "id": "bakery",
+          "title": "bakery：面包店",
+          "evidence": "My Neighborhood · 第11页；There is a bakery in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q09"
+          ]
+        },
+        {
+          "id": "there-is-are",
+          "title": "There is/are：单复数存在句",
+          "evidence": "My Neighborhood · 第4、6页；There are houses in my neighborhood.\nThere is a school in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q10"
+          ]
+        },
+        {
+          "id": "place-purpose",
+          "title": "阅读：理解场所与日常用途",
+          "evidence": "My Neighborhood · 第11页；There is a bakery in my neighborhood.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q11"
+          ]
+        },
+        {
+          "id": "attitude-live",
+          "title": "阅读：理解对居住地的态度",
+          "evidence": "My Neighborhood · 第12页；I love where I live.",
+          "questionIds": [
+            "raz-d-my-neighborhood-q12"
+          ]
+        }
+      ]
     }
   ],
   "points": [
@@ -2101,6 +2749,86 @@
       "title": "描述与问句",
       "description": "理解 looks like、with 的描述用法，以及 Is this...? 问句。",
       "evidence": "两页可见句式，语言应用题为原创。"
+    },
+    {
+      "id": "ket-family-names-vocabulary-vocabulary",
+      "lessonId": "ket-family-names-vocabulary",
+      "module": "vocabulary",
+      "title": "词义与原创考试形式应用",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图022–027逐张核对。沿用用户确认的独立词汇图归属KET规则；A2是分类对应级别，并非截图明示的出版社或原书级别。15种表达，11个新主要目标；granny复用已有grandmother目标，姓氏三表达及名字两表达各合为一目标。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "ket-home-people-vocabulary-vocabulary",
+      "lessonId": "ket-home-people-vocabulary",
+      "module": "vocabulary",
+      "title": "词义与原创考试形式应用",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图049逐张核对。独立词汇回顾列表沿用用户确认的KET词汇规则；原图只有15个英文词，没有中文释义。采用日常主要词义，中文释义及应用情境均为原创练习；A2为分类级别。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-give-them-back-lv",
+      "lessonId": "raz-d-give-them-back",
+      "module": "lv",
+      "title": "词汇与表达",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图028–038逐张核对。封面reading a-z；正文页3–12完整；作者Harriet Rosenbloom。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-give-them-back-rg",
+      "lessonId": "raz-d-give-them-back",
+      "module": "rg",
+      "title": "阅读与语言应用",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图028–038逐张核对。封面reading a-z；正文页3–12完整；作者Harriet Rosenbloom。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-imagine-the-beach-lv",
+      "lessonId": "raz-d-imagine-the-beach",
+      "module": "lv",
+      "title": "词汇与表达",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图039–048逐张核对。RAZ Level D，作者Racheal Rice；正文页3–10及封底已核对。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-imagine-the-beach-rg",
+      "lessonId": "raz-d-imagine-the-beach",
+      "module": "rg",
+      "title": "阅读与语言应用",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图039–048逐张核对。RAZ Level D，作者Racheal Rice；正文页3–10及封底已核对。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-marias-halloween-lv",
+      "lessonId": "raz-d-marias-halloween",
+      "module": "lv",
+      "title": "词汇与表达",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图050–060逐张核对。RAZ Level D；作者Dori H. Butler；正文页3–12完整。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-marias-halloween-rg",
+      "lessonId": "raz-d-marias-halloween",
+      "module": "rg",
+      "title": "阅读与语言应用",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图050–060逐张核对。RAZ Level D；作者Dori H. Butler；正文页3–12完整。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-my-neighborhood-lv",
+      "lessonId": "raz-d-my-neighborhood",
+      "module": "lv",
+      "title": "词汇与表达",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图061–071逐张核对。RAZ Level D；正文页3–12完整；封面及页脚核对，保留美式原文neighborhood。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
+    },
+    {
+      "id": "raz-d-my-neighborhood-rg",
+      "lessonId": "raz-d-my-neighborhood",
+      "module": "rg",
+      "title": "阅读与语言应用",
+      "description": "依据已核对原图制作必要代表性练习；原创语境明确标注。",
+      "evidence": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；文档修订75；新增图061–071逐张核对。RAZ Level D；正文页3–12完整；封面及页脚核对，保留美式原文neighborhood。；归档日期不是确认学习日；无新增学习batch，新模块生成日为2026-11-27，沿用现行默认日期规则。"
     }
   ],
   "questions": [
@@ -7032,13 +7760,18 @@
         "母亲"
       ],
       "answer": 1,
-      "explanation": "grandmother / grandma：祖母、外祖母。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。",
+      "explanation": "grandmother / grandma：祖母、外祖母。这里考查家庭相关的常用名词含义；正式称谓和口语称谓属于同一个主要词义目标。 新素材中的 granny 也是祖母或外祖母的亲昵称呼，与 grandmother、grandma 属于同一主要词义目标。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图2；用户确认KET词汇归属；词义练习，非官方考试题。",
       "references": [
         {
           "kind": "excerpt",
           "text": "grandmother n.（外）祖母，奶奶，外婆（更偏向书面语）；grandma n.（口语化的）（外）祖母，奶奶",
           "source": "家庭词汇截图 · 素材图2 · 已核对词句（标点整理）"
+        },
+        {
+          "kind": "excerpt",
+          "text": "granny n.奶奶，外婆",
+          "source": "亲属与姓名词汇素材图022 · 原图已核对摘录"
         }
       ]
     },
@@ -7054,7 +7787,7 @@
         "father"
       ],
       "answer": 0,
-      "explanation": "妈妈的母亲是自己的外祖母，可称 grandma；这个词也可以称奶奶。",
+      "explanation": "妈妈的母亲是自己的外祖母，可称 grandma；这个词也可以称奶奶。 新素材中的 granny 也是祖母或外祖母的亲昵称呼，与 grandmother、grandma 属于同一主要词义目标。",
       "source": "https://dcar.feishu.cn/docx/RhNgdppuWoKp6kxjE24cOwjfnwh；家庭词汇素材图2；用户确认KET词汇归属；考试形式的原创语境选词练习，非官方考试题。",
       "references": [
         {
@@ -7066,6 +7799,11 @@
           "kind": "practice",
           "text": "My mum is visiting her mother. I am visiting my ___.",
           "source": "原创语境选词练习；人物、对话及情境为练习创作，保持本词义目标"
+        },
+        {
+          "kind": "excerpt",
+          "text": "granny n.奶奶，外婆",
+          "source": "亲属与姓名词汇素材图022 · 原图已核对摘录"
         }
       ]
     },
@@ -8803,6 +9541,2417 @@
           "source": "原创语言应用练习"
         }
       ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q01",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "granddaughter",
+      "learningTargetId": "granddaughter",
+      "type": "choice",
+      "prompt": "词义练习：granddaughter 在这里表示什么？",
+      "options": [
+        "孙女或外孙女",
+        "孙子或外孙",
+        "祖母或外祖母"
+      ],
+      "answer": 0,
+      "explanation": "孙女或外孙女。儿子的女儿是自己的孙女，granddaughter也可以指女儿的女儿；不是grandmother。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "granddaughter",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q02",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "granddaughter",
+      "learningTargetId": "granddaughter",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nMy son has a daughter, Lucy. Lucy is my ___.",
+      "options": [
+        "grandmother",
+        "granddaughter",
+        "son"
+      ],
+      "answer": 1,
+      "explanation": "儿子的女儿是自己的孙女，granddaughter也可以指女儿的女儿；不是grandmother。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "granddaughter",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "My son has a daughter, Lucy. Lucy is my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q03",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "nephew",
+      "learningTargetId": "nephew",
+      "type": "choice",
+      "prompt": "词义练习：nephew 在这里表示什么？",
+      "options": [
+        "侄女或外甥女",
+        "叔叔或舅舅",
+        "侄子或外甥"
+      ],
+      "answer": 2,
+      "explanation": "侄子或外甥。姐姐或妹妹的儿子是nephew（外甥）；兄弟的儿子也叫nephew（侄子）。截图写“外甥”，这里说明英语通常词义范围。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "nephew",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q04",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "nephew",
+      "learningTargetId": "nephew",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nMy sister has a son. He is my ___.",
+      "options": [
+        "nephew",
+        "niece",
+        "uncle"
+      ],
+      "answer": 0,
+      "explanation": "姐姐或妹妹的儿子是nephew（外甥）；兄弟的儿子也叫nephew（侄子）。截图写“外甥”，这里说明英语通常词义范围。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "nephew",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "My sister has a son. He is my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q05",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "niece",
+      "learningTargetId": "niece",
+      "type": "choice",
+      "prompt": "词义练习：niece 在这里表示什么？",
+      "options": [
+        "侄子或外甥",
+        "侄女或外甥女",
+        "姑姑或姨妈"
+      ],
+      "answer": 1,
+      "explanation": "侄女或外甥女。兄弟的女儿是niece（侄女）；姐妹的女儿也叫niece（外甥女）。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "niece",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q06",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "niece",
+      "learningTargetId": "niece",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nMy brother has a daughter. She is my ___.",
+      "options": [
+        "nephew",
+        "aunt",
+        "niece"
+      ],
+      "answer": 2,
+      "explanation": "兄弟的女儿是niece（侄女）；姐妹的女儿也叫niece（外甥女）。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "niece",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "My brother has a daughter. She is my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q07",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "husband",
+      "learningTargetId": "husband",
+      "type": "choice",
+      "prompt": "词义练习：husband 在这里表示什么？",
+      "options": [
+        "丈夫",
+        "妻子",
+        "女儿"
+      ],
+      "answer": 0,
+      "explanation": "丈夫。Ben是Anna的男性配偶，称husband。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "husband",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q08",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "husband",
+      "learningTargetId": "husband",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nAnna is married to Ben. Ben is Anna's ___.",
+      "options": [
+        "wife",
+        "husband",
+        "daughter"
+      ],
+      "answer": 1,
+      "explanation": "Ben是Anna的男性配偶，称husband。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "husband",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Anna is married to Ben. Ben is Anna's ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q09",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "wife",
+      "learningTargetId": "wife",
+      "type": "choice",
+      "prompt": "词义练习：wife 在这里表示什么？",
+      "options": [
+        "丈夫",
+        "儿子",
+        "妻子"
+      ],
+      "answer": 2,
+      "explanation": "妻子。Anna是Ben的女性配偶，称wife。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "wife",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q10",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "wife",
+      "learningTargetId": "wife",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nBen is married to Anna. Anna is Ben's ___.",
+      "options": [
+        "wife",
+        "husband",
+        "son"
+      ],
+      "answer": 0,
+      "explanation": "Anna是Ben的女性配偶，称wife。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "wife",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Ben is married to Anna. Anna is Ben's ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q11",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "married",
+      "learningTargetId": "married",
+      "type": "choice",
+      "prompt": "词义练习：married 在这里表示什么？",
+      "options": [
+        "饥饿的",
+        "已婚的",
+        "空的"
+      ],
+      "answer": 1,
+      "explanation": "已婚的。husband and wife说明两人已结婚，所以用married。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "married",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q12",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "married",
+      "learningTargetId": "married",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nTom and May are husband and wife. They are ___.",
+      "options": [
+        "empty",
+        "hungry",
+        "married"
+      ],
+      "answer": 2,
+      "explanation": "husband and wife说明两人已结婚，所以用married。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "married",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Tom and May are husband and wife. They are ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q13",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "love",
+      "learningTargetId": "love",
+      "type": "choice",
+      "prompt": "词义练习：love 在这里表示什么？",
+      "options": [
+        "爱；热爱",
+        "忘记",
+        "借走"
+      ],
+      "answer": 0,
+      "explanation": "爱；热爱。care about ... very much表示非常关爱，对家人用love；不是forget或borrow。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "love",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q14",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "love",
+      "learningTargetId": "love",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nI care about my family very much. I ___ them.",
+      "options": [
+        "forget",
+        "love",
+        "borrow"
+      ],
+      "answer": 1,
+      "explanation": "care about ... very much表示非常关爱，对家人用love；不是forget或borrow。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "love",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "I care about my family very much. I ___ them.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q15",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "surname",
+      "learningTargetId": "surname",
+      "type": "choice",
+      "prompt": "词义练习：surname / last name / family name 在这里表示什么？",
+      "options": [
+        "名字（与姓相对）",
+        "绰号",
+        "姓氏"
+      ],
+      "answer": 2,
+      "explanation": "姓氏。Brown是姓，surname、last name和family name在这种姓名语境中同义；Emma是first name。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "surname / last name / family name",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q16",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "surname",
+      "learningTargetId": "surname",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nHer full name is Emma Brown. Her ___ is Brown.",
+      "options": [
+        "surname",
+        "first name",
+        "nickname"
+      ],
+      "answer": 0,
+      "explanation": "Brown是姓，surname、last name和family name在这种姓名语境中同义；Emma是first name。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "surname / last name / family name",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Her full name is Emma Brown. Her ___ is Brown.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q17",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "first-name",
+      "learningTargetId": "first-name",
+      "type": "choice",
+      "prompt": "词义练习：first name / given name 在这里表示什么？",
+      "options": [
+        "姓氏",
+        "名字（与姓相对）",
+        "职业"
+      ],
+      "answer": 1,
+      "explanation": "名字（与姓相对）。Jack是given name，也叫first name；Green是family name。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "first name / given name",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q18",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "first-name",
+      "learningTargetId": "first-name",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nHis full name is Jack Green. His ___ is Jack.",
+      "options": [
+        "family name",
+        "job",
+        "given name"
+      ],
+      "answer": 2,
+      "explanation": "Jack是given name，也叫first name；Green是family name。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "first name / given name",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "His full name is Jack Green. His ___ is Jack.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q19",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "nickname",
+      "learningTargetId": "nickname",
+      "type": "choice",
+      "prompt": "词义练习：nickname 在这里表示什么？",
+      "options": [
+        "绰号；昵称",
+        "家庭住址",
+        "电话号码"
+      ],
+      "answer": 0,
+      "explanation": "绰号；昵称。Speedy是朋友给Peter的另一个称呼，所以是nickname，不是地址或电话。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "nickname",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q20",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "nickname",
+      "learningTargetId": "nickname",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nHis real name is Peter, but his friends call him Speedy. Speedy is his ___.",
+      "options": [
+        "address",
+        "nickname",
+        "phone number"
+      ],
+      "answer": 1,
+      "explanation": "Speedy是朋友给Peter的另一个称呼，所以是nickname，不是地址或电话。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "nickname",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "His real name is Peter, but his friends call him Speedy. Speedy is his ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q21",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "neighbour",
+      "learningTargetId": "neighbour",
+      "type": "choice",
+      "prompt": "词义练习：neighbour 在这里表示什么？",
+      "options": [
+        "远方游客",
+        "老师",
+        "邻居"
+      ],
+      "answer": 2,
+      "explanation": "邻居。住在隔壁的人是neighbour；这里没有说明她是老师或游客。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "neighbour",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-family-names-vocabulary-q22",
+      "pointId": "ket-family-names-vocabulary-vocabulary",
+      "reviewUnit": "neighbour",
+      "learningTargetId": "neighbour",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nMrs Hill lives in the house next to ours. She is our ___.",
+      "options": [
+        "neighbour",
+        "tourist",
+        "teacher"
+      ],
+      "answer": 0,
+      "explanation": "住在隔壁的人是neighbour；这里没有说明她是老师或游客。",
+      "source": "Family & Names · 亲属与姓名 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "neighbour",
+          "source": "固定素材亲属与姓名词汇图022–027 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Mrs Hill lives in the house next to ours. She is our ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q01",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "chair",
+      "learningTargetId": "chair",
+      "type": "choice",
+      "prompt": "词义练习：chair 在这里表示什么？",
+      "options": [
+        "椅子",
+        "床",
+        "钟"
+      ],
+      "answer": 0,
+      "explanation": "椅子。sit on说明用于坐的家具，是chair。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "chair",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q02",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "chair",
+      "learningTargetId": "chair",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nPlease sit on this ___ while I find your book.",
+      "options": [
+        "clock",
+        "chair",
+        "bedroom"
+      ],
+      "answer": 1,
+      "explanation": "sit on说明用于坐的家具，是chair。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "chair",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Please sit on this ___ while I find your book.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q03",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "box",
+      "learningTargetId": "box",
+      "type": "choice",
+      "prompt": "词义练习：box 在这里表示什么？",
+      "options": [
+        "桌子",
+        "朋友",
+        "盒子；箱子"
+      ],
+      "answer": 2,
+      "explanation": "盒子；箱子。可放东西并盖上盖子的容器是box。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "box",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q04",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "box",
+      "learningTargetId": "box",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nPut the toys in this ___ and close the lid.",
+      "options": [
+        "box",
+        "desk",
+        "friend"
+      ],
+      "answer": 0,
+      "explanation": "可放东西并盖上盖子的容器是box。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "box",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Put the toys in this ___ and close the lid.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q05",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "bed",
+      "learningTargetId": "bed",
+      "type": "choice",
+      "prompt": "词义练习：bed 在这里表示什么？",
+      "options": [
+        "椅子",
+        "床",
+        "钢笔"
+      ],
+      "answer": 1,
+      "explanation": "床。睡觉时躺的家具是bed。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "bed",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q06",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "bed",
+      "learningTargetId": "bed",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nIt is bedtime. I lie down in my ___ to sleep.",
+      "options": [
+        "chair",
+        "pen",
+        "bed"
+      ],
+      "answer": 2,
+      "explanation": "睡觉时躺的家具是bed。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "bed",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "It is bedtime. I lie down in my ___ to sleep.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q07",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "clock",
+      "learningTargetId": "clock",
+      "type": "choice",
+      "prompt": "词义练习：clock 在这里表示什么？",
+      "options": [
+        "钟；时钟",
+        "箱子",
+        "客人"
+      ],
+      "answer": 0,
+      "explanation": "钟；时钟。墙上显示时间的东西是clock。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "clock",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q08",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "clock",
+      "learningTargetId": "clock",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nThe ___ on the wall shows that it is three o'clock.",
+      "options": [
+        "box",
+        "clock",
+        "guest"
+      ],
+      "answer": 1,
+      "explanation": "墙上显示时间的东西是clock。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "clock",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "The ___ on the wall shows that it is three o'clock.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q09",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "bedroom",
+      "learningTargetId": "bedroom",
+      "type": "choice",
+      "prompt": "词义练习：bedroom 在这里表示什么？",
+      "options": [
+        "厨房",
+        "花园",
+        "卧室"
+      ],
+      "answer": 2,
+      "explanation": "卧室。有床和衣柜的睡觉房间是bedroom。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "bedroom",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q10",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "bedroom",
+      "learningTargetId": "bedroom",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nMy bed and my wardrobe are in my ___.",
+      "options": [
+        "bedroom",
+        "kitchen",
+        "garden"
+      ],
+      "answer": 0,
+      "explanation": "有床和衣柜的睡觉房间是bedroom。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "bedroom",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "My bed and my wardrobe are in my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q11",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "home",
+      "learningTargetId": "home",
+      "type": "choice",
+      "prompt": "词义练习：home 在这里表示什么？",
+      "options": [
+        "商店",
+        "家；居住的地方",
+        "办公室"
+      ],
+      "answer": 1,
+      "explanation": "家；居住的地方。go home表示回家；与家人相聚的去处是home。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "home",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q12",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "home",
+      "learningTargetId": "home",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nSchool is over. I am going ___ to my family.",
+      "options": [
+        "shopping",
+        "outside",
+        "home"
+      ],
+      "answer": 2,
+      "explanation": "go home表示回家；与家人相聚的去处是home。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "home",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "School is over. I am going ___ to my family.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q13",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "friend",
+      "learningTargetId": "friend",
+      "type": "choice",
+      "prompt": "词义练习：friend 在这里表示什么？",
+      "options": [
+        "朋友",
+        "陌生人",
+        "家具"
+      ],
+      "answer": 0,
+      "explanation": "朋友。彼此熟悉并喜欢一起玩的伙伴是friend。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "friend",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q14",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "friend",
+      "learningTargetId": "friend",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nWe know each other well and enjoy playing together. Max is my ___.",
+      "options": [
+        "stranger",
+        "friend",
+        "desk"
+      ],
+      "answer": 1,
+      "explanation": "彼此熟悉并喜欢一起玩的伙伴是friend。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "friend",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "We know each other well and enjoy playing together. Max is my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q15",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "colleague",
+      "learningTargetId": "colleague",
+      "type": "choice",
+      "prompt": "词义练习：colleague 在这里表示什么？",
+      "options": [
+        "同学",
+        "邻居",
+        "同事"
+      ],
+      "answer": 2,
+      "explanation": "同事。在同一办公室工作的人是colleague；同学是classmate。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "colleague",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q16",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "colleague",
+      "learningTargetId": "colleague",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nMy mum and Sara work in the same office. Sara is my mum's ___.",
+      "options": [
+        "colleague",
+        "classmate",
+        "neighbour"
+      ],
+      "answer": 0,
+      "explanation": "在同一办公室工作的人是colleague；同学是classmate。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "colleague",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "My mum and Sara work in the same office. Sara is my mum's ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q17",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "group",
+      "learningTargetId": "group",
+      "type": "choice",
+      "prompt": "词义练习：group 在这里表示什么？",
+      "options": [
+        "单独一个人",
+        "小组；一群",
+        "一张桌子"
+      ],
+      "answer": 1,
+      "explanation": "小组；一群。四个孩子共同做一个项目，组成group。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "group",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q18",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "group",
+      "learningTargetId": "group",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nThe teacher puts four children together to do one project. They work as a ___.",
+      "options": [
+        "clock",
+        "house",
+        "group"
+      ],
+      "answer": 2,
+      "explanation": "四个孩子共同做一个项目，组成group。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "group",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "The teacher puts four children together to do one project. They work as a ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q19",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "pen-friend",
+      "learningTargetId": "pen-friend",
+      "type": "choice",
+      "prompt": "词义练习：pen-friend 在这里表示什么？",
+      "options": [
+        "笔友",
+        "同桌",
+        "房东"
+      ],
+      "answer": 0,
+      "explanation": "笔友。通过书信交往的朋友是pen-friend；句中没有租房或同桌信息。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "pen-friend",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q20",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "pen-friend",
+      "learningTargetId": "pen-friend",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nI write letters to a girl in another country, and she writes back. She is my ___.",
+      "options": [
+        "landlord",
+        "pen-friend",
+        "desk mate"
+      ],
+      "answer": 1,
+      "explanation": "通过书信交往的朋友是pen-friend；句中没有租房或同桌信息。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "pen-friend",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "I write letters to a girl in another country, and she writes back. She is my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q21",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "guest",
+      "learningTargetId": "guest",
+      "type": "choice",
+      "prompt": "词义练习：guest 在这里表示什么？",
+      "options": [
+        "主人",
+        "钟表",
+        "客人"
+      ],
+      "answer": 2,
+      "explanation": "客人。受邀到我们家做客的人是guest；邀请客人的一方是host。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "guest",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q22",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "guest",
+      "learningTargetId": "guest",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nWe invite Mr Lee to dinner at our house. He is our ___.",
+      "options": [
+        "guest",
+        "host",
+        "clock"
+      ],
+      "answer": 0,
+      "explanation": "受邀到我们家做客的人是guest；邀请客人的一方是host。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "guest",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "We invite Mr Lee to dinner at our house. He is our ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q23",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "partner",
+      "learningTargetId": "partner",
+      "type": "choice",
+      "prompt": "词义练习：partner 在这里表示什么？",
+      "options": [
+        "敌人",
+        "搭档；合作伙伴",
+        "床"
+      ],
+      "answer": 1,
+      "explanation": "搭档；合作伙伴。两人合作任务时一起工作的搭档叫partner。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "partner",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q24",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "partner",
+      "learningTargetId": "partner",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nWe work in pairs. I do the project with Kim. Kim is my ___.",
+      "options": [
+        "enemy",
+        "bed",
+        "partner"
+      ],
+      "answer": 2,
+      "explanation": "两人合作任务时一起工作的搭档叫partner。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "partner",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "We work in pairs. I do the project with Kim. Kim is my ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q25",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "house",
+      "learningTargetId": "house",
+      "type": "choice",
+      "prompt": "词义练习：house 在这里表示什么？",
+      "options": [
+        "房屋；住宅建筑",
+        "家庭成员",
+        "友好的"
+      ],
+      "answer": 0,
+      "explanation": "房屋；住宅建筑。有屋顶、墙和窗的住宅建筑是house；home更强调家或居住处。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "house",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q26",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "house",
+      "learningTargetId": "house",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nThe builders put a roof, walls and windows on the new ___.",
+      "options": [
+        "friend",
+        "house",
+        "clock"
+      ],
+      "answer": 1,
+      "explanation": "有屋顶、墙和窗的住宅建筑是house；home更强调家或居住处。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "house",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "The builders put a roof, walls and windows on the new ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q27",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "friendly",
+      "learningTargetId": "friendly",
+      "type": "choice",
+      "prompt": "词义练习：friendly 在这里表示什么？",
+      "options": [
+        "愤怒的",
+        "空的",
+        "友好的"
+      ],
+      "answer": 2,
+      "explanation": "友好的。微笑、问好并帮助人体现friendly（友好的）。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "friendly",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q28",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "friendly",
+      "learningTargetId": "friendly",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nThe new girl smiles, says hello and helps us. She is very ___.",
+      "options": [
+        "friendly",
+        "angry",
+        "empty"
+      ],
+      "answer": 0,
+      "explanation": "微笑、问好并帮助人体现friendly（友好的）。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "friendly",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "The new girl smiles, says hello and helps us. She is very ___.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q29",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "desk",
+      "learningTargetId": "desk",
+      "type": "choice",
+      "prompt": "词义练习：desk 在这里表示什么？",
+      "options": [
+        "床",
+        "书桌；办公桌",
+        "箱子"
+      ],
+      "answer": 1,
+      "explanation": "书桌；办公桌。写字、做作业时使用的桌子是desk。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "desk",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "本题采用日常词义；释义为练习编写，不冒称截图完整释义。",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "ket-home-people-vocabulary-q30",
+      "pointId": "ket-home-people-vocabulary-vocabulary",
+      "reviewUnit": "desk",
+      "learningTargetId": "desk",
+      "type": "cloze",
+      "prompt": "原创考试形式练习：根据语境选择合适的词。\nI sit at my ___ to write and do my homework.",
+      "options": [
+        "bed",
+        "box",
+        "desk"
+      ],
+      "answer": 2,
+      "explanation": "写字、做作业时使用的桌子是desk。",
+      "source": "Home & People · 家居与人际 · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "excerpt",
+          "text": "desk",
+          "source": "固定素材词汇回顾图049 · 已核对英文列表（无原图中文释义） · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "I sit at my ___ to write and do my homework.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q01",
+      "pointId": "raz-d-give-them-back-lv",
+      "reviewUnit": "egg-hunt",
+      "learningTargetId": "egg-hunt",
+      "type": "choice",
+      "prompt": "故事里的 Easter egg hunt 是哪种活动？",
+      "options": [
+        "寻找复活节彩蛋",
+        "刷牙",
+        "给树浇水"
+      ],
+      "answer": 0,
+      "explanation": "egg hunt是寻找藏起来的彩蛋的活动。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "The Easter egg hunt is starting.",
+          "source": "Give Them Back! · 第3页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q02",
+      "pointId": "raz-d-give-them-back-lv",
+      "reviewUnit": "sneaky",
+      "learningTargetId": "sneaky",
+      "type": "choice",
+      "prompt": "sneaky plan 在这个故事中最接近什么？",
+      "options": [
+        "公开宣布的计划",
+        "偷偷摸摸的计划",
+        "很困的孩子"
+      ],
+      "answer": 1,
+      "explanation": "后文说Jaden拿走其他孩子的彩蛋，sneaky修饰这种偷偷摸摸的计划。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Jaden has a sneaky plan to win.",
+          "source": "Give Them Back! · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q03",
+      "pointId": "raz-d-give-them-back-lv",
+      "reviewUnit": "win",
+      "learningTargetId": "win",
+      "type": "choice",
+      "prompt": "Jaden 的计划是为了什么？",
+      "options": [
+        "回家睡觉",
+        "给朋友写信",
+        "赢得活动"
+      ],
+      "answer": 2,
+      "explanation": "to win说明目的是赢。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Jaden has a sneaky plan to win.",
+          "source": "Give Them Back! · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q04",
+      "pointId": "raz-d-give-them-back-lv",
+      "reviewUnit": "take-from",
+      "learningTargetId": "take-from",
+      "type": "choice",
+      "prompt": "He takes an egg from Mona. 谁的彩蛋被拿走了？",
+      "options": [
+        "Mona的",
+        "Jaden自己的",
+        "老师的"
+      ],
+      "answer": 0,
+      "explanation": "from Mona说明彩蛋从Mona那里拿来。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "He takes an egg from Mona.",
+          "source": "Give Them Back! · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q05",
+      "pointId": "raz-d-give-them-back-lv",
+      "reviewUnit": "give-back",
+      "learningTargetId": "give-back",
+      "type": "choice",
+      "prompt": "gives back all the eggs 是什么意思？",
+      "options": [
+        "藏起所有彩蛋",
+        "归还所有彩蛋",
+        "吃掉所有彩蛋"
+      ],
+      "answer": 1,
+      "explanation": "give back表示把拿走的东西还回去；all表示所有。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Jaden is sorry and gives back all the eggs.",
+          "source": "Give Them Back! · 第12页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q06",
+      "pointId": "raz-d-give-them-back-lv",
+      "reviewUnit": "sorry",
+      "learningTargetId": "sorry",
+      "type": "choice",
+      "prompt": "故事最后，Jaden is sorry 说明什么？",
+      "options": [
+        "他觉得很饿",
+        "他马上睡着了",
+        "他感到抱歉"
+      ],
+      "answer": 2,
+      "explanation": "sorry在归还彩蛋的情境中表示为自己的行为感到抱歉。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Jaden is sorry and gives back all the eggs.",
+          "source": "Give Them Back! · 第12页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q07",
+      "pointId": "raz-d-give-them-back-rg",
+      "reviewUnit": "third-person-takes",
+      "learningTargetId": "third-person-takes",
+      "type": "cloze",
+      "prompt": "原创语法练习：He ___ a book from the shelf every morning.",
+      "options": [
+        "takes",
+        "take",
+        "taking"
+      ],
+      "answer": 0,
+      "explanation": "主语he是第三人称单数，一般现在时用takes。本题检查动词形式，不是抄教材答案。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "He takes an egg from Mona.",
+          "source": "Give Them Back! · 第5页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "He takes a book from the shelf every morning.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-give-them-back-q08",
+      "pointId": "raz-d-give-them-back-rg",
+      "reviewUnit": "story-resolution",
+      "learningTargetId": "story-resolution",
+      "type": "reading",
+      "prompt": "阅读后回答：Jaden 最后怎样解决拿走彩蛋的问题？",
+      "options": [
+        "继续藏着彩蛋",
+        "道歉并把所有彩蛋还回去",
+        "只还回一个彩蛋"
+      ],
+      "answer": 1,
+      "explanation": "最后一句明确说is sorry and gives back all the eggs。",
+      "source": "Give Them Back! · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Jaden is sorry and gives back all the eggs.",
+          "source": "Give Them Back! · 第11–12页 · 原图已核对"
+        }
+      ],
+      "passage": "The other kids talk to Jaden.\nJaden is sorry and gives back all the eggs."
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q01",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "imagine",
+      "learningTargetId": "imagine",
+      "type": "choice",
+      "prompt": "imagine the beach in your mind 表示什么？",
+      "options": [
+        "在脑海中想象海滩",
+        "真的搬走海滩",
+        "把眼睛擦干净"
+      ],
+      "answer": 0,
+      "explanation": "imagine表示在脑海中形成画面，不要求真的在海滩。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Can you imagine the beach in your mind?",
+          "source": "Imagine the Beach · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q02",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "smell",
+      "learningTargetId": "smell",
+      "type": "choice",
+      "prompt": "文中提到 salty air。用哪种感觉去闻空气？",
+      "options": [
+        "hear（听）",
+        "smell（闻）",
+        "taste（尝）"
+      ],
+      "answer": 1,
+      "explanation": "smell是用鼻子闻；文中把salty air与smell配对。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you smell? Can you smell the salty air?",
+          "source": "Imagine the Beach · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q03",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "hear",
+      "learningTargetId": "hear",
+      "type": "choice",
+      "prompt": "crashing waves 的声音应该用哪种感觉感受？",
+      "options": [
+        "see（看）",
+        "taste（尝）",
+        "hear（听）"
+      ],
+      "answer": 2,
+      "explanation": "海浪的声音用耳朵hear；不是尝味道或看见声音。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you hear? Can you hear the crashing waves?",
+          "source": "Imagine the Beach · 第6页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q04",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "see",
+      "learningTargetId": "see",
+      "type": "choice",
+      "prompt": "文中用哪种感觉观察 diving birds？",
+      "options": [
+        "see（看）",
+        "smell（闻）",
+        "taste（尝）"
+      ],
+      "answer": 0,
+      "explanation": "飞鸟的样子用眼睛see；diving birds是文中看到的对象。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you see? Can you see the diving birds?",
+          "source": "Imagine the Beach · 第7页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q05",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "feel",
+      "learningTargetId": "feel",
+      "type": "choice",
+      "prompt": "用手感受 rough sand，最合适的动词是哪个？",
+      "options": [
+        "hear",
+        "feel",
+        "smell"
+      ],
+      "answer": 1,
+      "explanation": "沙子粗糙的触感用feel感受。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you feel? Can you feel the rough sand?",
+          "source": "Imagine the Beach · 第8页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q06",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "taste",
+      "learningTargetId": "taste",
+      "type": "choice",
+      "prompt": "吃冰激凌时感受它的味道，要用哪一个词？",
+      "options": [
+        "hear",
+        "see",
+        "taste"
+      ],
+      "answer": 2,
+      "explanation": "taste表示品尝；文中yummy ice cream与taste对应。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you taste? Can you taste the yummy ice cream?",
+          "source": "Imagine the Beach · 第9页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q07",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "rough",
+      "learningTargetId": "rough",
+      "type": "choice",
+      "prompt": "rough sand 中 rough 最接近什么？",
+      "options": [
+        "粗糙的",
+        "光滑的",
+        "安静的"
+      ],
+      "answer": 0,
+      "explanation": "rough指表面不平、触感粗糙；不是smooth。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you feel? Can you feel the rough sand?",
+          "source": "Imagine the Beach · 第8页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q08",
+      "pointId": "raz-d-imagine-the-beach-lv",
+      "reviewUnit": "salty",
+      "learningTargetId": "salty",
+      "type": "choice",
+      "prompt": "salty air 中 salty 表示什么？",
+      "options": [
+        "红色的",
+        "带咸味的",
+        "非常大的"
+      ],
+      "answer": 1,
+      "explanation": "salty与盐或咸味有关；本题只检查这个描述词。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you smell? Can you smell the salty air?",
+          "source": "Imagine the Beach · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q09",
+      "pointId": "raz-d-imagine-the-beach-rg",
+      "reviewUnit": "can-question",
+      "learningTargetId": "can-question",
+      "type": "cloze",
+      "prompt": "原创语言练习：想问“你能看见星星吗？”，选正确的问句。",
+      "options": [
+        "You can see the stars? Can",
+        "Can see you the stars?",
+        "Can you see the stars?"
+      ],
+      "answer": 2,
+      "explanation": "Can放在主语you前，再接动词原形see。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you see? Can you see the diving birds?",
+          "source": "Imagine the Beach · 第7页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Can you see the stars?",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-imagine-the-beach-q10",
+      "pointId": "raz-d-imagine-the-beach-rg",
+      "reviewUnit": "senses-matching",
+      "learningTargetId": "senses-matching",
+      "type": "reading",
+      "prompt": "根据短文，哪一组匹配正确？",
+      "options": [
+        "hear—waves；taste—ice cream",
+        "hear—ice cream；taste—waves",
+        "hear—sand；taste—birds"
+      ],
+      "answer": 0,
+      "explanation": "文中分别用hear谈waves，用taste谈ice cream；不是按词形猜配对。",
+      "source": "Imagine the Beach · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "What can you hear? Can you hear the crashing waves?\nWhat can you taste? Can you taste the yummy ice cream?",
+          "source": "Imagine the Beach · 第6、9页 · 原图已核对"
+        }
+      ],
+      "passage": "What can you hear? Can you hear the crashing waves?\nWhat can you taste? Can you taste the yummy ice cream?"
+    },
+    {
+      "id": "raz-d-marias-halloween-q01",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "halloween",
+      "learningTargetId": "halloween",
+      "type": "choice",
+      "prompt": "Halloween 在本故事中表示什么？",
+      "options": [
+        "万圣节",
+        "复活节",
+        "圣诞节"
+      ],
+      "answer": 0,
+      "explanation": "万圣节。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "It is Halloween. Maria, Emily, and Luis go trick or treating.",
+          "source": "Maria's Halloween · 第3页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q02",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "spider",
+      "learningTargetId": "spider",
+      "type": "choice",
+      "prompt": "spider 在本故事中表示什么？",
+      "options": [
+        "兔子",
+        "蜘蛛",
+        "小鸟"
+      ],
+      "answer": 1,
+      "explanation": "蜘蛛。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.",
+          "source": "Maria's Halloween · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q03",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "ghost",
+      "learningTargetId": "ghost",
+      "type": "choice",
+      "prompt": "ghost 在本故事中表示什么？",
+      "options": [
+        "彩蛋",
+        "沙子",
+        "幽灵"
+      ],
+      "answer": 2,
+      "explanation": "幽灵。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Look at Mrs. Florio's ghost. Trick or treat, Mrs. Florio.",
+          "source": "Maria's Halloween · 第6页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q04",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "pumpkin",
+      "learningTargetId": "pumpkin",
+      "type": "choice",
+      "prompt": "pumpkin 在本故事中表示什么？",
+      "options": [
+        "南瓜",
+        "洋葱",
+        "胡萝卜"
+      ],
+      "answer": 0,
+      "explanation": "南瓜。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Look at Ms. White's pumpkin. Trick or treat, Ms. White.",
+          "source": "Maria's Halloween · 第8页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q05",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "black",
+      "learningTargetId": "black",
+      "type": "choice",
+      "prompt": "black 在本故事中表示什么？",
+      "options": [
+        "白色的",
+        "黑色的",
+        "金色的"
+      ],
+      "answer": 1,
+      "explanation": "黑色的。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Look at our black cat.",
+          "source": "Maria's Halloween · 第10页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q06",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "treat",
+      "learningTargetId": "treat",
+      "type": "choice",
+      "prompt": "treat（本故事中） 在本故事中表示什么？",
+      "options": [
+        "作业本",
+        "消防车",
+        "招待的糖果等小零食"
+      ],
+      "answer": 2,
+      "explanation": "招待的糖果等小零食。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Thank you for the treat, Mr. Johnson.",
+          "source": "Maria's Halloween · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q07",
+      "pointId": "raz-d-marias-halloween-lv",
+      "reviewUnit": "trick",
+      "learningTargetId": "trick",
+      "type": "choice",
+      "prompt": "play a trick 在本故事中表示什么？",
+      "options": [
+        "搞恶作剧；逗人",
+        "去游泳",
+        "收拾书包"
+      ],
+      "answer": 0,
+      "explanation": "搞恶作剧；逗人。依据可见文字及相应插图情境。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Mama and Papa play a trick!",
+          "source": "Maria's Halloween · 第12页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q08",
+      "pointId": "raz-d-marias-halloween-rg",
+      "reviewUnit": "possessive-name",
+      "learningTargetId": "possessive-name",
+      "type": "cloze",
+      "prompt": "原创语法练习：这只狗属于Ben。应选哪句？",
+      "options": [
+        "This is dog Ben.",
+        "This is Ben's dog.",
+        "This is Ben dog of."
+      ],
+      "answer": 1,
+      "explanation": "Ben's表示“Ben的”；与教材Mr. Johnson's spider的所属关系用法相同。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.",
+          "source": "Maria's Halloween · 第4页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "This is Ben's dog.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q09",
+      "pointId": "raz-d-marias-halloween-rg",
+      "reviewUnit": "thank-for",
+      "learningTargetId": "thank-for",
+      "type": "cloze",
+      "prompt": "原创情境：别人给你一本书，你想表示感谢，应选哪句？",
+      "options": [
+        "Thank you from the book.",
+        "Thank you under the book.",
+        "Thank you for the book."
+      ],
+      "answer": 2,
+      "explanation": "Thank you for + 事物表示为这件事物向对方致谢。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Thank you for the treat, Mr. Johnson.",
+          "source": "Maria's Halloween · 第5页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Thank you for the book.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-marias-halloween-q10",
+      "pointId": "raz-d-marias-halloween-rg",
+      "reviewUnit": "owner-decoration",
+      "learningTargetId": "owner-decoration",
+      "type": "reading",
+      "prompt": "读短文：谁家有南瓜？",
+      "options": [
+        "Ms. White",
+        "Mr. Johnson",
+        "Mrs. Florio"
+      ],
+      "answer": 0,
+      "explanation": "Ms. White's pumpkin明确说明南瓜在Ms. White家；另两人分别对应spider和ghost。",
+      "source": "Maria's Halloween · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.\nLook at Mrs. Florio's ghost. Trick or treat, Mrs. Florio.\nLook at Ms. White's pumpkin. Trick or treat, Ms. White.",
+          "source": "Maria's Halloween · 第4、6、8页 · 原图已核对"
+        }
+      ],
+      "passage": "Look at Mr. Johnson's spider. Trick or treat, Mr. Johnson.\nLook at Mrs. Florio's ghost. Trick or treat, Mrs. Florio.\nLook at Ms. White's pumpkin. Trick or treat, Ms. White."
+    },
+    {
+      "id": "raz-d-my-neighborhood-q01",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "neighborhood",
+      "learningTargetId": "neighborhood",
+      "type": "choice",
+      "prompt": "neighborhood 是什么？",
+      "options": [
+        "社区；住家附近一带",
+        "远方的国家",
+        "一个人的名字"
+      ],
+      "answer": 0,
+      "explanation": "neighborhood表示社区；住家附近一带。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "This is my neighborhood.",
+          "source": "My Neighborhood · 第3页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q02",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "houses",
+      "learningTargetId": "houses",
+      "type": "choice",
+      "prompt": "houses 是什么？",
+      "options": [
+        "水果",
+        "房屋",
+        "车辆"
+      ],
+      "answer": 1,
+      "explanation": "houses表示房屋。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There are houses in my neighborhood.",
+          "source": "My Neighborhood · 第4页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q03",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "streets",
+      "learningTargetId": "streets",
+      "type": "choice",
+      "prompt": "streets 是什么？",
+      "options": [
+        "森林",
+        "天空",
+        "街道"
+      ],
+      "answer": 2,
+      "explanation": "streets表示街道。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There are streets in my neighborhood.",
+          "source": "My Neighborhood · 第5页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q04",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "school",
+      "learningTargetId": "school",
+      "type": "choice",
+      "prompt": "school 是什么？",
+      "options": [
+        "学校",
+        "邮局",
+        "公园"
+      ],
+      "answer": 0,
+      "explanation": "school表示学校。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a school in my neighborhood.",
+          "source": "My Neighborhood · 第6页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q05",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "park",
+      "learningTargetId": "park",
+      "type": "choice",
+      "prompt": "park 是什么？",
+      "options": [
+        "消防站",
+        "公园",
+        "面包店"
+      ],
+      "answer": 1,
+      "explanation": "park表示公园。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a park in my neighborhood.",
+          "source": "My Neighborhood · 第7页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q06",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "library",
+      "learningTargetId": "library",
+      "type": "choice",
+      "prompt": "library 是什么？",
+      "options": [
+        "食品杂货店",
+        "面包店",
+        "图书馆"
+      ],
+      "answer": 2,
+      "explanation": "library表示图书馆。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a library in my neighborhood.",
+          "source": "My Neighborhood · 第8页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q07",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "fire-station",
+      "learningTargetId": "fire-station",
+      "type": "choice",
+      "prompt": "fire station 是什么？",
+      "options": [
+        "消防站",
+        "图书馆",
+        "学校"
+      ],
+      "answer": 0,
+      "explanation": "fire station表示消防站。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a fire station in my neighborhood.",
+          "source": "My Neighborhood · 第9页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q08",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "grocery-store",
+      "learningTargetId": "grocery-store",
+      "type": "choice",
+      "prompt": "grocery store 是什么？",
+      "options": [
+        "消防站",
+        "食品杂货店",
+        "邮局"
+      ],
+      "answer": 1,
+      "explanation": "grocery store表示食品杂货店。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a grocery store in my neighborhood.",
+          "source": "My Neighborhood · 第10页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q09",
+      "pointId": "raz-d-my-neighborhood-lv",
+      "reviewUnit": "bakery",
+      "learningTargetId": "bakery",
+      "type": "choice",
+      "prompt": "bakery 是什么？",
+      "options": [
+        "公园",
+        "邮局",
+        "面包店"
+      ],
+      "answer": 2,
+      "explanation": "bakery表示面包店。原句与原图中的场所相互核对。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a bakery in my neighborhood.",
+          "source": "My Neighborhood · 第11页 · 原图已核对"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q10",
+      "pointId": "raz-d-my-neighborhood-rg",
+      "reviewUnit": "there-is-are",
+      "learningTargetId": "there-is-are",
+      "type": "cloze",
+      "prompt": "原创语法练习：There ___ two parks near my house.",
+      "options": [
+        "are",
+        "is",
+        "am"
+      ],
+      "answer": 0,
+      "explanation": "two parks是复数，所以用There are；不是只因教材频繁出现is就选is。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There are houses in my neighborhood.\nThere is a school in my neighborhood.",
+          "source": "My Neighborhood · 第4、6页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "There are two parks near my house.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ]
+    },
+    {
+      "id": "raz-d-my-neighborhood-q11",
+      "pointId": "raz-d-my-neighborhood-rg",
+      "reviewUnit": "place-purpose",
+      "learningTargetId": "place-purpose",
+      "type": "reading",
+      "prompt": "原创阅读练习：Sam needs bread for breakfast. Which place should he visit?",
+      "options": [
+        "the fire station",
+        "the bakery",
+        "the post office"
+      ],
+      "answer": 1,
+      "explanation": "短文需要买面包，bakery是面包店；场所用途为日常词义应用，不冒称教材叙述Sam。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "There is a bakery in my neighborhood.",
+          "source": "My Neighborhood · 第11页 · 原图已核对"
+        },
+        {
+          "kind": "practice",
+          "text": "Sam needs bread for breakfast. There is a bakery, a fire station and a post office near his house.",
+          "source": "原创考试形式/语言应用练习，非官方真题"
+        }
+      ],
+      "passage": "Sam needs bread for breakfast. There is a bakery, a fire station and a post office near his house."
+    },
+    {
+      "id": "raz-d-my-neighborhood-q12",
+      "pointId": "raz-d-my-neighborhood-rg",
+      "reviewUnit": "attitude-live",
+      "learningTargetId": "attitude-live",
+      "type": "reading",
+      "prompt": "读最后一句：作者对居住的地方有什么感受？",
+      "options": [
+        "想拆掉所有房屋",
+        "害怕去学校",
+        "喜欢自己住的地方"
+      ],
+      "answer": 2,
+      "explanation": "I love where I live直接表达对居住地的喜爱；不推测原文没有的感受。",
+      "source": "My Neighborhood · 已核对素材；本题为自编练习，非官方真题。",
+      "references": [
+        {
+          "kind": "original",
+          "text": "I love where I live.",
+          "source": "My Neighborhood · 第12页 · 原图已核对"
+        }
+      ],
+      "passage": "I love where I live."
     }
   ]
 }
