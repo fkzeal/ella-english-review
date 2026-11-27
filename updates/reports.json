@@ -2,6 +2,546 @@
   "version": 1,
   "reports": [
     {
+      "runId": "4b8647ef-2175-4d9f-a235-4f7c91d4be73",
+      "date": "2026-11-28",
+      "createdAt": "2026-11-27T17:20:00.054Z",
+      "status": "published",
+      "summary": "手动专项接入已上线：新增读伴儿独立分类，《Art Is Fun and Messy》《Go, Hope, Go》各9个主要目标、9道共享题，共18目标18题。保留原书7-4册号、既有课程日期和历史；本次不是独立定时维护回执。",
+      "bankRevision": 17,
+      "sections": {
+        "materials": {
+          "value": "21",
+          "note": "复核两本书的22张既有图片，21张独立素材接入、1张重复封底继续去重。美式课堂第1—10页及词汇卡、自然拼读第1—7页已核对；未见页不补写。"
+        },
+        "questions": {
+          "value": "18",
+          "note": "两本各9题：词义与表达、附原文的阅读理解、long o拼读。依据必要主要目标覆盖编写，原创练习非官方题。默认每组10题上限，本课实际9题，不凑数。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "本次为读伴儿分类接入，未更改既有题目评价。另有Animal Tongues第7页历史反馈仍待清晰原图。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "新增分类入口、原书册号显示和整本首次学习日期；旧372道题、旧课程与批次完整保留。应用0.7.8、题库r17。"
+        },
+        "derivatives": {
+          "value": "0",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [
+        {
+          "id": "dubaer-art-fun-messy-q01",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "clothes：衣服",
+          "reviewUnit": "clothes",
+          "type": "choice",
+          "prompt": "词义练习：clothes 是什么意思？",
+          "options": [
+            "衣服",
+            "时钟",
+            "花园"
+          ],
+          "answer": 0,
+          "explanation": "clothes 指“衣服”。原文说她的衣服上也沾了一点金色颜料；不是钟表或花园。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "clothes",
+              "source": "词汇卡第14页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q02",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "old：老的；旧的",
+          "reviewUnit": "old",
+          "type": "choice",
+          "prompt": "old trees是什么意思？",
+          "options": [
+            "新玩具",
+            "老树",
+            "小猫"
+          ],
+          "answer": 1,
+          "explanation": "old trees 是“老树”；old 在这里说明树的年龄，修饰物品时也可表示“旧的”。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "old trees",
+              "source": "第3页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q03",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "paint：绘画；颜料",
+          "reviewUnit": "paint",
+          "type": "choice",
+          "prompt": "Yolanda uses gold paint中paint是什么？",
+          "options": [
+            "牛奶",
+            "彩蛋",
+            "颜料"
+          ],
+          "answer": 2,
+          "explanation": "uses gold paint 表示“使用金色颜料”，paint 在这个短语中是名词“颜料”。paint 作动词时可表示“绘画、涂色”。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Yolanda uses gold paint on some of the trees.",
+              "source": "第4页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q04",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "open：打开",
+          "reviewUnit": "open",
+          "type": "choice",
+          "prompt": "opens the art room door说明她做了什么？",
+          "options": [
+            "打开美术教室的门",
+            "关上箱子",
+            "跳进洞里"
+          ],
+          "answer": 0,
+          "explanation": "opens 表示“打开”；the art room door 是“美术教室的门”，所以是打开门，不是关箱子。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Yolanda opens the art room door every day.",
+              "source": "第2页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q05",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "gold：金色的",
+          "reviewUnit": "gold",
+          "type": "choice",
+          "prompt": "gold paint是什么颜色？",
+          "options": [
+            "黑色",
+            "金色",
+            "绿色"
+          ],
+          "answer": 1,
+          "explanation": "gold 在 gold paint 中表示“金色的”，整组词是“金色颜料”。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "gold paint",
+              "source": "第4页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q06",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "only：只；仅仅",
+          "reviewUnit": "only",
+          "type": "choice",
+          "prompt": "only paints pictures of old trees说明什么？",
+          "options": [
+            "从不画老树",
+            "画所有动物",
+            "只画老树的图画"
+          ],
+          "answer": 2,
+          "explanation": "only 表示“只、仅仅”。这句话说 Yolanda 只画老树的图画，没有说她画所有动物。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Yolanda only paints pictures of old trees.",
+              "source": "第3页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q07",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "阅读：出发时间",
+          "reviewUnit": "leave-time",
+          "type": "reading",
+          "prompt": "阅读短文：Yolanda几点离家去学校？",
+          "options": [
+            "九点",
+            "七点",
+            "十点"
+          ],
+          "answer": 0,
+          "explanation": "At nine o’clock 是“在九点”；leaves home to walk to school 表示离家步行去学校。出发时间是九点。",
+          "passage": "At nine o’clock Yolanda leaves home to walk to school.\nYolanda opens the art room door every day.\nYolanda only paints pictures of old trees.\nYolanda uses gold paint on some of the trees.",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "At nine o’clock Yolanda leaves home to walk to school.\nYolanda opens the art room door every day.\nYolanda only paints pictures of old trees.\nYolanda uses gold paint on some of the trees.",
+              "source": "读伴儿《Art Is Fun and Messy》正文节选 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q08",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "阅读：清理帮助者",
+          "reviewUnit": "cleanup-helper",
+          "type": "reading",
+          "prompt": "阅读短文：谁帮助Yolanda清理颜料？",
+          "options": [
+            "她的弟弟",
+            "她的母亲",
+            "校长"
+          ],
+          "answer": 1,
+          "explanation": "原文主语是 Yolanda’s mother（Yolanda 的母亲），helps her clean up 表示帮助她清理。老师写了便条，实际帮助清理的是母亲。",
+          "passage": "Oh dear, Yolanda drops gold paint on the floor!\nShe has gold paint on her nose, too!\nShe gets a little gold paint on her clothes, too.\nHer teacher writes a note to Yolanda’s mom.\nYolanda’s mother helps her clean up the gold paint mess.",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Oh dear, Yolanda drops gold paint on the floor!\nShe has gold paint on her nose, too!\nShe gets a little gold paint on her clothes, too.\nHer teacher writes a note to Yolanda’s mom.\nYolanda’s mother helps her clean up the gold paint mess.",
+              "source": "读伴儿《Art Is Fun and Messy》正文节选 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-art-fun-messy-q09",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Art Is Fun and Messy",
+          "target": "阅读：表达感谢的行动",
+          "reviewUnit": "thank-mother",
+          "type": "reading",
+          "prompt": "阅读短文：Yolanda画什么感谢母亲？",
+          "options": [
+            "一辆红车",
+            "一只黑猫",
+            "一朵金色玫瑰"
+          ],
+          "answer": 2,
+          "explanation": "paints a gold rose 是“画一朵金色玫瑰”；to thank her mother 说明她用这幅画感谢母亲。",
+          "passage": "Her teacher writes a note to Yolanda’s mom.\nYolanda’s mother helps her clean up the gold paint mess.\nYolanda paints a gold rose to thank her mother.",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Her teacher writes a note to Yolanda’s mom.\nYolanda’s mother helps her clean up the gold paint mess.\nYolanda paints a gold rose to thank her mother.",
+              "source": "读伴儿《Art Is Fun and Messy》正文节选 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q01",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "rope：绳子",
+          "reviewUnit": "rope",
+          "type": "choice",
+          "prompt": "词义练习：在 go up a rope 中，rope 是什么？",
+          "options": [
+            "绳子",
+            "盒子",
+            "床"
+          ],
+          "answer": 0,
+          "explanation": "rope 在这里表示“绳子”。go up a rope 表示沿绳子向上爬。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Hope likes to go up a rope.",
+              "source": "第1页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q02",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "pole：杆子",
+          "reviewUnit": "pole",
+          "type": "choice",
+          "prompt": "词义练习：在 go down a pole 中，pole 是什么？",
+          "options": [
+            "书桌",
+            "杆子",
+            "篮子"
+          ],
+          "answer": 1,
+          "explanation": "pole 在这里表示“杆子”。go down a pole 表示沿杆子向下。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Hope likes to go down a pole.",
+              "source": "第2页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q03",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "cone：锥形标志物",
+          "reviewUnit": "cone",
+          "type": "choice",
+          "prompt": "词义练习：在 runs around the cones 中，cones 指什么？",
+          "options": [
+            "彩蛋",
+            "钟表",
+            "锥形标志物"
+          ],
+          "answer": 2,
+          "explanation": "cones 在这里表示“锥形标志物”。原文及图画中的 cones 是运动场上的锥形标志物，单数形式是 cone。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Hope runs around the cones.",
+              "source": "第3页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q04",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "hole：洞",
+          "reviewUnit": "hole",
+          "type": "choice",
+          "prompt": "词义练习：在 leaps into a hole 中，hole 是什么？",
+          "options": [
+            "一个洞",
+            "一所学校",
+            "一个盒子"
+          ],
+          "answer": 0,
+          "explanation": "hole 在这里表示“洞”。leaps into a hole 表示跳进一个洞。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Hope leaps into a hole.",
+              "source": "第4页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q05",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "nose：鼻子",
+          "reviewUnit": "nose",
+          "type": "choice",
+          "prompt": "词义练习：在 Hope hit her nose 中，nose 是身体的哪个部位？",
+          "options": [
+            "耳朵",
+            "鼻子",
+            "手指"
+          ],
+          "answer": 1,
+          "explanation": "nose 在这里表示“鼻子”。hit her nose 表示碰到了她的鼻子。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Oh no! Hope hit her nose.",
+              "source": "第5页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q06",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "home：家",
+          "reviewUnit": "home",
+          "type": "choice",
+          "prompt": "词义练习：go home 的意思是什么？",
+          "options": [
+            "去邮局",
+            "去海滩",
+            "回家"
+          ],
+          "answer": 2,
+          "explanation": "home 在这里表示“家”。go home 表示回家；这里 home 前不用 to。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Time to go home, Hope.",
+              "source": "第6页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q07",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "around：围绕",
+          "reviewUnit": "around",
+          "type": "choice",
+          "prompt": "runs around the cones表示什么？",
+          "options": [
+            "绕着锥形标志物跑",
+            "睡在标志物上",
+            "拿走标志物"
+          ],
+          "answer": 0,
+          "explanation": "around 表示“围绕”。runs around the cones 是绕着锥形标志物跑，不是停在上面或拿走它们。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Hope runs around the cones.",
+              "source": "第3页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q08",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "into：进入里面",
+          "reviewUnit": "into",
+          "type": "choice",
+          "prompt": "leaps into a hole表示什么？",
+          "options": [
+            "绕洞散步",
+            "跳进一个洞",
+            "离开洞去学校"
+          ],
+          "answer": 1,
+          "explanation": "into 表示“进入……里面”。leaps into a hole 是跳进洞里，强调从外面进入里面。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Hope leaps into a hole.",
+              "source": "第4页 · 原图已核对"
+            }
+          ]
+        },
+        {
+          "id": "dubaer-go-hope-go-q09",
+          "change": "added",
+          "reason": "从已核对原图接入读伴儿独立分类；保留原书来源，提供唯一答案、解析及依据。",
+          "lesson": "Go, Hope, Go",
+          "target": "自然拼读：long o 长元音（o_e）",
+          "reviewUnit": "long-o",
+          "type": "choice",
+          "prompt": "拼读练习：哪个词中字母 o 的发音与 rope 中的 o 相同？",
+          "options": [
+            "not",
+            "cat",
+            "nose"
+          ],
+          "answer": 2,
+          "explanation": "rope 和 nose 都有 o_e 拼写结构，o 发长元音，即字母 o 的名称音（英式 /əʊ/、美式 /oʊ/）。not 中的 o 是短元音，cat 中没有字母 o。本题检查拼读规则，不是听力辨音。",
+          "references": [
+            {
+              "kind": "excerpt",
+              "text": "Target Skill: long o\nDecodable Words: Hope, go, rope, pole, cone, hole, oh, no, nose, home",
+              "source": "读伴儿《Go, Hope, Go》第7页 Words List · 原图已核对"
+            },
+            {
+              "kind": "practice",
+              "text": "rope 与 nose 中的 o 发相同的长元音；not、cat 为原创辨别选项。",
+              "source": "依据原书 long o 目标编写的拼读说明与练习，非原图音标或官方题"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "本次两本读伴儿接入已完成，旧待接入审核记录保留为历史；后续读伴儿图片在现有分类增量建库，复用已发布课程与题号。",
+        "本次新课未收到确认学习日期；新模块生成日2026-11-28，沿用默认前一天首次学习规则，可在课程进度中调整。旧课程日期、已发布batch、奖励、历史和未完成组均不重置。",
+        "Animal Tongues第7页仍需清晰原图，是其他课程的历史维护待办，不是本次读伴儿建库缺口。",
+        "178项测试与构建通过；手机Chromium、Pad WebKit验证分类、18题逐题作答、日期修改、默认题量、保存和刷新续练。练习测试使用隔离账号接口；生产程序和题库实际回读一致，34个原MP3保持。",
+        "私有来源读取成功，候选0，本轮私有发布0。未因新增尚未测目标预生成薄弱衍生；复用、暂停、讲解和冷却决策私有保存。逐目标复测积压、稳定掌握及完整最近七日平均C/I未知，不能据题号推断覆盖。",
+        "修改app.js、engine.js的分类支持、question-bank.json、版本信息、分类回归测试及维护文档；保留现行选题策略、评价身份、同步接口与音频。报告正文全量展示18道真正上线题目。"
+      ],
+      "targetCounts": {
+        "newTargets": 18,
+        "derivativeQuestions": 0,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 0,
+        "reuse": 2,
+        "recovered": 9,
+        "needsExplanation": 3,
+        "cooldown": 3,
+        "invalidRecords": 5,
+        "needsFamilyReview": 0,
+        "needsMaterial": 2,
+        "dailyLimit": 0,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 57,
+          "remainingU": 57,
+          "C": 0,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-28",
+              "count": null
+            },
+            {
+              "date": "2026-11-27",
+              "count": null
+            },
+            {
+              "date": "2026-11-26",
+              "count": null
+            },
+            {
+              "date": "2026-11-25",
+              "count": null
+            },
+            {
+              "date": "2026-11-24",
+              "count": 22
+            },
+            {
+              "date": "2026-11-23",
+              "count": null
+            },
+            {
+              "date": "2026-11-22",
+              "count": 16
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      },
+      "verification": {
+        "commit": "914f840c8277f02c1d23e571248872c8ede4d953",
+        "actionsRun": "46042947098",
+        "bankVerified": true
+      }
+    },
+    {
       "runId": "bbf57d02-1bb8-4cda-90f5-02efb9c4f655",
       "date": "2026-11-27",
       "createdAt": "2026-11-27T14:45:36.565Z",
