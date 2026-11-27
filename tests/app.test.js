@@ -24,6 +24,20 @@ function harness(initial,shared,overrides={}){
     async change(el){await node('app').listeners.change({target:el});},
     saved(){return JSON.parse(data.get(S.KEY));}};
 }
+test('Readbuddy books have a separate category, original book numbers and one date control per book',async()=>{
+  const app=harness();await app.ready();
+  await app.click('nav',{target:'courses'});
+  assert.match(app.node('app').innerHTML,/data-system="readbuddy">读伴儿/);
+  await app.click('system',{system:'readbuddy'});
+  const html=app.node('app').innerHTML;
+  assert.match(html,/读伴儿 7-4/);
+  for(const title of ['Art Is Fun and Messy','Go, Hope, Go'])assert(html.includes(title));
+  assert.equal((html.match(/9 个学习目标 · 9 道练习题/g)||[]).length,2);
+  assert.equal((html.match(/data-book-date=/g)||[]).length,2);
+  assert.doesNotMatch(html,/data-date-module=|Is This a Real Animal|Family · 家庭/);
+  await app.click('system',{system:'scholastic'});
+  assert.doesNotMatch(app.node('app').innerHTML,/Art Is Fun and Messy|Go, Hope, Go/);
+});
 test('Scholastic is a separate course category with its own numeric level and complete targets',async()=>{
   const app=harness();await app.ready();
   await app.click('nav',{target:'courses'});

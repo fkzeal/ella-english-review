@@ -1,5 +1,22 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const E=require('../engine'),{publishedBank,cambridgeBank}=require('./bank-fixture'),bank=cambridgeBank();
+test('Readbuddy accepts original book labels and supports ordinary saved practice without changing old records',()=>{
+  const b=structuredClone(publishedBank),lessons=b.lessons.filter(l=>l.system==='readbuddy');
+  assert.equal(lessons.length,2);E.validateBank(b);
+  const s=E.emptyState();E.syncBatches(b,s,'2026-11-28');
+  assert.equal(s.settings.size,10);
+  for(const l of lessons){
+    assert.equal(l.level,'7-4');
+    assert.equal(l.learningTargets.length,9);
+    assert(!b.batches.some(x=>x.items.some(i=>i.lessonId===l.id)));
+    const ids=E.plan(b,s,{practice:true,lessonId:l.id,today:'2026-11-28',size:10});
+    assert.equal(ids.length,9);assert.equal(new Set(ids).size,9);
+    assert(ids.every(id=>b.points.find(p=>p.id===b.questions.find(q=>q.id===id).pointId).lessonId===l.id));
+    for(const m of Object.keys(l.moduleGeneratedOn))assert.equal(E.moduleDate(b,s,l.id,m).date,'2026-11-27');
+  }
+  const invalid=structuredClone(b);invalid.lessons.find(l=>l.system==='readbuddy').level='';
+  assert.throws(()=>E.validateBank(invalid),/信息不完整/);
+});
 test('Scholastic validates original numeric level and participates in normal practice without changing existing records',()=>{
   const b=structuredClone(publishedBank),l=b.lessons.find(l=>l.system==='scholastic');
   assert(l);assert.equal(l.level,3);assert.equal(l.learningTargets.length,9);

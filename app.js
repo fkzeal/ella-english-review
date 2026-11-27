@@ -143,7 +143,7 @@
   }
   function clone(){return JSON.parse(JSON.stringify(state));}
   function lessonLabel(l){
-    return l.system==='raz'?`RAZ ${l.level} · ${esc(l.title)}`:l.system==='ket'?`KET 词汇 · ${esc(l.title)}`:l.system==='scholastic'?`Scholastic Level ${l.level} · ${esc(l.title)}`:`Level ${l.level} · Lesson ${l.number} · ${esc(l.title)}`;
+    return l.system==='raz'?`RAZ ${l.level} · ${esc(l.title)}`:l.system==='ket'?`KET 词汇 · ${esc(l.title)}`:l.system==='scholastic'?`Scholastic Level ${l.level} · ${esc(l.title)}`:l.system==='readbuddy'?`读伴儿 ${esc(l.level)} · ${esc(l.title)}`:`Level ${l.level} · Lesson ${l.number} · ${esc(l.title)}`;
   }
   function starterLesson(){return bank.lessons.find(l=>l.status==='ready'&&!(bank.batches||[]).some(b=>b.items.some(i=>i.lessonId===l.id)));}
   async function syncLearning(){const next=clone();E.syncBatches(bank,next);const changed=JSON.stringify(next)!==JSON.stringify(state);if(changed)await commit(next);return changed;}
@@ -226,7 +226,7 @@
   }
   function pointRow(p){const l=bank.lessons.find(l=>l.id===p.lessonId),sp=state.points[p.id];return `<div class="list-row"><span class="type-icon">↗</span><div class="grow"><strong>${esc(p.title)}</strong><small>${lessonLabel(l)}</small></div><span class="tag">${sp?.errors?'需要巩固':sp?.stage?'间隔复习':'首次回顾'}</span></div>`;}
   function moduleControls(l,ps){
-    if(l.system==='raz')return bookControls(l,ps);
+    if(['raz','readbuddy'].includes(l.system))return bookControls(l,ps);
     return `<div class="checks">${E.MODULES.filter(m=>(l.system||'cambridge')==='cambridge'?['lv','rg','skills'].includes(m):ps.some(p=>p.module===m)).map(m=>{
       const available=ps.some(p=>p.module===m),info=available?E.moduleDate(bank,state,l.id,m):null;
       return `<div class="module-block module-inline"><strong>${moduleNames[m]}${!available?'（待补充）':''}</strong>${available?`<div class="module-date-row"><input type="date" id="date-${l.id}-${m}" data-date-lesson="${l.id}" data-date-module="${m}" aria-label="${moduleNames[m]}首次学习日期" value="${info.date}"></div>${info.date>E.day()?'<p class="note">等待学习日</p>':''}`:''}</div>`;
@@ -243,7 +243,7 @@
     const bank=currentContent();
     const list=bank.lessons.filter(l=>(l.system||'cambridge')===system&&(system!=='cambridge'||l.level===level));
     return head('LEARNED, THEN REVIEWED','学过什么，系统自动记住。','调整首次学习日期，复习由系统根据答题表现自动安排。')+
-      '<div class="filter-row">'+[['raz','RAZ 绘本'],['cambridge','猿辅导剑桥'],['ket','KET 词汇'],['scholastic','Scholastic 阅读']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
+      '<div class="filter-row">'+[['raz','RAZ 绘本'],['cambridge','猿辅导剑桥'],['ket','KET 词汇'],['scholastic','Scholastic 阅读'],['readbuddy','读伴儿']].map(([id,name])=>`<button class="chip ${system===id?'active':''}" data-action="system" data-system="${id}">${name}</button>`).join('')+'</div>'+
       (system==='cambridge'?'<div class="filter-row">'+[1,2,3,4].map(n=>`<button class="chip ${n===level?'active':''}" data-action="level" data-level="${n}">Level ${n}</button>`).join('')+'</div>':'')+
       (list.length?`<div class="course-grid">${list.map(l=>{
         const ps=bank.points.filter(p=>p.lessonId===l.id),qs=bank.questions.filter(q=>ps.some(p=>p.id===q.pointId));
