@@ -17,6 +17,11 @@ test('maintenance state requires admin and origin; lease fencing and revision CA
     assert.equal((await call('lease',{owner},env.LEARNING_ADMIN_TOKEN,'https://evil.test')).status,403);
     assert.equal((await call('lease',{owner})).status,200);
     assert.equal((await call('lease',{owner:other})).status,409);
+    const extended=randomUUID();
+    assert.equal((await call('chunk',{owner,revision:extended,part:512,content:'YQ=='})).status,200,'new images can extend beyond the former 512-part limit');
+    assert.equal((await call('chunk?revision='+extended+'&part=512')).data.content,'YQ==');
+    assert.equal((await call('chunk',{owner,revision:extended,part:1024,content:'YQ=='})).status,400,'the expanded archive remains bounded');
+    assert.equal((await call('commit',{owner,revision:extended,expected:null,manifest:{version:1,chunks:513,bytes:32832000,sha256:'a'.repeat(64)}})).status,409,'expanded manifests pass validation but incomplete uploads still cannot commit');
     const revision=randomUUID(),manifest={version:1,chunks:2,bytes:8,sha256:'a'.repeat(64)};
     assert.equal((await call('chunk',{owner:other,revision,part:0,content:'YQ=='})).status,409);
     assert.equal((await call('chunk',{owner,revision,part:0,content:'YQ=='})).status,200);

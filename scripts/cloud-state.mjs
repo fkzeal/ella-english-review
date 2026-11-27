@@ -64,7 +64,7 @@ export function decrypt(content,token){
   const bytes=Buffer.from(content,'base64');
   const key=Buffer.from(hkdfSync('sha256',token,'ella-maintenance-state-v1','private-archive',32));
   const cipher=createDecipheriv('aes-256-gcm',key,bytes.subarray(0,12));cipher.setAuthTag(bytes.subarray(12,28));
-  const archive=JSON.parse(gunzipSync(Buffer.concat([cipher.update(bytes.subarray(28)),cipher.final()]),{maxOutputLength:64000000}));
+  const archive=JSON.parse(gunzipSync(Buffer.concat([cipher.update(bytes.subarray(28)),cipher.final()]),{maxOutputLength:128000000}));
   if(archive.version!==1)throw new Error('Unsupported state format');
   validate(archive.files);return archive;
 }
@@ -104,7 +104,7 @@ export async function api(route,data){
 export async function save(directory,expected,owner){
   const content=encrypt(pack(directory),process.env.LEARNING_ADMIN_TOKEN),revision=randomUUID();
   const chunks=content.match(/.{1,64000}/g);
-  if(chunks.length>512)throw new Error('State archive exceeds size limit');
+  if(chunks.length>1024)throw new Error('State archive exceeds size limit');
   await api('lease',{owner});
   await orderedTransfer(chunks,async(value,part)=>api('chunk',{owner,revision,part,content:value}));
   await api('lease',{owner});

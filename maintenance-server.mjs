@@ -19,7 +19,7 @@ export async function handleMaintenance(request,env){
       }
       if(route==='chunk'){
         const revision=url.searchParams.get('revision'),part=Number(url.searchParams.get('part'));
-        if(!uuid.test(revision||'')||!Number.isInteger(part)||part<0||part>=512)return json({error:'Invalid chunk'},400);
+        if(!uuid.test(revision||'')||!Number.isInteger(part)||part<0||part>=1024)return json({error:'Invalid chunk'},400);
         const row=await db.prepare('SELECT content FROM maintenance_chunks WHERE revision=? AND part=?').bind(revision,part).first();
         return row?json(row):json({error:'Not found'},404);
       }
@@ -50,7 +50,7 @@ export async function handleMaintenance(request,env){
     }
     if(!uuid.test(data.revision||''))return json({error:'Invalid revision'},400);
     if(route==='chunk'){
-      if(!Number.isInteger(data.part)||data.part<0||data.part>=512||typeof data.content!=='string'||
+      if(!Number.isInteger(data.part)||data.part<0||data.part>=1024||typeof data.content!=='string'||
         data.content.length>64000||!data.content.length||!/^[A-Za-z0-9+/=]+$/.test(data.content))return json({error:'Invalid chunk'},400);
       const result=await db.prepare(`INSERT OR IGNORE INTO maintenance_chunks(revision,part,content)
         SELECT ?,?,? WHERE EXISTS(SELECT 1 FROM maintenance_head WHERE id=1 AND lease_owner=? AND lease_until>?)
@@ -59,8 +59,8 @@ export async function handleMaintenance(request,env){
     }
     if(route==='commit'){
       const m=data.manifest;
-      if(!m||m.version!==1||!Number.isInteger(m.chunks)||m.chunks<1||m.chunks>512||
-        !/^[a-f0-9]{64}$/.test(m.sha256||'')||!Number.isInteger(m.bytes)||m.bytes<1||m.bytes>32768000||
+      if(!m||m.version!==1||!Number.isInteger(m.chunks)||m.chunks<1||m.chunks>1024||
+        !/^[a-f0-9]{64}$/.test(m.sha256||'')||!Number.isInteger(m.bytes)||m.bytes<1||m.bytes>65536000||
         (data.expected!==null&&!uuid.test(data.expected||'')))return json({error:'Invalid manifest'},400);
       const result=await db.prepare(`UPDATE maintenance_head SET revision=?,manifest=?
         WHERE id=1 AND lease_owner=? AND lease_until>? AND revision IS ?
