@@ -2,6 +2,159 @@
   "version": 1,
   "reports": [
     {
+      "runId": "6fb75e42-82dc-497f-9633-0d54781a7e8c",
+      "date": "2026-11-28",
+      "createdAt": "2026-11-28T14:37:31.789Z",
+      "status": "partial",
+      "summary": "复核全部固定素材与共享反馈；共享题库维持 r17，本轮两个既有词义目标各补一道原创应用变式。《Animal Tongues》第7页仍待清晰原图。",
+      "bankRevision": 17,
+      "sections": {
+        "materials": {
+          "value": "0",
+          "note": "全量复扫飞书修订75的151个图片块。150张已发布原图哈希相符，1张已有重复记录；未发现新图、晚到图或补页。此前已上线的KET词汇和读伴儿练习维持原归属，本轮不重复计入。"
+        },
+        "questions": {
+          "value": "0",
+          "note": "无新增或启用的共享主要目标（I=0）；共享题库仍为r17、390题，既有题号、学习日期和批次保留。衍生变式不计作共享新增。"
+        },
+        "fixes": {
+          "value": "0",
+          "note": "已核查4条共享反馈：3条是已标记的验证记录，1条涉及《Animal Tongues》第7页，仍缺清晰原图。既有摘录支持现有答案，但不足以复核原页，维持需补素材。"
+        },
+        "optimizations": {
+          "value": "0",
+          "note": "本轮原main仅更新维护报告；题库、音频、应用及账号接口均没有修改。生产题库、程序和34个MP3共45个资源已与构建产物逐项核对。"
+        },
+        "derivatives": {
+          "value": "2",
+          "note": "已发布衍生题的详情统一展示，不区分账号。"
+        }
+      },
+      "questions": [
+        {
+          "id": "practice-ac386a9094da358ea5aa9378",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Country Places",
+          "target": "pen：猪圈",
+          "reviewUnit": "pen",
+          "type": "choice",
+          "prompt": "农场里，几只小羊待在围栏围起的空地上。这里的围栏圈养区用哪个词表示？",
+          "options": [
+            "a garden",
+            "a shed",
+            "a pen"
+          ],
+          "answer": 2,
+          "explanation": "pen 在农场语境里可以指用围栏圈起、用来养动物的地方。原书里的 pen 圈着猪；这里圈着小羊。garden 是花园或菜园，shed 指储物棚等小建筑。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "What is this place? It is a pen. Pigs live in a pen.",
+              "source": "Country Places · 第8页 · 原图已核对"
+            },
+            {
+              "kind": "practice",
+              "text": "原创情境：农场把几只小羊养在一块用围栏围起的空地上。",
+              "source": "原创词义应用练习"
+            }
+          ]
+        },
+        {
+          "id": "practice-fab467ab607c422a20589338",
+          "change": "derived",
+          "reason": "已发布的衍生巩固练习。",
+          "lesson": "Getting Around the City",
+          "target": "skateboard：滑板",
+          "reviewUnit": "skateboard",
+          "type": "choice",
+          "prompt": "她用一只脚蹬地，然后站在带四个小轮子的短板上滑行。她用的是哪样东西？",
+          "options": [
+            "a bicycle",
+            "a skateboard",
+            "roller skates"
+          ],
+          "answer": 1,
+          "explanation": "skateboard 是滑板：人站在同一块带轮子的板上滑行。bicycle 是自行车；roller skates 是双脚各穿一只的轮滑鞋。",
+          "references": [
+            {
+              "kind": "original",
+              "text": "I go to my friend's house.\nI go on my skateboard.",
+              "source": "Getting Around the City · 第3页 · 原图已核对"
+            },
+            {
+              "kind": "practice",
+              "text": "原创情境：先用脚蹬地，再站在一块有四个小轮子的短板上滑行。",
+              "source": "原创词义应用练习"
+            }
+          ]
+        }
+      ],
+      "todos": [
+        "《Animal Tongues》第7页取得可核查原图后继续反馈核查；若评价需改变，分配新题号，并保留旧历史。",
+        "两个词义点各补一种语境题族：根据围栏和圈养用途识别 pen，根据滑行动作和物体结构识别 skateboard。均保留原主要目标和能力单元；变式只填供给缺口，两个既有目标的净新增为0。",
+        "复用1、暂停扩题10、待讲解3、冷却3、待题族核验0、待原题依据2、日额度和目标额度等待均0、来源或评价指纹不合格记录5。暂停扩题不等于稳定掌握；不因未测预生成。",
+        "按已学且可练范围的有效记录推算，今日开始未初筛U=57，首次检查C=7，当前余50；在目录、学习日期和可练范围不变且无额外首次检查的条件下，按 max(0,U+I−C) 估计下一日仍约50。缺完整七个自然日的逐目标记录，无法比较平均C/I。逐目标复测积压R和稳定掌握未知。",
+        "已核对17份历史操作、14个原发布流程回执。一个历史维护回执缺失，但该次独立发布摘要、可见性、历史报告及对应Actions均已核验；不用重发。历史手动接入不计入本轮。",
+        "用课程内主要目标和原能力单元判断供给，保留 learningTargetId、reviewUnit、baseQuestionId 与评价身份；variantFamily 只进入私有题族目录。没有新增题包字段、改变接口或修改实时组题。"
+      ],
+      "targetCounts": {
+        "newTargets": 0,
+        "derivativeQuestions": 2,
+        "derivativeNewTargets": 0
+      },
+      "generationSummary": {
+        "generated": 2,
+        "reuse": 1,
+        "recovered": 10,
+        "needsExplanation": 3,
+        "cooldown": 3,
+        "invalidRecords": 5,
+        "needsFamilyReview": 0,
+        "needsMaterial": 2,
+        "dailyLimit": 0,
+        "targetLimit": 0,
+        "coverage": {
+          "U": 57,
+          "remainingU": 50,
+          "C": 7,
+          "R": null,
+          "sevenDayC": [
+            {
+              "date": "2026-11-28",
+              "count": 7
+            },
+            {
+              "date": "2026-11-27",
+              "count": null
+            },
+            {
+              "date": "2026-11-26",
+              "count": null
+            },
+            {
+              "date": "2026-11-25",
+              "count": null
+            },
+            {
+              "date": "2026-11-24",
+              "count": 22
+            },
+            {
+              "date": "2026-11-23",
+              "count": null
+            },
+            {
+              "date": "2026-11-22",
+              "count": 16
+            }
+          ],
+          "sevenDayI": null,
+          "stableMastery": null
+        }
+      }
+    },
+    {
       "runId": "4b8647ef-2175-4d9f-a235-4f7c91d4be73",
       "date": "2026-11-28",
       "createdAt": "2026-11-27T17:20:00.054Z",
